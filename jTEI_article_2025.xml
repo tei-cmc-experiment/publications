@@ -6,6 +6,17 @@
     <fileDesc>
       <titleStmt>
         <title type="main">Preserving LISTSERV Archive in TEI</title>
+        <author xml:id="sb">
+          <name>
+            <forename>Syd</forename>
+            <surname>Bauman</surname>
+          </name>
+          <affiliation>
+            <roleName>Senior XML Programmer/Analyst</roleName>
+            <affiliation>Northeastern University</affiliation>
+          </affiliation>
+          <email>s.bauman@northeastern.edu</email>
+        </author>
         <author xml:id="ebb">
           <name>
             <forename>Elisa</forename>
@@ -17,17 +28,6 @@
             <orgName>Penn State Erie</orgName>
           </affiliation>
           <email>eeb4@psu.edu</email>
-        </author>
-        <author xml:id="sb">
-          <name>
-            <forename>Syd</forename>
-            <surname>Bauman</surname>
-          </name>
-          <affiliation>
-            <roleName>Senior XML Programmer/Analyst</roleName>
-            <affiliation>Northeastern University</affiliation>
-          </affiliation>
-          <email>s.bauman@northeastern.edu</email>
         </author>
       </titleStmt>
       <publicationStmt>
@@ -75,7 +75,7 @@
         <p><q>Can the archives of an email list be stored in TEI?</q> This seems
         like a reasonable question, to which the answer, especially with the new
         <title level="a">Computer-mediated Communcation</title> chapter of the
-        <title>TEI Guidelines</title>, should be a straight forward <q>yes</q>.</p>
+        <title>TEI Guidelines</title>, should be a simple <q>yes</q>.</p>
         <p>In order to prove this, each co-author attempted to encode a subset
         of the archives of <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">TEI-L</ref>,
         the main email discussion list for TEI, in TEI. While our methods were wildly different,
@@ -119,8 +119,10 @@
           </list>
         </p>
       </div>
-      <div xml:id="approachSB">
-        <head>mass conversion approach</head>
+      <div xml:id="data-retrieval">
+        <head>Conversion from source to XML</head>
+       <div xml:id="mass-conversion"> 
+         <head>Mass conversion approach</head>
         <p>Our goal for the mass conversion approach was to convert all of TEI-L
           from its inception up to 2024-04-29. That end date was chosen because it was
           the day the mailing list was moved from Brown University’s
@@ -133,7 +135,7 @@
         <p>Step 1 was thus to rename the log files to use 4-digit (as opposed to 2-digit) years
         so that they sorted into the correct order.</p>
         <div xml:id="characters_illegal">
-          <head>illegal characters (for XML)</head>
+          <head>Illegal characters (for XML)</head>
           <p>Early e-mail systems used ASCII (7-bit) characters only. Thus
             there were 128 available code points (0–2⁷-1, or 0–127). Of those
             128 available code points, only 99 of them are legal XML characters.
@@ -155,7 +157,16 @@
             to which they are mapped in the ASCII character set, but rather to represent
             various accented characters that were not part of the original (7-bit) ASCII set.
             The last use of a character that is illegal in XML was on 2016-03-13.</p>
+        </div>        
+       </div>
+        <div xml:id="scraping">
+          <head>Attempting to scrape from the web</head>
         </div>
+      </div>
+      <div xml:id="mapping-to-TEI">
+        <head>Mapping to TEI</head>
+        <!--ebb: To start here. -->
+        
       </div>
     </body>
     <back>
