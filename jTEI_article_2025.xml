@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Preserving LISTSERV Archive in TEI</title>
+        <author xml:id="ebb">
+          <name>
+            <forename>Elisa</forename>
+            <surname>Beshero-Bondar</surname>
+          </name>
+          <affiliation>
+            <roleName>Professor of Digital Humanities</roleName>
+            <roleName>Director of the Digital Humanities Lab</roleName>
+            <orgName>Penn State Erie</orgName>
+          </affiliation>
+          <email>eeb4@psu.edu</email>
+        </author>
+        <author xml:id="sb">
+          <name>
+            <forename>Syd</forename>
+            <surname>Bauman</surname>
+          </name>
+          <affiliation>
+            <roleName>Senior XML Programmer/Analyst</roleName>
+            <affiliation>Northeastern University</affiliation>
+          </affiliation>
+          <email>s.bauman@northeastern.edu</email>
+        </author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <date><!-- the publication year --></date>
+        <availability>
+          <licence target="https://creativecommons.org/licenses/by/4.0/">
+            <p>For this publication a Creative Commons Attribution 4.0 International
+              license has been granted by the author(s) who retain full copyright.</p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>No source, born digital.</p>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+          in the humanities and social sciences, open to quality periodicals looking to publish
+          full-text articles online.</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="en">en</language>
+      </langUsage>
+      <textClass>
+        <keywords xml:lang="en">
+          <term>TEI</term>
+          <term>LISTSERV</term>
+          <term>character</term>
+          <term>email</term>
+          <term>computer-mediated communication</term>
+        </keywords>
+      </textClass>
+    </profileDesc>
+    <revisionDesc>
+      <change when="2025-02-08" who="#sb">Started jTEI article outline based on Buenos Aires talk</change>
+    </revisionDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <div type="abstract" xml:id="abstract">
+        <p><q>Can the archives of an email list be stored in TEI?</q> This seems
+        like a reasonable question, to which the answer, especially with the new
+        <title level="a">Computer-mediated Communcation</title> chapter of the
+        <title>TEI Guidelines</title>, should be a straight forward <q>yes</q>.</p>
+        <p>In order to prove this, each co-author attempted to encode a subset
+        of the archives of <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">TEI-L</ref>,
+        the main email discussion list for TEI, in TEI. While our methods were wildly different,
+        our conclusions are similar: the answer is <q>yes, but it is a <emph>lot</emph> harder
+        than you might expect</q>.</p>
+      </div>
+    </front>
+    <body>
+      <div xml:id="introduction">
+        <head>Introduction</head>
+        <p>
+          This is an example of how to do a bibliographic citation:
+          <ref type="bibl" target="#bloggs13">Bloggs 2013</ref> tells us...
+          This paragraph should be deleted as soon as we have a bibl cit we
+          can use as our own xmp.
+        </p>
+        <list>
+          <head>e-mail lists are challenging</head>
+          <item>CMC is not intended for e-mail</item>
+          <item>but neither is <gi>correspDesc</gi></item>
+        </list>
+        <list>
+          <head>We chose to start with TEI-L</head>
+          <item>large, interesting historical dataset</item>
+          <item>LISTSERV provides easy access to the data in raw form</item>
+          <item>we had recently been working with it (to move from Brown to PSU)</item>
+        </list>
+        <p>Our initial thought was that converting the data to XML would be easy,
+          and that most of our attention would be directed towards the more interesting
+          part of deciding exactly how to encode it in TEI. However, it turns
+          out that both parts were problematic — it was very difficult to convert
+          the data into XML, and in several cases there is no TEI encoding that is
+          really satisfactory.</p>
+        <p>Our two approaches were
+          <list>
+            <item>an automated conversion of mass data to a basic
+            TEI representation for archiving and potential later
+            enhancement</item>
+            <item>a craft encoding of a short range of months or
+            years worth of posts</item>
+          </list>
+        </p>
+      </div>
+      <div xml:id="approachSB">
+        <head>mass conversion approach</head>
+        <p>Our goal for the mass conversion approach was to convert all of TEI-L
+          from its inception up to 2024-04-29. That end date was chosen because it was
+          the day the mailing list was moved from Brown University’s
+          LISTSERV to Penn State University’s LISTSERV. Thus we were able to obtain the entire dataset
+          directly from Brown listmaster without needing to worry about merging in data from
+          PSU or about posts made just after we obtained the data. The Brown listmaster sent
+          us 412 separate files, one for each month, i.e.,
+          <name>tei-l.log9001</name> through <name>tei-l.log2404</name>.
+        </p>
+        <p>Step 1 was thus to rename the log files to use 4-digit (as opposed to 2-digit) years
+        so that they sorted into the correct order.</p>
+        <div xml:id="characters_illegal">
+          <head>illegal characters (for XML)</head>
+          <p>Early e-mail systems used ASCII (7-bit) characters only. Thus
+            there were 128 available code points (0–2⁷-1, or 0–127). Of those
+            128 available code points, only 99 of them are legal XML characters.
+            The remaining 29 characters (for which see <ptr type="crossref" target="#appendix01"/>)
+            are all non-printing control characters, intended for controlling
+            the behavior of a peripheral device such as a paper tape or printer, or (in a few cases)
+            whitespace. While neither of us is an expert on early e-mail systems, we suspect
+            that the designers never intended these characters 
+            to be used in e-mail, but did not feel it necessary to do anything
+            to prevent them from being used, as the average user of a computer
+            had no way of generating them.</p>
+          <p>However, of the 29 characters that are not legal in XML, 17 of them occur in the TEI-L
+            archives:
+            <list>
+              <item>64 occurrences in 34 posts before 2000 (which not surprising)</item>
+              <item>38 occurrences in 11 posts after 2008 (which we did not expect)</item>
+            </list>
+            These characters were generally used to not to represent the control characters 
+            to which they are mapped in the ASCII character set, but rather to represent
+            various accented characters that were not part of the original (7-bit) ASCII set.
+            The last use of a character that is illegal in XML was on 2016-03-13.</p>
+        </div>
+      </div>
+    </body>
+    <back>
+      <div type="bibliography">
+        <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+        <listBibl>
+          <bibl xml:id="bloggs13"/>
+        </listBibl>
+      </div>
+      <div type="appendix" xml:id="appendix01">
+        <!-- put copy of https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html,
+             converted to TEI, here. But note that some of those regexps look like they need fixing. -->
+      </div>
+    </back>
+  </text>
+</TEI>
