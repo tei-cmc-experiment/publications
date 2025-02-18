@@ -89,31 +89,53 @@
       <div xml:id="introduction">
 	<head>Introduction</head>
 	<p>One of the goals of digital humanists, and one of the
-	points of digitial humanities, is cultural memory.<?ebb —
-	citation needed? —sb?> It is commonly a goal to preserve the
-	results of humanistinc endeavors in a manner that one hopes
-	will be easy to access many years in the future, and allows
-	for scholarly examination and inquiry. From the last quarter of the
-	last century to the present, one venue for communication among
-	humans has been email, and in particular the email discussion
-	list. Thus it is to be expected that digital humanists will
-	want to preserve email discussion lists in a manner that is
-	likely to survive the ups and downd of the word processor
-	market, and is ammenable to scholarly processing.</p>
-	<p>What is not expected is that the Text Encoding Initiat
-	<!-- HERE  -->
-	</p>
-        <list>
-          <head>e-mail lists are challenging</head>
-          <item>CMC is not intended for e-mail</item>
-          <item>but neither is <gi>correspDesc</gi></item>
-        </list>
-        <list>
-          <head>We chose to start with TEI-L</head>
-          <item>large, interesting historical dataset</item>
-          <item>LISTSERV provides easy access to the data in raw form</item>
-          <item>we had recently been working with it (to move from Brown to PSU)</item>
-        </list>
+	points of digitial humanities, is cultural memory. It is
+	commonly a goal to preserve the results of humanistic
+	endeavors in a manner that one hopes will be easy to access
+	many years in the future, and allows for scholarly examination
+	and inquiry. From the last quarter of the 20th century to the
+	present, one venue for communication among humans has been
+	email, and in particular the email discussion list. Thus it is
+	to be expected that digital humanists will want to preserve
+	email discussion lists in a manner that is likely to survive
+	the ups and downs of the word processor market, and is
+	ammenable to scholarly processing.</p>
+	<p>What is not expected is that the Text Encoding Initiative
+	would not provide a dedicated mechanism for encoding email,
+	but it does not. TEI does provide mechanisms for encoding
+	<emph>physical</emph> letters and chains of
+	correspondence. There are quite a few similarities — like a
+	letter, a piece of email is written by an author and sent to a
+	recipient at a particular point in time. But physical letters
+	do not have such a sharp demarcation between data &amp;
+	metadata, rarely have multiple copies of the same content in
+	different formats (typically HTML and plain text), and never
+	suffer character encoding ambiguities. (Conversely, email does
+	not have seals or stamps or any of the inconsistencies present
+	in any set of manuscripts.)</p>
+	<p>TEI also provides a (new) mechanism for encoding
+	computer-mediated communication (CMC). It is intended,
+	however, for systems like Twitter or Tik-Tok rather than for
+	email. Thus it is not yet known how well its encoding system
+	could be applied to email. Thus the impetus for this project —
+	can TEI, with its new CMC chapter, be used to encode an email
+	discussion list?</p>
+	<p>We decided the TEI-L discussion list would make an
+	excellent test case. It is a large resource that spans decades
+	— the first post was on <date when="1990-01-08">Mon 08 Jan
+	90<!-- while I was still living in Pasedena, 6 days after I
+	got my MICP certification —sb --></date> — from mailing list
+	software (LISTSERV) with which we are somewhat
+	familiar. Furthermore, because we had recently moved the list
+	from Brown University to Penn State University, getting access
+	to the raw archives from its beginning to the day the list was
+	moved would be trivial. But most of all, the list is
+	(obviously) of significant interest to the TEI community. Its
+	contents provide a treasure trove of insights into the early
+	days of text encoding and digital humanities. (The list was
+	started months before the first edition of P1, and years
+	before the advent of XML.)</p>
+	<!-- gold mine; heritage dig site; core sample; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
           and that most of our attention would be directed towards the more interesting
           problem of deciding exactly how to encode it in TEI. However, it turns
@@ -417,8 +439,9 @@
 	      <row><cell>1</cell><cell>X-UNKNOWN</cell></row>
 	      <row><cell>1</cell><cell>gb2312</cell></row>
 	    </table>
-	    3,397 use <q>Q</q>, 737 use <q>B</q>
-	    </p>
+	    Dramatically more word-encoded passages in this dataset
+	    employ <q>Q</q> encoding over the <q>B</q> method: 3,397
+	    (82.2%) and 737 (17.8%), respectively.</p>
 	  </div>
 	</div>
        </div>
