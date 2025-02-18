@@ -87,7 +87,22 @@
     </front>
     <body>
       <div xml:id="introduction">
-        <head>Introduction</head>
+	<head>Introduction</head>
+	<p>One of the goals of digital humanists, and one of the
+	points of digitial humanities, is cultural memory.<?ebb —
+	citation needed? —sb?> It is commonly a goal to preserve the
+	results of humanistinc endeavors in a manner that one hopes
+	will be easy to access many years in the future, and allows
+	for scholarly examination and inquiry. From the last quarter of the
+	last century to the present, one venue for communication among
+	humans has been email, and in particular the email discussion
+	list. Thus it is to be expected that digital humanists will
+	want to preserve email discussion lists in a manner that is
+	likely to survive the ups and downd of the word processor
+	market, and is ammenable to scholarly processing.</p>
+	<p>What is not expected is that the Text Encoding Initiat
+	<!-- HERE  -->
+	</p>
         <list>
           <head>e-mail lists are challenging</head>
           <item>CMC is not intended for e-mail</item>
