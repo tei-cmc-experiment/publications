@@ -32,7 +32,7 @@
       </titleStmt>
       <publicationStmt>
         <publisher>TEI Consortium</publisher>
-        <date><!-- the publication year --></date>
+        <date>due 2025-03-03</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
             <p>For this publication a Creative Commons Attribution 4.0 International
@@ -41,7 +41,9 @@
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>No source, born digital.</p>
+        <p>No source, born digital; based in large part on our <ref
+        target="https://bit.ly/listserv2tei">presentation</ref> at the
+        TEI Conference and Members’ Meeting 2024 in Buenos Aires.</p>
       </sourceDesc>
     </fileDesc>
     <encodingDesc>
@@ -86,12 +88,6 @@
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>
-          This is an example of how to do a bibliographic citation:
-          <ref type="bibl" target="#bloggs13">Bloggs 2013</ref> tells us...
-          This paragraph should be deleted as soon as we have a bibl cit we
-          can use as our own xmp.
-        </p>
         <list>
           <head>e-mail lists are challenging</head>
           <item>CMC is not intended for e-mail</item>
@@ -105,7 +101,7 @@
         </list>
         <p>Our initial thought was that converting the data to XML would be easy,
           and that most of our attention would be directed towards the more interesting
-          part of deciding exactly how to encode it in TEI. However, it turns
+          problem of deciding exactly how to encode it in TEI. However, it turns
           out that both parts were problematic — it was very difficult to convert
           the data into XML, and in several cases there is no TEI encoding that is
           really satisfactory.</p>
@@ -121,43 +117,295 @@
       </div>
       <div xml:id="data-retrieval">
         <head>Conversion from source to XML</head>
-       <div xml:id="mass-conversion"> 
+       <div xml:id="mass-conversion">
          <head>Mass conversion approach</head>
-        <p>Our goal for the mass conversion approach was to convert all of TEI-L
-          from its inception up to 2024-04-29. That end date was chosen because it was
-          the day the mailing list was moved from Brown University’s
-          LISTSERV to Penn State University’s LISTSERV. Thus we were able to obtain the entire dataset
-          directly from Brown listmaster without needing to worry about merging in data from
-          PSU or about posts made just after we obtained the data. The Brown listmaster sent
-          us 412 separate files, one for each month, i.e.,
-          <name>tei-l.log9001</name> through <name>tei-l.log2404</name>.
-        </p>
-        <p>Step 1 was thus to rename the log files to use 4-digit (as opposed to 2-digit) years
-        so that they sorted into the correct order.</p>
+        <p>Our goal for the mass conversion approach was to
+        programatically convert all of TEI-L from its inception up to
+        2024-04-29 into some form of simple, basic TEI. That end date
+        was chosen because it was the day the mailing list was moved
+        from Brown University’s LISTSERV to Penn State University’s
+        LISTSERV. This fact meant we could obtain the entire dataset
+        directly from Brown listmaster without needing to worry about
+        merging in data from PSU or about posts made just after we
+        obtained the data. Peter DiCamillo, the Brown listmaster, sent
+        us 412 separate files, one for each month, i.e.,
+        <name>tei-l.log9001</name> through
+        <name>tei-l.log2404</name>.</p>
+        <p>Thus the first step was to rename the log files to use
+        4-digit (as opposed to 2-digit) years so that they sorted into
+        the correct order. This would allow them to be easily examined
+        in a reasonable and, more importantly, would allow them to be
+        combined into a single file in the correct order using one
+        simple command: <code>cat tei-l.log* >
+        TEI-L.txt</code>.<note>In fact, in a vain effort to avoid the
+        character encoding problems described below, we actually used
+        <code>iconv -f ISO-8859-1 -t UTF-8 -c tei-l.log* >
+        TEI-L.txt</code>, but do not think it made any
+        difference.</note></p>
+	<div xml:id="post_delimiters">
+	  <head>Delimters</head>
+	  <p>Each log file provided by LISTSERV contains one or more
+	  posts to the mailing list. For our dataset, the range was
+	  1–420 posts per monthly log file, although in several cases
+	  there is a month that has no postings, for which LISTSERV
+	  did not generate a .log file at all.</p>
+	  <p>Thus an early task was to figure out how posts are
+	  separated in a log file. Upon looking at the dataset, it was
+	  apparent in seconds that LISTSERV uses a string of 73 equal
+	  signs (U+003D, <q>=</q>) in a row as a start-post
+	  indicator. (That is, there is such a delimiter before the
+	  first and every subsequent post in a file, but not after the
+	  last.)</p>
+	  <p>But, of course, there is nothing to stop a mailing list
+	  user from including a string of 73 equal signs inside her
+	  post. We first checked (out of curiosity) to see if any
+	  strings of 73 equal signs were obviously <emph>not</emph>
+	  post deliimters, because they did not occupy the entire
+	  record. A search for the delimiter string (using just
+	  <code>egrep -c</code>) revealed that it occurs 31,031 times
+	  in the dataset; a search for the delimiter string anchored
+	  to the begining and end of the line revealed that it occurs
+	  alone on a line 30,998 times. So there are 33 cases of 73
+	  equal signs in a row that do not occupy the entire record,
+	  and thus are not start-of-post indicators. (It is likely
+	  they exist as cases of posts being copied-and-pasted into
+	  other posts.)</p>
+	  <p>But are there any cases of 73 equal signs in a row that
+	  do occupy the entire line, but are <emph>not</emph> intended
+	  to be a post-begin delimiter? We know that every e-mail
+	  message (and thus every post to an e-mail list) starts with
+	  a sequence of metadata records. E-mail metadata records are
+	  in a very specific format: the field name, which must be
+	  composed of one or more of the printable 7-bit ASCII
+	  characters except colon, followed by a colon, followed by a
+	  field body. On a quick examination of the dataset, it
+	  appears that the first field in every case is the
+	  <code>Date:</code> field. So we searched for occurrences of
+	  73 equal signs that start at the beginning of a line and are
+	  followed immedieately by a newline followed by something
+	  <emph>other</emph> than an uppercase <q>D</q>.<note>That is,
+	  we searched for the regular expression
+	  <code>^={73}\n[^D]</code>.</note> There are only three such
+	  cases, so we just looked at them.</p>
+	  <p>The first is simply a case of cut-and-paste: on <date
+	  when="1992-09-10">Thu 10 Sep 92</date> Wendy Plotkin, who
+	  was at the time a PhD candidate in History at UIC and who
+	  served as the TEI’s research assistant (1990–1999), posted
+	  e-mail that contained a copy of e-mail from Professor Robert
+	  Jones of the University of Illinois Urbana-Champaign to a
+	  CETH mailing list, including a line of 73 equal signs which
+	  was used to separate the part she wrote from the part
+	  Professor Jones had sent.</p>
+	  <p>The other two cases are both of two lines of 73 equal signs
+	  in a row, with nothing between. Whether these indicate that the
+	  preceding post ended with the same set of characters that is
+	  used as the begin-post delimiter, or that there is a missing
+	  post, we do not know.</p>
+	  <p>So the result of this analysis was that a line of 73
+	  equal signs in a row could be used reliable to indicate the
+	  start of a new post, with one exception, which we simply
+	  changed by hand to a line of 72 equal signs. (Which is
+	  visually the same for a human reader, but distinctly
+	  different to a computer looking for 73 of them.) We also had
+	  to be prepared for the possibility of two such lines in a
+	  row.</p>
+	</div>
         <div xml:id="characters_illegal">
           <head>Illegal characters (for XML)</head>
-          <p>Early e-mail systems used ASCII (7-bit) characters only. Thus
-            there were 128 available code points (0–2⁷-1, or 0–127). Of those
-            128 available code points, only 99 of them are legal XML characters.
-            The remaining 29 characters (for which see <ptr type="crossref" target="#appendix01"/>)
-            are all non-printing control characters, intended for controlling
-            the behavior of a peripheral device such as a paper tape or printer, or (in a few cases)
-            whitespace. While neither of us is an expert on early e-mail systems, we suspect
-            that the designers never intended these characters 
-            to be used in e-mail, but did not feel it necessary to do anything
-            to prevent them from being used, as the average user of a computer
-            had no way of generating them.</p>
-          <p>However, of the 29 characters that are not legal in XML, 17 of them occur in the TEI-L
-            archives:
-            <list>
-              <item>64 occurrences in 34 posts before 2000 (which not surprising)</item>
-              <item>38 occurrences in 11 posts after 2008 (which we did not expect)</item>
-            </list>
-            These characters were generally used to not to represent the control characters 
-            to which they are mapped in the ASCII character set, but rather to represent
-            various accented characters that were not part of the original (7-bit) ASCII set.
-            The last use of a character that is illegal in XML was on 2016-03-13.</p>
-        </div>        
+          <p>Early e-mail systems used ASCII (7-bit) characters
+          only. Thus there were 128 available code points (0–2⁷-1, or
+          0–127). Of those 128 available code points, only 99 of them
+          are legal XML characters. The remaining 29 characters (for
+          which see <ptr type="crossref" target="#appendix01"/>) are
+          all non-printing control characters, intended for
+          controlling the behavior of a peripheral device such as a
+          card punch or printer, or (in a few cases)
+          whitespace.<note>It is quite reasonable, in our opinion, for
+          an astute reader of the XML specification to think that
+          production 14 implies that <emph>any</emph> character (other
+          than <code>&lt;</code> and <code>&amp;</code>) is allowed as
+          data content. But production 14 needs to be read within the
+          limits already established by production 2 — which prohibits
+          these control characters.</note> While neither of us is an
+          expert on early e-mail systems, we suspect that the
+          designers never intended these characters to be used in
+          e-mail, but did not feel it necessary to do anything to
+          prevent them from being used, as the average user of a
+          computer had no way of typing them, and thus would find it
+          very difficult to get them into an e-mail.<note>In fact,
+          early definitions of e-mail messages assert they are just a
+          sequence of ASCII characters in the range of 1–127; see <ref
+	  type="bibl" target="#RFC2822"/> Later
+          RFCs updated this to say <q><!-- uote source="#RFC5822"-->the use of US-ASCII control
+          characters (values 1 through 8, 11, 12, and 14 through 31)
+          is discouraged since their interpretation by receivers for
+          display is not guaranteed.</q></note>
+	</p>
+          <p>Nonetheless, of the 29 characters that are not legal in
+          XML, 17 of them occur in the TEI-L archives:
+          <list>
+            <item>64 occurrences in 34 posts before 2000 (which, on reflection, was not too surprising)</item>
+            <item>38 occurrences in 11 posts after 2008 (which we did not expect at all)</item>
+          </list>
+          These characters were generally used not to represent the
+          control characters to which they are mapped in the ASCII
+          character set, but rather to represent various accented
+          characters that were not part of the original (7-bit) ASCII
+          set. Often these characters occurred within text that was
+          likely copied-and-pasted from another source (e.g., from a
+          conference announcement). The last use of a character that
+          is illegal in XML was on 2016-03-13.</p>
+	  <p>An input document that contains illegal characters
+	  <emph>cannot</emph> be processed by XSLT, whether it is in
+	  an XML file or a plain text file. And, of course, such
+	  characters cannot occur in an XML file whether that file is
+	  generated by XSLT, XQuery, Python, C, or by hand in a text
+	  editor. In some of those languages, or using a text editor,
+	  you could <emph>put</emph> them into a file that has a
+	  <q>.xml</q> extension, but the file would not meet the
+	  definition of an XML file, and thus could not be processed
+	  by conforming XML software (other than to emit an error
+	  message).</p>
+	  <p>These control characters are being used incorrectly, and
+	  are not allowed in XML, but they are not mal-formed or
+	  illegal Unicode characters — they are perfectly legitimate
+	  Unicode characters that are not allowed in XML. Thus
+	  oXygen’s otherwise useful <name>Encoding errors
+	  handling</name> feature is not helpful here, as it relates
+	  to oXygen’s processing of mal-formed Unicode
+	  characters. Likewise a utility like <name>iconv</name>,
+	  which converts text from one character encoding to another,
+	  is of little to no use — these control characters are
+	  problematic no matter what character encoding is used to
+	  represent them.</p>
+	  <p>We immediately envisioned several possible solutions,
+	  each of which would have to be carried out on the plain text
+	  input files prior to processing into XML.
+	  <list rend="ordered">
+	    <item>Delete the problematic characters, leaving users to
+	    figure out what was missing and where. This lossy
+	    methodology seemed like a bad idea.</item>
+	    <item>Replace each of the 102 occurrences of the 17
+	    problematic characters with a single
+	    <soCalled>warning</soCalled> character. This would allow
+	    users to immediately know where there was a problem, but
+	    would leave solving it (i.e., figuring out which character
+	    belonged there) to the user. It requires, of course, that
+	    we use a character that does not occur in the data. (One
+	    obvious choice, for example, would be <q>⚠</q> (U+26A0),
+	    but it already occurs three times in the input dataset.)
+	    This is obviously better than just deleting the
+	    characters, but still puts effort on the reader.</item>
+	    <item>Replace the problematic characters with 17 different
+	    <soCalled>warning</soCalled> characters. We believe some
+	    users would find decoding this a lot easier, but others
+	    would find it more difficult (because it did not seem to
+	    be the case that there was always a 1:1 relationship
+	    between the control character used and the desired
+	    character). This also would mean that we would have to
+	    find 17 characters that would be clear to the user, but do
+	    not occur in the input dataset.</item>
+	    <item>Replace the problematic characters with 17 different
+	    <soCalled>warning</soCalled> <emph>strings</emph>. After
+	    all, XML does have a replacement mechanism. So if we were
+	    to replace each of the six occurences of, say, U+001A with
+	    <q>⛑SUB⛑</q> in the input document, we could either leave
+	    them that way for the user, or convert them to
+	    <q>&amp;SUB;</q> and provide an appropriate declaration,
+	    for example to a PUA character: <code>&lt;!ENTITY SUB
+	    "&#xE503;"></code>. This would likely be easier for
+	    readers than using a single character for each of the 17
+	    problematic characters, but as with that solution readers
+	    would be confused when there was not a 1:1 mapping from
+	    the strings we provide and the likely intended
+	    characters.</item>
+	    <item>For each occurence of a problematic character, try
+	    to figure out what character the author intended, and
+	    replace it with that (proper UTF-8) character. While this
+	    involves far more work than any of the above, we feel this
+	    option results in documents that are easier for users to
+	    process and read.  We considered four variations on this
+	    theme, based on two binary features:
+	    <list rend="bulleted">
+	      <item>in each case, try contacting the author to ask
+	      what was the intended character, or not;</item>
+	      <item>in each case, just replace the problematic
+	      character with our guess at the correct desired
+	      character, or replace it with a <gi>choice</gi> encoding
+	      which records both the original character (e.g., as
+	      <code>&lt;orig>&lt;g type="CONTROL"
+	      subtype="FS"/>&lt;/orig></code>) and our regularization
+	      thereof (e.g., as
+	      <code>&lt;reg>&#x00A3;&lt;/reg></code>).</item>
+	    </list>
+	    While we think that contacting the original authors is, in
+	    some cases, beneficial, and believe that the
+	    <gi>choice</gi> encoding is by far the best way of
+	    representing the problematic characters, for our small
+	    experiment we chose the easier route for each of these
+	    feautres.<note>As it is, finding the problematic
+	    characters, figuring out what each was likely supposed to
+	    be (often by multiple visits to the <ref
+	    target="https://webcf.waybackmachine.org/">Internet
+	    Archive’s Wayback Machine</ref>), and replacing them took
+	    multiple hours.</note></item>
+	  </list>
+	  </p>
+	  <p>After replacement of those characters that are illegal in
+	  XML by those characters we thought they should be, the input
+	  dataset was easily read by XSLT. Converting that to useful,
+	  readable XML presented some challenges, though.</p>
+        </div>
+	<div xml:id="conversion_complexities">
+	  <head>Conversion complexities</head>
+	  <div xml:id="Encoded-word_syntax">
+	    <head>ASCII work-around: Encoded-word syntax</head>
+	    <p>As mentioned above, early e-mail used only 7-bit ASCII
+	    characters for the entire message. Later updates to the
+	    specifications allowed for the body of the e-mail message
+	    to use a different character set, but the e-mail headers
+	    (that is, the lines of metadata at the top) are still to
+	    this day limited to 7-bit ASCII. Most of the world’s
+	    printable characters, of course, are not available in that
+	    set of 96 printable characters. To allow for characters
+	    outside the 7-bit ASCII set to be used in e-mail headers
+	    (e.g., in the name of the sender or recipient of an
+	    e-mail), an escape system called <term>encoded-word
+	    syntax</term> may be employed.</p>
+	    <p>Using this system, a word that contains a character
+	    outside of 7-bit ASCII is encoded as
+	    <code>=?charset?encoding?encoded text?=</code>, where
+	    <term>charset</term> is the character encoding in which
+	    the encoded text should be looked up,
+	    <term>encoding</term> is either <q>Q</q> (for a
+	    quoted-printable sytle escape mechanism) or <q>B</q> (for
+	    a base64 style escape mechanism), and <term>encoded
+	    text</term> is the string encoded using the escape
+	    mechanism indicated. The character sets employed in this
+	    dataset were as follows, using mixed case. (For example,
+	    UTF-8 was often spelled <q>utf-8</q>.)
+	    <table>
+	      <row><cell>2,300</cell><cell>UTF-8</cell></row>
+	      <row><cell>1,043</cell><cell>ISO-8859-1</cell></row>
+	      <row><cell>383</cell><cell>ISO-8859-2</cell></row>
+	      <row><cell>236</cell><cell>Windows-1252</cell></row>
+	      <row><cell>132</cell><cell>ISO-8859-15</cell></row>
+	      <row><cell>16</cell><cell>ISO-8859-5</cell></row>
+	      <row><cell>5</cell><cell>KOI8-R</cell></row>
+	      <row><cell>4</cell><cell>big5</cell></row>
+	      <row><cell>3</cell><cell>ISO-2022-jp</cell></row>
+	      <row><cell>3</cell><cell>Windows-1250</cell></row>
+	      <row><cell>2</cell><cell>ISO-8859-4</cell></row>
+	      <row><cell>2</cell><cell>Windows-1256</cell></row>
+	      <row><cell>2</cell><cell>Windows-1251</cell></row>
+	      <row><cell>1</cell><cell>Windows-1257</cell></row>
+	      <row><cell>1</cell><cell>X-UNKNOWN</cell></row>
+	      <row><cell>1</cell><cell>gb2312</cell></row>
+	    </table>
+	    3,397 use <q>Q</q>, 737 use <q>B</q>
+	    </p>
+	  </div>
+	</div>
        </div>
         <div xml:id="scraping">
           <head>Attempting to scrape from the web</head>
@@ -173,7 +421,14 @@
       <div type="bibliography">
         <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
         <listBibl>
-          <bibl xml:id="bloggs13"/>
+          <bibl xml:id="RFC2822">
+            Hey, Elisa — how do we cite an RFC?
+            <idno type="DOI">10.17487/RFC2822</idno>.
+          </bibl>
+          <bibl xml:id="RFC5822">
+            Hey, Elisa — how do we cite an RFC?
+            <idno type="DOI">10.17487/RFC5822</idno>.
+          </bibl>
         </listBibl>
       </div>
       <div type="appendix" xml:id="appendix01">
