@@ -633,344 +633,546 @@
       Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value. 
       The following is an example demonstrating this approach to TEI encoding for a post sent by Michael Sperberg-McQueen to the TEI Listserv on 6 February 1990.
 
-      
-      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-	<TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
-	     xml:id="TEI-L.txt_msg_00005">
-	  <teiHeader>
-	    <fileDesc>
-	      <titleStmt>
-		<title>TEI-L posting </title>
-	      </titleStmt>
-	      <publicationStmt>
-		<ab>Currently an experimental document. The original source was
-		published as part of a public mailing list, so this
-		document similarly is publicly available.</ab>
-	      </publicationStmt>
-	      <sourceDesc>
-		<ab type="desc">The source text file is
-		a log file from a LISTSERV mailing list.</ab>
-		<ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
-	      </sourceDesc>
-	    </fileDesc>
-	    <encodingDesc>
-	      <appInfo>
-		<application ident="listserv_log2cmc.xslt" version="0.1">
-		  <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
-		  a program intended to convert LISTSERV logs (i.e., an archive of
-		  postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
-		</application>
-	      </appInfo>
-	    </encodingDesc>
-	    <profileDesc>
-	      <correspDesc>
-		<correspContext>
-		  <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-		</correspContext>
-		<correspAction type="relayed">
-		  <email>TEI-L@UICVM</email>
-		  <date>Tue, 6 Feb 90 10:54:04 CST</date>
-		</correspAction>
-		<note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
-	      </correspDesc>
-	    </profileDesc>
-	    <xenoData>
-	      <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
-	      <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
-	      <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
-	      <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
-	      <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
-	      <tmp:Subject>compound documents</tmp:Subject>
-	    </xenoData>
-	  </teiHeader>
-	  <text>
-	    <body>
-	      <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
-		    when="1990-02-06T10:54:04-06:00">
-		<head type="subject">compound documents</head>
-		About compound documents in SGML and in the TEI.  R.P. Weber asked a
-		<lb n="1"/>week ago "could someone please explain the TEI approach to compound
-		<lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
-		<lb n="3"/>
-		<lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
-		<lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
-		<lb n="6"/>Caribbean, and may not have received the query.)
-		<lb n="7"/>
-		<lb n="8"/>This problem has not, in fact, been discussed on this server, or as far
-		<lb n="9"/>as I'm aware by the working committees.  So the formal answer is that no
-		<lb n="10"/>decision has been cast in concrete yet.  Which allows me to turn the
-		<lb n="11"/>tables and say "How *should* compound documents be encoded for
-		<lb n="12"/>interchange?  What are the requirements?  What are the alternatives?"
-		<lb n="13"/>
-		<lb n="14"/>Less formally, I can offer some personal opinions, for what they are
-		<lb n="15"/>worth (face value:  two cents -- 2u, for those of you on IBM mainframes
-		<lb n="16"/>with real IBM terminals).
-		<lb n="17"/>
-		<lb n="18"/>Certainly SGML is where we should start in any search for ways of
-		<lb n="19"/>handling compound objects, and I don't yet know any reason that SGML
-		<lb n="20"/>won't provide a solution for the problem.  I assume there are two
-		<lb n="21"/>methods of using SGML in compound documents (correct me if I'm wrong):
-		<lb n="22"/>(1) use SGML to organize the compound document (i.e. have an SGML
-		<lb n="23"/>document which includes text, images, sound, etc. as its components), or
-		<lb n="24"/>(2) use whatever-you-like to organize the compound document as a whole,
-		<lb n="25"/>and use SGML as the notation for the textual components of the compound
-		<lb n="26"/>document.
-		<lb n="27"/>
-		<lb n="28"/>For the simple case of text-with-illustrations, SGML seems like a viable
-		<lb n="29"/>encoding mechanism (for the envelope and for the text components) to me.
-		<lb n="30"/>It allows you to encode the graphics however you like, declaring your
-		<lb n="31"/>graphics format as a non-SGML notation and declaring the contents of
-		<lb n="32"/>your graphics elements (say 'PICTURE' or 'BLORT') as being data in that
-		<lb n="33"/>notation, stored either within the SGML file or externally to it.  You
-		<lb n="34"/>get localization of the graphics within the text stream, integral or
-		<lb n="35"/>separate storage of the graphics, and complete freedom to choose
-		<lb n="36"/>whatever graphic notation you wish.
-		<lb n="37"/>
-		<lb n="38"/>As document encoding methods go, SGML is fairly hospitable to graphics
-		<lb n="39"/>and other non-text pieces of compound objects.  Nowhere in the standard
-		<lb n="40"/>does it say that the data have to be words and characters.  In fact, as
-		<lb n="41"/>far as I know there is no *explicit* requirement in the standard that an
-		<lb n="42"/>SGML document even has to be bytes in a computer.  (Sure, it's hard to
-		<lb n="43"/>understand the standard any other way, but that's not the same as an
-		<lb n="44"/>explicit requirement.)  ISO 8879 par. 6.1 note 1 says in fact "This
-		<lb n="45"/>International Standard does not constrain the physical organization of
-		<lb n="46"/>the document within the data stream, message handling protocol, file
-		<lb n="47"/>system, etc., that contains it."  At the SGML '89 conference last
-		<lb n="48"/>October in Atlanta, there was a very nice paper by Douglas MacLeod (read
-		<lb n="49"/>by Yuri Rubinsky) thinking about architectural designs as SGML
-		<lb n="50"/>documents, which led to a general discussion of SGML definitions for all
-		<lb n="51"/>sorts of objects, including automobiles.  Although most people
-		<lb n="52"/>(obviously) think of the SGML document as an electronic *description* of
-		<lb n="53"/>the automobile (and the physical automobile as a side effect of
-		<lb n="54"/>processing), it appears, in the light of the passage cited, hard to say
-		<lb n="55"/>categorically that an automobile itself could never be parsed as an SGML
-		<lb n="56"/>document.  (If you could figure out how to define the delimiters.)
-		<lb n="57"/>
-		<lb n="58"/>The only hitch is that the SGML standard itself (ISO 8879) does not
-		<lb n="59"/>specify in any detail what the interface between SGML processors and
-		<lb n="60"/>non-SGML processors must, may, or can look like -- an advantage, if you
-		<lb n="61"/>will, in that it doesn't constrain anyone to an inappropriate model, but
-		<lb n="62"/>a bit of a disadvantage in that most people don't have a clue what they
-		<lb n="63"/>can now or will eventually or might someday be able to do with SGML and
-		<lb n="64"/>graphics processors.
-		<lb n="65"/>
-		<lb n="66"/>Not being deeply involved in graphics work or compound documents myself,
-		<lb n="67"/>I don't know off-hand what options are offered for this sort of thing by
-		<lb n="68"/>existing SGML processors.  There will certainly be a fierce market
-		<lb n="69"/>demand for it, not only from humanists but also (to our great advantage)
-		<lb n="70"/>from the defense industry, which needs SGML support for technical
-		<lb n="71"/>manuals with diagrams (and of course cross-references and other
-		<lb n="72"/>hypertext mechanisms) and has the small change to pay for the
-		<lb n="73"/>development costs.  (As long as they don't charge the humanists
-		<lb n="74"/>defense-contractor prices!)
-		<lb n="75"/>
-		<lb n="76"/>If for some reason one does *not* want to use SGML as the envelope for
-		<lb n="77"/>the entire compound document, then presumably the major requirement for
-		<lb n="78"/>the text-components of the compound documents is that they be
-		<lb n="79"/>computationally well-behaved, with a clearly defined structure, hooks
-		<lb n="80"/>for pointers going out, and hooks for pointers coming in.  SGML
-		<lb n="81"/>certainly has all of this, in its document type declarations and its ID
-		<lb n="82"/>names and its IDREF pointers.
-		<lb n="83"/>
-		<lb n="84"/>Perhaps those subscribers to this list who actually work with compound
-		<lb n="85"/>documents and SGML will be willing to say how they make things work now,
-		<lb n="86"/>and how they would like to see things developing in the future.
-		<lb n="87"/>
-		<lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
-		<lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
-		<lb n="90"/>position will help get a discussion started.)
-		<lb n="91"/>
-		<lb n="92"/>-Michael Sperberg-McQueen
-		<lb n="93"/> University of Illinois at Chicago</post>
-	      </body>
-	    </text>
-	  </TEI>
-	</egXML>
-	Perhaps it is somewhat ironic that we took this first example from a message about encoding compound documents, 
-	given the compound nature of an e-mail listserv archive. We would need to make decisions about how to cluster related messages 
-	containing many messages connected together as replies, or bundled together in units of time in listserv logs.  
-      </p>
-      <div xml:id="TEI-collection">
-	<head>One TEI document for a collection of posts</head>
-	<p>In one approach to mapping the metadata for a collection, we envisioned a single <code>&lt;TEI&gt;</code> element 
-	holding a collection of <code>&lt;post&gt;</code> elements. For this approach, we applied the <code>&lt;teiHeader&gt;</code>
-	to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
-	We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
-	
-	<egXML xmlns="http://www.tei-c.org/ns/Examples">
-	  <teiHeader>
-	    <fileDesc>
-	      <titleStmt>
-		<title>Text Encoding Initiative public discussion list</title>
-	      </titleStmt>
-	      <editionStmt>
-		<edition>January and February 1990 in the TEI Listserv
-		<!-- TEI-L LOG9001, LOG9002 --></edition>
-	      </editionStmt>
-	      <publicationStmt>
-		<!-- about the born-digital document -->
-		<publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
-	      </publicationStmt>
-	      <sourceDesc>
-		<bibl>
-		  <title level="j">TEI-L Listserv</title>
-		  <title level="s">LOG9001</title>
-		  <title level="s">LOG9002</title>
-		  <publisher>University of Illinois Chicago</publisher>
-		  <distributor>TEI-L@UICVM</distributor>
-		  <date>1990</date>
-		  <relatedItem type="archive">
-		    <bibl>
-		      <publisher>The Pennsylvania State University</publisher>
-		      <distributor>LISTS.PSU.EDU LISTSERV Server (17.0)</distributor>
-		      <date>2024</date>
-		    </bibl>
-		  </relatedItem>
-		</bibl>
-	      </sourceDesc>
-	    </fileDesc>
-	    <encodingDesc>
-	      <samplingDecl>
-		<p>Sampled by requesting monthly logs from <name type="API">LISTS.PSU.EDU</name> by
-		e-mail with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
-		command was issued for each month. See <ptr type="APIdoc"
-		target="https://www.lsoft.com/manuals/17.0/commands/14File-serverandwebfunctioncomma.html"/>. 
-		Received by e-mail between <date from="2024-09-21" to="2024-09-22">September 21
-		and 22, 2024</date>.</p>
-	      </samplingDecl>
-	    </encodingDesc>
-	  </teiHeader>
-	</egXML>
-	</p>
-	<p>In the <code>&lt;text&gt;</code> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
-	Since Listserv delivers the 
-	logs as files representing an entire month of posts, we applied a unique identifier to each monthly log collection with 
-	<code>text/body/div[@type="log"][@xml:id="LOG____"]</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
-	inside a <code>&lt;post&gt;</code> element, drawn from the new CMC chapter.
-	</p>
-	<p>To store the metadata for individual e-mail messages, in this method we encoded a <code>&lt;dateline&gt;</code> element, which contained
-	<code>&lt;ref&lt;</code> elements to store information the transmission of a message within the <code>&lt;post&gt;</code>, thus;
-	
-	<table xml:id="field_mapping2">
-	  <row><cell>Date</cell><cell><code>date/@when  or date/text()</code></cell></row>
-	  <row><cell>Reply-To</cell><cell><code>ref[@type="reply-to"][@target="email:___]</code></cell></row>
-	  <row><cell>Sender</cell><cell><code>ref[@generatedBy="system"][@type="sender"][@target="email:TEI-L@__]</code></cell></row>
-	  <row><cell>From</cell><cell><code>ref[@generatedBy="template"][@type="from"][@target="email:___"]</code></cell></row>
-	  <row><cell>Subject</cell><cell><code>title[@level="a"][@generatedBy="human"]</code></cell></row>
-	  <row><cell>In-Reply-To</cell><cell><code>ref[@target="#id-of-earlier-posting]</code></cell></row>
-	</table>
-	
-	Notice that in this encoding we are experimenting with setting the Subject field in a &lt;title&gt; element with <code>@level</code> set to <code>"a"</code> for analytical, which seems
-	fitting for a portion of an assembled collection. Here is an example encoding of a single e-mail message encoded as a <code>&lt;post&gt;</code> following this method:
-	<egXML xmlns="http://www.tei-c.org/ns/Examples">
-	  <post xml:id="Web-1990-01-31-0933">
-	    <dateline>
-	      <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
-	      <ref generatedBy="system" type="reply-to" target="email:TEI-L@UICVM">Text Encoding
-	      Initative public discussion list </ref>
-	      <ref generatedBy="system" type="sender" target="email:TEI-L@UICVM">Text Encoding
-	      Initative public discussion list</ref>
-	      <ref generatedBy="template" type="from" target="email:WEBER@HARVARDA.BITNET">Robert
-	      Philip Weber</ref>
-	      <title level="a" type="subject" generatedBy="human">compound documents and
-	      images</title>
-	    </dateline>
-	    <p>could someone please explain the <name type="ML">TEI</name> approach to compound
-	    documents and images? WIll <name type="ML">SGML</name> be used here, and if so,
-	    how? I've just joined the list. sorry if this has been asked before.</p>
-	    <p>Many Thanks</p>
-	    <signed generatedBy="human">Bob Weber</signed>
-	    <signed generatedBy="template"> Robert Philip Weber, Ph.D. | Phone: (617) 495-3744
-	    <lb/>Senior Consultant | Fax: (617) 495-0750 <lb/>Academic and Planning Services |
-	    <lb/>Division | <lb/>Office For Information Technology| Internet:
-	    weber@popvax.harvard.edu <lb/>Harvard University | Bitnet: Weber@Harvarda <lb/>50
-	    Church Street | <lb/>Cambridge MA 02138 | </signed>
-	  </post>
-	</egXML>
-	</p>
-	<!-- ebb: CONTINUE FROM HERE WITH 1 TEI FILE PER POST-->
-	
-      </div>
-    </div>
-  </body>
-  <back> 
-    <div type="bibliography">
-      <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
-      <listBibl>
-	<bibl xml:id="RFC2047">
-	  Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
-	  Mail Extensions) Part Three: Message Header Extensions for
-	  Non-ASCII Text</title>, RFC 2822, April 2001; <idno
-	  type="DOI">10.17487/RFC2047</idno>.
-	</bibl>
-	<bibl xml:id="RFC2822">
-	  Resnick, P., Ed., <title level="m">Internet Message
-	  Format</title>, RFC 2822, April 2001;
-	  <idno type="DOI">10.17487/RFC2822</idno>.
-	</bibl>
-	<bibl xml:id="RFC5322">
-	  Resnick, P., Ed., <title level="m">Internet Message
-	  Format</title>, RFC 5322, October 2008;
-	  <idno type="DOI">10.17487/RFC5322</idno>.
-	</bibl>
-      </listBibl>
-    </div>
-    <div type="appendix" xml:id="appendix01">
-      <!-- Note to JTEI editors: for an idea of what this might look
-	   like see
-	   https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
-      -->
-      <head>The 29 7-bit ASCII characters that are not legal in XML</head>
-      <table xml:id="illegal_ascii_chars">
-	<row role="label">
-	  <cell>base 10</cell>
-	  <cell>base 16</cell>
-	  <cell>base 02</cell>
-	  <cell>symbol</cell>
-	  <cell>description</cell>
-	</row>
-	<row> <cell>0</cell> <cell>00</cell> <cell>0000 0000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
-	<row> <cell>1</cell> <cell>01</cell> <cell>0000 0001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
-	<row> <cell>2</cell> <cell>02</cell> <cell>0000 0010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
-	<row> <cell>3</cell> <cell>03</cell> <cell>0000 0011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
-	<row> <cell>4</cell> <cell>04</cell> <cell>0000 0100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
-	<row> <cell>5</cell> <cell>05</cell> <cell>0000 0101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
-	<row> <cell>6</cell> <cell>06</cell> <cell>0000 0110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
-	<row> <cell>7</cell> <cell>07</cell> <cell>0000 0111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
-	<row> <cell>8</cell> <cell>08</cell> <cell>0000 1000</cell> <cell>BS</cell> <cell>Backspace</cell> </row>
-	<row> <cell>11</cell> <cell>0B</cell> <cell>0000 1011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
-	<row> <cell>12</cell> <cell>0C</cell> <cell>0000 1100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
-	<row> <cell>14</cell> <cell>0E</cell> <cell>0000 1110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
-	<row> <cell>15</cell> <cell>0F</cell> <cell>0000 1111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
-	<row> <cell>16</cell> <cell>10</cell> <cell>0001 0000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
-	<row> <cell>17</cell> <cell>11</cell> <cell>0001 0001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
-	<row> <cell>18</cell> <cell>12</cell> <cell>0001 0010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
-	<row> <cell>19</cell> <cell>13</cell> <cell>0001 0011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
-	<row> <cell>20</cell> <cell>14</cell> <cell>0001 0100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
-	<row> <cell>21</cell> <cell>15</cell> <cell>0001 0101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
-	<row> <cell>22</cell> <cell>16</cell> <cell>0001 0110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
-	<row> <cell>23</cell> <cell>17</cell> <cell>0001 0111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
-	<row> <cell>24</cell> <cell>18</cell> <cell>0001 1000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
-	<row> <cell>25</cell> <cell>19</cell> <cell>0001 1001</cell> <cell>EM</cell> <cell>End of medium</cell> </row>
-	<row> <cell>26</cell> <cell>1A</cell> <cell>0001 1010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
-	<row> <cell>27</cell> <cell>1B</cell> <cell>0001 1011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
-	<row> <cell>28</cell> <cell>1C</cell> <cell>0001 1100</cell> <cell>FS</cell> <cell>File Separator</cell> </row>
-	<row> <cell>29</cell> <cell>1D</cell> <cell>0001 1101</cell> <cell>GS</cell> <cell>Group Separator</cell> </row>
-	<row> <cell>30</cell> <cell>1E</cell> <cell>0001 1110</cell> <cell>RS</cell> <cell>Record Separator</cell> </row>
-	<row> <cell>31</cell> <cell>1F</cell> <cell>0001 1111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
-      </table>
-      <list type="gloss">
-	<head>Regular expressions to match these characters</head>
-	<label>PCRE, Java, or oXygen:</label>
-	<item><code>[\u0000-\u0008\u000C\u000E-\u0019]</code></item>
-	<label>W3C:</label>
-	<item><code>[#x00-#x08#x0C#x0E-#x19]</code></item>
-	<label>Emacs:</label>
-	<item><code>[^␤[:print:]]</code> &#xA0; &#xA0; ; where <q>␤</q> is typed CTL-J</item>
-	<label>grep or egrep:</label>
-	<item><code>[^[:print:]]</code></item>
-      </list>
-    </div>
-  </back>
+     
+     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
+            xml:id="TEI-L.txt_msg_00005">
+         <teiHeader>
+           <fileDesc>
+             <titleStmt>
+               <title>TEI-L posting </title>
+             </titleStmt>
+             <publicationStmt>
+               <ab>Currently an experimental document. The original source was
+               published as part of a public mailing list, so this
+               document similarly is publicly available.</ab>
+             </publicationStmt>
+             <sourceDesc>
+               <ab type="desc">The source text file is
+               a log file from a LISTSERV mailing list.</ab>
+               <ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
+             </sourceDesc>
+           </fileDesc>
+           <encodingDesc>
+             <appInfo>
+               <application ident="listserv_log2cmc.xslt" version="0.1">
+                 <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
+                 a program intended to convert LISTSERV logs (i.e., an archive of
+                 postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
+               </application>
+             </appInfo>
+           </encodingDesc>
+           <profileDesc>
+             <correspDesc>
+               <correspContext>
+                 <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
+               </correspContext>
+               <correspAction type="relayed">
+                 <email>TEI-L@UICVM</email>
+                 <date>Tue, 6 Feb 90 10:54:04 CST</date>
+               </correspAction>
+               <note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
+             </correspDesc>
+           </profileDesc>
+           <xenoData>
+             <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
+             <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
+             <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
+             <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
+             <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
+             <tmp:Subject>compound documents</tmp:Subject>
+           </xenoData>
+         </teiHeader>
+         <text>
+           <body>
+             <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
+                   when="1990-02-06T10:54:04-06:00">
+               <head type="subject">compound documents</head>
+               About compound documents in SGML and in the TEI.  R.P. Weber asked a
+               <lb n="1"/>week ago "could someone please explain the TEI approach to compound
+               <lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
+               <lb n="3"/>
+               <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
+               <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
+               <lb n="6"/>Caribbean, and may not have received the query.)
+               <lb n="7"/>
+               <lb n="8"/>This problem has not, in fact, been discussed on this server, or as far
+               <lb n="9"/>as I'm aware by the working committees.  So the formal answer is that no
+               <lb n="10"/>decision has been cast in concrete yet.  Which allows me to turn the
+               <lb n="11"/>tables and say "How *should* compound documents be encoded for
+               <lb n="12"/>interchange?  What are the requirements?  What are the alternatives?"
+               <lb n="13"/>
+               <lb n="14"/>Less formally, I can offer some personal opinions, for what they are
+               <lb n="15"/>worth (face value:  two cents -- 2u, for those of you on IBM mainframes
+               <lb n="16"/>with real IBM terminals).
+               <lb n="17"/>
+               <lb n="18"/>Certainly SGML is where we should start in any search for ways of
+               <lb n="19"/>handling compound objects, and I don't yet know any reason that SGML
+               <lb n="20"/>won't provide a solution for the problem.  I assume there are two
+               <lb n="21"/>methods of using SGML in compound documents (correct me if I'm wrong):
+               <lb n="22"/>(1) use SGML to organize the compound document (i.e. have an SGML
+               <lb n="23"/>document which includes text, images, sound, etc. as its components), or
+               <lb n="24"/>(2) use whatever-you-like to organize the compound document as a whole,
+               <lb n="25"/>and use SGML as the notation for the textual components of the compound
+               <lb n="26"/>document.
+               <lb n="27"/>
+               <lb n="28"/>For the simple case of text-with-illustrations, SGML seems like a viable
+               <lb n="29"/>encoding mechanism (for the envelope and for the text components) to me.
+               <lb n="30"/>It allows you to encode the graphics however you like, declaring your
+               <lb n="31"/>graphics format as a non-SGML notation and declaring the contents of
+               <lb n="32"/>your graphics elements (say 'PICTURE' or 'BLORT') as being data in that
+               <lb n="33"/>notation, stored either within the SGML file or externally to it.  You
+               <lb n="34"/>get localization of the graphics within the text stream, integral or
+               <lb n="35"/>separate storage of the graphics, and complete freedom to choose
+               <lb n="36"/>whatever graphic notation you wish.
+               <lb n="37"/>
+               <lb n="38"/>As document encoding methods go, SGML is fairly hospitable to graphics
+               <lb n="39"/>and other non-text pieces of compound objects.  Nowhere in the standard
+               <lb n="40"/>does it say that the data have to be words and characters.  In fact, as
+               <lb n="41"/>far as I know there is no *explicit* requirement in the standard that an
+               <lb n="42"/>SGML document even has to be bytes in a computer.  (Sure, it's hard to
+               <lb n="43"/>understand the standard any other way, but that's not the same as an
+               <lb n="44"/>explicit requirement.)  ISO 8879 par. 6.1 note 1 says in fact "This
+               <lb n="45"/>International Standard does not constrain the physical organization of
+               <lb n="46"/>the document within the data stream, message handling protocol, file
+               <lb n="47"/>system, etc., that contains it."  At the SGML '89 conference last
+               <lb n="48"/>October in Atlanta, there was a very nice paper by Douglas MacLeod (read
+               <lb n="49"/>by Yuri Rubinsky) thinking about architectural designs as SGML
+               <lb n="50"/>documents, which led to a general discussion of SGML definitions for all
+               <lb n="51"/>sorts of objects, including automobiles.  Although most people
+               <lb n="52"/>(obviously) think of the SGML document as an electronic *description* of
+               <lb n="53"/>the automobile (and the physical automobile as a side effect of
+               <lb n="54"/>processing), it appears, in the light of the passage cited, hard to say
+               <lb n="55"/>categorically that an automobile itself could never be parsed as an SGML
+               <lb n="56"/>document.  (If you could figure out how to define the delimiters.)
+               <lb n="57"/>
+               <lb n="58"/>The only hitch is that the SGML standard itself (ISO 8879) does not
+               <lb n="59"/>specify in any detail what the interface between SGML processors and
+               <lb n="60"/>non-SGML processors must, may, or can look like -- an advantage, if you
+               <lb n="61"/>will, in that it doesn't constrain anyone to an inappropriate model, but
+               <lb n="62"/>a bit of a disadvantage in that most people don't have a clue what they
+               <lb n="63"/>can now or will eventually or might someday be able to do with SGML and
+               <lb n="64"/>graphics processors.
+               <lb n="65"/>
+               <lb n="66"/>Not being deeply involved in graphics work or compound documents myself,
+               <lb n="67"/>I don't know off-hand what options are offered for this sort of thing by
+               <lb n="68"/>existing SGML processors.  There will certainly be a fierce market
+               <lb n="69"/>demand for it, not only from humanists but also (to our great advantage)
+               <lb n="70"/>from the defense industry, which needs SGML support for technical
+               <lb n="71"/>manuals with diagrams (and of course cross-references and other
+               <lb n="72"/>hypertext mechanisms) and has the small change to pay for the
+               <lb n="73"/>development costs.  (As long as they don't charge the humanists
+               <lb n="74"/>defense-contractor prices!)
+               <lb n="75"/>
+               <lb n="76"/>If for some reason one does *not* want to use SGML as the envelope for
+               <lb n="77"/>the entire compound document, then presumably the major requirement for
+               <lb n="78"/>the text-components of the compound documents is that they be
+               <lb n="79"/>computationally well-behaved, with a clearly defined structure, hooks
+               <lb n="80"/>for pointers going out, and hooks for pointers coming in.  SGML
+               <lb n="81"/>certainly has all of this, in its document type declarations and its ID
+               <lb n="82"/>names and its IDREF pointers.
+               <lb n="83"/>
+               <lb n="84"/>Perhaps those subscribers to this list who actually work with compound
+               <lb n="85"/>documents and SGML will be willing to say how they make things work now,
+               <lb n="86"/>and how they would like to see things developing in the future.
+               <lb n="87"/>
+               <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
+               <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
+               <lb n="90"/>position will help get a discussion started.)
+               <lb n="91"/>
+               <lb n="92"/>-Michael Sperberg-McQueen
+               <lb n="93"/> University of Illinois at Chicago</post>
+             </body>
+           </text>
+         </TEI>
+       </egXML>
+       Perhaps it is somewhat ironic that we took this first example from a message about encoding compound documents, 
+       given the compound nature of an e-mail listserv archive. We would need to make decisions about how to cluster related messages 
+       containing many messages connected together as replies, or bundled together in units of time in listserv logs.  
+     </p>
+     <div xml:id="TEI-collection">
+       <head>One TEI document for a collection of posts</head>
+       <p>In one approach to mapping the metadata for a collection, we envisioned a single <gi>TEI</gi> element 
+       holding a collection of <gi>post</gi> elements. For this approach, we applied the <gi>teiHeader</gi>
+       to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
+       We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
+       
+       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+         <teiHeader>
+           <fileDesc>
+             <titleStmt>
+               <title>Text Encoding Initiative public discussion list</title>
+             </titleStmt>
+             <editionStmt>
+               <edition>January and February 1990 in the TEI Listserv
+               <!-- TEI-L LOG9001, LOG9002 --></edition>
+             </editionStmt>
+             <publicationStmt>
+               <!-- about the born-digital document -->
+               <publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
+             </publicationStmt>
+             <sourceDesc>
+               <bibl>
+                 <title level="j">TEI-L Listserv</title>
+                 <title level="s">LOG9001</title>
+                 <title level="s">LOG9002</title>
+                 <publisher>University of Illinois Chicago</publisher>
+                 <distributor>TEI-L@UICVM</distributor>
+                 <date>1990</date>
+                 <relatedItem type="archive">
+                   <bibl>
+                     <publisher>The Pennsylvania State University</publisher>
+                     <distributor>LISTS.PSU.EDU LISTSERV Server (17.0)</distributor>
+                     <date>2024</date>
+                   </bibl>
+                 </relatedItem>
+               </bibl>
+             </sourceDesc>
+           </fileDesc>
+           <encodingDesc>
+             <samplingDecl>
+               <p>Sampled by requesting monthly logs from <name type="API">LISTS.PSU.EDU</name> by
+               e-mail with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
+               command was issued for each month. See <ptr type="APIdoc"
+               target="https://www.lsoft.com/manuals/17.0/commands/14File-serverandwebfunctioncomma.html"/>. 
+               Received by e-mail between <date from="2024-09-21" to="2024-09-22">September 21
+               and 22, 2024</date>.</p>
+             </samplingDecl>
+           </encodingDesc>
+         </teiHeader>
+       </egXML>
+       </p>
+       <p>In the <gi>text</gi> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
+       Since Listserv delivers the 
+       logs as files representing an entire month of posts, we applied a unique identifier to each monthly log collection with 
+       <code>text/body/div[@type="log"][@xml:id="LOG____"]</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
+       inside a <gi>post</gi> element, drawn from the new CMC chapter.
+       </p>
+       <p>To store the metadata for individual e-mail messages, in this method we encoded a <gi>dateline</gi> element, which contained
+       <gi>ref</gi> elements to store information the transmission of a message within the <gi>post</gi>, thus;
+       
+       <table xml:id="field_mapping2">
+         <row><cell>Date</cell><cell><code>date/@when  or date/text()</code></cell></row>
+         <row><cell>Reply-To</cell><cell><code>ref[@type="reply-to"][@target="email:___]</code></cell></row>
+         <row><cell>Sender</cell><cell><code>ref[@generatedBy="system"][@type="sender"][@target="email:TEI-L@__]</code></cell></row>
+         <row><cell>From</cell><cell><code>ref[@generatedBy="template"][@type="from"][@target="email:___"]</code></cell></row>
+         <row><cell>Subject</cell><cell><code>title[@level="a"][@generatedBy="human"]</code></cell></row>
+         <row><cell>In-Reply-To</cell><cell><code>ref[@target="#id-of-earlier-posting]</code></cell></row>
+       </table>
+       
+       Notice that in this encoding we are experimenting with setting the Subject field in a <gi>title</gi> element, supplying an <att>level</att> with a value of <code>"a"</code>, which seems
+       fitting for a portion of an assembled collection. Here is an example encoding of a single e-mail message encoded as a <gi>post</gi> following this method:
+       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+         <post xml:id="Web-1990-01-31-0933">
+           <dateline>
+             <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
+             <ref generatedBy="system" type="reply-to" target="email:TEI-L@UICVM">Text Encoding
+             Initative public discussion list </ref>
+             <ref generatedBy="system" type="sender" target="email:TEI-L@UICVM">Text Encoding
+             Initative public discussion list</ref>
+             <ref generatedBy="template" type="from" target="email:WEBER@HARVARDA.BITNET">Robert
+             Philip Weber</ref>
+             <title level="a" type="subject" generatedBy="human">compound documents and
+             images</title>
+           </dateline>
+           <p>could someone please explain the <name type="ML">TEI</name> approach to compound
+           documents and images? WIll <name type="ML">SGML</name> be used here, and if so,
+           how? I've just joined the list. sorry if this has been asked before.</p>
+           <p>Many Thanks</p>
+           <signed generatedBy="human">Bob Weber</signed>
+           <signed generatedBy="template"> Robert Philip Weber, Ph.D. | Phone: (617) 495-3744
+           <lb/>Senior Consultant | Fax: (617) 495-0750 <lb/>Academic and Planning Services |
+           <lb/>Division | <lb/>Office For Information Technology| Internet:
+           weber@popvax.harvard.edu <lb/>Harvard University | Bitnet: Weber@Harvarda <lb/>50
+           Church Street | <lb/>Cambridge MA 02138 | </signed>
+         </post>
+       </egXML>
+       </p>  
+     </div>
+     <div xml:id="TEI-post">
+       <head>One TEI document for a single post</head>
+       <p>A collection of posts could conceivably be encoded a collection of TEI documents, sharing the same root of <gi>TEI</gi> or <gi>teiCorpus</gi>.
+         For this method, we would apply the same outer <gi>teiHeader</gi> as shown in previous examples, but then supply metadata about each post in the <gi>teiHeader</gi> elements of the 
+         internal <gi>TEI</gi> elements. This approach treats each e-mail message directed to the listserv more as we would encode written and mailed correspondence.
+         Perhaps the most significant difference from the previous example is that we now supply of e-mail message header information in a <gi>correspDesc</gi> rather than in the <gi>dateline</gi>. 
+         
+         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+           <TEI>
+             <teiHeader>
+               <fileDesc>
+                 <!-- SAME AS PREVIOUS EXAMPLE . . . -->
+               </fileDesc>
+               <encodingDesc>
+                 <!-- SAME AS PREVIOUS EXAMPLE . . .  -->
+               </encodingDesc>
+             </teiHeader>
+             <TEI xml:id="Web-1990-01-31-0933">
+               <teiHeader>
+                 <fileDesc>
+                   <titleStmt>
+                     <title type="subjectLine">compound documents and images</title>
+                     <author>Robert Philip Weber</author>
+                   </titleStmt>
+                   <publicationStmt>
+                     <p>Text Encoding Initative public discussion list</p>
+                   </publicationStmt>
+                   <sourceDesc>
+                     <bibl><title level="s">LOG9001</title></bibl>
+                   </sourceDesc>
+                 </fileDesc>
+                 <profileDesc>
+                   <langUsage>
+                     <language ident="en">English</language>
+                   </langUsage>
+                   <correspDesc>
+                     <correspAction type="sent">
+                       <persName>Robert Philip Weber</persName>
+                       <email>WEBER@HARVARDA.BITNET</email>
+                       <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
+                     </correspAction>
+                     <correspAction type="relayed">
+                       <orgName><ref target="mailto:TEI-L@UICVM">Text Encoding
+                           Initative public discussion list</ref></orgName>
+                     </correspAction>            
+                   </correspDesc>
+                 </profileDesc>
+               </teiHeader>
+               <text>
+                 <body>
+                   <post>
+                     <p>could someone please explain the <name type="ML">TEI</name> approach to compound
+                       documents and images? WIll <name type="ML">SGML</name> be used here, and if so,
+                       how? I've just joined the list. sorry if this has been asked before.</p>
+                     <p>Many Thanks</p>
+                     <signed generatedBy="human">Bob Weber</signed>
+                     <signed generatedBy="template"> Robert Philip Weber, Ph.D. | Phone: (617) 495-3744
+                       <lb/>Senior Consultant | Fax: (617) 495-0750 <lb/>Academic and Planning Services |
+                       <lb/>Division | <lb/>Office For Information Technology| Internet:
+                       weber@popvax.harvard.edu <lb/>Harvard University | Bitnet: Weber@Harvarda <lb/>50
+                       Church Street | <lb/>Cambridge MA 02138 | </signed>               
+                   </post>
+                 </body>
+               </text>
+             </TEI>
+             <TEI xml:id="Spe-1990-02-06-1054">
+               <teiHeader>
+                 <fileDesc>
+                   <titleStmt>
+                     <title type="subjectLine">compound documents</title>
+                     <author>Michael Sperberg-McQueen</author>
+                   </titleStmt>
+                   <publicationStmt>
+                     <p>Text Encoding Initative public discussion list</p>
+                   </publicationStmt>
+                   <sourceDesc>
+                     <bibl><title level="a">LOG9002</title></bibl>
+                   </sourceDesc>
+                 </fileDesc>
+                 <profileDesc>
+                   <langUsage>
+                     <language ident="en">English</language>
+                   </langUsage>
+                   <correspDesc>
+                     <correspAction type="sent">
+                       <persName>Michael Sperberg-McQueen</persName>
+                       <email>U35395@UICVM.BITNET</email>
+                       <date when="1990-02-06">Tue, 6 Feb 90 10:54:04 CST</date>
+                     </correspAction>
+                     <correspAction type="relayed">
+                       <orgName><ref target="TEI-L@UICVM">Text Encoding
+                           Initative public discussion list</ref></orgName>
+                     </correspAction>  
+                     <correspContext>
+                       <ref type="in-response-to" target="#Web-1990-01-31-0933">previous message of 
+                         <persName>Robert Philip Weber</persName> to the TEI-L Listserv.
+                         <date when="1990-01-31"/>
+                       </ref>
+                     </correspContext>
+                   </correspDesc>
+                 </profileDesc>
+               </teiHeader>
+               <text>
+                 <body>
+                   <post>
+                     <p>About compound documents in <name type="ML">SGML</name> and in the <name type="ML"
+                         >TEI</name>. <ref target="#Web-1990-01-31-0933"><persName>R.P. Weber</persName>
+                           asked a week ago <q>could someone please explain the <name type="ML">TEI</name>
+                             approach to compound documents and images? WIll <name type="ML">SGML</name>
+                             be used here, and if so, how?</q></ref></p>
+                     <p>Apologies for my delay in answering. I was hoping one of our hypertext sages might
+                       weigh in with a reply. (But he appears to have been in the
+                       <placeName>Caribbean</placeName>, and may not have received the query.)</p>
+                     <p>This problem has not, in fact, been discussed on this server, or as far as I'm
+                       aware by the working committees. So the formal answer is that no decision has been
+                       cast in concrete yet. Which allows me to turn the tables and say <q>How <emph
+                           rend="*">should</emph> compound documents be encoded for interchange? What
+                         are the requirements? What are the alternatives?</q></p>
+                     <p>Less formally, I can offer some personal opinions, for what they are worth (face
+                       value: two cents -- 2u, for those of you on <objectName>IBM
+                         mainframes</objectName> with real <objectName>IBM terminals</objectName>).</p>
+                     <p> Certainly <name type="ML">SGML</name> is where we should start in any search for
+                       ways of handling compound objects, and I don't yet know any reason that SGML won't
+                       provide a solution for the problem. I assume there are two methods of using <name
+                         type="ML">SGML</name> in compound documents (correct me if I'm wrong): (1) use
+                       <name type="ML">SGML</name> to organize the compound document (i.e. have an
+                       SGML document which includes text, images, sound, etc. as its components), or (2)
+                       use whatever-you-like to organize the compound document as a whole, and use <name
+                         type="ML">SGML</name> as the notation for the textual components of the
+                       compound document.</p>
+                     <p>For the simple case of text-with-illustrations, <name type="ML">SGML</name> seems
+                       like a viable encoding mechanism (for the envelope and for the text components) to
+                       me. It allows you to encode the graphics however you like, declaring your graphics
+                       format as a non-<name type="ML">SGML</name> notation and declaring the contents of
+                       your graphics elements (say 'PICTURE' or 'BLORT') as being data in that notation,
+                       stored either within the <name type="ML">SGML</name> file or externally to it. You
+                       get localization of the graphics within the text stream, integral or separate
+                       storage of the graphics, and complete freedom to choose whatever graphic notation
+                       you wish.</p>
+                     <p>As document encoding methods go, <name type="ML">SGML</name> is fairly hospitable
+                       to graphics and other non-text pieces of compound objects. Nowhere in the standard
+                       does it say that the data have to be words and characters. In fact, as far as I
+                       know there is no <emph rend="*">explicit</emph> requirement in the standard that
+                       an <name type="ML">SGML</name> document even has to be bytes in a computer. (Sure,
+                       it's hard to understand the standard any other way, but that's not the same as an
+                       explicit requirement.) <bibl>ISO 8879 par. 6.1 note 1</bibl> says in fact <q>This
+                         International Standard does not constrain the physical organization of the
+                         document within the data stream, message handling protocol, file system, etc.,
+                         that contains it.</q> At the <eventName>SGML '89 conference</eventName> last
+                       <date when="1989-10">October</date> in <placeName>Atlanta</placeName>, there
+                       was a very nice paper by <persName>Douglas MacLeod</persName> (read by
+                       <persName>Yuri Rubinsky</persName>) thinking about architectural designs as
+                       <name type="ML">SGML</name> documents, which led to a general discussion of
+                       <name type="ML">SGML</name> definitions for all sorts of objects, including
+                       automobiles. Although most people (obviously) think of the <name type="ML"
+                         >SGML</name> document as an electronic <emph rend="*">description</emph> of the
+                       automobile (and the physical automobile as a side effect of processing), it
+                       appears, in the light of the passage cited, hard to say categorically that an
+                       automobile itself could never be parsed as an <name type="ML">SGML</name>
+                       document. (If you could figure out how to define the delimiters.)</p>
+                     <p>The only hitch is that the <name type="ML">SGML</name> standard itself (<bibl
+                         type="standard">ISO 8879</bibl>) does not specify in any detail what the
+                       interface between <name type="ML">SGML</name> processors and non-<name type="ML"
+                         >SGML</name> processors must, may, or can look like -- an advantage, if you
+                       will, in that it doesn't constrain anyone to an inappropriate model, but a bit of
+                       a disadvantage in that most people don't have a clue what they can now or will
+                       eventually or might someday be able to do with SGML and graphics processors.</p>
+                     <p>Not being deeply involved in graphics work or compound documents myself, I don't
+                       know off-hand what options are offered for this sort of thing by existing <name
+                         type="ML">SGML</name> processors. There will certainly be a fierce market
+                       demand for it, not only from humanists but also (to our great advantage) from the
+                       defense industry, which needs <name type="ML">SGML</name> support for technical
+                       manuals with diagrams (and of course cross-references and other hypertext
+                       mechanisms) and has the small change to pay for the development costs. (As long as
+                       they don't charge the humanists defense-contractor prices!)</p>
+                     <p>If for some reason one does <emph rend="*">not</emph> want to use <name type="ML"
+                         >SGML</name> as the envelope for the entire compound document, then presumably
+                       the major requirement for the text-components of the compound documents is that
+                       they be computationally well-behaved, with a clearly defined structure, hooks for
+                       pointers going out, and hooks for pointers coming in. SGML certainly has all of
+                       this, in its document type declarations and its ID names and its IDREF
+                       pointers.</p>
+                     <p>Perhaps those subscribers to this list who actually work with compound documents
+                       and <name type="ML">SGML</name> will be willing to say how they make things work
+                       now, and how they would like to see things developing in the future.</p>
+                     <p> All this is, I repeat, just personal opinion and shouldn't be taken as defining
+                       <soCalled>the</soCalled> position of the <orgName>TEI</orgName>. (Unless, of
+                       course, taking as <soCalled>the</soCalled> position will help get a discussion
+                       started.)</p>
+                     <signed generatedBy="human">-Michael Sperberg-McQueen<lb/> University of Illinois at
+                       Chicago </signed>
+                   </post>
+                 </body>
+               </text>
+               
+             </TEI>
+           </TEI>
+           
+           
+         </egXML>
+
+       </p>
+       
+     </div>
+   </div>
+ </body>
+ <back> 
+   <div type="bibliography">
+     <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+     <listBibl>
+       <bibl xml:id="RFC2047">
+         Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
+         Mail Extensions) Part Three: Message Header Extensions for
+         Non-ASCII Text</title>, RFC 2822, April 2001; <idno
+         type="DOI">10.17487/RFC2047</idno>.
+       </bibl>
+       <bibl xml:id="RFC2822">
+         Resnick, P., Ed., <title level="m">Internet Message
+         Format</title>, RFC 2822, April 2001;
+         <idno type="DOI">10.17487/RFC2822</idno>.
+       </bibl>
+       <bibl xml:id="RFC5322">
+         Resnick, P., Ed., <title level="m">Internet Message
+         Format</title>, RFC 5322, October 2008;
+         <idno type="DOI">10.17487/RFC5322</idno>.
+       </bibl>
+     </listBibl>
+   </div>
+   <div type="appendix" xml:id="appendix01">
+     <!-- Note to JTEI editors: for an idea of what this might look
+          like see
+          https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
+          -->
+     <head>The 29 7-bit ASCII characters that are not legal in XML</head>
+     <table xml:id="illegal_ascii_chars">
+       <row role="label">
+         <cell>base 10</cell>
+         <cell>base 16</cell>
+         <cell>base 02</cell>
+         <cell>symbol</cell>
+         <cell>description</cell>
+       </row>
+       <row> <cell>0</cell> <cell>00</cell> <cell>0000 0000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
+       <row> <cell>1</cell> <cell>01</cell> <cell>0000 0001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
+       <row> <cell>2</cell> <cell>02</cell> <cell>0000 0010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
+       <row> <cell>3</cell> <cell>03</cell> <cell>0000 0011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
+       <row> <cell>4</cell> <cell>04</cell> <cell>0000 0100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
+       <row> <cell>5</cell> <cell>05</cell> <cell>0000 0101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
+       <row> <cell>6</cell> <cell>06</cell> <cell>0000 0110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
+       <row> <cell>7</cell> <cell>07</cell> <cell>0000 0111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
+       <row> <cell>8</cell> <cell>08</cell> <cell>0000 1000</cell> <cell>BS</cell> <cell>Backspace</cell> </row>
+       <row> <cell>11</cell> <cell>0B</cell> <cell>0000 1011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
+       <row> <cell>12</cell> <cell>0C</cell> <cell>0000 1100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
+       <row> <cell>14</cell> <cell>0E</cell> <cell>0000 1110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
+       <row> <cell>15</cell> <cell>0F</cell> <cell>0000 1111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
+       <row> <cell>16</cell> <cell>10</cell> <cell>0001 0000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
+       <row> <cell>17</cell> <cell>11</cell> <cell>0001 0001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
+       <row> <cell>18</cell> <cell>12</cell> <cell>0001 0010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
+       <row> <cell>19</cell> <cell>13</cell> <cell>0001 0011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
+       <row> <cell>20</cell> <cell>14</cell> <cell>0001 0100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
+       <row> <cell>21</cell> <cell>15</cell> <cell>0001 0101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
+       <row> <cell>22</cell> <cell>16</cell> <cell>0001 0110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
+       <row> <cell>23</cell> <cell>17</cell> <cell>0001 0111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
+       <row> <cell>24</cell> <cell>18</cell> <cell>0001 1000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
+       <row> <cell>25</cell> <cell>19</cell> <cell>0001 1001</cell> <cell>EM</cell> <cell>End of medium</cell> </row>
+       <row> <cell>26</cell> <cell>1A</cell> <cell>0001 1010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
+       <row> <cell>27</cell> <cell>1B</cell> <cell>0001 1011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
+       <row> <cell>28</cell> <cell>1C</cell> <cell>0001 1100</cell> <cell>FS</cell> <cell>File Separator</cell> </row>
+       <row> <cell>29</cell> <cell>1D</cell> <cell>0001 1101</cell> <cell>GS</cell> <cell>Group Separator</cell> </row>
+       <row> <cell>30</cell> <cell>1E</cell> <cell>0001 1110</cell> <cell>RS</cell> <cell>Record Separator</cell> </row>
+       <row> <cell>31</cell> <cell>1F</cell> <cell>0001 1111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
+     </table>
+     <list type="gloss">
+       <head>Regular expressions to match these characters</head>
+       <label>PCRE, Java, or oXygen:</label>
+       <item><code>[\u0000-\u0008\u000C\u000E-\u0019]</code></item>
+       <label>W3C:</label>
+       <item><code>[#x00-#x08#x0C#x0E-#x19]</code></item>
+       <label>Emacs:</label>
+       <item><code>[^␤[:print:]]</code> &#xA0; &#xA0; ; where <q>␤</q> is typed CTL-J</item>
+       <label>grep or egrep:</label>
+       <item><code>[^[:print:]]</code></item>
+     </list>
+   </div>
+ </back>
 </text>
 </TEI>
