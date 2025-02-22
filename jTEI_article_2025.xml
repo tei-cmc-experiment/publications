@@ -5,74 +5,74 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="main">Preserving LISTSERV Archive in TEI</title>
-        <author xml:id="sb">
-          <name>
-            <forename>Syd</forename>
-            <surname>Bauman</surname>
-          </name>
-          <affiliation>
-            <roleName>Senior XML Programmer/Analyst</roleName>
-            <affiliation>Northeastern University</affiliation>
-          </affiliation>
-          <affiliation>
-            <roleName>member</roleName>
-            <orgName>TEI Technical Council</orgName>
-          </affiliation>
-          <email>s.bauman@northeastern.edu</email>
-        </author>
-        <author xml:id="ebb">
-          <name>
-            <forename>Elisa</forename>
-            <surname>Beshero-Bondar</surname>
-          </name>
-          <affiliation>
-            <roleName>Professor of Digital Humanities</roleName>
-            <roleName>Director of the Digital Humanities Lab</roleName>
-            <orgName>Penn State Erie</orgName>
-          </affiliation>
-          <affiliation>
-            <roleName>chair</roleName>
-            <orgName>TEI Technical Council</orgName>
-          </affiliation>
-          <email>eeb4@psu.edu</email>
-        </author>
+	<title type="main">Preserving LISTSERV Archive in TEI</title>
+	<author xml:id="sb">
+	  <name>
+	    <forename>Syd</forename>
+	    <surname>Bauman</surname>
+	  </name>
+	  <affiliation>
+	    <roleName>Senior XML Programmer/Analyst</roleName>
+	    <affiliation>Northeastern University</affiliation>
+	  </affiliation>
+	  <affiliation>
+	    <roleName>member</roleName>
+	    <orgName>TEI Technical Council</orgName>
+	  </affiliation>
+	  <email>s.bauman@northeastern.edu</email>
+	</author>
+	<author xml:id="ebb">
+	  <name>
+	    <forename>Elisa</forename>
+	    <surname>Beshero-Bondar</surname>
+	  </name>
+	  <affiliation>
+	    <roleName>Professor of Digital Humanities</roleName>
+	    <roleName>Director of the Digital Humanities Lab</roleName>
+	    <orgName>Penn State Erie</orgName>
+	  </affiliation>
+	  <affiliation>
+	    <roleName>chair</roleName>
+	    <orgName>TEI Technical Council</orgName>
+	  </affiliation>
+	  <email>eeb4@psu.edu</email>
+	</author>
       </titleStmt>
       <publicationStmt>
-        <publisher>TEI Consortium</publisher>
-        <date>due 2025-03-03</date>
-        <availability>
-          <licence target="https://creativecommons.org/licenses/by/4.0/">
-            <p>For this publication a Creative Commons Attribution 4.0 International
-              license has been granted by the author(s) who retain full copyright.</p>
-          </licence>
-        </availability>
+	<publisher>TEI Consortium</publisher>
+	<date>due 2025-03-03</date>
+	<availability>
+	  <licence target="https://creativecommons.org/licenses/by/4.0/">
+	    <p>For this publication a Creative Commons Attribution 4.0 International
+	    license has been granted by the author(s) who retain full copyright.</p>
+	  </licence>
+	</availability>
       </publicationStmt>
       <sourceDesc>
-        <p>No source, born digital; based in large part on our <ref
-        target="https://bit.ly/listserv2tei">presentation</ref> at the
-        TEI Conference and Members’ Meeting 2024 in Buenos Aires.</p>
+	<p>No source, born digital; based in large part on our <ref
+	target="https://bit.ly/listserv2tei">presentation</ref> at the
+	TEI Conference and Members’ Meeting 2024 in Buenos Aires.</p>
       </sourceDesc>
     </fileDesc>
     <encodingDesc>
       <projectDesc>
-        <p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
-          in the humanities and social sciences, open to quality periodicals looking to publish
-          full-text articles online.</p>
+	<p>OpenEdition Journals -centre for open electronic publishing- is the platform for journals
+	in the humanities and social sciences, open to quality periodicals looking to publish
+	full-text articles online.</p>
       </projectDesc>
     </encodingDesc>
     <profileDesc>
       <langUsage>
-        <language ident="en">en</language>
+	<language ident="en">en</language>
       </langUsage>
       <textClass>
-        <keywords xml:lang="en">
-          <term>TEI</term>
-          <term>LISTSERV</term>
-          <term>character</term>
-          <term>email</term>
-          <term>computer-mediated communication</term>
-        </keywords>
+	<keywords xml:lang="en">
+	  <term>TEI</term>
+	  <term>LISTSERV</term>
+	  <term>character</term>
+	  <term>email</term>
+	  <term>computer-mediated communication</term>
+	</keywords>
       </textClass>
     </profileDesc>
     <revisionDesc>
@@ -82,864 +82,895 @@
   <text>
     <front>
       <div type="abstract" xml:id="abstract">
-        <p><q>Can the archives of an email list be stored in TEI?</q> This seems
-        like a reasonable question, to which the answer, especially with the new
-        <title level="a">Computer-mediated Communcation</title> chapter of the
-        <title>TEI Guidelines</title>, should be a simple <q>yes</q>.</p>
-        <p>In order to prove this, each co-author attempted to encode a subset
-        of the archives of <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">TEI-L</ref>,
-        the main email discussion list for TEI, in TEI. While our methods were wildly different,
-        our conclusions are similar: the answer is <q>yes, but it is a <emph>lot</emph> harder
-        than you might expect</q>.</p>
+	<p><q>Can the archives of an email list be stored in TEI?</q> This seems
+	like a reasonable question, to which the answer, especially with the new
+	<title level="a">Computer-mediated Communcation</title> chapter of the
+	<title>TEI Guidelines</title>, should be a simple <q>yes</q>.</p>
+	<p>In order to prove this, each co-author attempted to encode
+	a subset of the archives of <ref
+	target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">TEI-L</ref>,
+	the main email discussion list for TEI, in TEI. While our
+	methods were wildly different, our conclusions are similar:
+	the answer is <q>yes, but it is a <emph>lot</emph> harder than
+	you might expect</q>. <?ebb Does the following sentence belong
+	here or in the introduction? (Or does it matter?) —sb ?> We
+	report here not only on what we did, but some of what we did
+	not do, what is particularly difficult, and some interesting
+	statistics we found along the way.</p>
       </div>
     </front>
     <body>
       <div xml:id="introduction">
-        <head>Introduction</head>
-        <p>One of the goals of digital humanists, and one of the
-        points of digitial humanities, is cultural memory. It is
-        commonly a goal to preserve the results of humanistic
-        endeavors in a manner that one hopes will be easy to access
-        many years in the future, and allows for scholarly examination
-        and inquiry. From the last quarter of the twentieth century to the
-        present, one venue for communication among humans has been
-        email, and in particular the email discussion list. Thus it is
-        to be expected that digital humanists will want to preserve
-        email discussion lists in a manner that is likely to survive
-        the ups and downs of the word processor market, and is
-        ammenable to scholarly processing.</p>
-        <p>What is not expected is that the Text Encoding Initiative
-        would not provide a dedicated mechanism for encoding email,
-        but it does not. TEI does provide mechanisms for encoding
-        <emph>physical</emph> letters and chains of
-        correspondence. There are quite a few similarities — like a
-        letter, a piece of email is written by an author and sent to a
-        recipient at a particular point in time. But physical letters
-        do not have such a sharp demarcation between data &amp;
-        metadata, rarely have multiple copies of the same content in
-        different formats (typically HTML and plain text), and never
-        suffer character encoding ambiguities. (Conversely, email does
-        not have seals or stamps or any of the inconsistencies present
-        in any set of manuscripts.)</p>
-        <p>TEI also provides a (new) mechanism for encoding
-        computer-mediated communication (CMC). It is intended,
-        however, for systems like Twitter or Tik-Tok rather than for
-        email. Thus it is not yet known how well its encoding system
-        could be applied to email. Thus the impetus for this project —
-        can TEI, with its new CMC chapter, be used to encode an email
-        discussion list?</p>
-        <p>We decided the TEI-L discussion list would make an
-        excellent test case. It is a large resource that spans decades
-        — the first post was on <date when="1990-01-08">Mon 08 Jan
-        90<!-- while I was still living in Pasedena, 6 days after I
-        got my MICP certification —sb --></date> — from mailing list
-        software (LISTSERV) with which we are somewhat
-        familiar. Furthermore, because we had recently moved the list
-        from Brown University to Penn State University, getting access
-        to the raw archives from its beginning to the day the list was
-        moved would be trivial. But most of all, the list is
-        (obviously) of significant interest to the TEI community. Its
-        contents provide a treasure trove of insights into the early
-        days of text encoding and digital humanities. (The list was
-        started months before the first edition of P1, and years
-        before the advent of XML.)</p>
-        <!-- gold mine; heritage dig site; core sample; digital archaeology -->
-        <p>Our initial thought was that converting the data to XML would be easy,
-          and that most of our attention would be directed towards the more interesting
-          problem of deciding exactly how to encode it in TEI. However, it turns
-          out that both parts were problematic — it was very difficult to convert
-          the data into XML, and in several cases there is no TEI encoding that is
-          really satisfactory.</p>
-        <p>Our two approaches were
-          <list>
-            <item>an automated conversion of mass data to a basic
-            TEI representation for archiving and potential later
-            enhancement</item>
-            <item>a craft encoding of a short range of months or
-            years worth of posts</item>
-          </list>
-        </p>
+	<head>Introduction</head>
+	<p>One of the goals of digital humanists, and one of the
+	points of digitial humanities, is cultural memory. It is
+	commonly a goal to preserve the results of humanistic
+	endeavors in a manner that one hopes will be easy to access
+	many years in the future, and allows for scholarly examination
+	and inquiry. From the last quarter of the twentieth century to the
+	present, one venue for communication among humans has been
+	email, and in particular the email discussion list. Thus it is
+	to be expected that digital humanists will want to preserve
+	email discussion lists in a manner that is likely to survive
+	the ups and downs of the word processor market, and is
+	ammenable to scholarly processing.</p>
+	<p>What is not expected is that the Text Encoding Initiative
+	would not provide a dedicated mechanism for encoding email,
+	but it does not. TEI does provide mechanisms for encoding
+	<emph>physical</emph> letters and chains of
+	correspondence. There are quite a few similarities — like a
+	letter, a piece of email is written by an author and sent to a
+	recipient at a particular point in time. But physical letters
+	do not have such a sharp demarcation between data &amp;
+	metadata, rarely have multiple copies of the same content in
+	different formats (typically HTML and plain text), and never
+	suffer character encoding ambiguities. (Conversely, email does
+	not have seals or stamps or any of the inconsistencies present
+	in any set of manuscripts.)</p>
+	<p>TEI also provides a (new) mechanism for encoding
+	computer-mediated communication (CMC). It is intended,
+	however, for systems like Twitter or Tik-Tok rather than for
+	email. Thus it is not yet known how well its encoding system
+	could be applied to email. Thus the impetus for this project —
+	can TEI, with its new CMC chapter, be used to encode an email
+	discussion list?</p>
+	<p>We decided the TEI-L discussion list would make an
+	excellent test case. It is a large resource that spans decades
+	— the first post was on <date when="1990-01-08">Mon 08 Jan
+	90<!-- while I was still living in Pasedena, 6 days after I
+	got my MICP certification —sb --></date> — from mailing list
+	software (LISTSERV) with which we are somewhat
+	familiar. Furthermore, because we had recently moved the list
+	from Brown University to Penn State University, getting access
+	to the raw archives from its beginning to the day the list was
+	moved would be trivial. But most of all, the list is
+	(obviously) of significant interest to the TEI community. Its
+	contents provide a treasure trove of insights into the early
+	days of text encoding and digital humanities. (The list was
+	started months before the first edition of P1, and years
+	before the advent of XML.)</p>
+	<!-- gold mine; heritage dig site; core sample; digital archaeology -->
+	<p>Our initial thought was that converting the data to XML would be easy,
+	and that most of our attention would be directed towards the more interesting
+	problem of deciding exactly how to encode it in TEI. However, it turns
+	out that both parts were problematic — it was very difficult to convert
+	the data into XML, and in several cases there is no TEI encoding that is
+	really satisfactory.</p>
+	<p>Our two approaches were
+	<list>
+	  <item>an automated conversion of mass data to a basic
+	  TEI representation for archiving and potential later
+	  enhancement</item>
+	  <item>a craft encoding of a short range of months or
+	  years worth of posts</item>
+	</list>
+	</p>
       </div>
       <div xml:id="data-retrieval">
-        <head>Conversion from source to XML</head>
-       <div xml:id="mass-conversion">
-         <head>Mass conversion approach</head>
-        <p>Our goal for the mass conversion approach was to
-        programatically convert all of TEI-L from its inception up to
-        2024-04-29 into some form of simple, basic TEI using XSLT.
-        That end date was chosen because it was the day the mailing
-        list was moved from Brown University’s LISTSERV to Penn State
-        University’s LISTSERV. This fact meant we could obtain the
-        entire dataset directly from Brown listmaster without needing
-        to worry about merging in data from PSU or about posts made
-        just after we obtained the data. Peter DiCamillo, the Brown
-        listmaster, sent us 412 separate files, one for each month,
-        i.e., <name>tei-l.log9001</name> through
-        <name>tei-l.log2404</name>.</p>
-        <p>Thus the first step was to rename the log files to use
-        4-digit (as opposed to 2-digit) years so that they sorted into
-        the correct order.<note>This was done quite easily in Emacs
-        using dired-mode. But in fact, it would not be very hard to do
-        directly in the shell, and there are utilities available for
-        Mac OS that could do this.</note> This allowed them to be
-        easily examined in a reasonable order and, more importantly,
-        allowed them to be combined into a single file in the correct
-        order using one simple command: <code>cat tei-l.log* >
-        TEI-L.txt</code>.<note>In fact, in a vain effort to avoid the
-        character encoding problems described below, we actually used
-        <code>iconv -f ISO-8859-1 -t UTF-8 -c tei-l.log* >
-        TEI-L.txt</code>, but do not think it made any significant
-        difference.</note></p>
-        <div xml:id="post_delimiters">
-          <head>Delimters</head>
-          <p>Each log file provided by LISTSERV contains one or more
-          posts to the mailing list. For our dataset, the range was
-          1–420 posts per monthly log file, although in several cases
-          there is a month that has no postings, for which LISTSERV
-          did not generate a .log file at all.</p>
-          <p>Thus an early task was to figure out how posts are
-          separated in a log file. Upon looking at the dataset, it was
-          apparent in seconds that LISTSERV uses a string of 73 equal
-          signs (U+003D, <q>=</q>) in a row as a start-post
-          indicator. (That is, there is such a delimiter before the
-          first and every subsequent post in a file, but not after the
-          last.)</p>
-          <p>But, of course, there is nothing to stop a mailing list
-          user from including a string of 73 equal signs inside her
-          post. We first checked (out of curiosity) to see if any
-          strings of 73 equal signs were obviously <emph>not</emph>
-          post deliimters, because they did not occupy the entire
-          record. A search for the delimiter string (using just
-          <code>egrep -c</code>) revealed that it occurs 31,031 times
-          in the dataset; a search for the delimiter string anchored
-          to the begining and end of the line revealed that it occurs
-          alone on a line 30,998 times. So there are 33 cases of 73
-          equal signs in a row that do not occupy the entire record,
-          and thus are not start-of-post indicators. (It is likely
-          they exist as cases of posts being copied-and-pasted into
-          other posts.)</p>
-          <p>But are there any cases of 73 equal signs in a row that
-          do occupy the entire line, but are <emph>not</emph> intended
-          to be a post-begin delimiter? We know that every e-mail
-          message (and thus every post to an e-mail list) starts with
-          a sequence of metadata records. E-mail metadata records are
-          in a very specific format: the field name, which must be
-          composed of one or more of the printable 7-bit ASCII
-          characters except colon, followed by a colon, followed by a
-          field body. On a quick examination of the dataset, it
-          appears that the first field in every case is the
-          <code>Date:</code> field. So we searched for occurrences of
-          73 equal signs that start at the beginning of a line and are
-          followed immedieately by a newline followed by something
-          <emph>other</emph> than an uppercase <q>D</q>.<note>That is,
-          we searched for the regular expression
-          <code>^={73}\n[^D]</code>.</note> There are only three such
-          cases, so we just examined each of them.</p>
-          <p>The first is simply a case of cut-and-paste: on <date
-          when="1992-09-10">Thu 10 Sep 92</date> Wendy Plotkin, who
-          was at the time a PhD candidate in History at UIC and who
-          served as the TEI’s research assistant (1990–1999), posted
-          e-mail that contained a copy of e-mail from Professor Robert
-          Jones of the University of Illinois Urbana-Champaign to a
-          CETH mailing list, including a line of 73 equal signs which
-          was used to separate the part she wrote from the part
-          Professor Jones had sent.</p>
-          <p>The other two cases are both of two lines of 73 equal signs
-          in a row, with nothing between. Whether these indicate that the
-          preceding post ended with the same set of characters that is
-          used as the begin-post delimiter, or that there is a missing
-          post, we do not know.</p>
-          <p>So the result of this analysis was that a line of 73
-          equal signs in a row could be used reliable to indicate the
-          start of a new post, with one exception, which we simply
-          changed by hand to a line of 72 equal signs. (Which is
-          visually the same for a human reader, but distinctly
-          different to a computer looking for 73 of them.) We also had
-          to be prepared for the possibility of two such lines in a
-          row.</p>
-        </div>
-        <div xml:id="characters_illegal">
-          <head>Illegal characters (for XML)</head>
-          <p>Early e-mail systems used ASCII (7-bit) characters
-          only. Thus there were 128 available code points (0–2⁷-1, or
-          0–127). Of those 128 available code points, only 99 of them
-          are legal XML characters. The remaining 29 characters (for
-          which see <ptr type="crossref" target="#appendix01"/>) are
-          all non-printing control characters, intended for
-          controlling the behavior of a peripheral device such as a
-          card punch or printer, or (in a few cases)
-          whitespace.<note>It is quite reasonable, in our opinion, for
-          an astute reader of the XML specification to think that
-          production 14 implies that <emph>any</emph> character (other
-          than <code>&lt;</code> and <code>&amp;</code>) is allowed as
-          data content. But production 14 needs to be read within the
-          limits already established by production 2 — which prohibits
-          these control characters.</note> While neither of us is an
-          expert on early e-mail systems, we suspect that the
-          designers never intended these characters to be used in
-          e-mail, but did not feel it necessary to do anything to
-          prevent them from being used, as the average user of a
-          computer had no way of typing them, and thus would find it
-          very difficult to get them into an e-mail.<note>In fact,
-          early definitions of e-mail messages assert they are just a
-          sequence of ASCII characters in the range of 1–127; see <ref
-          type="bibl" target="#RFC2822">rfc2822</ref>. Later
-          RFCs updated this to say <q><!-- uote source="#RFC5322"-->the use of US-ASCII control
-          characters (values 1 through 8, 11, 12, and 14 through 31)
-          is discouraged since their interpretation by receivers for
-          display is not guaranteed.</q></note>
-        </p>
-          <p>Nonetheless, of the 29 characters that are not legal in
-          XML, 17 of them occur in the TEI-L archives:
-          <list>
-            <item>64 occurrences in 34 posts before 2000 (which, on reflection, was not too surprising)</item>
-            <item>38 occurrences in 11 posts after 2008 (which we did not expect at all)</item>
-          </list>
-          These characters were generally used not to represent the
-          control characters to which they are mapped in the ASCII
-          character set, but rather to represent various accented
-          characters that were not part of the original (7-bit) ASCII
-          set. Often these characters occurred within text that was
-          likely copied-and-pasted from another source (e.g., from a
-          conference announcement). The last use of a character that
-          is illegal in XML was on 2016-03-13.</p>
-          <p>An input document that contains illegal characters
-          <emph>cannot</emph> be processed by XSLT, whether it is in
-          an XML file or a plain text file. And, of course, such
-          characters cannot occur in an XML file whether that file is
-          generated by XSLT, XQuery, Python, C, or by hand in a text
-          editor. In some of those languages, or using a text editor,
-          you could <emph>put</emph> them into a file that has a
-          <q>.xml</q> extension, but the file would not meet the
-          definition of an XML file, and thus could not be processed
-          by conforming XML software (other than to emit an error
-          message).</p>
-          <p>These control characters are being used incorrectly, and
-          are not allowed in XML, but they are not mal-formed or
-          illegal Unicode characters — they are perfectly legitimate
-          Unicode characters that are not allowed in XML. Thus
-          oXygen’s otherwise useful <name>Encoding errors
-          handling</name> feature is not helpful here, as it relates
-          to oXygen’s processing of mal-formed Unicode
-          characters. Likewise a utility like <name>iconv</name>,
-          which converts text from one character encoding to another,
-          is of little to no use — these control characters are
-          problematic no matter what character encoding is used to
-          represent them.</p>
-          <p>We immediately envisioned several possible solutions,
-          each of which would have to be carried out on the plain text
-          input files prior to processing into XML.
-          <list rend="ordered">
-            <item>Delete the problematic characters, leaving users to
-            figure out what was missing and where. This lossy
-            methodology seemed like a bad idea.</item>
-            <item>Replace each of the 102 occurrences of the 17
-            problematic characters with a single
-            <soCalled>warning</soCalled> character. This would allow
-            users to immediately know where there was a problem, but
-            would leave solving it (i.e., figuring out which character
-            belonged there) to the user. It requires, of course, that
-            we use a character that does not occur in the data. (One
-            obvious choice, for example, would be <q>⚠</q> (U+26A0),
-            but it already occurs three times in the input dataset.)
-            This is obviously better than just deleting the
-            characters, but still puts effort on the reader.</item>
-            <item>Replace the problematic characters with 17 different
-            <soCalled>warning</soCalled> characters. We believe some
-            users would find decoding this a lot easier, but others
-            would find it more difficult (because it did not seem to
-            be the case that there was always a 1:1 relationship
-            between the control character used and the desired
-            character). This also would mean that we would have to
-            find 17 characters that would be clear to the user, but do
-            not occur in the input dataset.</item>
-            <item>Replace the problematic characters with 17 different
-            <soCalled>warning</soCalled> <emph>strings</emph>. After
-            all, XML does have a replacement mechanism. So if we were
-            to replace each of the six occurences of, say, U+001A with
-            <q>&#x26D1;SUB&#x26D1;</q> in the input document, we could either leave
-            them that way for the user, or convert them to
-            <q>&amp;SUB;</q> and provide an appropriate declaration,
-            for example to a PUA character: <code>&lt;!ENTITY SUB
-            "&#xE503;"></code>. This would likely be easier for
-            readers than using a single character for each of the 17
-            problematic characters, but as with that solution readers
-            would be confused when there was not a 1:1 mapping from
-            the strings we provide and the likely intended
-            characters.</item>
-            <item>For each occurence of a problematic character, try
-            to figure out what character the author intended, and
-            replace it with that (proper UTF-8) character. While this
-            involves far more work than any of the above, we feel this
-            option results in documents that are easier for users to
-            process and read.  We considered four variations on this
-            theme, based on two binary features:
-            <list rend="bulleted">
-              <item>in each case, try contacting the author to ask
-              what was the intended character, or not;</item>
-              <item>in each case, just replace the problematic
-              character with our guess at the correct desired
-              character, or replace it with a <gi>choice</gi> encoding
-              which records both the original character (e.g., as
-              <code>&lt;orig>&lt;g type="CONTROL"
-              subtype="FS"/>&lt;/orig></code>) and our regularization
-              thereof (e.g., as
-              <code>&lt;reg>&#x00A3;&lt;/reg></code>).</item>
-            </list>
-            While we think that contacting the original authors is, in
-            some cases, beneficial, and believe that the
-            <gi>choice</gi> encoding is by far the best way of
-            representing the problematic characters, for our small
-            experiment we chose the easier route for each of these
-            feautres.<note>As it is, finding the problematic
-            characters, figuring out what each was likely supposed to
-            be (often by multiple visits to the <ref
-            target="https://webcf.waybackmachine.org/">Internet
-            Archive’s Wayback Machine</ref>), and replacing them took
-            multiple hours.</note></item>
-          </list>
-          </p>
-          <p>After replacement of those characters that are illegal in
-          XML by those characters we thought they should be, the input
-          dataset was easily read by XSLT. Converting that to useful,
-          readable XML presented some challenges, though.</p>
-        </div>
-        <div xml:id="memory">
-          <head>Java, and memory, and streams, oh my!</head>
-          <p>We quickly discovered that processing the entire ~151 MiB
-          of data at once requires a lot of RAM, more than Saxon gets
-          from the Java virtual machine by default. There are three
-          obvious solutions to this problem.
-          <list rend="ordered">
-            <item>Chop up the data: Rather than reading in a single
-            file of ~151 MiB of data, use perhaps 10 files of ~15
-            MiB each (or vice-versa); or even use the original 412
-            files (the largest of which is ~4 MiB) generated by
-            LISTSERV.</item>
-            <item>Use streaming XSLT: The whole point of the
-            <soCalled>streamability</soCalled> feature of XSLT 3.0
-            is to be able to process large, perhaps infinitely
-            large, datasets in memory.</item>
-            <item>Give the Java virtual machine more heap space.</item>
-          </list>
-          </p>
-          <p>Using smaller chunks of input seems like a very good
-          approach in the general case. We did not follow that route
-          simply for the sake of expediency: we had already put in
-          hours of effort on the combined ~151 MiB file of data
-          (searching for and changing characters illegal for XML),
-          and simply did not want to take the time to artificially
-          divide the data into multiple files and then change our
-          XSLT program so it would iterate over them. That said,
-          this would be a reasonable approach were it not for the
-          time constraints on our (unfunded) pilot project.</p>
-          <p>We <emph>think</emph>, but are not at all convinced,
-          that use of streaming XSLT would solve this problem.
-          Although the data we are reading in is not XML, it is
-          internally converted to XML and then processed in several
-          stages. It is likely that if these stages were streamable
-          the memory use would be dramatically decreased. However,
-          neither of us is particularly well versed in writing
-          steamable XSLT, and, perhaps more importantly, do not
-          (yet?) consider it a viable solution for digital
-          humanists, as the only XSLT processors in the world that
-          have this feature are payware.</p>
-          <p>So while we admit it may be rude to require a user of
-          our program to do so, we simply increased Java heap space
-          when running this transofrm (to 2 GiB).</p>
-        </div>
-        <div xml:id="conversion_complexities">
-          <head>Unsolved conversion complexities: MIME</head>
-          <p>MIME stands for <term>Multipurpose Internet Mail
-          Extensions</term>, a set of extensions to email that allows
-          for
-          <list>
-            <item>representation of more than just 7-bit US-ASCII characters in header field values</item>
-            <item>representation of more than just 8-bit US-ASCII characters in mail bodies</item>
-            <item>representation of content using systems other than
-            just plain text, possibly as attachments (e.g., text/html,
-            application/msword)</item>
-          </list>
-          These capabilities and the corresponding questions raised
-          are discussed in the following subsections. But for us MIME
-          may as well stand for <term>Major Incoherent Mess in
-          Email</term>, because other than being able to parse out the
-          various MIME parts of an email message body into separate
-          constructs, we were not able to process MIME extensions at
+	<head>Conversion from source to XML</head>
+	<div xml:id="mass-conversion">
+	  <head>Mass conversion approach</head>
+	  <p>Our goal for the mass conversion approach was to
+	  programatically convert all of TEI-L from its inception up to
+	  2024-04-29 into some form of simple, basic TEI using XSLT.
+	  That end date was chosen because it was the day the mailing
+	  list was moved from Brown University’s LISTSERV to Penn State
+	  University’s LISTSERV. This fact meant we could obtain the
+	  entire dataset directly from Brown listmaster without needing
+	  to worry about merging in data from PSU or about posts made
+	  just after we obtained the data. Peter DiCamillo, the Brown
+	  listmaster, sent us 412 separate files, one for each month,
+	  i.e., <name>tei-l.log9001</name> through
+	  <name>tei-l.log2404</name>.</p>
+	  <p>Thus the first step was to rename the log files to use
+	  4-digit (as opposed to 2-digit) years so that they sorted into
+	  the correct order.<note>This was done quite easily in Emacs
+	  using dired-mode. But in fact, it would not be very hard to do
+	  directly in the shell, and there are utilities available for
+	  Mac OS that could do this.</note> This allowed them to be
+	  easily examined in a reasonable order and, more importantly,
+	  allowed them to be combined into a single file in the correct
+	  order using one simple command: <code>cat tei-l.log* >
+	  TEI-L.txt</code>.<note>In fact, in a vain effort to avoid the
+	  character encoding problems described below, we actually used
+	  <code>iconv -f ISO-8859-1 -t UTF-8 -c tei-l.log* >
+	  TEI-L.txt</code>, but do not think it made any significant
+	  difference.</note></p>
+	  <div xml:id="post_delimiters">
+	    <head>Delimters</head>
+	    <p>Each log file provided by LISTSERV contains one or more
+	    posts to the mailing list. For our dataset, the range was
+	    1–420 posts per monthly log file, although in several cases
+	    there is a month that has no postings, for which LISTSERV
+	    did not generate a .log file at all.</p>
+	    <p>Thus an early task was to figure out how posts are
+	    separated in a log file. Upon looking at the dataset, it was
+	    apparent in seconds that LISTSERV uses a string of 73 equal
+	    signs (U+003D, <q>=</q>) in a row as a start-post
+	    indicator. (That is, there is such a delimiter before the
+	    first and every subsequent post in a file, but not after the
+	    last.)</p>
+	    <p>But, of course, there is nothing to stop a mailing list
+	    user from including a string of 73 equal signs inside her
+	    post. We first checked (out of curiosity) to see if any
+	    strings of 73 equal signs were obviously <emph>not</emph>
+	    post deliimters, because they did not occupy the entire
+	    record. A search for the delimiter string (using just
+	    <code>egrep -c</code>) revealed that it occurs 31,031 times
+	    in the dataset; a search for the delimiter string anchored
+	    to the begining and end of the line revealed that it occurs
+	    alone on a line 30,998 times. So there are 33 cases of 73
+	    equal signs in a row that do not occupy the entire record,
+	    and thus are not start-of-post indicators. (It is likely
+	    they exist as cases of posts being copied-and-pasted into
+	    other posts.)</p>
+	    <p>But are there any cases of 73 equal signs in a row that
+	    do occupy the entire line, but are <emph>not</emph> intended
+	    to be a post-begin delimiter? We know that every e-mail
+	    message (and thus every post to an e-mail list) starts with
+	    a sequence of metadata records. E-mail metadata records are
+	    in a very specific format: the field name, which must be
+	    composed of one or more of the printable 7-bit ASCII
+	    characters except colon, followed by a colon, followed by a
+	    field body. On a quick examination of the dataset, it
+	    appears that the first field in every case is the
+	    <code>Date:</code> field. So we searched for occurrences of
+	    73 equal signs that start at the beginning of a line and are
+	    followed immedieately by a newline followed by something
+	    <emph>other</emph> than an uppercase <q>D</q>.<note>That is,
+	    we searched for the regular expression
+	    <code>^={73}\n[^D]</code>.</note> There are only three such
+	    cases, so we just examined each of them.</p>
+	    <p>The first is simply a case of cut-and-paste: on <date
+	    when="1992-09-10">Thu 10 Sep 92</date> Wendy Plotkin, who
+	    was at the time a PhD candidate in History at UIC and who
+	    served as the TEI’s research assistant (1990–1999), posted
+	    e-mail that contained a copy of e-mail from Professor Robert
+	    Jones of the University of Illinois Urbana-Champaign to a
+	    CETH mailing list, including a line of 73 equal signs which
+	    was used to separate the part she wrote from the part
+	    Professor Jones had sent.</p>
+	    <p>The other two cases are both of two lines of 73 equal signs
+	    in a row, with nothing between. Whether these indicate that the
+	    preceding post ended with the same set of characters that is
+	    used as the begin-post delimiter, or that there is a missing
+	    post, we do not know.</p>
+	    <p>So the result of this analysis was that a line of 73
+	    equal signs in a row could be used reliably to indicate the
+	    start of a new post, with one exception, which we simply
+	    changed by hand to a line of 72 equal signs. (Which is
+	    visually the same for a human reader, but distinctly
+	    different to a computer looking for 73 of them.) We also had
+	    to be prepared for the possibility of two such lines in a
+	    row.</p>
+	  </div>
+	  <div xml:id="characters_illegal">
+	    <head>Illegal characters (for XML)</head>
+	    <p>Early e-mail systems used ASCII (7-bit) characters
+	    only. Thus there were 128 available code points (0–2⁷-1, or
+	    0–127). Of those 128 available code points, only 99 of them
+	    are legal XML characters. The remaining 29 characters (for
+	    which see <ptr type="crossref" target="#appendix01"/>) are
+	    all non-printing control characters, intended for
+	    controlling the behavior of a peripheral device such as a
+	    card punch or printer, or (in a few cases)
+	    whitespace.<note>It is quite reasonable, in our opinion, for
+	    an astute reader of the XML specification to think that
+	    production 14 implies that <emph>any</emph> character (other
+	    than <code>&lt;</code> and <code>&amp;</code>) is allowed as
+	    data content. But production 14 needs to be read within the
+	    limits already established by production 2 — which prohibits
+	    these control characters.</note> While neither of us is an
+	    expert on early e-mail systems, we suspect that the
+	    designers never intended these characters to be used in
+	    e-mail, but did not feel it necessary to do anything to
+	    prevent them from being used, as the average user of a
+	    computer had no way of typing them, and thus would find it
+	    very difficult to get them into an e-mail.<note>In fact,
+	    early definitions of e-mail messages assert they are just a
+	    sequence of ASCII characters in the range of 1–127; see <ref
+	    type="bibl" target="#RFC2822">rfc2822</ref>. Later
+	    RFCs updated this to say <q><!-- uote source="#RFC5322"-->the use of US-ASCII control
+	    characters (values 1 through 8, 11, 12, and 14 through 31)
+	    is discouraged since their interpretation by receivers for
+	    display is not guaranteed.</q></note>
+	    </p>
+	    <p>Nonetheless, of the 29 characters that are not legal in
+	    XML, 17 of them occur in the TEI-L archives:
+	    <list>
+	      <item>64 occurrences in 34 posts before 2000 (which, on reflection, was not too surprising)</item>
+	      <item>38 occurrences in 11 posts after 2008 (which we did not expect at all)</item>
+	    </list>
+	    These characters were generally used not to represent the
+	    control characters to which they are mapped in the ASCII
+	    character set, but rather to represent various accented
+	    characters that were not part of the original (7-bit) ASCII
+	    set. Often these characters occurred within text that was
+	    likely copied-and-pasted from another source (e.g., from a
+	    conference announcement). The last use of a character that
+	    is illegal in XML was on 2016-03-13.</p>
+	    <p>An input document that contains illegal characters
+	    <emph>cannot</emph> be processed by XSLT, whether it is in
+	    an XML file or a plain text file. And, of course, such
+	    characters cannot occur in an XML file whether that file is
+	    generated by XSLT, XQuery, Python, C, or by hand in a text
+	    editor. In some of those languages, or using a text editor,
+	    you could <emph>put</emph> them into a file that has a
+	    <q>.xml</q> extension, but the file would not meet the
+	    definition of an XML file, and thus could not be processed
+	    by conforming XML software (other than to emit an error
+	    message).</p>
+	    <p>These control characters are being used incorrectly, and
+	    are not allowed in XML, but they are not mal-formed or
+	    illegal Unicode characters — they are perfectly legitimate
+	    Unicode characters that are not allowed in XML. Thus
+	    oXygen’s otherwise useful <name>Encoding errors
+	    handling</name> feature is not helpful here, as it relates
+	    to oXygen’s processing of mal-formed Unicode
+	    characters. Likewise a utility like <name>iconv</name>,
+	    which converts text from one character encoding to another,
+	    is of little to no use — these control characters are
+	    problematic no matter what character encoding is used to
+	    represent them.</p>
+	    <p>We immediately envisioned several possible solutions,
+	    each of which would have to be carried out on the plain text
+	    input files prior to processing into XML.
+	    <list rend="ordered">
+	      <item>Delete the problematic characters, leaving users to
+	      figure out what was missing and where. This lossy
+	      methodology seemed like a bad idea.</item>
+	      <item>Replace each of the 102 occurrences of the 17
+	      problematic characters with a single
+	      <soCalled>warning</soCalled> character. This would allow
+	      users to immediately know where there was a problem, but
+	      would leave solving it (i.e., figuring out which character
+	      belonged there) to the user. It requires, of course, that
+	      we use a character that does not occur in the data. (One
+	      obvious choice, for example, would be <q>⚠</q> (U+26A0),
+	      but it already occurs three times in the input dataset.)
+	      This is obviously better than just deleting the
+	      characters, but still puts effort on the reader.</item>
+	      <item>Replace the problematic characters with 17 different
+	      <soCalled>warning</soCalled> characters. We believe some
+	      users would find decoding this a lot easier, but others
+	      would find it more difficult (because it did not seem to
+	      be the case that there was always a 1:1 relationship
+	      between the control character used and the desired
+	      character). This also would mean that we would have to
+	      find 17 characters that would be clear to the user, but do
+	      not occur in the input dataset.</item>
+	      <item>Replace the problematic characters with 17 different
+	      <soCalled>warning</soCalled> <emph>strings</emph>. After
+	      all, XML does have a replacement mechanism. So if we were
+	      to replace each of the six occurences of, say, U+001A with
+	      <q>&#x26D1;SUB&#x26D1;</q> in the input document, we could either leave
+	      them that way for the user, or convert them to
+	      <q>&amp;SUB;</q> and provide an appropriate declaration,
+	      for example to a PUA character: <code>&lt;!ENTITY SUB
+	      "&#xE503;"></code>. This would likely be easier for
+	      readers than using a single character for each of the 17
+	      problematic characters, but as with that solution readers
+	      would be confused when there was not a 1:1 mapping from
+	      the strings we provide and the likely intended
+	      characters.</item>
+	      <item>For each occurence of a problematic character, try
+	      to figure out what character the author intended, and
+	      replace it with that (proper UTF-8) character. While this
+	      involves far more work than any of the above, we feel this
+	      option results in documents that are easier for users to
+	      process and read.  We considered four variations on this
+	      theme, based on two binary features:
+	      <list rend="bulleted">
+		<item>in each case, try contacting the author to ask
+		what was the intended character, or not;</item>
+		<item>in each case, just replace the problematic
+		character with our guess at the correct desired
+		character, or replace it with a <gi>choice</gi> encoding
+		which records both the original character (e.g., as
+		<code>&lt;orig>&lt;g type="CONTROL"
+		subtype="FS"/>&lt;/orig></code>) and our regularization
+		thereof (e.g., as
+		<code>&lt;reg>&#x00A3;&lt;/reg></code>).</item>
+	      </list>
+	      While we think that contacting the original authors is, in
+	      some cases, beneficial, and believe that the
+	      <gi>choice</gi> encoding is by far the best way of
+	      representing the problematic characters, for our small
+	      experiment we chose the easier route for each of these
+	      feautres.<note>As it is, finding the problematic
+	      characters, figuring out what each was likely supposed to
+	      be (often by multiple visits to the <ref
+	      target="https://webcf.waybackmachine.org/">Internet
+	      Archive’s Wayback Machine</ref>), and replacing them took
+	      multiple hours.</note></item>
+	    </list>
+	  </p>
+	  <p>After replacement of those characters that are illegal in
+	  XML by those characters we thought they should be, the input
+	  dataset was easily read by XSLT. Converting that to useful,
+	  readable XML presented some challenges, though.</p>
+	</div>
+	<div xml:id="memory">
+	  <head>Java, and memory, and streams, oh my!</head>
+	  <p>We quickly discovered that processing the entire ~151 MiB
+	  of data at once requires a lot of RAM, more than Saxon gets
+	  from the Java virtual machine by default. There are three
+	  obvious solutions to this problem.
+	  <list rend="ordered">
+	    <item>Chop up the data: Rather than reading in a single
+	    file of ~151 MiB of data, use perhaps 10 files of ~15
+	    MiB each (or vice-versa); or even use the original 412
+	    files (the largest of which is ~4 MiB) generated by
+	    LISTSERV.</item>
+	    <item>Use streaming XSLT: The whole point of the
+	    <soCalled>streamability</soCalled> feature of XSLT 3.0
+	    is to be able to process large, perhaps infinitely
+	    large, datasets in memory.</item>
+	    <item>Give the Java virtual machine more heap space.</item>
+	  </list>
+	  </p>
+	  <p>Using smaller chunks of input seems like a very good
+	  approach in the general case. We did not follow that route
+	  simply for the sake of expediency: we had already put in
+	  hours of effort on the combined ~151 MiB file of data
+	  (searching for and changing characters illegal for XML),
+	  and simply did not want to take the time to artificially
+	  divide the data into multiple files and then change our
+	  XSLT program so it would iterate over them. That said,
+	  this would be a reasonable approach were it not for the
+	  time constraints on our (unfunded) pilot project.</p>
+	  <p>We <emph>think</emph>, but are not at all convinced,
+	  that use of streaming XSLT would solve this problem.
+	  Although the data we are reading in is not XML, it is
+	  internally converted to XML and then processed in several
+	  stages. It is likely that if these stages were streamable
+	  the memory use would be dramatically decreased. However,
+	  neither of us is particularly well versed in writing
+	  steamable XSLT, and, perhaps more importantly, do not
+	  (yet?) consider it a viable solution for digital
+	  humanists, as the only XSLT processors in the world that
+	  have this feature are payware.</p>
+	  <p>So while we admit it may be rude to require a user of
+	  our program to do so, we simply increased Java heap space
+	  when running this transofrm (to 2 GiB).</p>
+	</div>
+	<div xml:id="conversion_complexities">
+	  <head>Unsolved conversion complexities: MIME</head>
+	  <p>MIME stands for <term>Multipurpose Internet Mail
+	  Extensions</term>, a set of extensions to email that allows
+	  for
+	  <list>
+	    <item>representation of more than just 7-bit US-ASCII characters in header field values</item>
+	    <item>representation of more than just 8-bit US-ASCII characters in mail bodies</item>
+	    <item>representation of content using systems other than
+	    just plain text, possibly as attachments (e.g., text/html,
+	    application/msword)</item>
+	  </list>
+	  These capabilities and the corresponding questions raised
+	  are discussed in the following subsections. But for us MIME
+	  may as well stand for <term>Major Incoherent Mess in
+	  Email</term>, because other than being able to parse out the
+	  various MIME parts of an email message body into separate
+	  constructs, we were not able to process MIME extensions at
 	  all in this limited pilot project.</p>
 	  <p>When MIME is used,<note>Which these days is essentially
 	  always. In our dataset ~92.6% of posts use MIME. The first
-	  1841 posts which occured over the first 2531 days (6.93
-	  years) did not use MIME; the first use of MIME was on <date
+	  1841 posts occured over the first 2531 days (6.93 years) and
+	  did not use MIME; the first use of MIME was on <date
 	  when="1996-12-13">Fri 13 Dec 96</date>. Over the next 2531
 	  days 3327 of 3707 posts (89.75%) used MIME. Over the last
 	  2531 days in the dataset 4854 of 4861 posts (99.86%) used
 	  MIME.</note>
-	    <list rend="inline ordered">
-            <item>a <code>MIME-Version:</code> field is present (its value is always <val>1.0</val>);</item>
-            <item>the mail body is divided into 1 or more
-            <term>parts</term>, each of which has some associated
-            metadata of its own; and</item>
-            <item>if there is more than 1 part, the
-            <code>Content-Type:</code> field will start with
-            <val>multipart/</val> and have a <code>boundary=</code>
-            parameter, whose value can be used by mail clients (or
-            intrepid digital humanists) to parse out the different
-            parts.</item> </list> Furthermore, each part may itself be
-            multipart, in which case it has a
-            <code>Content-Type:</code> field that starts with
-            <val>multipart/</val> and has a <code>boundary=</code>
-            parameter. Thus the parts are arranged as a standard
-            hierarchical tree, although in practice the tree often has
-            only leaf nodes (i.e., parts that are not themselves
-            multipart).</p>
-          <div xml:id="Encoded-word_syntax">
-            <head>ASCII work-around: Encoded-word syntax</head>
-            <p>As mentioned above, early e-mail used only 7-bit ASCII
-            characters for the entire message. Later updates to the
-            specifications allowed for the body of the e-mail message
-            to use a different character set, but the e-mail headers
-            (that is, the lines of metadata at the top) are still to
-            this day limited to 7-bit ASCII. Most of the world’s
-            printable characters, of course, are not available in that
-            set of 96 printable characters. To allow for characters
-            outside the 7-bit ASCII set to be used in e-mail headers
-            (e.g., in the name of the sender or recipient of an
-            email), an escape system called <term>encoded-word
-            syntax</term> may be employed. (See <ref
-            type="bibl" target="#RFC2047">rfc2047</ref>.)</p>
-            <p>Using this system, a word that contains a character
-            outside of 7-bit ASCII is encoded as
-            <code>=?charset?encoding?encoded text?=</code>, where
-            <term>charset</term> is the character encoding in which
-            the encoded text should be looked up,
-            <term>encoding</term> is either <q>Q</q> (for a
-            quoted-printable sytle escape mechanism) or <q>B</q> (for
-            a base64 style escape mechanism), and <term>encoded
-            text</term> is the string encoded using the escape
-            mechanism indicated. The character sets employed in this
-            dataset were as follows, ignoring case distinctions. (For
-            example, UTF-8 was often spelled <q>utf-8</q>.)
-            <table xml:id="char_encodings">
-              <row><cell>2,300</cell><cell>UTF-8</cell></row>
-              <row><cell>1,043</cell><cell>ISO-8859-1</cell></row>
-              <row><cell>383</cell><cell>ISO-8859-2</cell></row>
-              <row><cell>236</cell><cell>Windows-1252</cell></row>
-              <row><cell>132</cell><cell>ISO-8859-15</cell></row>
-              <row><cell>16</cell><cell>ISO-8859-5</cell></row>
-              <row><cell>5</cell><cell>KOI8-R</cell></row>
-              <row><cell>4</cell><cell>big5</cell></row>
-              <row><cell>3</cell><cell>ISO-2022-jp</cell></row>
-              <row><cell>3</cell><cell>Windows-1250</cell></row>
-              <row><cell>2</cell><cell>ISO-8859-4</cell></row>
-              <row><cell>2</cell><cell>Windows-1256</cell></row>
-              <row><cell>2</cell><cell>Windows-1251</cell></row>
-              <row><cell>1</cell><cell>Windows-1257</cell></row>
-              <row><cell>1</cell><cell>X-UNKNOWN</cell></row>
-              <row><cell>1</cell><cell>gb2312</cell></row>
-            </table>
-            Dramatically more word-encoded passages in this dataset
-            employ <q>Q</q> encoding over the <q>B</q> method: 3,397
-            (82.2%) and 737 (17.8%), respectively.</p>
-            <p>We recognized and considered the problem of passages
-            represented with word-encoded syntax. Our instinct is that
-            most digital humansists with an interest in this data
-            would be better served by the results of our conversion
-            process if we decoded these strings (for example,
-            converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to
-            <q>Piotr Bański</q>), and that those
-            performing digital archaeology about how various
-            characters were represented by various historical email
-            systems would just as soon use the source data rather than
-            the TEI-encoded output of our process. We are not
-            convinced of this position, though, and did not have
-            anywhere near enough time in this pilot project to attempt
-            to write a word-encoded syntax decoder in XSLT.</p>
-          </div>
-          </div>
-        </div> <!-- conversion_complexities -->
-      </div> 
-      <div xml:id="scraping">
-       <head>Attempting to scrape from the web</head>
-     </div> 
-   <div xml:id="mapping-to-TEI">
-     <head>Mapping to TEI</head>
-     <!--ebb: To start here. -->
-     <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. We experimented with a combination of encoding 
-     from the newly introduced chapter on Computer Mediated Communication (CMC) and from TEI encoding for correspondence.</p>
-     
-     <p>Standard e-mail headers include the following information fields:
-     <list>
-       <item>Date</item>
-       <item>From</item>
-       <item>Reply-To</item>
-       <item>Sender</item>
-       <item>Subject</item>
-       <item>MIME-Version</item>
-       <item>Content-Type</item>
-       <item>In-Reply-To</item>
-       <item>Content-Transfer-Encoding</item>
-       <item>Comments</item>
-       <item>Message-ID</item>
-       <item>Organization</item>
-       <item>Content-Disposition</item>
-       <item>X-cc (carbon copy)</item>
-     </list>
-     
-     In our first approach to modeling these data, we found the following fields could neatly map to the following encodings in TEI:
-     <table xml:id="field_mapping1">
-       <row><cell>Date</cell><cell><code>post/@when</code></cell></row>
-       <row><cell>From</cell><cell><code>post/@who</code></cell></row>
-       <row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
-       <row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
-       <row><cell>Subject</cell><cell><code>post/head</code></cell></row>
-       <row><cell>In-Reply-To</cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
-       <row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
-       <row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
-       <row><cell>Organization</cell><cell><code></code></cell></row>
-       <row><cell>X-cc</cell><cell><code></code></cell></row>    
-     </table>
-     Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value. 
-     The following is an example demonstrating this approach to TEI encoding for a post sent by Michael Sperberg-McQueen to the TEI Listserv on 6 February 1990.
+	  <list rend="inline ordered">
+	    <item>a <code>MIME-Version:</code> field is present (its value is always <val>1.0</val>);</item>
+	    <item>the mail body is divided into 1 or more
+	    <term>parts</term>, each of which has some associated
+	    metadata of its own; and</item>
+	    <item>if there is more than 1 part, the
+	    <code>Content-Type:</code> field will start with
+	    <val>multipart/</val> and have a <code>boundary=</code>
+	    parameter, whose value can be used by mail clients (or
+	    intrepid digital humanists) to parse out the different
+	    parts.</item> </list> Furthermore, each part may itself be
+	    multipart, in which case it has a
+	    <code>Content-Type:</code> field that starts with
+	    <val>multipart/</val> and has a <code>boundary=</code>
+	    parameter. Thus the parts are arranged as a standard
+	    hierarchical tree, although in practice the tree often has
+	    only leaf nodes (i.e., parts that are not themselves
+	  multipart).</p>
+	  <div xml:id="Encoded-word_syntax">
+	    <head>ASCII work-around: Encoded-word syntax</head>
+	    <p>As mentioned above, early e-mail used only 7-bit ASCII
+	    characters for the entire message. Later updates to the
+	    specifications allowed for the body of the e-mail message
+	    to use a different character set, but the e-mail headers
+	    (that is, the lines of metadata at the top) are still to
+	    this day limited to 7-bit ASCII. Most of the world’s
+	    printable characters, of course, are not available in that
+	    set of 96 printable characters. To allow for characters
+	    outside the 7-bit ASCII set to be used in e-mail headers
+	    (e.g., in the name of the sender or recipient of an
+	    email), an escape system called <term>encoded-word
+	    syntax</term> may be employed. (See <ref
+	    type="bibl" target="#RFC2047">rfc2047</ref>.)</p>
+	    <p>Using this system, a word that contains a character
+	    outside of 7-bit ASCII is encoded as
+	    <code>=?charset?encoding?encoded text?=</code>, where
+	    <term>charset</term> is the character encoding in which
+	    the encoded text should be looked up,
+	    <term>encoding</term> is either <q>Q</q> (for a
+	    quoted-printable sytle escape mechanism) or <q>B</q> (for
+	    a base64 style escape mechanism), and <term>encoded
+	    text</term> is the string encoded using the escape
+	    mechanism indicated. The character sets employed in this
+	    dataset were as follows, ignoring case distinctions. (For
+	    example, UTF-8 was often spelled <q>utf-8</q>.)
+	    <table xml:id="char_encodings">
+	      <row><cell>2,300</cell><cell>UTF-8</cell></row>
+	      <row><cell>1,043</cell><cell>ISO-8859-1</cell></row>
+	      <row><cell>383</cell><cell>ISO-8859-2</cell></row>
+	      <row><cell>236</cell><cell>Windows-1252</cell></row>
+	      <row><cell>132</cell><cell>ISO-8859-15</cell></row>
+	      <row><cell>16</cell><cell>ISO-8859-5</cell></row>
+	      <row><cell>5</cell><cell>KOI8-R</cell></row>
+	      <row><cell>4</cell><cell>big5</cell></row>
+	      <row><cell>3</cell><cell>ISO-2022-jp</cell></row>
+	      <row><cell>3</cell><cell>Windows-1250</cell></row>
+	      <row><cell>2</cell><cell>ISO-8859-4</cell></row>
+	      <row><cell>2</cell><cell>Windows-1256</cell></row>
+	      <row><cell>2</cell><cell>Windows-1251</cell></row>
+	      <row><cell>1</cell><cell>Windows-1257</cell></row>
+	      <row><cell>1</cell><cell>X-UNKNOWN</cell></row>
+	      <row><cell>1</cell><cell>gb2312</cell></row>
+	    </table>
+	    Dramatically more word-encoded passages in this dataset
+	    employ <q>Q</q> encoding over the <q>B</q> method: 3,397
+	    (82.2%) and 737 (17.8%), respectively.</p>
+	    <p>We recognized and considered the problem of passages
+	    represented with word-encoded syntax. Our instinct is that
+	    most digital humansists with an interest in this data
+	    would be better served by the results of our conversion
+	    process if we decoded these strings (for example,
+	    converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to
+	    <q>Piotr Bański</q>), and that those
+	    performing digital archaeology about how various
+	    characters were represented by various historical email
+	    systems would just as soon use the source data rather than
+	    the TEI-encoded output of our process. We are not
+	    convinced of this position, though, and did not have
+	    anywhere near enough time in this pilot project to attempt
+	    to write a word-encoded syntax decoder in XSLT.</p>
+	  </div>
+	  <div>
+	    <head>Separating MIME parts</head>
+	    <p>Email that uses MIME is divided into one or more
+	    <term>parts</term>, each of which contains a singe type of
+	    data. The most common types in our dataset are text/plain
+	    and text/html; much less frequent are text/enriched,
+	    text/x-vcard, text/xml, and application/*.</p>
+	    <p>It would not be unreasonable to put all the different
+	    MIME parts of a post to the LISTSERV as raw data into a
+	    single TEI <gi>div</gi> or <gi>post</gi> element. It would
+	    certainly be easier than trying to parse the parts into
+	    separate TEI elements. But this <foreign
+	    xml:lang="la">caveat emptor</foreign> approach, while
+	    possibly useful for preservation of the data, would be
+	    present data that was not at all amenable to scholarly
+	    processing.</p>
+	    <p>It would also be reasonable to ignore all MIME parts
+	    other than text/plain. (This is, in fact, what we did
+	    <?sb HERE ?>
+	    </p>
+	  </div>
+	  <div>
+	    <head>Content encoding</head>
+	    <p>WINITIA Big Black Horse and a Cherry Tree</p>
+	  </div>
+	</div>
+      </div> <!-- conversion_complexities -->
+    </div> 
+    <div xml:id="scraping">
+      <head>Attempting to scrape from the web</head>
+    </div> 
+    <div xml:id="mapping-to-TEI">
+      <head>Mapping to TEI</head>
+      <!--ebb: To start here. -->
+      <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. We experimented with a combination of encoding 
+      from the newly introduced chapter on Computer Mediated Communication (CMC) and from TEI encoding for correspondence.</p>
+      
+      <p>Standard e-mail headers include the following information fields:
+      <list>
+	<item>Date</item>
+	<item>From</item>
+	<item>Reply-To</item>
+	<item>Sender</item>
+	<item>Subject</item>
+	<item>MIME-Version</item>
+	<item>Content-Type</item>
+	<item>In-Reply-To</item>
+	<item>Content-Transfer-Encoding</item>
+	<item>Comments</item>
+	<item>Message-ID</item>
+	<item>Organization</item>
+	<item>Content-Disposition</item>
+	<item>X-cc (carbon copy)</item>
+      </list>
+      
+      In our first approach to modeling these data, we found the following fields could neatly map to the following encodings in TEI:
+      <table xml:id="field_mapping1">
+	<row><cell>Date</cell><cell><code>post/@when</code></cell></row>
+	<row><cell>From</cell><cell><code>post/@who</code></cell></row>
+	<row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
+	<row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
+	<row><cell>Subject</cell><cell><code>post/head</code></cell></row>
+	<row><cell>In-Reply-To</cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
+	<row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
+	<row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
+	<row><cell>Organization</cell><cell><code></code></cell></row>
+	<row><cell>X-cc</cell><cell><code></code></cell></row>    
+      </table>
+      Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value. 
+      The following is an example demonstrating this approach to TEI encoding for a post sent by Michael Sperberg-McQueen to the TEI Listserv on 6 February 1990.
 
-     
-     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-       <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
-            xml:id="TEI-L.txt_msg_00005">
-         <teiHeader>
-           <fileDesc>
-             <titleStmt>
-               <title>TEI-L posting </title>
-             </titleStmt>
-             <publicationStmt>
-               <ab>Currently an experimental document. The original source was
-               published as part of a public mailing list, so this
-               document similarly is publicly available.</ab>
-             </publicationStmt>
-             <sourceDesc>
-               <ab type="desc">The source text file is
-               a log file from a LISTSERV mailing list.</ab>
-               <ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
-             </sourceDesc>
-           </fileDesc>
-           <encodingDesc>
-             <appInfo>
-               <application ident="listserv_log2cmc.xslt" version="0.1">
-                 <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
-                 a program intended to convert LISTSERV logs (i.e., an archive of
-                 postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
-               </application>
-             </appInfo>
-           </encodingDesc>
-           <profileDesc>
-             <correspDesc>
-               <correspContext>
-                 <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-               </correspContext>
-               <correspAction type="relayed">
-                 <email>TEI-L@UICVM</email>
-                 <date>Tue, 6 Feb 90 10:54:04 CST</date>
-               </correspAction>
-               <note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
-             </correspDesc>
-           </profileDesc>
-           <xenoData>
-             <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
-             <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
-             <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
-             <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
-             <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
-             <tmp:Subject>compound documents</tmp:Subject>
-           </xenoData>
-         </teiHeader>
-         <text>
-           <body>
-             <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
-                   when="1990-02-06T10:54:04-06:00">
-               <head type="subject">compound documents</head>
-               About compound documents in SGML and in the TEI.  R.P. Weber asked a
-               <lb n="1"/>week ago "could someone please explain the TEI approach to compound
-               <lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
-               <lb n="3"/>
-               <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
-               <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
-               <lb n="6"/>Caribbean, and may not have received the query.)
-               <lb n="7"/>
-               <lb n="8"/>This problem has not, in fact, been discussed on this server, or as far
-               <lb n="9"/>as I'm aware by the working committees.  So the formal answer is that no
-               <lb n="10"/>decision has been cast in concrete yet.  Which allows me to turn the
-               <lb n="11"/>tables and say "How *should* compound documents be encoded for
-               <lb n="12"/>interchange?  What are the requirements?  What are the alternatives?"
-               <lb n="13"/>
-               <lb n="14"/>Less formally, I can offer some personal opinions, for what they are
-               <lb n="15"/>worth (face value:  two cents -- 2u, for those of you on IBM mainframes
-               <lb n="16"/>with real IBM terminals).
-               <lb n="17"/>
-               <lb n="18"/>Certainly SGML is where we should start in any search for ways of
-               <lb n="19"/>handling compound objects, and I don't yet know any reason that SGML
-               <lb n="20"/>won't provide a solution for the problem.  I assume there are two
-               <lb n="21"/>methods of using SGML in compound documents (correct me if I'm wrong):
-               <lb n="22"/>(1) use SGML to organize the compound document (i.e. have an SGML
-               <lb n="23"/>document which includes text, images, sound, etc. as its components), or
-               <lb n="24"/>(2) use whatever-you-like to organize the compound document as a whole,
-               <lb n="25"/>and use SGML as the notation for the textual components of the compound
-               <lb n="26"/>document.
-               <lb n="27"/>
-               <lb n="28"/>For the simple case of text-with-illustrations, SGML seems like a viable
-               <lb n="29"/>encoding mechanism (for the envelope and for the text components) to me.
-               <lb n="30"/>It allows you to encode the graphics however you like, declaring your
-               <lb n="31"/>graphics format as a non-SGML notation and declaring the contents of
-               <lb n="32"/>your graphics elements (say 'PICTURE' or 'BLORT') as being data in that
-               <lb n="33"/>notation, stored either within the SGML file or externally to it.  You
-               <lb n="34"/>get localization of the graphics within the text stream, integral or
-               <lb n="35"/>separate storage of the graphics, and complete freedom to choose
-               <lb n="36"/>whatever graphic notation you wish.
-               <lb n="37"/>
-               <lb n="38"/>As document encoding methods go, SGML is fairly hospitable to graphics
-               <lb n="39"/>and other non-text pieces of compound objects.  Nowhere in the standard
-               <lb n="40"/>does it say that the data have to be words and characters.  In fact, as
-               <lb n="41"/>far as I know there is no *explicit* requirement in the standard that an
-               <lb n="42"/>SGML document even has to be bytes in a computer.  (Sure, it's hard to
-               <lb n="43"/>understand the standard any other way, but that's not the same as an
-               <lb n="44"/>explicit requirement.)  ISO 8879 par. 6.1 note 1 says in fact "This
-               <lb n="45"/>International Standard does not constrain the physical organization of
-               <lb n="46"/>the document within the data stream, message handling protocol, file
-               <lb n="47"/>system, etc., that contains it."  At the SGML '89 conference last
-               <lb n="48"/>October in Atlanta, there was a very nice paper by Douglas MacLeod (read
-               <lb n="49"/>by Yuri Rubinsky) thinking about architectural designs as SGML
-               <lb n="50"/>documents, which led to a general discussion of SGML definitions for all
-               <lb n="51"/>sorts of objects, including automobiles.  Although most people
-               <lb n="52"/>(obviously) think of the SGML document as an electronic *description* of
-               <lb n="53"/>the automobile (and the physical automobile as a side effect of
-               <lb n="54"/>processing), it appears, in the light of the passage cited, hard to say
-               <lb n="55"/>categorically that an automobile itself could never be parsed as an SGML
-               <lb n="56"/>document.  (If you could figure out how to define the delimiters.)
-               <lb n="57"/>
-               <lb n="58"/>The only hitch is that the SGML standard itself (ISO 8879) does not
-               <lb n="59"/>specify in any detail what the interface between SGML processors and
-               <lb n="60"/>non-SGML processors must, may, or can look like -- an advantage, if you
-               <lb n="61"/>will, in that it doesn't constrain anyone to an inappropriate model, but
-               <lb n="62"/>a bit of a disadvantage in that most people don't have a clue what they
-               <lb n="63"/>can now or will eventually or might someday be able to do with SGML and
-               <lb n="64"/>graphics processors.
-               <lb n="65"/>
-               <lb n="66"/>Not being deeply involved in graphics work or compound documents myself,
-               <lb n="67"/>I don't know off-hand what options are offered for this sort of thing by
-               <lb n="68"/>existing SGML processors.  There will certainly be a fierce market
-               <lb n="69"/>demand for it, not only from humanists but also (to our great advantage)
-               <lb n="70"/>from the defense industry, which needs SGML support for technical
-               <lb n="71"/>manuals with diagrams (and of course cross-references and other
-               <lb n="72"/>hypertext mechanisms) and has the small change to pay for the
-               <lb n="73"/>development costs.  (As long as they don't charge the humanists
-               <lb n="74"/>defense-contractor prices!)
-               <lb n="75"/>
-               <lb n="76"/>If for some reason one does *not* want to use SGML as the envelope for
-               <lb n="77"/>the entire compound document, then presumably the major requirement for
-               <lb n="78"/>the text-components of the compound documents is that they be
-               <lb n="79"/>computationally well-behaved, with a clearly defined structure, hooks
-               <lb n="80"/>for pointers going out, and hooks for pointers coming in.  SGML
-               <lb n="81"/>certainly has all of this, in its document type declarations and its ID
-               <lb n="82"/>names and its IDREF pointers.
-               <lb n="83"/>
-               <lb n="84"/>Perhaps those subscribers to this list who actually work with compound
-               <lb n="85"/>documents and SGML will be willing to say how they make things work now,
-               <lb n="86"/>and how they would like to see things developing in the future.
-               <lb n="87"/>
-               <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
-               <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
-               <lb n="90"/>position will help get a discussion started.)
-               <lb n="91"/>
-               <lb n="92"/>-Michael Sperberg-McQueen
-               <lb n="93"/> University of Illinois at Chicago</post>
-             </body>
-           </text>
-         </TEI>
-       </egXML>
-       Perhaps it is somewhat ironic that we took this first example from a message about encoding compound documents, 
-       given the compound nature of an e-mail listserv archive. We would need to make decisions about how to cluster related messages 
-       containing many messages connected together as replies, or bundled together in units of time in listserv logs.  
-     </p>
-     <div xml:id="TEI-collection">
-       <head>One TEI document for a collection of posts</head>
-       <p>In one approach to mapping the metadata for a collection, we envisioned a single <code>&lt;TEI&gt;</code> element 
-       holding a collection of <code>&lt;post&gt;</code> elements. For this approach, we applied the <code>&lt;teiHeader&gt;</code>
-       to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
-       We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
-       
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
-         <teiHeader>
-           <fileDesc>
-             <titleStmt>
-               <title>Text Encoding Initiative public discussion list</title>
-             </titleStmt>
-             <editionStmt>
-               <edition>January and February 1990 in the TEI Listserv
-               <!-- TEI-L LOG9001, LOG9002 --></edition>
-             </editionStmt>
-             <publicationStmt>
-               <!-- about the born-digital document -->
-               <publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
-             </publicationStmt>
-             <sourceDesc>
-               <bibl>
-                 <title level="j">TEI-L Listserv</title>
-                 <title level="s">LOG9001</title>
-                 <title level="s">LOG9002</title>
-                 <publisher>University of Illinois Chicago</publisher>
-                 <distributor>TEI-L@UICVM</distributor>
-                 <date>1990</date>
-                 <relatedItem type="archive">
-                   <bibl>
-                     <publisher>The Pennsylvania State University</publisher>
-                     <distributor>LISTS.PSU.EDU LISTSERV Server (17.0)</distributor>
-                     <date>2024</date>
-                   </bibl>
-                 </relatedItem>
-               </bibl>
-             </sourceDesc>
-           </fileDesc>
-           <encodingDesc>
-             <samplingDecl>
-               <p>Sampled by requesting monthly logs from <name type="API">LISTS.PSU.EDU</name> by
-               e-mail with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
-               command was issued for each month. See <ptr type="APIdoc"
-               target="https://www.lsoft.com/manuals/17.0/commands/14File-serverandwebfunctioncomma.html"/>. 
-               Received by e-mail between <date from="2024-09-21" to="2024-09-22">September 21
-               and 22, 2024</date>.</p>
-             </samplingDecl>
-           </encodingDesc>
-         </teiHeader>
-       </egXML>
-       </p>
-       <p>In the <code>&lt;text&gt;</code> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
-       Since Listserv delivers the 
-       logs as files representing an entire month of posts, we applied a unique identifier to each monthly log collection with 
-       <code>text/body/div[@type="log"][@xml:id="LOG____"]</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
-       inside a <code>&lt;post&gt;</code> element, drawn from the new CMC chapter.
-       </p>
-       <p>To store the metadata for individual e-mail messages, in this method we encoded a <code>&lt;dateline&gt;</code> element, which contained
-       <code>&lt;ref&lt;</code> elements to store information the transmission of a message within the <code>&lt;post&gt;</code>, thus;
-       
-       <table xml:id="field_mapping2">
-         <row><cell>Date</cell><cell><code>date/@when  or date/text()</code></cell></row>
-         <row><cell>Reply-To</cell><cell><code>ref[@type="reply-to"][@target="email:___]</code></cell></row>
-         <row><cell>Sender</cell><cell><code>ref[@generatedBy="system"][@type="sender"][@target="email:TEI-L@__]</code></cell></row>
-         <row><cell>From</cell><cell><code>ref[@generatedBy="template"][@type="from"][@target="email:___"]</code></cell></row>
-         <row><cell>Subject</cell><cell><code>title[@level="a"][@generatedBy="human"]</code></cell></row>
-         <row><cell>In-Reply-To</cell><cell><code>ref[@target="#id-of-earlier-posting]</code></cell></row>
-       </table>
-       
-       Notice that in this encoding we are experimenting with setting the Subject field in a &lt;title&gt; element with <code>@level</code> set to <code>"a"</code> for analytical, which seems
-       fitting for a portion of an assembled collection. Here is an example encoding of a single e-mail message encoded as a <code>&lt;post&gt;</code> following this method:
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
-         <post xml:id="Web-1990-01-31-0933">
-           <dateline>
-             <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
-             <ref generatedBy="system" type="reply-to" target="email:TEI-L@UICVM">Text Encoding
-             Initative public discussion list </ref>
-             <ref generatedBy="system" type="sender" target="email:TEI-L@UICVM">Text Encoding
-             Initative public discussion list</ref>
-             <ref generatedBy="template" type="from" target="email:WEBER@HARVARDA.BITNET">Robert
-             Philip Weber</ref>
-             <title level="a" type="subject" generatedBy="human">compound documents and
-             images</title>
-           </dateline>
-           <p>could someone please explain the <name type="ML">TEI</name> approach to compound
-           documents and images? WIll <name type="ML">SGML</name> be used here, and if so,
-           how? I've just joined the list. sorry if this has been asked before.</p>
-           <p>Many Thanks</p>
-           <signed generatedBy="human">Bob Weber</signed>
-           <signed generatedBy="template"> Robert Philip Weber, Ph.D. | Phone: (617) 495-3744
-           <lb/>Senior Consultant | Fax: (617) 495-0750 <lb/>Academic and Planning Services |
-           <lb/>Division | <lb/>Office For Information Technology| Internet:
-           weber@popvax.harvard.edu <lb/>Harvard University | Bitnet: Weber@Harvarda <lb/>50
-           Church Street | <lb/>Cambridge MA 02138 | </signed>
-         </post>
-       </egXML>
-       </p>
-       <!-- ebb: CONTINUE FROM HERE WITH 1 TEI FILE PER POST-->
-       
-     </div>
-   </div>
- </body>
- <back> 
-   <div type="bibliography">
-     <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
-     <listBibl>
-       <bibl xml:id="RFC2047">
-         Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
-         Mail Extensions) Part Three: Message Header Extensions for
-         Non-ASCII Text</title>, RFC 2822, April 2001; <idno
-         type="DOI">10.17487/RFC2047</idno>.
-       </bibl>
-       <bibl xml:id="RFC2822">
-         Resnick, P., Ed., <title level="m">Internet Message
-         Format</title>, RFC 2822, April 2001;
-         <idno type="DOI">10.17487/RFC2822</idno>.
-       </bibl>
-       <bibl xml:id="RFC5322">
-         Resnick, P., Ed., <title level="m">Internet Message
-         Format</title>, RFC 5322, October 2008;
-         <idno type="DOI">10.17487/RFC5322</idno>.
-       </bibl>
-     </listBibl>
-   </div>
-   <div type="appendix" xml:id="appendix01">
-     <!-- Note to JTEI editors: for an idea of what this might look
-          like see
-          https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
-          -->
-     <head>The 29 7-bit ASCII characters that are not legal in XML</head>
-     <table xml:id="illegal_ascii_chars">
-       <row role="label">
-         <cell>base 10</cell>
-         <cell>base 16</cell>
-         <cell>base 02</cell>
-         <cell>symbol</cell>
-         <cell>description</cell>
-       </row>
-       <row> <cell>0</cell> <cell>00</cell> <cell>0000 0000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
-       <row> <cell>1</cell> <cell>01</cell> <cell>0000 0001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
-       <row> <cell>2</cell> <cell>02</cell> <cell>0000 0010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
-       <row> <cell>3</cell> <cell>03</cell> <cell>0000 0011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
-       <row> <cell>4</cell> <cell>04</cell> <cell>0000 0100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
-       <row> <cell>5</cell> <cell>05</cell> <cell>0000 0101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
-       <row> <cell>6</cell> <cell>06</cell> <cell>0000 0110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
-       <row> <cell>7</cell> <cell>07</cell> <cell>0000 0111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
-       <row> <cell>8</cell> <cell>08</cell> <cell>0000 1000</cell> <cell>BS</cell> <cell>Backspace</cell> </row>
-       <row> <cell>11</cell> <cell>0B</cell> <cell>0000 1011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
-       <row> <cell>12</cell> <cell>0C</cell> <cell>0000 1100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
-       <row> <cell>14</cell> <cell>0E</cell> <cell>0000 1110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
-       <row> <cell>15</cell> <cell>0F</cell> <cell>0000 1111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
-       <row> <cell>16</cell> <cell>10</cell> <cell>0001 0000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
-       <row> <cell>17</cell> <cell>11</cell> <cell>0001 0001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
-       <row> <cell>18</cell> <cell>12</cell> <cell>0001 0010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
-       <row> <cell>19</cell> <cell>13</cell> <cell>0001 0011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
-       <row> <cell>20</cell> <cell>14</cell> <cell>0001 0100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
-       <row> <cell>21</cell> <cell>15</cell> <cell>0001 0101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
-       <row> <cell>22</cell> <cell>16</cell> <cell>0001 0110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
-       <row> <cell>23</cell> <cell>17</cell> <cell>0001 0111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
-       <row> <cell>24</cell> <cell>18</cell> <cell>0001 1000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
-       <row> <cell>25</cell> <cell>19</cell> <cell>0001 1001</cell> <cell>EM</cell> <cell>End of medium</cell> </row>
-       <row> <cell>26</cell> <cell>1A</cell> <cell>0001 1010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
-       <row> <cell>27</cell> <cell>1B</cell> <cell>0001 1011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
-       <row> <cell>28</cell> <cell>1C</cell> <cell>0001 1100</cell> <cell>FS</cell> <cell>File Separator</cell> </row>
-       <row> <cell>29</cell> <cell>1D</cell> <cell>0001 1101</cell> <cell>GS</cell> <cell>Group Separator</cell> </row>
-       <row> <cell>30</cell> <cell>1E</cell> <cell>0001 1110</cell> <cell>RS</cell> <cell>Record Separator</cell> </row>
-       <row> <cell>31</cell> <cell>1F</cell> <cell>0001 1111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
-     </table>
-     <list type="gloss">
-       <head>Regular expressions to match these characters</head>
-       <label>PCRE, Java, or oXygen:</label>
-       <item><code>[\u0000-\u0008\u000C\u000E-\u0019]</code></item>
-       <label>W3C:</label>
-       <item><code>[#x00-#x08#x0C#x0E-#x19]</code></item>
-       <label>Emacs:</label>
-       <item><code>[^␤[:print:]]</code> &#xA0; &#xA0; ; where <q>␤</q> is typed CTL-J</item>
-       <label>grep or egrep:</label>
-       <item><code>[^[:print:]]</code></item>
-     </list>
-   </div>
- </back>
+      
+      <egXML xmlns="http://www.tei-c.org/ns/Examples">
+	<TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
+	     xml:id="TEI-L.txt_msg_00005">
+	  <teiHeader>
+	    <fileDesc>
+	      <titleStmt>
+		<title>TEI-L posting </title>
+	      </titleStmt>
+	      <publicationStmt>
+		<ab>Currently an experimental document. The original source was
+		published as part of a public mailing list, so this
+		document similarly is publicly available.</ab>
+	      </publicationStmt>
+	      <sourceDesc>
+		<ab type="desc">The source text file is
+		a log file from a LISTSERV mailing list.</ab>
+		<ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
+	      </sourceDesc>
+	    </fileDesc>
+	    <encodingDesc>
+	      <appInfo>
+		<application ident="listserv_log2cmc.xslt" version="0.1">
+		  <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
+		  a program intended to convert LISTSERV logs (i.e., an archive of
+		  postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
+		</application>
+	      </appInfo>
+	    </encodingDesc>
+	    <profileDesc>
+	      <correspDesc>
+		<correspContext>
+		  <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
+		</correspContext>
+		<correspAction type="relayed">
+		  <email>TEI-L@UICVM</email>
+		  <date>Tue, 6 Feb 90 10:54:04 CST</date>
+		</correspAction>
+		<note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
+	      </correspDesc>
+	    </profileDesc>
+	    <xenoData>
+	      <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
+	      <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
+	      <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
+	      <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
+	      <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
+	      <tmp:Subject>compound documents</tmp:Subject>
+	    </xenoData>
+	  </teiHeader>
+	  <text>
+	    <body>
+	      <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
+		    when="1990-02-06T10:54:04-06:00">
+		<head type="subject">compound documents</head>
+		About compound documents in SGML and in the TEI.  R.P. Weber asked a
+		<lb n="1"/>week ago "could someone please explain the TEI approach to compound
+		<lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
+		<lb n="3"/>
+		<lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
+		<lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
+		<lb n="6"/>Caribbean, and may not have received the query.)
+		<lb n="7"/>
+		<lb n="8"/>This problem has not, in fact, been discussed on this server, or as far
+		<lb n="9"/>as I'm aware by the working committees.  So the formal answer is that no
+		<lb n="10"/>decision has been cast in concrete yet.  Which allows me to turn the
+		<lb n="11"/>tables and say "How *should* compound documents be encoded for
+		<lb n="12"/>interchange?  What are the requirements?  What are the alternatives?"
+		<lb n="13"/>
+		<lb n="14"/>Less formally, I can offer some personal opinions, for what they are
+		<lb n="15"/>worth (face value:  two cents -- 2u, for those of you on IBM mainframes
+		<lb n="16"/>with real IBM terminals).
+		<lb n="17"/>
+		<lb n="18"/>Certainly SGML is where we should start in any search for ways of
+		<lb n="19"/>handling compound objects, and I don't yet know any reason that SGML
+		<lb n="20"/>won't provide a solution for the problem.  I assume there are two
+		<lb n="21"/>methods of using SGML in compound documents (correct me if I'm wrong):
+		<lb n="22"/>(1) use SGML to organize the compound document (i.e. have an SGML
+		<lb n="23"/>document which includes text, images, sound, etc. as its components), or
+		<lb n="24"/>(2) use whatever-you-like to organize the compound document as a whole,
+		<lb n="25"/>and use SGML as the notation for the textual components of the compound
+		<lb n="26"/>document.
+		<lb n="27"/>
+		<lb n="28"/>For the simple case of text-with-illustrations, SGML seems like a viable
+		<lb n="29"/>encoding mechanism (for the envelope and for the text components) to me.
+		<lb n="30"/>It allows you to encode the graphics however you like, declaring your
+		<lb n="31"/>graphics format as a non-SGML notation and declaring the contents of
+		<lb n="32"/>your graphics elements (say 'PICTURE' or 'BLORT') as being data in that
+		<lb n="33"/>notation, stored either within the SGML file or externally to it.  You
+		<lb n="34"/>get localization of the graphics within the text stream, integral or
+		<lb n="35"/>separate storage of the graphics, and complete freedom to choose
+		<lb n="36"/>whatever graphic notation you wish.
+		<lb n="37"/>
+		<lb n="38"/>As document encoding methods go, SGML is fairly hospitable to graphics
+		<lb n="39"/>and other non-text pieces of compound objects.  Nowhere in the standard
+		<lb n="40"/>does it say that the data have to be words and characters.  In fact, as
+		<lb n="41"/>far as I know there is no *explicit* requirement in the standard that an
+		<lb n="42"/>SGML document even has to be bytes in a computer.  (Sure, it's hard to
+		<lb n="43"/>understand the standard any other way, but that's not the same as an
+		<lb n="44"/>explicit requirement.)  ISO 8879 par. 6.1 note 1 says in fact "This
+		<lb n="45"/>International Standard does not constrain the physical organization of
+		<lb n="46"/>the document within the data stream, message handling protocol, file
+		<lb n="47"/>system, etc., that contains it."  At the SGML '89 conference last
+		<lb n="48"/>October in Atlanta, there was a very nice paper by Douglas MacLeod (read
+		<lb n="49"/>by Yuri Rubinsky) thinking about architectural designs as SGML
+		<lb n="50"/>documents, which led to a general discussion of SGML definitions for all
+		<lb n="51"/>sorts of objects, including automobiles.  Although most people
+		<lb n="52"/>(obviously) think of the SGML document as an electronic *description* of
+		<lb n="53"/>the automobile (and the physical automobile as a side effect of
+		<lb n="54"/>processing), it appears, in the light of the passage cited, hard to say
+		<lb n="55"/>categorically that an automobile itself could never be parsed as an SGML
+		<lb n="56"/>document.  (If you could figure out how to define the delimiters.)
+		<lb n="57"/>
+		<lb n="58"/>The only hitch is that the SGML standard itself (ISO 8879) does not
+		<lb n="59"/>specify in any detail what the interface between SGML processors and
+		<lb n="60"/>non-SGML processors must, may, or can look like -- an advantage, if you
+		<lb n="61"/>will, in that it doesn't constrain anyone to an inappropriate model, but
+		<lb n="62"/>a bit of a disadvantage in that most people don't have a clue what they
+		<lb n="63"/>can now or will eventually or might someday be able to do with SGML and
+		<lb n="64"/>graphics processors.
+		<lb n="65"/>
+		<lb n="66"/>Not being deeply involved in graphics work or compound documents myself,
+		<lb n="67"/>I don't know off-hand what options are offered for this sort of thing by
+		<lb n="68"/>existing SGML processors.  There will certainly be a fierce market
+		<lb n="69"/>demand for it, not only from humanists but also (to our great advantage)
+		<lb n="70"/>from the defense industry, which needs SGML support for technical
+		<lb n="71"/>manuals with diagrams (and of course cross-references and other
+		<lb n="72"/>hypertext mechanisms) and has the small change to pay for the
+		<lb n="73"/>development costs.  (As long as they don't charge the humanists
+		<lb n="74"/>defense-contractor prices!)
+		<lb n="75"/>
+		<lb n="76"/>If for some reason one does *not* want to use SGML as the envelope for
+		<lb n="77"/>the entire compound document, then presumably the major requirement for
+		<lb n="78"/>the text-components of the compound documents is that they be
+		<lb n="79"/>computationally well-behaved, with a clearly defined structure, hooks
+		<lb n="80"/>for pointers going out, and hooks for pointers coming in.  SGML
+		<lb n="81"/>certainly has all of this, in its document type declarations and its ID
+		<lb n="82"/>names and its IDREF pointers.
+		<lb n="83"/>
+		<lb n="84"/>Perhaps those subscribers to this list who actually work with compound
+		<lb n="85"/>documents and SGML will be willing to say how they make things work now,
+		<lb n="86"/>and how they would like to see things developing in the future.
+		<lb n="87"/>
+		<lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
+		<lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
+		<lb n="90"/>position will help get a discussion started.)
+		<lb n="91"/>
+		<lb n="92"/>-Michael Sperberg-McQueen
+		<lb n="93"/> University of Illinois at Chicago</post>
+	      </body>
+	    </text>
+	  </TEI>
+	</egXML>
+	Perhaps it is somewhat ironic that we took this first example from a message about encoding compound documents, 
+	given the compound nature of an e-mail listserv archive. We would need to make decisions about how to cluster related messages 
+	containing many messages connected together as replies, or bundled together in units of time in listserv logs.  
+      </p>
+      <div xml:id="TEI-collection">
+	<head>One TEI document for a collection of posts</head>
+	<p>In one approach to mapping the metadata for a collection, we envisioned a single <code>&lt;TEI&gt;</code> element 
+	holding a collection of <code>&lt;post&gt;</code> elements. For this approach, we applied the <code>&lt;teiHeader&gt;</code>
+	to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
+	We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
+	
+	<egXML xmlns="http://www.tei-c.org/ns/Examples">
+	  <teiHeader>
+	    <fileDesc>
+	      <titleStmt>
+		<title>Text Encoding Initiative public discussion list</title>
+	      </titleStmt>
+	      <editionStmt>
+		<edition>January and February 1990 in the TEI Listserv
+		<!-- TEI-L LOG9001, LOG9002 --></edition>
+	      </editionStmt>
+	      <publicationStmt>
+		<!-- about the born-digital document -->
+		<publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
+	      </publicationStmt>
+	      <sourceDesc>
+		<bibl>
+		  <title level="j">TEI-L Listserv</title>
+		  <title level="s">LOG9001</title>
+		  <title level="s">LOG9002</title>
+		  <publisher>University of Illinois Chicago</publisher>
+		  <distributor>TEI-L@UICVM</distributor>
+		  <date>1990</date>
+		  <relatedItem type="archive">
+		    <bibl>
+		      <publisher>The Pennsylvania State University</publisher>
+		      <distributor>LISTS.PSU.EDU LISTSERV Server (17.0)</distributor>
+		      <date>2024</date>
+		    </bibl>
+		  </relatedItem>
+		</bibl>
+	      </sourceDesc>
+	    </fileDesc>
+	    <encodingDesc>
+	      <samplingDecl>
+		<p>Sampled by requesting monthly logs from <name type="API">LISTS.PSU.EDU</name> by
+		e-mail with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
+		command was issued for each month. See <ptr type="APIdoc"
+		target="https://www.lsoft.com/manuals/17.0/commands/14File-serverandwebfunctioncomma.html"/>. 
+		Received by e-mail between <date from="2024-09-21" to="2024-09-22">September 21
+		and 22, 2024</date>.</p>
+	      </samplingDecl>
+	    </encodingDesc>
+	  </teiHeader>
+	</egXML>
+	</p>
+	<p>In the <code>&lt;text&gt;</code> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
+	Since Listserv delivers the 
+	logs as files representing an entire month of posts, we applied a unique identifier to each monthly log collection with 
+	<code>text/body/div[@type="log"][@xml:id="LOG____"]</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
+	inside a <code>&lt;post&gt;</code> element, drawn from the new CMC chapter.
+	</p>
+	<p>To store the metadata for individual e-mail messages, in this method we encoded a <code>&lt;dateline&gt;</code> element, which contained
+	<code>&lt;ref&lt;</code> elements to store information the transmission of a message within the <code>&lt;post&gt;</code>, thus;
+	
+	<table xml:id="field_mapping2">
+	  <row><cell>Date</cell><cell><code>date/@when  or date/text()</code></cell></row>
+	  <row><cell>Reply-To</cell><cell><code>ref[@type="reply-to"][@target="email:___]</code></cell></row>
+	  <row><cell>Sender</cell><cell><code>ref[@generatedBy="system"][@type="sender"][@target="email:TEI-L@__]</code></cell></row>
+	  <row><cell>From</cell><cell><code>ref[@generatedBy="template"][@type="from"][@target="email:___"]</code></cell></row>
+	  <row><cell>Subject</cell><cell><code>title[@level="a"][@generatedBy="human"]</code></cell></row>
+	  <row><cell>In-Reply-To</cell><cell><code>ref[@target="#id-of-earlier-posting]</code></cell></row>
+	</table>
+	
+	Notice that in this encoding we are experimenting with setting the Subject field in a &lt;title&gt; element with <code>@level</code> set to <code>"a"</code> for analytical, which seems
+	fitting for a portion of an assembled collection. Here is an example encoding of a single e-mail message encoded as a <code>&lt;post&gt;</code> following this method:
+	<egXML xmlns="http://www.tei-c.org/ns/Examples">
+	  <post xml:id="Web-1990-01-31-0933">
+	    <dateline>
+	      <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
+	      <ref generatedBy="system" type="reply-to" target="email:TEI-L@UICVM">Text Encoding
+	      Initative public discussion list </ref>
+	      <ref generatedBy="system" type="sender" target="email:TEI-L@UICVM">Text Encoding
+	      Initative public discussion list</ref>
+	      <ref generatedBy="template" type="from" target="email:WEBER@HARVARDA.BITNET">Robert
+	      Philip Weber</ref>
+	      <title level="a" type="subject" generatedBy="human">compound documents and
+	      images</title>
+	    </dateline>
+	    <p>could someone please explain the <name type="ML">TEI</name> approach to compound
+	    documents and images? WIll <name type="ML">SGML</name> be used here, and if so,
+	    how? I've just joined the list. sorry if this has been asked before.</p>
+	    <p>Many Thanks</p>
+	    <signed generatedBy="human">Bob Weber</signed>
+	    <signed generatedBy="template"> Robert Philip Weber, Ph.D. | Phone: (617) 495-3744
+	    <lb/>Senior Consultant | Fax: (617) 495-0750 <lb/>Academic and Planning Services |
+	    <lb/>Division | <lb/>Office For Information Technology| Internet:
+	    weber@popvax.harvard.edu <lb/>Harvard University | Bitnet: Weber@Harvarda <lb/>50
+	    Church Street | <lb/>Cambridge MA 02138 | </signed>
+	  </post>
+	</egXML>
+	</p>
+	<!-- ebb: CONTINUE FROM HERE WITH 1 TEI FILE PER POST-->
+	
+      </div>
+    </div>
+  </body>
+  <back> 
+    <div type="bibliography">
+      <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
+      <listBibl>
+	<bibl xml:id="RFC2047">
+	  Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
+	  Mail Extensions) Part Three: Message Header Extensions for
+	  Non-ASCII Text</title>, RFC 2822, April 2001; <idno
+	  type="DOI">10.17487/RFC2047</idno>.
+	</bibl>
+	<bibl xml:id="RFC2822">
+	  Resnick, P., Ed., <title level="m">Internet Message
+	  Format</title>, RFC 2822, April 2001;
+	  <idno type="DOI">10.17487/RFC2822</idno>.
+	</bibl>
+	<bibl xml:id="RFC5322">
+	  Resnick, P., Ed., <title level="m">Internet Message
+	  Format</title>, RFC 5322, October 2008;
+	  <idno type="DOI">10.17487/RFC5322</idno>.
+	</bibl>
+      </listBibl>
+    </div>
+    <div type="appendix" xml:id="appendix01">
+      <!-- Note to JTEI editors: for an idea of what this might look
+	   like see
+	   https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
+      -->
+      <head>The 29 7-bit ASCII characters that are not legal in XML</head>
+      <table xml:id="illegal_ascii_chars">
+	<row role="label">
+	  <cell>base 10</cell>
+	  <cell>base 16</cell>
+	  <cell>base 02</cell>
+	  <cell>symbol</cell>
+	  <cell>description</cell>
+	</row>
+	<row> <cell>0</cell> <cell>00</cell> <cell>0000 0000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
+	<row> <cell>1</cell> <cell>01</cell> <cell>0000 0001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
+	<row> <cell>2</cell> <cell>02</cell> <cell>0000 0010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
+	<row> <cell>3</cell> <cell>03</cell> <cell>0000 0011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
+	<row> <cell>4</cell> <cell>04</cell> <cell>0000 0100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
+	<row> <cell>5</cell> <cell>05</cell> <cell>0000 0101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
+	<row> <cell>6</cell> <cell>06</cell> <cell>0000 0110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
+	<row> <cell>7</cell> <cell>07</cell> <cell>0000 0111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
+	<row> <cell>8</cell> <cell>08</cell> <cell>0000 1000</cell> <cell>BS</cell> <cell>Backspace</cell> </row>
+	<row> <cell>11</cell> <cell>0B</cell> <cell>0000 1011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
+	<row> <cell>12</cell> <cell>0C</cell> <cell>0000 1100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
+	<row> <cell>14</cell> <cell>0E</cell> <cell>0000 1110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
+	<row> <cell>15</cell> <cell>0F</cell> <cell>0000 1111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
+	<row> <cell>16</cell> <cell>10</cell> <cell>0001 0000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
+	<row> <cell>17</cell> <cell>11</cell> <cell>0001 0001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
+	<row> <cell>18</cell> <cell>12</cell> <cell>0001 0010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
+	<row> <cell>19</cell> <cell>13</cell> <cell>0001 0011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
+	<row> <cell>20</cell> <cell>14</cell> <cell>0001 0100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
+	<row> <cell>21</cell> <cell>15</cell> <cell>0001 0101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
+	<row> <cell>22</cell> <cell>16</cell> <cell>0001 0110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
+	<row> <cell>23</cell> <cell>17</cell> <cell>0001 0111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
+	<row> <cell>24</cell> <cell>18</cell> <cell>0001 1000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
+	<row> <cell>25</cell> <cell>19</cell> <cell>0001 1001</cell> <cell>EM</cell> <cell>End of medium</cell> </row>
+	<row> <cell>26</cell> <cell>1A</cell> <cell>0001 1010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
+	<row> <cell>27</cell> <cell>1B</cell> <cell>0001 1011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
+	<row> <cell>28</cell> <cell>1C</cell> <cell>0001 1100</cell> <cell>FS</cell> <cell>File Separator</cell> </row>
+	<row> <cell>29</cell> <cell>1D</cell> <cell>0001 1101</cell> <cell>GS</cell> <cell>Group Separator</cell> </row>
+	<row> <cell>30</cell> <cell>1E</cell> <cell>0001 1110</cell> <cell>RS</cell> <cell>Record Separator</cell> </row>
+	<row> <cell>31</cell> <cell>1F</cell> <cell>0001 1111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
+      </table>
+      <list type="gloss">
+	<head>Regular expressions to match these characters</head>
+	<label>PCRE, Java, or oXygen:</label>
+	<item><code>[\u0000-\u0008\u000C\u000E-\u0019]</code></item>
+	<label>W3C:</label>
+	<item><code>[#x00-#x08#x0C#x0E-#x19]</code></item>
+	<label>Emacs:</label>
+	<item><code>[^␤[:print:]]</code> &#xA0; &#xA0; ; where <q>␤</q> is typed CTL-J</item>
+	<label>grep or egrep:</label>
+	<item><code>[^[:print:]]</code></item>
+      </list>
+    </div>
+  </back>
 </text>
 </TEI>
