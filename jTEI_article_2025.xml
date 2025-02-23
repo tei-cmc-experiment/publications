@@ -1039,7 +1039,7 @@
      <head>Conclusion: Improving the TEI for the encoding of born-digital resources?</head>
      <p>This paper has explored many challenges and possibilites for the TEI to encounter the born-digital resource of the email list. Since the 
       digital text is so ephemeral and contingent, yet so full of information about the computer age, our methods in archiving such work should 
-      help to sustain it as a resource for scholarly research, rescuing it from loss from shifts in technology that take no care for 
+      help to sustain it as a resource for scholarly research, rescuing it from loss from changes in technology providers that take little care for 
       maintaining access or preserving heritage. In our specific efforts to archive LISTSERV data, we find that 
       the TEI can benefit from some improvements.</p>
      <p>The limited valid positions for <gi>email</gi> in TEI documents are a concern as we begin to develop emailographies, and also as we need to 
