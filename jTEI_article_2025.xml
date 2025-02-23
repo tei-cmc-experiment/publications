@@ -894,7 +894,7 @@
          <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
          
          <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
-           of a TEI element storing a single e-mail message. Like the previous example, each email message is stored in 
+           of a <gi>TEI</gi> element that stores a single e-mail message. Like the previous example, each email message is stored in 
            a TEI child of a TEI document, but in this example, the email message metadata has been output in three locations:
            <list>
              <item>In the <gi>teiHeader</gi>: <gi>correspDesc</gi> and <gi>xenoData</gi></item>
