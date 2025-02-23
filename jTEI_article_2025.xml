@@ -99,17 +99,17 @@
       <div xml:id="introduction">
 	<head>Introduction</head>
 	<p>One of the goals of digital humanists, and one of the
-	points of digitial humanities, is cultural memory. It is
-	commonly a goal to preserve the results of humanistic
-	endeavors in a manner that one hopes will be easy to access
-	many years in the future, and allows for scholarly examination
-	and inquiry. From the last quarter of the twentieth century to the
-	present, one venue for communication among humans has been
-	email, and in particular the email discussion list. Thus it is
-	to be expected that digital humanists will want to preserve
-	email discussion lists in a manner that is likely to survive
-	the ups and downs of the word processor market, and is
-	ammenable to scholarly processing.</p>
+	points of digitial humanities, is cultural memory. It is a
+	common goal to preserve the results of humanistic endeavors in
+	a manner that one hopes will be easy to access many years in
+	the future, and allows for scholarly examination and inquiry.
+	From the last quarter of the twentieth century to the present,
+	one venue for communication among humans has been email, and
+	in particular the email discussion list. Thus it is to be
+	expected that digital humanists will want to preserve email
+	discussion lists in a manner that is likely to survive the ups
+	and downs of the word processor market, and is ammenable to
+	scholarly processing.</p>
 	<p>What is not expected is that the Text Encoding Initiative
 	would not provide a dedicated mechanism for encoding email,
 	but it does not. TEI does provide mechanisms for encoding
@@ -167,31 +167,37 @@
 	<div xml:id="mass-conversion">
 	  <head>Mass conversion approach</head>
 	  <p>Our goal for the mass conversion approach was to
-	  programatically convert all of TEI-L from its inception up to
-	  2024-04-29 into some form of simple, basic TEI using XSLT.
-	  That end date was chosen because it was the day the mailing
-	  list was moved from Brown University’s LISTSERV to Penn State
-	  University’s LISTSERV. This fact meant we could obtain the
-	  entire dataset directly from Brown listmaster without needing
-	  to worry about merging in data from PSU or about posts made
-	  just after we obtained the data. Peter DiCamillo, the Brown
-	  listmaster, sent us 412 separate files, one for each month,
-	  i.e., <name>tei-l.log9001</name> through
+	  programatically convert all of TEI-L from its inception up
+	  to 2024-04-29 into some form of simple, basic TEI using
+	  XSLT. That end date was chosen because it was the day the
+	  mailing list was moved from Brown University’s LISTSERV to
+	  Penn State University’s LISTSERV. This fact meant we could
+	  obtain the entire dataset directly from the Brown listmaster
+	  without needing to worry about merging in data from PSU or
+	  about posts made just after we obtained the data. Peter
+	  DiCamillo, the Brown listmaster, sent us 412 separate files,
+	  one for each month, i.e., <name>tei-l.log9001</name> through
 	  <name>tei-l.log2404</name>.</p>
 	  <p>Thus the first step was to rename the log files to use
-	  4-digit (as opposed to 2-digit) years so that they sorted into
-	  the correct order.<note>This was done quite easily in Emacs
-	  using dired-mode. But in fact, it would not be very hard to do
-	  directly in the shell, and there are utilities available for
-	  Mac OS that could do this.</note> This allowed them to be
-	  easily examined in a reasonable order and, more importantly,
-	  allowed them to be combined into a single file in the correct
-	  order using one simple command: <code>cat tei-l.log* >
-	  TEI-L.txt</code>.<note>In fact, in a vain effort to avoid the
-	  character encoding problems described below, we actually used
-	  <code>iconv -f ISO-8859-1 -t UTF-8 -c tei-l.log* >
-	  TEI-L.txt</code>, but do not think it made any significant
-	  difference.</note></p>
+	  4-digit (as opposed to 2-digit) years so that they sorted
+	  into the correct order.<note>This was done quite easily in
+	  Emacs using dired-mode. But in fact, it is not very hard to
+	  do directly in the shell (the single command <code>for f in
+	  tei-l.log* ; do echo "---------${f}:" ; if [[ ${f} =~
+	  tei-l.log(9[0-9])([0-9][0-9]) ]] ; then mv ${f}
+	  tei-l.log_19${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; elif [[
+	  ${f} =~ tei-l.log([012][0-9])([0-9][0-9]) ]] ; then mv ${f}
+	  tei-l.log_20${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; fi ;
+	  done</code> does a nice job) , and there are utilities
+	  available for Mac OS that could do this.</note> This allowed
+	  them to be easily examined in a reasonable order and, more
+	  importantly, allowed them to be combined into a single file
+	  in the correct order using one simple command: <code>cat
+	  tei-l.log* > TEI-L.txt</code>.<note>In fact, in a vain
+	  effort to avoid the character encoding problems described
+	  below, we actually used <code>iconv -f ISO-8859-1 -t UTF-8
+	  -c tei-l.log* > TEI-L.txt</code>, but do not think it made
+	  any significant difference.</note></p>
 	  <div xml:id="post_delimiters">
 	    <head>Delimters</head>
 	    <p>Each log file provided by LISTSERV contains one or more
@@ -691,9 +697,7 @@
                <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
                <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
                <lb n="6"/>Caribbean, and may not have received the query.)
-                
-                <!-- 87 lines deleted -->
-              
+	       <!-- 87 lines deleted here to reduce size of example -->
                <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
                <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
                <lb n="90"/>position will help get a discussion started.)
