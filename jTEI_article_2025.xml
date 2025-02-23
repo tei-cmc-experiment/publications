@@ -1022,7 +1022,7 @@
           with an <att>xml:id</att> mapped to an email address and whatever names have come associated with that address appearing within each entry. 
           Since we have duplicate entries for many actual persons, we prefer to call this assemblage an <q>emailography</q>. Perhaps the emailography represents 
           an intermediate state that might be refined and translated to a real personography with only one entry per distinct individual. 
-          But we suspect that the emailography may be the most tractable, easiest to produce from the email list data, and is useful 
+          But we suspect that the emailography may be more tractable than a personography here, because it is easier to prepare from the email list data and can be useful 
           in itself as a basis for search queries.</p>
         <!-- To Syd: Add an egXML with some entries from the emailography? -->
         <p>The real problem, we think, is that the TEI becomes very cumbersome in properly expressing the kind of <q>-ography</q> we are creating. We found
