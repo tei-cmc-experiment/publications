@@ -593,7 +593,11 @@
       <head>Mapping to TEI</head>
       <!--ebb: To start here. -->
       <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. We experimented with a combination of encoding 
-      from the newly introduced chapter on Computer Mediated Communication (CMC) and from TEI encoding for correspondence.</p>
+        from the newly introduced chapter on Computer Mediated Communication (CMC) and from TEI encoding for correspondence. In all approaches, the we followed the 
+        guidance of the new Computer Mediated Communication chapter to store email postings at the same hierarchical level of the document, rather than permittng them to
+        nest when posts reply to original posts. This appraoch prioritizes chronological sequencing of a single 
+        In the interests of facilitating comparison of our encoding decisions, we have truncated the body of the message
+        to show only the first few line and last few lines in our examples.</p>
       
       <p>Standard e-mail headers include the following information fields:
       <list>
@@ -613,7 +617,11 @@
 	<item>X-cc (carbon copy)</item>
       </list>
       
-      In our first approach to modeling these data, we found the following fields could neatly map to the following encodings in TEI:
+ In our efforts to model these data, we initially found the following fields could neatly map to TEI constructions associated with 
+ computer-mediated communication and correspondence encoding. However, they are not the only possible encodings, 
+ and our examples in the following sections will explore some variations, especially in developing the <gi>teiHeader</gi>. 
+ 
+
       <table xml:id="field_mapping1">
 	<row><cell>Date</cell><cell><code>post/@when</code></cell></row>
 	<row><cell>From</cell><cell><code>post/@who</code></cell></row>
@@ -626,94 +634,18 @@
 	<row><cell>Organization</cell><cell><code></code></cell></row>
 	<row><cell>X-cc</cell><cell><code></code></cell></row>    
       </table>
-      Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value. 
-      The following is an example demonstrating this approach to TEI encoding for a post sent by Michael Sperberg-McQueen to the TEI Listserv on 6 February 1990.
-
+      Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value.</p>
+      
+      <p>It is perhaps a little ironic that we prepared our examples for this presentation from a TEI-L conversation in 1990 
+        about encoding compound documents, given the compound nature of an e-mail listserv archive. In preparing distinct modelings 
+        of a TEI archive, we followed the method of the LISTSERV monthly log documents that store the messages as a chronological sequence, 
+        and we needed to make decisions about how to associate related messages that reply or respond to one another. </p>
      
-     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-       <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
-            xml:id="TEI-L.txt_msg_00005">
-         <teiHeader>
-           <fileDesc>
-             <titleStmt>
-               <title>TEI-L posting </title>
-             </titleStmt>
-             <publicationStmt>
-               <ab>Currently an experimental document. The original source was
-               published as part of a public mailing list, so this
-               document similarly is publicly available.</ab>
-             </publicationStmt>
-             <sourceDesc>
-               <ab type="desc">The source text file is
-               a log file from a LISTSERV mailing list.</ab>
-               <ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
-             </sourceDesc>
-           </fileDesc>
-           <encodingDesc>
-             <appInfo>
-               <application ident="listserv_log2cmc.xslt" version="0.1">
-                 <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
-                 a program intended to convert LISTSERV logs (i.e., an archive of
-                 postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
-               </application>
-             </appInfo>
-           </encodingDesc>
-           <profileDesc>
-             <correspDesc>
-               <correspContext>
-                 <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-               </correspContext>
-               <correspAction type="relayed">
-                 <email>TEI-L@UICVM</email>
-                 <date>Tue, 6 Feb 90 10:54:04 CST</date>
-               </correspAction>
-               <note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
-             </correspDesc>
-           </profileDesc>
-           <xenoData>
-             <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
-             <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
-             <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
-             <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
-             <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
-             <tmp:Subject>compound documents</tmp:Subject>
-           </xenoData>
-         </teiHeader>
-         <text>
-           <body>
-             <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
-                   when="1990-02-06T10:54:04-06:00">
-               <head type="subject">compound documents</head>
-               About compound documents in SGML and in the TEI.  R.P. Weber asked a
-               <lb n="1"/>week ago "could someone please explain the TEI approach to compound
-               <lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
-               <lb n="3"/>
-               <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
-               <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
-               <lb n="6"/>Caribbean, and may not have received the query.)
-                
-                <!-- 87 lines deleted -->
-              
-               <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
-               <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
-               <lb n="90"/>position will help get a discussion started.)
-               <lb n="91"/>
-               <lb n="92"/>-Michael Sperberg-McQueen
-               <lb n="93"/> University of Illinois at Chicago</post>
-             </body>
-           </text>
-         </TEI>
-       </egXML>
-        NOTE: <gi>xenodata</gi> is only intended here 
-        WHO ATTRIBUTE ON POST POINTS TO A PERSONOGRAPHY
-       Perhaps it is somewhat ironic that we took this first example from a message about encoding compound documents, 
-       given the compound nature of an e-mail listserv archive. We would need to make decisions about how to cluster related messages 
-       containing many messages connected together as replies, or bundled together in units of time in listserv logs.  
-     </p>
+   
      <div xml:id="TEI-collection">
        <head>One TEI document for a collection of posts</head>
        <p>In one approach to mapping the metadata for a collection, we envisioned a single <gi>TEI</gi> element 
-       holding a collection of <gi>post</gi> elements. For this approach, we applied the <gi>teiHeader</gi>
+       holding a collection of <gi>post</gi> elements, each of which contains an email message. For this approach, we applied the <gi>teiHeader</gi>
        to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
        We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
        
@@ -812,9 +744,17 @@
      <div xml:id="TEI-post">
        <head>One TEI document for a single post</head>
        <p>A collection of posts could conceivably be encoded a collection of TEI documents, sharing the same root of <gi>TEI</gi> or <gi>teiCorpus</gi>.
-         For this method, we would apply the same outer <gi>teiHeader</gi> as shown in previous examples, but then supply metadata about each post in the <gi>teiHeader</gi> elements of the 
-         internal <gi>TEI</gi> elements. This approach treats each e-mail message directed to the listserv more as we would encode written and mailed correspondence.
-         Perhaps the most significant difference from the previous example is that we now supply of e-mail message header information in a <gi>correspDesc</gi> rather than in the <gi>dateline</gi>. 
+         For this method, we would apply the same outer <gi>teiHeader</gi> as shown in previous examples, but then supply metadata about each post 
+         in the <gi>teiHeader</gi> elements of the internal <gi>TEI</gi> elements. This approach treats each e-mail message directed to the listserv 
+         more as we would encode written and mailed correspondence.</p>
+         
+        <div xml:id="TEI-post-titleStmt">
+          <head>One TEI document per post with Subject in title statement</head>
+          <p>In this example, we supply the e-mail message header information in a <gi>correspDesc</gi> 
+            rather than in the <gi>dateline</gi>, and we ventured to
+           develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
+           as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the esame as the writer).
+      
          
          <egXML xmlns="http://www.tei-c.org/ns/Examples">
            <TEI>
@@ -922,75 +862,9 @@
                      <p>Apologies for my delay in answering. I was hoping one of our hypertext sages might
                        weigh in with a reply. (But he appears to have been in the
                        <placeName>Caribbean</placeName>, and may not have received the query.)</p>
-                     <p>This problem has not, in fact, been discussed on this server, or as far as I'm
-                       aware by the working committees. So the formal answer is that no decision has been
-                       cast in concrete yet. Which allows me to turn the tables and say <q>How <emph
-                           rend="*">should</emph> compound documents be encoded for interchange? What
-                         are the requirements? What are the alternatives?</q></p>
-                     <p>Less formally, I can offer some personal opinions, for what they are worth (face
-                       value: two cents -- 2u, for those of you on <objectName>IBM
-                         mainframes</objectName> with real <objectName>IBM terminals</objectName>).</p>
-                     <p> Certainly <name type="ML">SGML</name> is where we should start in any search for
-                       ways of handling compound objects, and I don't yet know any reason that SGML won't
-                       provide a solution for the problem. I assume there are two methods of using <name
-                         type="ML">SGML</name> in compound documents (correct me if I'm wrong): (1) use
-                       <name type="ML">SGML</name> to organize the compound document (i.e. have an
-                       SGML document which includes text, images, sound, etc. as its components), or (2)
-                       use whatever-you-like to organize the compound document as a whole, and use <name
-                         type="ML">SGML</name> as the notation for the textual components of the
-                       compound document.</p>
-                     <p>For the simple case of text-with-illustrations, <name type="ML">SGML</name> seems
-                       like a viable encoding mechanism (for the envelope and for the text components) to
-                       me. It allows you to encode the graphics however you like, declaring your graphics
-                       format as a non-<name type="ML">SGML</name> notation and declaring the contents of
-                       your graphics elements (say 'PICTURE' or 'BLORT') as being data in that notation,
-                       stored either within the <name type="ML">SGML</name> file or externally to it. You
-                       get localization of the graphics within the text stream, integral or separate
-                       storage of the graphics, and complete freedom to choose whatever graphic notation
-                       you wish.</p>
-                     <p>As document encoding methods go, <name type="ML">SGML</name> is fairly hospitable
-                       to graphics and other non-text pieces of compound objects. Nowhere in the standard
-                       does it say that the data have to be words and characters. In fact, as far as I
-                       know there is no <emph rend="*">explicit</emph> requirement in the standard that
-                       an <name type="ML">SGML</name> document even has to be bytes in a computer. (Sure,
-                       it's hard to understand the standard any other way, but that's not the same as an
-                       explicit requirement.) <bibl>ISO 8879 par. 6.1 note 1</bibl> says in fact <q>This
-                         International Standard does not constrain the physical organization of the
-                         document within the data stream, message handling protocol, file system, etc.,
-                         that contains it.</q> At the <eventName>SGML '89 conference</eventName> last
-                       <date when="1989-10">October</date> in <placeName>Atlanta</placeName>, there
-                       was a very nice paper by <persName>Douglas MacLeod</persName> (read by
-                       <persName>Yuri Rubinsky</persName>) thinking about architectural designs as
-                       <name type="ML">SGML</name> documents, which led to a general discussion of
-                       <name type="ML">SGML</name> definitions for all sorts of objects, including
-                       automobiles. Although most people (obviously) think of the <name type="ML"
-                         >SGML</name> document as an electronic <emph rend="*">description</emph> of the
-                       automobile (and the physical automobile as a side effect of processing), it
-                       appears, in the light of the passage cited, hard to say categorically that an
-                       automobile itself could never be parsed as an <name type="ML">SGML</name>
-                       document. (If you could figure out how to define the delimiters.)</p>
-                     <p>The only hitch is that the <name type="ML">SGML</name> standard itself (<bibl
-                         type="standard">ISO 8879</bibl>) does not specify in any detail what the
-                       interface between <name type="ML">SGML</name> processors and non-<name type="ML"
-                         >SGML</name> processors must, may, or can look like -- an advantage, if you
-                       will, in that it doesn't constrain anyone to an inappropriate model, but a bit of
-                       a disadvantage in that most people don't have a clue what they can now or will
-                       eventually or might someday be able to do with SGML and graphics processors.</p>
-                     <p>Not being deeply involved in graphics work or compound documents myself, I don't
-                       know off-hand what options are offered for this sort of thing by existing <name
-                         type="ML">SGML</name> processors. There will certainly be a fierce market
-                       demand for it, not only from humanists but also (to our great advantage) from the
-                       defense industry, which needs <name type="ML">SGML</name> support for technical
-                       manuals with diagrams (and of course cross-references and other hypertext
-                       mechanisms) and has the small change to pay for the development costs. (As long as
-                       they don't charge the humanists defense-contractor prices!)</p>
-                     <p>If for some reason one does <emph rend="*">not</emph> want to use <name type="ML"
-                         >SGML</name> as the envelope for the entire compound document, then presumably
-                       the major requirement for the text-components of the compound documents is that
-                       they be computationally well-behaved, with a clearly defined structure, hooks for
-                       pointers going out, and hooks for pointers coming in. SGML certainly has all of
-                       this, in its document type declarations and its ID names and its IDREF
-                       pointers.</p>
+                     
+                      <!-- 8 paragraphs omitted. -->
+                     
                      <p>Perhaps those subscribers to this list who actually work with compound documents
                        and <name type="ML">SGML</name> will be willing to say how they make things work
                        now, and how they would like to see things developing in the future.</p>
@@ -1010,25 +884,179 @@
            
          </egXML>
 
-       </p>
-       
+       </p></div>
+       <div xml:id="tei-post-xeno">
+         <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
+         
+         <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
+           of a TEI element storing a single e-mail message. Like the previous example, each email message is stored in 
+           a TEI child of a TEI document, but in this example, the email message metadata has been output in three locations:
+           <list>
+             <item>In the <gi>teiHeader</gi>: <gi>correspDesc</gi> and <gi>xenoData</gi></item>
+             <item>In the <code>text/body</code>: <gi>post</gi> attributes 
+               and <gi>head</gi></item>
+           </list>
+      
+
+         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+           <TEI>
+             <teiHeader>
+               <fileDesc>
+                 <!-- SAME AS PREVIOUS EXAMPLE . . . -->
+               </fileDesc>
+               <encodingDesc>
+                 <!-- SAME AS PREVIOUS EXAMPLE . . .  -->
+               </encodingDesc>
+             </teiHeader>
+             <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
+             xml:id="TEI-L.txt_msg_00005">
+              <teiHeader>
+               <fileDesc>
+                 <titleStmt>
+                   <title>TEI-L posting </title>
+                 </titleStmt>
+                 <publicationStmt>
+                   <ab>Currently an experimental document. The original source was
+                     published as part of a public mailing list, so this
+                     document similarly is publicly available.</ab>
+                 </publicationStmt>
+                 <sourceDesc>
+                   <ab type="desc">The source text file is
+                     a log file from a LISTSERV mailing list.</ab>
+                   <ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
+                 </sourceDesc>
+               </fileDesc>
+               <encodingDesc>
+                 <appInfo>
+                   <application ident="listserv_log2cmc.xslt" version="0.1">
+                     <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
+                       a program intended to convert LISTSERV logs (i.e., an archive of
+                       postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
+                   </application>
+                 </appInfo>
+               </encodingDesc>
+               <profileDesc>
+                 <correspDesc>
+                   <correspContext>
+                     <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
+                   </correspContext>
+                   <correspAction type="relayed">
+                     <email>TEI-L@UICVM</email>
+                     <date>Tue, 6 Feb 90 10:54:04 CST</date>
+                   </correspAction>
+                   <note type="Comments">"ACH / ACL / ALLC Text Encoding Initiative"</note>
+                 </correspDesc>
+               </profileDesc>
+               <xenoData>
+                 <tmp:Date>Tue, 6 Feb 90 10:54:04 CST</tmp:Date>
+                 <tmp:Reply-To>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Reply-To>
+                 <tmp:Sender>Text Encoding Initative public discussion list &lt;TEI-L@UICVM&gt;</tmp:Sender>
+                 <tmp:Comments>"ACH / ACL / ALLC Text Encoding Initiative"</tmp:Comments>
+                 <tmp:From>Michael Sperberg-McQueen 312 996-2477 -2981 &lt;U35395@UICVM.BITNET&gt;</tmp:From>
+                 <tmp:Subject>compound documents</tmp:Subject>
+               </xenoData>
+             </teiHeader>
+             <text>
+               <body>
+                 <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
+                   when="1990-02-06T10:54:04-06:00">
+                   <head type="subject">compound documents</head>
+                   About compound documents in SGML and in the TEI.  R.P. Weber asked a
+                   <lb n="1"/>week ago "could someone please explain the TEI approach to compound
+                   <lb n="2"/>documents and images?  WIll SGML be used here, and if so, how?"
+                   <lb n="3"/>
+                   <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
+                   <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
+                   <lb n="6"/>Caribbean, and may not have received the query.)
+                   <!-- 87 lines deleted here to reduce size of example -->
+                   <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
+                   <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
+                   <lb n="90"/>position will help get a discussion started.)
+                   <lb n="91"/>
+                   <lb n="92"/>-Michael Sperberg-McQueen
+                   <lb n="93"/> University of Illinois at Chicago</post>
+               </body>
+             </text>
+             </TEI>
+           </TEI>
+         </egXML>
+           
+           This encoding stores the information that it is the output of an XSLT process in the <gi>encodingDesc</gi>, and its
+           structure is purposefully redundant because it was intended to help preserve the original format of the LISTSERV
+           metadata fields in <gi>xenoData</gi>. In the XSLT process that prepared this encoding, the xenoData portion 
+           assisted us to prepare a standoff file of information about senders in an <q>emailography</q> 
+           that is the topic of the next major section of this article.</p>
+           <p>Each of these message metadata fields are also mapped into the TEI, but this encoding
+           reduces the <gi>correspDesc</gi> to store only information about the message as relayed by LISTSERV. Similar to our previous encoding,
+           the <gi>correspDesc</gi> also stores the distinct identifier for the message to which this is reply, only this time in a <gi>ptr</gi> element.
+           Perhaps the most significant difference is moving the information about the sender of the message to the <gi>post</gi> element, where the 
+             sender is designated in the <att>who</att> with a distinct identifier, mapped from their email address, and the date and time of initial sending
+             supplied in <att>when</att>.</p>
+         <p>The Subject line as a <gi>head</gi> or as a <code>titleStmt/title</code>is perhaps the most profound difference in the two encodings we have presented 
+           for handling an email message within a TEI element. 
+           In our second example, the human authorship of the message and the designation
+             of its subject is entirely designated within the <gi>post</gi>, in a manner more like the way CMC encoding approaches discussion board or wiki
+           post, and less like the way we would handle the encoding of a letter as part of a collection of correspondence. 
+           While letters do not usually have subject lines, the personal actions of 
+           transmission and receipt are typically addressed in the <gi>teiHeader</gi>, where the <gi>titleStmt</gi> often provides information about the exchange,
+           while <gi>correspDesc</gi> is designed to provide detailed information about how messages literally change hands, from the writer to the postal agent 
+           to the recipient. </p>
+       </div>
      </div>
       <div>
         <head>Emailography</head>
-        
-        <!-- Extraction of email data 
-          
-          
-        
-        
-        -->
-        <p></p>
-        
-        
-        
-        
+        <p>An archive of an email list necessarily contains lots of information about its community members, and this is certainly the kind of
+        collection that establishes the basis for standoff data structures preserving information about those involved in list conversations.
+        We prepared an XSLT pipeline process that may be adapted to the preparation of other LISTSERV archives, but identified an interesting issue
+        in establishing the best way to distinctly identify a contributor. One might think it would be by name, but we found that names in email headers change more frequently than
+        their email addresses. Of course, over time, contributors change their email addresses as they move to new institutions or services, and 
+        there seems no persistently stable singular identifier available in the LISTSERV metadata for a particular sender over a long duration.
+        </p>
+        <p>Despite this problem, it is nevertheless possible to assemble something like a personography based on the most distinct identifiers 
+          available for senders, that is their email addresses. We have imperfectly assembled these in a <gi>listPerson</gi> with <gi>person</gi> elements 
+          with an <att>xml:id</att> mapped to an email address and whatever names have come associated with that address appearing within each entry. 
+          Since we have duplicate entries for many actual persons, we prefer to call this assemblage an <q>emailography</q>. Perhaps the emailography represents 
+          an intermediate state that might be refined and translated to a real personography with only one entry per distinct individual. 
+          But we suspect that the emailography may be the most tractable, easiest to produce from the email list data, and is useful 
+          in itself as a basis for search queries.</p>
+        <!-- To Syd: Add an egXML with some entries from the emailography? -->
+        <p>The real problem, we think, is that the TEI becomes very cumbersome in properly expressing the kind of <q>-ography</q> we are creating. We found
+          that the <gi>email</gi> element is not permitted as a direct child of person, and of course, nor was it ever designed as the main entry of a 
+          standoff metadata list structure. Perhaps this would be a good application for the generic <code>&lt;listEntity&gt;</code> that is called for, 
+          as discussed in the <ref target="https://github.com/TEIC/TEI/issues/2341">TEI-C GitHub issue #2341</ref>. The concept designated by an
+          <code>&lt;entity&gt;</code> element may or may not be human or a life-form, and, in this case, may be simply represent the distinct method
+          by which a particular human communicates and interacts technologically for a specific period of time. Still, the limited locations 
+          permitting the already established <gi>email</gi> element seem short-sighted as the TEI contemplates the archiving of born-digital texts.
+        </p>
       </div>
    </div>
+   <div xml:id="improving-tei">
+     <head>Conclusion: Improving the TEI for the encoding of born-digital resources?</head>
+     <p>This paper has explored many challenges and possibilites for the TEI to encounter the born-digital resource of the email list. Since the 
+      digital text is so ephemeral and contingent, yet so full of information about the computer age, our methods in archiving such work should 
+      help to sustain it as a resource for scholarly research, rescuing it from loss from shifts in technology that take no care for 
+      maintaining access or preserving heritage. In our specific efforts to archive LISTSERV data, we find that 
+      the TEI can benefit from some improvements.</p>
+     <p>The limited valid positions for <gi>email</gi> in TEI documents are a concern as we begin to develop emailographies, and also as we need to 
+       reference email addresses as primary resource of information in born-digital documents. That <gi>email</gi> cannot be a child of <gi>person</gi>
+       (or the basis for its own list) raised problems for us. More robust encoding should be developed.</p>
+     <p>At the moment, the <gi>post</gi> element only allows for <gi>lb</gi> but not <gi>line</gi>. Preservation of source lineation in email and other born-digital documents should be marked just as they are in manuscript data. 
+       The referentiality between source and archive should allow us to reproduce the original lineation meaningfully, or at the very least, we need to be 
+       able to preserve the ASCII art of yesteryear.</p>
+     <p>The TEI provides no good way to encode an email Subject line in either <gi>correspDesc</gi> or <gi>dateline</gi>, and our 
+       attempts to place the Subject varied a little too widely. we do not find the use of the <gi>head</gi> element in <gi>post</gi> 
+       satisfactory to encode an email Subject because it is not really part of the email body, but part of the heading metadata stored with From, To,
+       CC, etc. Setting it in the <gi>titleStmt</gi> certainly presents the Subject line as metadata, but it is then separated from the information
+       of <gi>correspDesc</gi>.
+     </p>
+     <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. What <att>level</att> 
+       values are appropriate for the <gi>title</gi> of the TEI-L Listserv as a whole, for the log files it curates by the month, or 
+       for the individual email message if we use a <gi>title</gi> element to store its Subject line? Do we need new values of <att>level</att>
+       for born-digital compound artifacts? 
+     </p>
+     <p>Identifying these issues is the first step to introducing new encoding models. We hope that our work in progress provides a basis for further discussion,
+     debate over our experimental data modeling of the TEI Listserv, one of our oldest and most important resources in the TEI community.</p>
+      </div>
  </body>
  <back> 
    <div type="bibliography">
