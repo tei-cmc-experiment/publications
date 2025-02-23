@@ -598,12 +598,17 @@
     <div xml:id="mapping-to-TEI">
       <head>Mapping to TEI</head>
       <!--ebb: To start here. -->
-      <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. We experimented with a combination of encoding 
-        from the newly introduced chapter on Computer Mediated Communication (CMC) and from TEI encoding for correspondence. In all approaches, the we followed the 
-        guidance of the new Computer Mediated Communication chapter to store email postings at the same hierarchical level of the document, rather than permittng them to
-        nest when posts reply to original posts. This appraoch prioritizes chronological sequencing of a single 
-        In the interests of facilitating comparison of our encoding decisions, we have truncated the body of the message
-        to show only the first few line and last few lines in our examples.</p>
+      <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. 
+        We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
+        Communication (CMC) and from TEI encoding for correspondence. In each of the methods shared in this section, 
+        we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
+        same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
+        This approach represents the email archive simply according to chronological sequencing of posts, without 
+        attempting to cluster posts with their replies. It was easy to prepare the archive in this way working from
+        our source documents, because the TEI-L log files that we worked with to prepare these examples 
+        are arranged by chronological sequence and without topical nesting. 
+        In the interests of facilitating comparison of our encoding decisions, we have truncated the body of each message
+        in the examples to show only the first and last few lines.</p>
       
       <p>Standard e-mail headers include the following information fields:
       <list>
