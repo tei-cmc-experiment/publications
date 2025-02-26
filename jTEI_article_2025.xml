@@ -454,7 +454,7 @@
 	  have this feature are payware.</p>
 	  <p>So while we admit it may be rude to require a user of
 	  our program to do so, we simply increased Java heap space
-	  when running this transofrm (to 2 GiB).</p>
+	  when running this transofrm (to 5 GiB).</p>
 	</div>
 	<div xml:id="conversion_complexities">
 	  <head>Unsolved conversion complexities: MIME</head>
@@ -554,9 +554,11 @@
 	    most digital humansists with an interest in this data
 	    would be better served by the results of our conversion
 	    process if we decoded these strings (for example,
-	    converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to
-	    <q>Piotr Bański</q>), and that those
-	    performing digital archaeology about how various
+	    converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to <q>Piotr
+	    Bański</q>)<note>This name also appears as
+	    <q>=?ISO-8859-2?Q?Piotr_Ba=F1ski?=</q> and
+	    <q>=?UTF-8?B?UGlvdHIgQmHFhHNraQ==?=</q>.</note>, and that
+	    those performing digital archaeology about how various
 	    characters were represented by various historical email
 	    systems would just as soon use the source data rather than
 	    the TEI-encoded output of our process. We are not
@@ -577,13 +579,73 @@
 	    certainly be easier than trying to parse the parts into
 	    separate TEI elements. But this <foreign
 	    xml:lang="la">caveat emptor</foreign> approach, while
-	    possibly useful for preservation of the data, would be
-	    present data that was not at all amenable to scholarly
+	    possibly useful for preservation of the data, would 
+	    yield data that was not at all amenable to scholarly
 	    processing.</p>
 	    <p>It would also be reasonable to ignore all MIME parts
-	    other than text/plain. (This is, in fact, what we did
+	    other than text/plain — after all, this is the
+	    <emph>Text</emph> Encoding Initiative version of the data
+	    we are creating. (In fact, this is what we did for the
+	    <soCalled>scrape + craft encoding</soCalled> approach
+	    described in <ptr target="#scraping"/>.) But it would also
+	    be quite reasonable, and quite possibly helpful to future
+	    scholars and interested parties, to retain the information
+	    in other parts of postings to the mailing list. But doing
+	    so presents interesting practical and theoretical
+	    challenges.</p>
+	    <p>The practical challenges can be divided into two broad
+	    catagories: <list rend="inline"><item>parsing the content
+	    of the email into its separate MIME parts, and
+	    </item><item>processing the content of each MIME part
+	    according to its type</item></list>. We were able to
+	    partially solve the first challenge within the scope of
+	    this small pilot project. Our XSLT will recognize MIME
+	    multipart content, and separate out each of the
+	    highest-level parts into their own constructs. It does
+	    not, yet, handle multipart-inside-multipart MIME content,
+	    however.</p>
+	    <p>The second practical challenge, processing the content
+	    of a MIME part according to its type, is reasonably easy
+	    to contemplate handling in XSLT when the content type is
+	    text/* or application/xml. But in almost all other cases
+	    conversion to something manipulable by XSLT is at best
+	    difficult.</p>
+	    <p>The theoretical challenges strike us as very
+	    interesting, and boil down very simply to what to do with
+	    data other than plain text. Some datatypes easily lend
+	    themselves to TEI encoding; counter-intuitively, these are
+	    the datatypes for which there is really no reasonable XML
+	    representation. Imagine, e.g., if one of the MIME parts is
+	    of type image/jpeg or audio/ogg. (None of them are, as the
+	    rules of this particular mailing list disallowed most
+	    binary attachments to help prevent spread of malware.) The
+	    only real possibilies are <list rend="inline"><item>to
+	    ignore it; </item><item>to put the binary data in a
+	    separate .jpg or .ogg file and point to it; or
+	    </item><item>to encode the data in a <gi>binaryObject</gi>
+	    element.</item></list></p>
+	    <p>But what of data typed as some form of text other than
+	    text/plain? In many cases, the MIME part is another
+	    representation of the same content as a text/plain MIME
+	    part. (This allows a client that knows how to display,
+	    say, text/html to do so, but a client that does not have
+	    that capability to display the text/plain content.) In
+	    which case, should it be included in the TEI version of
+	    the archive at all? It would certainly be easier to simply
+	    ignore the HTML version. But the author of the email may
+	    well have used an editor that allowed certain styling
+	    (like italics, change in font size, change in font color,
+	    etc.), and that styling is likely available in the HTML
+	    but not the plain text. Moreover, that styling may be of
+	    interest to future scholars. But what TEI constructs
+	    should the HTML be converted into? HTML to TEI conversion
+	    is not at all a simple task. (For starters, HTML permits
+	    headings in the middle of divisions, and the table models,
+	    while similar, are not the same.) One possility, of
+	    course, is to move the HTML into a separate file, and
+	    point to it from the TEI. (This also has the advantage of
+	    avoiding the problem of what to do with ill-formed HTML.)</p>
 	    <?sb HERE ?>
-	    </p>
 	  </div>
 	  <div>
 	    <head>Content encoding</head>
