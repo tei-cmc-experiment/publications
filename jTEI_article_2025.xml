@@ -640,17 +640,147 @@
 	    interest to future scholars. But what TEI constructs
 	    should the HTML be converted into? HTML to TEI conversion
 	    is not at all a simple task. (For starters, HTML permits
-	    headings in the middle of divisions, and the table models,
+	    headings in the middle of divisions; and the table models,
 	    while similar, are not the same.) One possility, of
 	    course, is to move the HTML into a separate file, and
 	    point to it from the TEI. (This also has the advantage of
-	    avoiding the problem of what to do with ill-formed HTML.)</p>
-	    <?sb HERE ?>
+	    avoiding the problem of what to do with ill-formed
+	    HTML.)</p>
 	  </div>
-	  <div>
+	  <div xml:id="content_encoding">
 	    <head>Content encoding</head>
-	    <p>WINITIA Big Black Horse and a Cherry Tree</p>
+	    <div xml:id="CE_intro">
+	      <head>Why content encoding is required</head>
+	      <p>Email servers, etc., use at most 8 bits per
+	      character. (And, as pointed out in <ptr
+	      target="#Encoded-word_syntax"/>, only 7 bits per
+	      character in the header.) It is possible to represent
+	      256 characters in 8 bits. Thus any message body that
+	      contains any of the other 154,807 characters needs to be
+	      down-translated into only those 256 characters. MIME
+	      permits two different methods for performing this
+	      down-translation: <term>quoted-printable</term> and
+	      <term>base64</term>. For the actual definitions of these
+	      formats see <ref type="bibl"
+	      target="#RFC2045">rfc2045</ref> sections 6.7 &amp; 6.8,
+	      respectively.</p>
+	      <p>Note that using the specified down-translation method
+	      to recover the correct character codepoints is not
+	      sufficient to decode the message body. The client must
+	      also know which character set to use to map the
+	      codepoint to a character. For example, in the ISO-8859-2
+	      character set the codepoint 241 (hexadecimal F1)
+	      represents <q>ń</q>; in UTF-8 it represents
+	      <q>ñ</q>. Which character set to use is specified on the
+	      <name>Content-Type</name> header field. For example,
+	      <code>Content-Type: text/plain;
+	      charset=ISO-8859-1</code> specifies the ISO 8859-1
+	      character set.</p>
+	    </div>
+	    <div xml:id="quoted-printable">
+	      <head>Quoted printable</head>
+	      <p>The quoted printable method is, at its core, quite
+	      simple. Any sequence of 8 bits (an octet, the base 2
+	      version of a number from 0 to 127, and on most systems a
+	      byte) — except for the octets reserved for signaling
+	      end-of-line — is represented instead by an equal sign
+	      (U+3D, <q>=</q>) followed by two (upper case)
+	      hexadecimal digits. Thus when US-ASCII, UTF-8, or any of
+	      the ISO-8859 character sets are in use, the letter
+	      <q>n</q> may be represented by <q>=6E</q>, because the
+	      codepoint for <q>n</q> is 110 in each of those character
+	      sets. When the UTF-8 character set is in use,
+	      <q>=C5=84</q> can be used to represent <q>ń</q>, because
+	      the codepoint 324 (hexadecimal 0144) is mapped to
+	      <q>ń</q> in Unicode, and is too large to be represented
+	      in a single octet, so it is broken up into two.<note>The
+	      octets are 11000101 10000100. In the first octet the
+	      first 3 bits (110) assert that this number is expressed
+	      in 2 octets, the last 5 bits (00101) are the first 5
+	      bits of the number. In the second octet the first 2 bits
+	      (10) are the <q>this is a continuation of previous
+	      octet</q> signal, and the last 6 bits are the last 6
+	      bits of the number.</note></p>
+	      <p>This system, if used as described above, would result
+	      in an encoding that is three times larger than the
+	      unencoded information (because every character is
+	      represented by an equal sign followed by two characters,
+	      the hexadecimal digits) and impossible to read. So there
+	      is an important exception: any character from 33
+	      (hexadecimal 21, <q>!</q>) through 126 (hexadecimal 7E,
+	      <q>~</q>), inclusive, except for 61 (hexadecimal 3D,
+	      <q>=</q>, the equal sign) may be represented by
+	      itself. That includes the 26 letters of the US-ASCII
+	      alphabet in both cases. Thus <q>Espa=C3=B1ola</q> is
+	      normally used for the string <q>Española</q> rather than
+	      <q>=45=73=70=61=C5=84=6F=6C=61</q>.<note>This means that
+	      when used on Western texts that have a high percentage
+	      of characters in the standard US-ASCII set,
+	      quoted-printable results in relatively easy to read,
+	      compact encodings. Conversely, when used on Cyrillic,
+	      Greek, or CJK text, or arbitrary binary data, the
+	      encoded version is both large and completely
+	      unreadable.</note></p>
+	      <p>There are several other details to quoted printable
+	      encoding — whitespace, end of line, and soft line breaks
+	      to be precise — but this is the main gist of it.</p>
+	    </div>
+	    <div xml:id="base64">
+	      <head>Base64</head>
+	      <p>The Base64 method of encoding content is also not
+	      particularly complex at its core. It has the advantages
+	      (over quoted-printable) of expanding input by 33% rather
+	      than 300% and of being easily applicable to arbitrary
+	      binary input (e.g., JPEGs or OGGs); it has the
+	      disadvantages of being somewhat more complex, and is
+	      completely unreadable before decoding.</p>
+	      <p>In Base64 the input is broken up into sets of 3
+	      octets (24 bits). Each set of 24 bits is then divided
+	      into 4 sets of 6 bits. A sextet gives you a range of 64
+	      numbers, 0–63. Each of those numbers is mapped onto a
+	      character that will survive transfer through an email
+	      system because it is the same in US-ASCII, ISO 646, and
+	      ISO 10646 (i.e., Unicode), etc.<note>The
+	      <soCalled>alphabet</soCalled> used to represent the 64
+	      possible values is A–Z, a–z, 0–9, +, &amp; /.</note>
+	      Each of those characters, of course, is represented by
+	      an octet in the encoded version of the data. So every 24
+	      bits of unencoded data takes 32 bits to represent in the
+	      encoded form, hence the 33% increase in size.</p>
+	      <p>So the string <q>Española</q> is encoded in Base64 as
+	      <q>RXNwYcOxb2xhCg==</q>. The equal signs are used at the
+	      end for padding, as the input could not be divided into
+	      an integral number of 3-octet sets. In addition to
+	      padding there are special rules for line length and line
+	      ends. But the above is the important basis of the
+	      system.</p>
 	  </div>
+	  <div xml:id="CE_NOT">
+	    <head>Content encoding — NOT!</head>
+	    <p>It is trivially easy to perform encoding or decoding of
+	    a quoted-printable or Base64 encoded file because other
+	    people have written programs to do the work. In GNU/Linux,
+	    for example, the commands <code>qprint</code> and
+	    <code>base64</code> will perform either encoding to or
+	    decoding from quoted-printable and Base64
+	    respectively.</p>
+	    <p>Furthermore, many modern program languages have
+	    libraries that include functions that perform
+	    quoted-printable or Base64 encoding and decoding. But, as
+	    far as we can tell, XSLT is not one of them. Our reading
+	    of the XPath 3.1 specification says that it provides the
+	    capability to encode a string of text <emph>into</emph>
+	    Base64, but not to decode Base64 data into a string. There
+	    is support for Base64 using the <ref type="bibl"
+	    target="#EXPath">EXPath</ref> extensions to XPath.</p>
+	    <p>We did not attempt to decode quoted printable or Base64
+	    encoded content mostly due to a lack of time in this small
+	    pilot project. That said, we are hesitant to employ EXPath
+	    for a tool intended for digital humanists, as the only
+	    EXPath-capable processors we are aware of are payware.</p>
+	  </div>
+	    <?syd HERE?>
+	</div>
 	</div>
       </div> <!-- conversion_complexities -->
     </div> 
@@ -1134,6 +1264,17 @@
    <div type="bibliography">
      <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
      <listBibl>
+       <bibl xml:id="EXPath">
+	 Kosek, Jirka and Lumley, John, <title level="m">Binary Module
+	 1.0</title> EXPath Module 3, December 2013; <idno
+	 type="URL">https://expath.org/spec/binary</idno>
+       </bibl>
+       <bibl xml:id="RFC2045">
+         Freed, N. and Borenstein N., Eds., <title
+         level="m">Multipurpose Internet Mail Extensions (MIME) Part
+         One: Format of Internet Message Bodies</title>, RFC 2045,
+         November 1996; <idno type="DOI">10.17487/RFC2045</idno>.
+       </bibl>
        <bibl xml:id="RFC2047">
          Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
          Mail Extensions) Part Three: Message Header Extensions for
