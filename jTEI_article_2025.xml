@@ -164,6 +164,11 @@
       </div>
       <div xml:id="data-retrieval">
 	<head>Conversion from source to XML</head>
+	<div xml:id="scraping">
+	  <head>Scrape from web (attempted) approach</head>
+	  <?ebb section on scraping attempt, why it is difficult to
+	    do, advantages (if any) and disadvantages ?>
+	</div> 
 	<div xml:id="mass-conversion">
 	  <head>Mass conversion approach</head>
 	  <p>Our goal for the mass conversion approach was to
@@ -700,7 +705,10 @@
 	      bits of the number. In the second octet the first 2 bits
 	      (10) are the <q>this is a continuation of previous
 	      octet</q> signal, and the last 6 bits are the last 6
-	      bits of the number.</note></p>
+	      bits of the number. Thus we can read this UTF-8
+	      character expressed using two bytes as the 11-bit binary
+	      codepoint 00101000100, which is 324 in decimal or 144 in
+	      hexadecimal.</note></p>
 	      <p>This system, if used as described above, would result
 	      in an encoding that is three times larger than the
 	      unencoded information (because every character is
@@ -742,7 +750,7 @@
 	      system because it is the same in US-ASCII, ISO 646, and
 	      ISO 10646 (i.e., Unicode), etc.<note>The
 	      <soCalled>alphabet</soCalled> used to represent the 64
-	      possible values is A–Z, a–z, 0–9, +, &amp; /.</note>
+	      possible values is A–Z, a–z, 0–9, +, and /.</note>
 	      Each of those characters, of course, is represented by
 	      an octet in the encoded version of the data. So every 24
 	      bits of unencoded data takes 32 bits to represent in the
@@ -784,9 +792,6 @@
 	</div>
       </div> <!-- conversion_complexities -->
     </div> 
-    <div xml:id="scraping">
-      <head>Attempting to scrape from the web</head>
-    </div> 
     <div xml:id="mapping-to-TEI">
       <head>Mapping to TEI</head>
       <!--ebb: To start here. -->
@@ -802,7 +807,8 @@
         In the interests of facilitating comparison of our encoding decisions, we have truncated the body of each message
         in the examples to show only the first and last few lines.</p>
       
-      <p>Standard e-mail headers include the following information fields:
+      <p>The e-mail headers that were present in the entire dataset
+      include the following information fields:
       <list>
 	<item>Date</item>
 	<item>From</item>
@@ -823,7 +829,6 @@
  In our efforts to model these data, we initially found the following fields could neatly map to TEI constructions associated with 
  computer-mediated communication and correspondence encoding. However, they are not the only possible encodings, 
  and our examples in the following sections will explore some variations, especially in developing the <gi>teiHeader</gi>. 
- 
 
       <table xml:id="field_mapping1">
 	<row><cell>Date</cell><cell><code>post/@when</code></cell></row>
@@ -837,12 +842,12 @@
 	<row><cell>Organization</cell><cell><code></code></cell></row>
 	<row><cell>X-cc</cell><cell><code></code></cell></row>    
       </table>
-      Note that the X-cc field and the vast majority of the Comments field give the original To: or CC: field value.</p>
+      Note that the X-cc field and the vast majority of the Comments fields give the original To: or CC: field value.</p>
       
-      <p>It is perhaps a little ironic that we prepared our examples for this presentation from a TEI-L conversation in 1990 
+      <p>It is perhaps a little ironic that we prepared many of our examples for this paper from a 1990 conversation on TEI-L
         about encoding compound documents, given the compound nature of an e-mail listserv archive. In preparing distinct modelings 
         of a TEI archive, we followed the method of the LISTSERV monthly log documents that store the messages as a chronological sequence, 
-        and we needed to make decisions about how to associate related messages that reply or respond to one another. </p>
+        and we needed to make decisions about how to associate related messages that reply or respond to one another.</p>
      
      <div xml:id="TEI-collection">
        <head>One TEI document for a collection of posts</head>
@@ -858,13 +863,47 @@
                <title>Text Encoding Initiative public discussion list</title>
              </titleStmt>
              <editionStmt>
-               <edition>January and February 1990 in the TEI Listserv
-               <!-- TEI-L LOG9001, LOG9002 --></edition>
+	       <?ebb I do not see how which months were used as input
+		 is something that should be described as the edition
+		 of the encoded file. From Guidelines 2.2.2: “the term
+		 'edition' may be used for a particular state of a
+		 machine-readable text at which substantive changes
+		 are made and fixed. Synonymous terms used in these
+		 Guidelines are version, level, and release. The words
+		 revision and update, by contrast, are used for minor
+		 changes to a file which do not amount to a new edition.” ?>
+               <edition>January and February 1990 in the TEI Listserv</edition>
+	       <?ebb I would either use something like one of the following
+		 or just drop the entire <editionStmt>. ?>
+	       <edition>Second experimental (“alpha”) edition</edition>
+	       <edition>0.0.2a</edition>
              </editionStmt>
-             <publicationStmt>
-               <!-- about the born-digital document -->
+             <publicationStmt xml:id="What_we_used_in_Buenos_Aires" exclude="#possible_corrected_publ_stmt #elided_publ_stmt">
+	       <?ebb This is tag abuse. GitHub is *not* the
+		 publisher. (They may be the <distributor>.) Either way,
+		 a URL is neither. The question, of course, is whether
+		 to leave this, because it is what we used in Buenos
+		 Aires, or to correct it, because there is nothing to
+		 gain in being incorrect about it. ?>
                <publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
              </publicationStmt>
+	     <publicationStmt xml:id="possible_corrected_publ_stmt" exclude="#What_we_used_in_Buenos_Aires #elided_publ_stmt">
+	       <authority>
+		 <persName>Elisa Beshero-Bondar</persName>
+		 <persName>Syd Bauman</persName>
+	       </authority>
+               <date when="2024-09-22"/>
+               <distributor><orgName>GitHub</orgName></distributor>
+               <address>
+		 <addrLine>88 Colin P. Kelly Junior Street</addrLine>
+		 <addrLine>San Francisco, CA 94107</addrLine>
+		 <addrLine>United States</addrLine>
+               </address>
+	     </publicationStmt>
+	     <publicationStmt xml:id="elided_publ_stmt" exclude="#What_we_used_in_Buenos_Aires #possible_corrected_publ_stmt">
+	       <ab>This experimental document is not intended to be
+	       published indenpendantly.</ab>
+	     </publicationStmt>
              <sourceDesc>
                <bibl>
                  <title level="j">TEI-L Listserv</title>
@@ -903,10 +942,10 @@
        inside a <gi>post</gi> element, drawn from the new CMC chapter.
        </p>
        <p>To store the metadata for individual e-mail messages, in this method we encoded a <gi>dateline</gi> element, which contained
-       <gi>ref</gi> elements to store information the transmission of a message within the <gi>post</gi>, thus;
+       <gi>ref</gi> elements to store information about the transmission of the message within its parent <gi>post</gi>, thus;
        
        <table xml:id="field_mapping2">
-         <row><cell>Date</cell><cell><code>date/@when  or date/text()</code></cell></row>
+         <row><cell>Date</cell><cell><code>date/@when or date/text()</code></cell></row>
          <row><cell>Reply-To</cell><cell><code>ref[@type="reply-to"][@target="email:___]</code></cell></row>
          <row><cell>Sender</cell><cell><code>ref[@generatedBy="system"][@type="sender"][@target="email:TEI-L@__]</code></cell></row>
          <row><cell>From</cell><cell><code>ref[@generatedBy="template"][@type="from"][@target="email:___"]</code></cell></row>
@@ -914,7 +953,7 @@
          <row><cell>In-Reply-To</cell><cell><code>ref[@target="#id-of-earlier-posting]</code></cell></row>
        </table>
        
-       Notice that in this encoding we are experimenting with setting the Subject field in a <gi>title</gi> element, supplying an <att>level</att> with a value of <code>"a"</code>, which seems
+       Notice that in this encoding we are experimenting with setting the Subject field in a <gi>title</gi> element, supplying a <att>level</att> with a value of <val>a</val>, which seems
        fitting for a portion of an assembled collection. Here is an example encoding of a single e-mail message encoded as a <gi>post</gi> following this method:
        <egXML xmlns="http://www.tei-c.org/ns/Examples">
          <post xml:id="Web-1990-01-31-0933">
