@@ -685,8 +685,8 @@
               character set.</p>
             </div>
             <div xml:id="quoted-printable">
-              <head>Quoted printable</head>
-              <p>The quoted printable method is, at its core, quite
+              <head>quoted-printable</head>
+              <p>The quoted-printable method is, at its core, quite
               simple. Any sequence of 8 bits (an octet, the base 2
               version of a number from 0 to 127, and on most systems a
               byte) — except for the octets reserved for signaling
@@ -732,20 +732,21 @@
               Greek, or CJK text, or arbitrary binary data, the
               encoded version is both large and completely
               unreadable.</note></p>
-              <p>There are several other details to quoted printable
+              <p>There are several other details to quoted-printable
               encoding — whitespace, end of line, and soft line breaks
               to be precise — but this is the main gist of it.</p>
             </div>
             <div xml:id="base64">
               <head>Base64</head>
-              <p>The Base64 method of encoding content is also not
+              <p>The base64 method of encoding content is also not
               particularly complex at its core. It has the advantages
-              (over quoted-printable) of expanding input by 33% rather
-              than 300% and of being easily applicable to arbitrary
-              binary input (e.g., JPEGs or OGGs); it has the
-              disadvantages of being somewhat more complex, and is
-              completely unreadable before decoding.</p>
-              <p>In Base64 the input is broken up into sets of 3
+              (over quoted-printable) of expanding input by a factor
+              of ~133% rather than a factor of up to 300%, and of
+              being easily applicable to arbitrary binary input (e.g.,
+              JPEGs or OGGs); it has the disadvantages of being
+              somewhat more complex, and is completely unreadable
+              before decoding.</p>
+              <p>In base64 the input is broken up into sets of 3
               octets (24 bits). Each set of 24 bits is then divided
               into 4 sets of 6 bits. A sextet gives you a range of 64
               numbers, 0–63. Each of those numbers is mapped onto a
@@ -758,7 +759,7 @@
               an octet in the encoded version of the data. So every 24
               bits of unencoded data takes 32 bits to represent in the
               encoded form, hence the 33% increase in size.</p>
-              <p>So the string <q>Española</q> is encoded in Base64 as
+              <p>So the string <q>Española</q> is encoded in base64 as
               <q>RXNwYcOxb2xhCg==</q>. The equal signs are used at the
               end for padding, as the input could not be divided into
               an integral number of 3-octet sets. In addition to
@@ -766,25 +767,102 @@
               ends. But the above is the important basis of the
               system.</p>
           </div>
+          <div xml:id="CE_lin">
+            <head>Content encoding, lineation</head>
+            <p>Whether quoted-printable or base64 encoding is used,
+            each line of the body of the email can be at most 76
+            characters long. Because base64 makes use of only 64
+            characters (or 65 if you count trailing equal signs), none
+            of which are whitespace, base64 encoded content often
+            looks like a large block of undeciperable letters and
+            numbers.</p>
+	    <p>Quoted-printable encoded content typically looks much
+	    more like the original content (because the whitespace and
+	    many letters are the same), but because the line length is
+	    limited to 76 characters, a special flag has to be used to
+	    signal when a single line of text has been encoded into
+	    two (or more) lines of encoded text. This flag is an equal
+	    sign (U+003D, <q>=</q>) at the end of a line. (It is
+	    usually, but not always, the 76th character.)</p>
+          </div>
+          <div xml:id="CE_xmp">
+	    <head>Content encoding, examples</head>
+	    <p>In order to exmplify these content encoding methods,
+	    here we take a short snippet of sample text taken from a
+	    posting by Lionel Clement on Sat 18 Dec 1999 in which the
+	    second call for papers for the the upcoming
+	    <name>TAG+5</name> conference is presented. The sample is
+	    shown here three times:
+	    <list rend="ordered">
+	      <item>Using multibyte characters (in UTF-8, as is this entire article).</item>
+	      <item>Using only 7-bit US-ASCII characters (i.e., every
+	      character is represented by an octet, of which the first
+	      bit is 0) with characters outside of US-ASCII
+	      represented using the quoted-printable algorithm.</item>
+	      <item>Also using only 7-bit US-ASCII characters, but the
+	      entire passage has been encoded using the base64
+	      algorithm.</item>
+	    </list>
+	    </p>
+            <figure xml:id="charEnc01">
+              <eg>
+      DEUXIÈME APPEL À COMMUNICATIONS
+
+   La cinquième conférence sur les grammaires d'arbres adjoints (TAG) et
+
+autres formalismes proches (d'où le +) aura lieu à l'Université Paris
+7 du 25 au 27 mai 2000 sous l'égide de l'ATALA (Association pour le
+Traitement Automatique des Langues).
+              </eg>
+              <head type="legend">Snippet of plain text — 287 characters in 7 lines</head>
+            </figure>
+            <figure xml:id="charEnc02">
+              <eg>
+      DEUXI=C8ME APPEL =C0 COMMUNICATIONS
+
+   La cinqui=E8me conf=E9rence sur les grammaires d'arbres adjoints (TAG)=
+ et
+
+autres formalismes proches (d'o=F9 le +) aura lieu =E0 l'Universit=E9 Par=
+is
+7 du 25 au 27 mai 2000 sous l'=E9gide de l'ATALA (Association pour le
+Traitement Automatique des Langues).
+              </eg>
+              <head type="legend">Snippet in quoted-printable — 307 characters in 9 lines</head>
+            </figure>
+            <figure xml:id="charEnc03">
+              <eg>
+ICAgICAgREVVWEnITUUgQVBQRUwgwCBDT01NVU5JQ0FUSU9OUwoKICAgTGEgY2lucXVp6G1lIGNv
+bmbpcmVuY2Ugc3VyIGxlcyBncmFtbWFpcmVzIGQnYXJicmVzIGFkam9pbnRzIChUQUcpIGV0Cgph
+dXRyZXMgZm9ybWFsaXNtZXMgcHJvY2hlcyAoZCdv+SBsZSArKSBhdXJhIGxpZXUg4CBsJ1VuaXZl
+cnNpdOkgUGFyaXMKNyBkdSAyNSBhdSAyNyBtYWkgMjAwMCBzb3VzIGwn6WdpZGUgZGUgbCdBVEFM
+QSAoQXNzb2NpYXRpb24gcG91ciBsZQpUcmFpdGVtZW50IEF1dG9tYXRpcXVlIGRlcyBMYW5ndWVz
+KS4K
+              </eg>
+              <head type="legend">Snippet in quoted-printable — 389 characters in 6 lines</head>
+            </figure>
+          </div>
           <div xml:id="CE_NOT">
             <head>Content encoding — NOT!</head>
             <p>It is trivially easy to perform encoding or decoding of
-            a quoted-printable or Base64 encoded file because other
+            a quoted-printable or base64 encoded file because other
             people have written programs to do the work. In GNU/Linux,
             for example, the commands <code>qprint</code> and
             <code>base64</code> will perform either encoding to or
-            decoding from quoted-printable and Base64
-            respectively.</p>
+            decoding from quoted-printable and base64
+            respectively.<note>In fact, these are the commands we used
+            to generate the examples in the previous
+            subsection.</note></p>
             <p>Furthermore, many modern program languages have
             libraries that include functions that perform
-            quoted-printable or Base64 encoding and decoding. But, as
+            quoted-printable or base64 encoding and decoding. But, as
             far as we can tell, XSLT is not one of them. Our reading
             of the XPath 3.1 specification says that it provides the
             capability to encode a string of text <emph>into</emph>
-            Base64, but not to decode Base64 data into a string. There
-            is support for Base64 using the <ref type="bibl"
+            base64, but not to decode base64 data into a string. There
+            is support for base64 using the <ref type="bibl"
             target="#EXPath">EXPath</ref> extensions to XPath.</p>
-            <p>We did not attempt to decode quoted printable or Base64
+            <p>We did not attempt to decode quoted-printable or base64
             encoded content mostly due to a lack of time in this small
             pilot project. That said, we are hesitant to employ EXPath
             for a tool intended for digital humanists, as the only
@@ -844,14 +922,14 @@
         <row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
         <row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
         <row><cell>Organization</cell><cell>[not yet represented]</cell></row>
-        <row><cell>X-cc</cell><cell>correspDesc/correspAction[@type="orig-cc"]/email</cell></row>
+        <row><cell>X-cc</cell><cell><code>correspDesc/correspAction[@type="orig-cc"]/email</code></cell></row>
       </table>
       Note the vast majority of the <code>Comments:</code> fields
       (~93.7%) reproduce the original <code>To:</code> field; in
       addition, all of the <code>X-cc:</code> fields and most of the
       remaining <code>Comments:</code> fields (~5.6%) reproduce the
       original <code>CC:</code> field. The original <code>To:</code>
-      and <code>Cc:</code> fields are otherwise not available in the
+      and <code>CC:</code> fields are otherwise not available in the
       archive.</p>
       
       <p>It is perhaps a little ironic that we prepared many of our examples for this paper from a 1990 conversation on TEI-L
