@@ -961,7 +961,7 @@ KS4K
                      are version, level, and release. The words
                      revision and update, by contrast, are used for
                      minor changes to a file which do not amount to a
-                     new edition.”  The question, of course, is whether
+                     new edition.” The question, of course, is whether
                      to leave this, because it is what we used in
                      Buenos Aires, or to correct it, because there is
                      nothing to gain in being incorrect about it.
@@ -976,8 +976,11 @@ KS4K
              </editionStmt>
              <publicationStmt xml:id="pS_used_in_Buenos_Aires" exclude="#possible_corrected_pS #elided_pS">
                <?ebb This is tag abuse. GitHub is *not* the
-                 publisher. (They may be the <distributor>.) Either way,
-                 a URL neither. ?>
+                 publisher. (They may be the <distributor>.) But either way,
+                 I am not sure a URL alone is appropriate to identify
+		 an agent. But even if it were, *this* URL does not
+		 identify GitHub, it identifies a particular repo,
+		 which has no agency whatsoever. ?>
                <publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
              </publicationStmt>
              <publicationStmt xml:id="possible_corrected_pS" exclude="#pS_used_in_Buenos_Aires #elided_pS">
@@ -1080,27 +1083,30 @@ KS4K
      </div>
      <div xml:id="TEI-post">
        <head>One TEI document for a single post</head>
-       <p>A collection of posts could conceivably be encoded a collection of TEI documents, sharing the same root of <gi>TEI</gi> or <gi>teiCorpus</gi>.
-         For this method, we would apply the same outer <gi>teiHeader</gi> as shown in previous examples, but then supply metadata about each post 
-         in the <gi>teiHeader</gi> elements of the internal <gi>TEI</gi> elements. This approach treats each e-mail message directed to the listserv 
-         more as we would encode written and mailed correspondence.</p>
-         
+       <p>A collection of posts could conceivably be encoded as a
+       collection of TEI documents, sharing the same root of
+       <gi>TEI</gi> or <gi>teiCorpus</gi>. For this method, we would
+       apply the same outer <gi>teiHeader</gi> as shown in previous
+       examples, but then supply metadata about each post in the
+       <gi>teiHeader</gi> elements of the internal <gi>TEI</gi>
+       elements. This approach treats each e-mail message directed to
+       the listserv more as we would encode written and mailed
+       correspondence.</p>
+        
         <div xml:id="TEI-post-titleStmt">
           <head>One TEI document per post with Subject in title statement</head>
           <p>In this example, we supply the e-mail message header information in a <gi>correspDesc</gi> 
             rather than in the <gi>dateline</gi>, and we ventured to
            develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
-           as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the same as the writer).
-      
-         
+           as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the same as the writer).      
          <egXML xmlns="http://www.tei-c.org/ns/Examples">
            <TEI>
              <teiHeader>
                <fileDesc>
-                 <!-- SAME AS PREVIOUS EXAMPLE . . . -->
+                 <!-- same as previous example … -->
                </fileDesc>
                <encodingDesc>
-                 <!-- SAME AS PREVIOUS EXAMPLE . . .  -->
+                 <!-- same as previous example …  -->
                </encodingDesc>
              </teiHeader>
              <TEI xml:id="Web-1990-01-31-0933">
@@ -1199,9 +1205,7 @@ KS4K
                      <p>Apologies for my delay in answering. I was hoping one of our hypertext sages might
                        weigh in with a reply. (But he appears to have been in the
                        <placeName>Caribbean</placeName>, and may not have received the query.)</p>
-                     
-                      <!-- 8 paragraphs omitted. -->
-                     
+                      <!-- 8 paragraphs omitted … -->
                      <p>Perhaps those subscribers to this list who actually work with compound documents
                        and <name type="ML">SGML</name> will be willing to say how they make things work
                        now, and how they would like to see things developing in the future.</p>
@@ -1214,64 +1218,65 @@ KS4K
                    </post>
                  </body>
                </text>
-               
              </TEI>
            </TEI>
-           
-           
          </egXML>
-
-       </p></div>
-       <div xml:id="tei-post-xeno">
-         <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
-         
-         <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
-           of a <gi>TEI</gi> element that stores a single e-mail message. Like the previous example, each email message is stored in 
-           a TEI child of a TEI document, but in this example, the email message metadata has been output in three locations:
-           <list>
-             <item>In the <gi>teiHeader</gi>: <gi>correspDesc</gi> and <gi>xenoData</gi></item>
-             <item>In the <code>text/body</code>: <gi>post</gi> attributes 
-               and <gi>head</gi></item>
-           </list>
-      
-
-         <egXML xmlns="http://www.tei-c.org/ns/Examples">
-           <TEI>
+       </p>
+     </div>
+     <div xml:id="tei-post-xeno">
+       <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
+       <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
+       of a <gi>TEI</gi> element that stores a single e-mail message. Like the previous example, each email message is stored in 
+       a TEI child of a TEI document, but in this example, the email message metadata has been stored in different locations:
+       <list>
+	 <item>in a <gi>correspDesc</gi> within the <gi>teiHeader</gi></item>
+	 <item>in a <gi>xenoData</gi> within the <gi>teiHeader</gi></item>
+	 <item>in the attributes of each <gi>post</gi></item>
+	 <item>in a <gi>head</gi> first child of each <gi>post</gi></item>
+       </list>
+       
+       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+         <TEI>
+           <teiHeader>
+             <fileDesc>
+	       <titleStmt>
+		 <title><!-- basename of input document --></title>
+		 <title type="sub">a corpus of 38787 postings</title>
+	       </titleStmt>
+               <publicationStmt>
+                 <ab>Currently an experimental document. The original source was
+                 published as part of a public mailing list, so this
+                 document similarly is publicly available.</ab>
+               </publicationStmt>
+               <sourceDesc>
+                 <ab>Derived from source file /path/to/INPUT.txt, which
+		 should be a log file from a LISTSERV mailing list.</ab>
+               </sourceDesc>
+             </fileDesc>
+             <encodingDesc>
+	       <appInfo>
+		 <application ident="listserv_log2cmc.xslt" version="0.1">
+		   This file generated 2025-02-25T14:11:16.933643722-05:00 by file:/path/to/listserv_log2cmc.xslt
+		   using /path/to/INPUT.txt as input.
+		 </application>
+	       </appInfo>
+             </encodingDesc>
+            <particDesc>
+              <!-- <listPerson> here, see discussion below … -->
+	    </particDesc>
+           </teiHeader>
+	   <!-- 4 <TEI> elements missing here … -->
+           <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
+		xml:id="TEI-L.txt_msg_00005">
              <teiHeader>
                <fileDesc>
-                 <!-- SAME AS PREVIOUS EXAMPLE . . . -->
-               </fileDesc>
-               <encodingDesc>
-                 <!-- SAME AS PREVIOUS EXAMPLE . . .  -->
-               </encodingDesc>
-             </teiHeader>
-             <TEI n="00005" xmlns:tmp="http://www.wwp.neu.edu/temp/ns"
-             xml:id="TEI-L.txt_msg_00005">
-              <teiHeader>
-               <fileDesc>
                  <titleStmt>
-                   <title>TEI-L posting </title>
+                   <title>TEI-L posting from INPUT.txt, #5</title>
                  </titleStmt>
-                 <publicationStmt>
-                   <ab>Currently an experimental document. The original source was
-                     published as part of a public mailing list, so this
-                     document similarly is publicly available.</ab>
-                 </publicationStmt>
-                 <sourceDesc>
-                   <ab type="desc">The source text file is
-                     a log file from a LISTSERV mailing list.</ab>
-                   <ab type="filepath">/tmp/LISTSERV_to_TEI/TEI-L.txt</ab>
-                 </sourceDesc>
+                 <!-- <publicationStmt> from corpus header repeated here … -->
+		 <!-- <sourceDesc> from corpus header essentially repeated here … -->
                </fileDesc>
-               <encodingDesc>
-                 <appInfo>
-                   <application ident="listserv_log2cmc.xslt" version="0.1">
-                     <desc>This file generated 2024-09-29T13:53:12.055127649-04:00 by file:/home/syd/Documents/tei-work/MM2024_Buenos_Aires/listserv_log2cmc.xslt,
-                       a program intended to convert LISTSERV logs (i.e., an archive of
-                       postings to a LISTSERV mailing list) to TEI, using /tmp/LISTSERV_to_TEI/TEI-L.txt as input.</desc>
-                   </application>
-                 </appInfo>
-               </encodingDesc>
+	       <!-- <encodingDesc> from corpus header essentially repeated here … -->
                <profileDesc>
                  <correspDesc>
                    <correspContext>
@@ -1295,8 +1300,8 @@ KS4K
              </teiHeader>
              <text>
                <body>
-                 <post who="/tmp/LISTSERV_to_TEI/TEI-L.xml#u35395·＠·uicvm.bitnet"
-                   when="1990-02-06T10:54:04-06:00">
+                 <post who="#u35395·＠·uicvm.bitnet"
+                       when="1990-02-06T10:54:04-06:00">
                    <head type="subject">compound documents</head>
                    About compound documents in SGML and in the TEI.  R.P. Weber asked a
                    <lb n="1"/>week ago "could someone please explain the TEI approach to compound
@@ -1305,18 +1310,18 @@ KS4K
                    <lb n="4"/>Apologies for my delay in answering.  I was hoping one of our hypertext
                    <lb n="5"/>sages might weigh in with a reply.  (But he appears to have been in the
                    <lb n="6"/>Caribbean, and may not have received the query.)
-                   <!-- 87 lines deleted here to reduce size of example -->
+                   <!-- 87 lines deleted here to reduce size of example … -->
                    <lb n="88"/>All this is, I repeat, just personal opinion and shouldn't be taken as
                    <lb n="89"/>defining "the" position of the TEI.  (Unless, of course, taking as "the"
                    <lb n="90"/>position will help get a discussion started.)
                    <lb n="91"/>
                    <lb n="92"/>-Michael Sperberg-McQueen
-                   <lb n="93"/> University of Illinois at Chicago</post>
+                 <lb n="93"/> University of Illinois at Chicago</post>
                </body>
              </text>
-             </TEI>
            </TEI>
-         </egXML>
+         </TEI>
+       </egXML>
            
            This encoding stores the information that it is the output of an XSLT process in the <gi>encodingDesc</gi>, and its
            structure is purposefully redundant because it was intended to help preserve the original format of the LISTSERV
