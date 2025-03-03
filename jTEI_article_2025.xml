@@ -188,7 +188,7 @@
 	  tei-l.log_19${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; elif [[
 	  ${f} =~ tei-l.log([012][0-9])([0-9][0-9]) ]] ; then mv ${f}
 	  tei-l.log_20${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; fi ;
-	  done</code> does a nice job) , and there are utilities
+	  done</code> does a nice job), and there are utilities
 	  available for Mac OS that could do this.</note> This allowed
 	  them to be easily examined in a reasonable order and, more
 	  importantly, allowed them to be combined into a single file
