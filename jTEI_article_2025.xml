@@ -1408,8 +1408,9 @@ KS4K
         the author of the posting).</p>
 	<p>However, the only information about each participant in the
 	LISTSERV archives that is available in highly structured form
-	is his or her email address and name. To make matters worse,
-	the name is that which the author’s email client uses, which
+	is his or her email address and name, and even the name is
+	sometimes absent. To make matters worse, the name, when
+	present, is that which the author’s email client uses, which
 	may not be entirely under the author’s control.<note>For
 	example, the Northeastern University mail system puts a user’s
 	name in the <code>From:</code> field in <q>Surname,
@@ -1450,10 +1451,96 @@ KS4K
 	<email>U35395@UICVM.BITNET</email>,
 	<email>U59467@UICVM.BITNET</email>, and
 	<email>cmsmcq@acm.org</email>.</p>
-
-	<?sb HERE?>
+	<p>Something like a TEI <soCalled>personography</soCalled>
+	data structure (a <gi>listPerson</gi> with a series of
+	<gi>person</gi> elements) is called for. In this first pass,
+	our program acutally generates exactly this
+	structure. However, we are unsatisfied with this encoding. But
+	before discussing why we are unsatisfied with our own
+	encoding, it is worth pointing out the two approaches that can
+	be taken when generating the bare bones personography. Given
+	that the only types of information we have are names and email
+	addresses, we could create either a structure of entries
+	identified by email address, each of which lists the various
+	names associated with that address; or a structure of entries
+	identified by name, each of which lists the various email
+	addresses associated with that name.</p>
+	<p>We chose the former (a structure based on email addresses,
+	each of which lists one or more names that are associated with
+	it), primarily because it is a lot easier to convert the email
+	addresses to XML IDs than it is to convert the names to XML
+	IDs. There are only seven characters that occur in our set of
+	email addresses that cannot occur in an XML ID: @, :, !, +, %,
+	/, and ~. Conversely, in the set of names extracted from the
+	<code>From:</code> fields of this dataset, there are over a
+	dozen characters not allowed in an XML ID including some which
+	make manipulating them in XSLT annoying (', ", and
+	&amp;). Others include ©, ¶, ), (, ¡, Ð, and ¼.</p>
+	<p>So for each unique email address in the <code>From:</code>
+	fields of our dataset we generated a <gi>person</gi> element
+	that had an <att>xml:id</att> that was generated from the
+	given email address, and from which the email address could be
+	reproduced.<note>That is, the conversion process from email
+	address to XML ID is deliberately round-tripable. We have not,
+	however, yet written code to convert an ID back into an email
+	address, and likely never will, given that the email address
+	is stored elsewhere in the <gi>person</gi> entry.</note>
+	Inside that <gi>person</gi> element we list each unique name
+	associated with it, and then reproduce the email address.</p>
+	<p>We find it dissatisfying that the only way to include an
+	<gi>email</gi> inside a <gi>person</gi> is to place it inside
+	a <gi>p</gi>, <gi>ab</gi>, or <gi>note</gi> that is itself
+	inside the <gi>person</gi>. This feels somewhat clumsy to us
+	— after all, an email address is a key piece of information
+	many of us wish to record about people. That said, the
+	correspondence between people and email addresses is not at
+	all a simple one, so a simple child relationship may be
+	insufficient. Furthermore, email addresses come and go, so at
+	the very least <gi>email</gi> would have to be added to the
+	<name>att.datable</name> class in order to make it usable as a
+	child of <gi>person</gi>. It might be reasonable instead to
+	make <gi>email</gi> a child of <gi>state</gi> (which, in turn,
+	is available as a child of <gi>person</gi> and a member of
+	att.datable and att.typed).</p>
+	<p>We can imagine further processing that might enhance this
+	data. For example, a routine could check to see the
+	chronologically earliest and latest use of each name and
+	record that information. It might be reasonable to look for
+	each name in <emph>other</emph> entries and generate links
+	between entries that contain the same name. One might group
+	entries by the email address domain name. For each entry,
+	minimum, average, and maximum lenghts of posts might be
+	included. (Although it is an interesting question which MIME
+	part one uses to calculate length, and how the calculation is
+	performed.)</p>
+	<p>So while we are not entirely satisfied with our current
+	<soCalled>personography</soCalled> structure, we are not
+	<emph>dissatisfied</emph> with it, either. But either way, we
+	are uncomfortable with it in principle, because it is not
+	really a personography. It is not a set of data structures
+	about people — it is a set of data structures about email
+	addresses. We could, of course, use generic structures instead
+	of abusing the special purpose elements. An example follows.
+	<egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <list type="emailography">
+            <item xml:id="nsmith·＠·email.unc.edu">
+              <name>Natalia Smith</name>
+              <name>Natasha Smith</name>
+              <email>nsmith@email.unc.edu</email>
+            </item>
+	    <!-- hundreds of other <item>s here -->
+          </list>
+	</egXML>
+	Note the use of the character sequence <code>·＠·</code>
+	(MIDDLE DOT, FULLWIDTH COMMERCIAL AT, MIDDLE DOT; U+00B7,
+	U+FF20, U+00B7) instead of just <q>@</q> (COMMERCIAL AT;
+	U+0040). This is because an <q>@</q> is not permitted in
+	an XML Name, but <q>·</q> and <q>＠</q> are, per <ref type="bibl"
+        target="#XML">XML</ref>.</p>
 	
-	<p></p>
+	
+	<?sb HERE?>
+
 	<p>We prepared an XSLT pipeline process that may be adapted to
 	the preparation of other LISTSERV archives, but identified an
 	interesting issue in establishing the best way to distinctly
@@ -1541,6 +1628,13 @@ KS4K
          Resnick, P., Ed., <title level="m">Internet Message
          Format</title>, RFC 5322, October 2008;
          <idno type="DOI">10.17487/RFC5322</idno>.
+       </bibl>
+       <bibl xml:id="XML">
+	 Bray, Tim; Paoli, Jean; Sperberg-McQueen, C. M.; Maler,
+	 Eve; and Yergeau, François; Eds., <title
+	 level="m">Extensible Markup Language (XML) 1.0 (Fifth
+	 Edition)</title>, November 2008;
+	 <ptr target="https://www.w3.org/TR/REC-xml/"/>.
        </bibl>
      </listBibl>
    </div>
