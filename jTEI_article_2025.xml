@@ -166,9 +166,69 @@
         <head>Conversion from source to XML</head>
         <div xml:id="scraping">
           <head>Scrape from web (attempted) approach</head>
-          <?ebb section on scraping attempt, why it is difficult to
-            do, advantages (if any) and disadvantages ?>
-        </div> 
+          <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
+            retrieve all the  messages in a selected range of months or years, 
+            we attempted to <q>scrape</q> these from the web archive of the TEI-L which can be  
+            accessed on the web in its current home at Penn State University at 
+            <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">https://lists.psu.edu/cgi-bin/wa?A0=TEI-L</ref>.
+            By adjusting this public web URL, one could retrieve a <q>core sample</q> from the TEI-L by entering a date range, such that
+            if one were seeking to retrieve all of the messages between January and March of 1990, the URL that serves these is:
+            <ref target="https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L">https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L</ref>.
+            A significant limitation of this approach, at least in Listerv 17.0 currently used by Penn State, 
+            is that the website access to the archives limits the number of results on a screen so that some results are set to be retrieved on click of a <q>next</q> button.
+            In a programmatic scraping context, this posed some obstacles:
+            <list>
+              <item>no way to request all the results on a single screen, so that we would have to programmatically anticipate how to 
+              locate the last entry and retrieve those that follow it.</item>
+              <item> outputs are alphabetically sorted by first name of sender, when one would expect them to be chronologically sequenced. 
+                (This is not a serious problem because we could control sorting in the scraping process). </item>
+            </list>
+            
+            We expect it is possible to overcome these difficulties, but due to time constraints in launching this project for the 2024 TEI Conference, 
+            we limited ourselves to small samples that would be retrievable on one screen to simplify our processing requirements. We tinkered with the Scrapy Python library and lxml e-tree for parsing XPath, after a 
+            false start in attempting to adapt <ref target="https://github.com/gaalcaras/mailingListScraper">an excellent scraper designed by GitHub user gaalcaras for retrieving messages from Hypermail</ref>, which produces a much simpler web archive than Listserv.</p>
+          <p>Our limited scraping exercise helped us to learn about the Listserv web archive retrieval system. 
+            What was most interesting to us about this method was the discovery that Listserv provides each message a distinct identifier for retrieving it for web view.
+            If we could retrieve the distinct identifiers from URLs and and CGI paths, those could be a reliable way to pull message metadata and content.
+            On the archive results page for a search parameter, we found regular structures like this (retrieved from a search for all of the 1990 messages from January to December).
+            All message data is provided in an HTML table, with each row sharing information about each message, including 
+            a bit of the messsage text content to be shown on mouseover, sender name and email, a date and time stamp (though it is unclear whether this is for circulation by Listserv or from the original email heading), 
+            and finally an HTML anchor pointing to a cgi-bin path to retrieve the message with a distinct identifying string, as shown here:
+     
+            
+           <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
+            <tr>
+              <td class="emphasizedgroup row-l" scope="row"><div class="archive forcewrap"><span onmouseover="showDesc('Dear Colleague:&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;From 27 May to 29 June 1990 I am out of the country and so gone from&amp;lt;br&amp;gt;this address, chiefly to attend the ALLC/ICCH conference in Siegen,&amp;lt;br&amp;gt;Germany. Mail will be kept faithfully for me here, but if I do not&amp;lt;br&amp;gt;reply to your message in early July, please resend your message then. [...]','Re: where is SGML being used','Fri, 29 Jun 90 13:19:30 EDT')" onmouseout="hideDesc()"><a href="/cgi-bin/wa?A2=TEI-L;5bb4caca.9006&amp;S=">Re: where is SGML being used</a></span></div></td>
+              <td class="emphasizedgroup row-l"><div class="archive forcewrap">Willard McCarty &amp;lt;MCCARTY@VM.EPAS.UTORONTO.CA&amp;gt;</div></td>
+              <td class="emphasizedgroup nowrap row-l"><div class="archive forcewrap">Fri, 29 Jun 90 13:19:30 EDT</div></td>
+              <td class="emphasizedgroup right row-l"><a href="/cgi-bin/wa?MD=TEI-L&amp;i=9006&amp;I=1741011559&amp;s=204&amp;l=16&amp;X=O96EB1622E3EEE9B193&amp;Y=eeb4%40psu.edu&amp;URL=A1%3D199001-199012%26L%3DTEI-L%26s%3D0%26X%3DO96EB1622E3EEE9B193%26Y%3Deeb4%2540psu.edu&amp;M_S=Re%3A+where+is+SGML+being+used&amp;M_F=Willard+McCarty+%26lt%3BMCCARTY%40VM.EPAS.UTORONTO.CA%26gt%3B&amp;M_D=Fri%2C+29+Jun+90+13%3A19%3A30+EDT&amp;M_Z=16+Lines&amp;A1DATE=&amp;A2URL=https%3A%2F%2Flists.psu.edu%2Fcgi-bin%2Fwa%3FA2%3Dindex%26L%3DTEI-L%26O%3DA%26X%3DO96EB1622E3EEE9B193%26Y%3Deeb4%2540psu.edu%26s%3D0%26P%3D17156">
+                  <img src="/archives/images/default_archive_delete_22x22.png" alt="Delete Message" title="Delete Message" /></a></td>
+            </tr>
+            </egXML>
+            
+            The cgi-bin locational information is certainly complicated, but appears to be parsable. The distinct identifier for a message can be found in the
+            fourth and last <code>&lt;td&gt;</code> element by retrieving its child <code>&lt;a&gt;</code> and selecting the portion of its <att>href</att> attribute value that
+            begins with <code>&amp;X=</code>, its X parameter. In this example Willard McCarty’s message happens to be the last on the first page of results, and 
+            it is used again by Listserv within the value for its <q>Next</q> button to retrieve the results for the second screen.
+            One can find it as the <q>X</q> parameter once again:
+            
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <input type="button" value="Next Page &amp;#62;" 
+                onclick="clearSessionStorage(); 
+                goTo('/cgi-bin/wa?A1=199001-199012&amp;L=TEI-L&amp;s=250&amp;X=O96EB1622E3EEE9B193&amp;Y=eeb4%40psu.edu')" />
+            </egXML>
+            
+            Our Python scraping experiment could follow these paths to extract URLs for messages, but we decided not to continue
+            the experiment to try to extract Listserv’s web representation of the message data, which posed its own challenges for parsing <q>spaghetti code</q>.
+            Because Listserv provides much cleaner and simpler monthly log text files on request that are far more tractable, we decided to work exclusively with the
+            log files for experiments with converting to Listserv email data to TEI. You can explore <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment/tree/main/logs">the log files for the year 1990</ref> in our GitHub repository and 
+            see how much simpler they are to work with as a basis for conversion. What is missing in those logs, however, is a distinct identifier for each message.
+            So we wonder if, for future experiment, we might pull that data from Listserv’s web archive files to key the logs to the web retrieval system.
+          </p>
+          
+        </div>
+
+        
         <div xml:id="mass-conversion">
           <head>Mass conversion approach</head>
           <p>Our goal for the mass conversion approach was to
@@ -562,9 +622,9 @@
             would be better served by the results of our conversion
             process if we decoded these strings (for example,
             converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to <q>Piotr
-            Bański</q>)<note>This name also appears as
+            Bański</q>),<note>This name also appears as
             <q>=?ISO-8859-2?Q?Piotr_Ba=F1ski?=</q> and
-            <q>=?UTF-8?B?UGlvdHIgQmHFhHNraQ==?=</q>.</note>, and that
+            <q>=?UTF-8?B?UGlvdHIgQmHFhHNraQ==?=</q>.</note>and that
             those performing digital archaeology about how various
             characters were represented by various historical email
             systems would just as soon use the source data rather than
@@ -594,7 +654,7 @@
             <emph>Text</emph> Encoding Initiative version of the data
             we are creating. (In fact, this is what we did for the
             <soCalled>scrape + craft encoding</soCalled> approach
-            described in <ptr target="#scraping"/>.) But it would also
+            described in <ptr type="crossref" target="#scraping"/>.) But it would also
             be quite reasonable, and quite possibly helpful to future
             scholars and interested parties, to retain the information
             in other parts of postings to the mailing list. But doing
@@ -659,7 +719,7 @@
             <div xml:id="CE_intro">
               <head>Why content encoding is required</head>
               <p>Email servers, etc., use at most 8 bits per
-              character. (And, as pointed out in <ptr
+              character. (And, as pointed out in <ptr type="crossref"
               target="#Encoded-word_syntax"/>, only 7 bits per
               character in the header.) It is possible to represent
               256 characters in 8 bits. Thus any message body that
@@ -974,15 +1034,6 @@ KS4K
                <edition xml:id="altEd1" exclude="#origEd #altEd2">Second experimental (“alpha”) edition</edition>
                <edition xml:id="altEd2" exclude="#origEd #altEd1">0.0.2a</edition>
              </editionStmt>
-             <publicationStmt xml:id="pS_used_in_Buenos_Aires" exclude="#possible_corrected_pS #elided_pS">
-               <?ebb This is tag abuse. GitHub is *not* the
-                 publisher. (They may be the <distributor>.) But either way,
-                 I am not sure a URL alone is appropriate to identify
-                 an agent. But even if it were, *this* URL does not
-                 identify GitHub, it identifies a particular repo,
-                 which has no agency whatsoever. ?>
-               <publisher>https://github.com/tei-cmc-experiment/tei-cmc-experiment</publisher>
-             </publicationStmt>
              <publicationStmt xml:id="possible_corrected_pS" exclude="#pS_used_in_Buenos_Aires #elided_pS">
                <authority>
                  <persName>Elisa Beshero-Bondar</persName>
@@ -998,7 +1049,7 @@ KS4K
              </publicationStmt>
              <publicationStmt xml:id="elided_publ_stmt" exclude="#pS_used_in_Buenos_Aires #possible_corrected_pS">
                <ab>This experimental document is not intended to be
-               published indenpendantly.</ab>
+               published independantly.</ab>
              </publicationStmt>
              <sourceDesc>
                <bibl>
@@ -1034,7 +1085,7 @@ KS4K
        <p>In the <gi>text</gi> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
        Since LISTSERV delivers the 
        logs as files representing an entire month of posts, we supplied a unique identifier to each monthly log collection on
-       <code>text/body/div[@type="log"]/@xml:id</code>. Within this <tag>&lt;div type="log"&gt;</tag>, we encoded each e-mail message
+       <code>text/body/div[@type="log"]/@xml:id</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
        inside a <gi>post</gi> element, drawn from the new CMC chapter.</p>
        <p>To store the metadata for individual e-mail messages, in this method we encoded a <gi>dateline</gi> element, which contained
        <gi>ref</gi> elements to store information about the transmission of the message within its parent <gi>post</gi>, thus:
@@ -1393,7 +1444,7 @@ KS4K
            to the recipient.</p>
        </div>
      </div>
-      <div>
+      <div xml:id="emailography">
         <head>Emailography?</head>
         <p>An archive of an email list is likely to, and in our cose
         does, contain posts from many members of its community. And
