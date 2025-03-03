@@ -87,7 +87,7 @@
           the TEI-L listserv, and the mapping of e-mail contents and metadata to XML and TEI. 
           Our experiments with TEI data modeling involve adapting encoding models from the new
           <title level="a">Computer Mediated Communication</title> chapter, as well as 
-          correspondence and personogoraphy in the <title>TEI Guidelines</title>. We experimented
+          correspondence and personography in the <title>TEI Guidelines</title>. We experimented
           with very different approaches in retrieving and mapping Listerv data, and we faced challenges
           that reflect changing technologies in character encoding and e-mail transmission, as well as
           conceptual difficulties in reliably tracing individual contributions over years and decades. 
@@ -98,67 +98,67 @@
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>One of the goals of digital humanists, and one of the
-        points of digitial humanities, is cultural memory. It is a
+        <p>One of the goals of digital humanists and one of the
+        points of digital humanities is cultural memory. It is a
         common goal to preserve the results of humanistic endeavors in
-        a manner that one hopes will be easy to access many years in
-        the future, and allows for scholarly examination and inquiry.
+        a manner that may be easy to access many years in
+        the future, and that allows for scholarly examination and inquiry.
         From the last quarter of the twentieth century to the present,
         one venue for communication among humans has been email, and
         in particular the email discussion list. Thus it is to be
         expected that digital humanists will want to preserve email
-        discussion lists in a manner that is likely to survive the ups
-        and downs of the word processor market, and is ammenable to
+        discussion lists in a way that is likely to survive the ups
+        and downs of the word processor market and is ammenable to
         scholarly processing.</p>
-        <p>What is not expected is that the Text Encoding Initiative
-        would not provide a dedicated mechanism for encoding email,
-        but it does not. TEI does provide mechanisms for encoding
+        <p>It may be surprising that the Text Encoding Initiative
+        does not yet provide a dedicated mechanism for encoding email.
+        TEI does provide mechanisms for encoding
         <emph>physical</emph> letters and chains of
-        correspondence. There are quite a few similarities — like a
-        letter, a piece of email is written by an author and sent to a
+        correspondence. Certainly there are quite a few similarities between letters
+        and email. Like a letter, a piece of email is written by an author and sent to a
         recipient at a particular point in time. But physical letters
         do not have such a sharp demarcation between data &amp;
-        metadata, rarely have multiple copies of the same content in
+        metadata, rarely contain multiple copies of the same content in
         different formats (typically HTML and plain text), and never
-        suffer character encoding ambiguities. (Conversely, email does
+        suffer character encoding ambiguities. Conversely, email does
         not have seals or stamps or any of the inconsistencies present
-        in any set of manuscripts.)</p>
-        <p>TEI also provides a (new) mechanism for encoding
+        in any set of manuscripts.</p>
+        <p>As of 2024, TEI now provides a mechanism for encoding
         computer-mediated communication (CMC). It is intended,
         however, for systems like Twitter or Tik-Tok rather than for
-        email. Thus it is not yet known how well its encoding system
-        could be applied to email. Thus the impetus for this project —
+        email, and it is not yet known how well its encoding system
+        could be applied to email. Thus the impetus for this project:
         can TEI, with its new CMC chapter, be used to encode an email
         discussion list?</p>
         <p>We decided the TEI-L discussion list would make an
         excellent test case. It is a large resource that spans decades
-        — the first post was on <date when="1990-01-08">Mon 08 Jan
-        90<!-- while I was still living in Pasedena, 6 days after I
-        got my MICP certification —sb --></date> — from mailing list
+        from mailing list
         software (LISTSERV) with which we are somewhat
         familiar. Furthermore, because we had recently moved the list
-        from Brown University to Penn State University, getting access
-        to the raw archives from its beginning to the day the list was
+        from Brown University to Penn State University, accessing
+        the raw archives from its beginning to the day the list was
         moved would be trivial. But most of all, the list is
-        (obviously) of significant interest to the TEI community. Its
+        obviously of significant interest to the TEI community. Its
         contents provide a treasure trove of insights into the early
-        days of text encoding and digital humanities. (The list was
+        days of text encoding and digital humanities. The first post was on 
+          <date when="1990-01-08">Mon 08 Jan 90<!-- while I was still living in Pasedena, 6 days after I
+        got my MICP certification —sb --></date>), so the list was
         started months before the first edition of P1, and years
-        before the advent of XML.)</p>
+        before the advent of XML.</p>
         <!-- gold mine; heritage dig site; core sample; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
         and that most of our attention would be directed towards the more interesting
         problem of deciding exactly how to encode it in TEI. However, it turns
-        out that both parts were problematic — it was very difficult to convert
+        out that both parts were problematic. It was very difficult to convert
         the data into XML, and in several cases there is no TEI encoding that is
         really satisfactory.</p>
-        <p>Our two approaches were
+        <p>We took two approaches to encoding the TEI-L listserv data in TEI:
         <list>
           <item>an automated conversion of mass data to a basic
           TEI representation for archiving and potential later
           enhancement</item>
-          <item>a craft encoding of a short range of months or
-          years worth of posts</item>
+          <item>a craft encoding of a <q>core sample</q> of the list, 
+            holding a short range of months or years worth of posts.</item>
         </list>
         </p>
       </div>
