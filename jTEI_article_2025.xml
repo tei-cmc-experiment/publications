@@ -219,11 +219,12 @@
             </egXML>
             
             Our Python scraping experiment could follow these paths to extract URLs for messages, but we decided not to continue
-            the experiment to try to extract Listserv’s web representation of the message data, which posed its own challenges for parsing <q>spaghetti code</q>.
+            the experiment to try to extract Listserv’s web representation of the message data, because they posed their own challenges for parsing <q>spaghetti code</q> and we could proceed more efficiently 
+            with a simpler resource for the email message data.
             Because Listserv provides much cleaner and simpler monthly log text files on request that are far more tractable, we decided to work exclusively with the
             log files for experiments with converting to Listserv email data to TEI. You can explore <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment/tree/main/logs">the log files for the year 1990</ref> in our GitHub repository and 
             see how much simpler they are to work with as a basis for conversion. What is missing in those logs, however, is a distinct identifier for each message.
-            So we wonder if, for future experiment, we might pull that data from Listserv’s web archive files to key the logs to the web retrieval system.
+            So for a future experiment, we may pull the message identifiers from Listserv’s web archive files in order to key the logs to the web retrieval system.
           </p>
           
         </div>
@@ -237,7 +238,7 @@
           XSLT. That end date was chosen because it was the day the
           mailing list was moved from Brown University’s LISTSERV to
           Penn State University’s LISTSERV. This fact meant we could
-          obtain the entire dataset directly from the Brown listmaster
+          obtain the entire dataset as log text files directly from the Brown listmaster
           without needing to worry about merging in data from PSU or
           about posts made just after we obtained the data. Peter
           DiCamillo, the Brown listmaster, sent us 412 separate files,
@@ -1008,31 +1009,10 @@ KS4K
          <teiHeader>
            <fileDesc>
              <titleStmt>
-               <title>Text Encoding Initiative public discussion list</title>
+               <title>Text Encoding Initiative public discussion list: January and February 1990</title>
              </titleStmt>
              <editionStmt>
-               <?ebb I do not see how which months were used as
-                     input is something that should be described as the
-                     edition of the encoded file. From Guidelines
-                     2.2.2: “the term 'edition' may be used for a
-                     particular state of a machine-readable text at
-                     which substantive changes are made and
-                     fixed. Synonymous terms used in these Guidelines
-                     are version, level, and release. The words
-                     revision and update, by contrast, are used for
-                     minor changes to a file which do not amount to a
-                     new edition.” The question, of course, is whether
-                     to leave this, because it is what we used in
-                     Buenos Aires, or to correct it, because there is
-                     nothing to gain in being incorrect about it.
-                     I have added @xml:id and @exclude to make explicit
-                     for your benefit that we should only use one of the
-                     three sample encodings below. They should be
-                     removed once we have decided how to do this. ?>
-               <edition xml:id="origEd" exclude="#altEd1 #altEd2">January and February 1990 in the TEI Listserv</edition>
-               <?ebb I would either use something like one of the following or just drop the entire <editionStmt>. ?>
-               <edition xml:id="altEd1" exclude="#origEd #altEd2">Second experimental (“alpha”) edition</edition>
-               <edition xml:id="altEd2" exclude="#origEd #altEd1">0.0.2a</edition>
+               <edition>Second experimental (“alpha”) edition</edition>
              </editionStmt>
              <publicationStmt xml:id="possible_corrected_pS" exclude="#pS_used_in_Buenos_Aires #elided_pS">
                <authority>
