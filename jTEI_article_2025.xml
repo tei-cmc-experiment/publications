@@ -1406,10 +1406,10 @@ KS4K
         structure to indicate who is the author of the posting (using
         <att>who</att>, a pointer to the structured information about
         the author of the posting).</p>
-	<p>However, the only information about each participant in the
+	<p>However, the only information about individual participants in the
 	LISTSERV archives that is available in highly structured form
-	is his or her email address and name, and even the name is
-	sometimes absent. To make matters worse, the name, when
+	are their email addresses and names, and even the names are
+	sometimes absent. To make matters worse, a name, when
 	present, is that which the author’s email client uses, which
 	may not be entirely under the author’s control.<note>For
 	example, the Northeastern University mail system puts a user’s
@@ -1425,7 +1425,7 @@ KS4K
 	further information about parties involved, and as a place for
 	the <att>who</att> attribute of <gi>post</gi> to point. But
 	how should we structure this set information? Eschewing
-	complex calculations or huieristics for now, we only have two
+	complex calculations or heuristics for now, we only have two
 	relevant pieces of information about the sender of any given
 	piece of email: a name and an email address. And even though
 	there is a strict 1:1 relationship between these pieces of
@@ -1453,13 +1453,12 @@ KS4K
 	<email>cmsmcq@acm.org</email>.</p>
 	<p>Something like a TEI <soCalled>personography</soCalled>
 	data structure (a <gi>listPerson</gi> with a series of
-	<gi>person</gi> elements) is called for. In this first pass,
-	our program acutally generates exactly this
-	structure. However, we are unsatisfied with this encoding. But
-	before discussing why we are unsatisfied with our own
-	encoding, it is worth pointing out the two approaches that can
-	be taken when generating the bare bones personography. Given
-	that the only types of information we have are names and email
+	<gi>person</gi> elements) is called for. Our first attempted program
+	actually generates exactly this personography structure, but 
+	we are unsatisfied with this encoding. Before discussing why 
+	we are unsatisfied with our own encoding, it is worth pointing out 
+	the two approaches that can be taken when generating the bare bones personography. 
+	Given that the only types of information we have are names and email
 	addresses, we could create either a structure of entries
 	identified by email address, each of which lists the various
 	names associated with that address; or a structure of entries
@@ -1470,12 +1469,14 @@ KS4K
 	it), primarily because it is a lot easier to convert the email
 	addresses to XML IDs than it is to convert the names to XML
 	IDs. There are only seven characters that occur in our set of
-	email addresses that cannot occur in an XML ID: @, :, !, +, %,
-	/, and ~. Conversely, in the set of names extracted from the
+	email addresses that cannot occur in an XML ID: <code>@</code>, 
+	  <code>:</code>, <code>!</code>, <code>+</code>, <code>%</code>,
+	/, and <code>~</code>. Conversely, in the set of names extracted from the
 	<code>From:</code> fields of this dataset, there are over a
 	dozen characters not allowed in an XML ID including some which
-	make manipulating them in XSLT annoying (', ", and
-	&amp;). Others include ©, ¶, ), (, ¡, Ð, and ¼.</p>
+	make manipulating them in XSLT annoying (<code>'</code>, <code>"</code>, and
+	<code>&amp;</code>). Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
+	  <code>(</code>, <code>¡</code>, <code>Ð</code>, and <code>¼</code>.</p>
 	<p>So for each unique email address in the <code>From:</code>
 	fields of our dataset we generated a <gi>person</gi> element
 	that had an <att>xml:id</att> that was generated from the
