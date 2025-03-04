@@ -84,15 +84,22 @@
       <div type="abstract" xml:id="abstract">
         <p><q>Can the archives of an email list be stored in TEI?</q> This paper 
           addresses this question with special attention to the challenges of data retrieval from
-          the TEI-L listserv, and the mapping of e-mail contents and metadata to XML and TEI. 
+          the TEI-L listserv, and the mapping of email contents and metadata to XML and TEI. 
           Our experiments with TEI data modeling involve adapting encoding models from the new
           <title level="a">Computer Mediated Communication</title> chapter, as well as 
           correspondence and personography in the <title>TEI Guidelines</title>. We experimented
           with very different approaches in retrieving and mapping Listerv data, and we faced challenges
-          that reflect changing technologies in character encoding and e-mail transmission, as well as
+          that reflect changing technologies in character encoding and email transmission, as well as
           conceptual difficulties in reliably tracing individual contributions over years and decades. 
-          Ultimately we find that yes, it is possible to store the archives of an email list in TEI,
-          and the methods one chooses may depend on the scope of a LISTERV archival project.</p>
+          Ultimately we find that yes, it is possible <?ebb [1]?> to store the archives of an email list in TEI,
+          and the methods one chooses will likely depend on the scope of a LISTERV archival project.</p>
+	  <?ebb
+	    [1] I would like to qualify this sentence
+	    somehow. Something like one of the following.
+	    * Ultimately we find that yes, it is possible to store at least the plain text portions of the archives of an email list in TEI,
+	    * Ultimately we believe that yes, it is possible (although difficult) to store the archives of an email list in TEI,
+	    * Although the task (is|was) harder than we expected, ultimately we find that yes, it is possible to store the archives of an email list in TEI,
+	    ?>
       </div>
     </front>
     <body>
@@ -207,7 +214,7 @@
             </egXML>
             
             The cgi-bin locational information is certainly complicated, but appears to be parsable. The distinct identifier for a message can be found in the
-            fourth and last <code>&lt;td&gt;</code> element by retrieving its child <code>&lt;a&gt;</code> and selecting the portion of its <att>href</att> attribute value that
+            fourth and last <gi>td</gi> element by retrieving its child <gi>a</gi> and selecting the portion of its <att>href</att> attribute value that
             begins with <code>&amp;X=</code>, its X parameter. In this example Willard McCarty’s message happens to be the last on the first page of results, and 
             it is used again by Listserv within the value for its <q>Next</q> button to retrieve the results for the second screen.
             One can find it as the <q>X</q> parameter once again:
@@ -294,9 +301,9 @@
             other posts.)</p>
             <p>But are there any cases of 73 equal signs in a row that
             do occupy the entire line, but are <emph>not</emph> intended
-            to be a post-begin delimiter? We know that every e-mail
-            message (and thus every post to an e-mail list) starts with
-            a sequence of metadata records. E-mail metadata records are
+            to be a post-begin delimiter? We know that every email
+            message (and thus every post to an email list) starts with
+            a sequence of metadata records. Email metadata records are
             in a very specific format: the field name, which must be
             composed of one or more of the printable 7-bit ASCII
             characters except colon, followed by a colon, followed by a
@@ -313,7 +320,7 @@
             when="1992-09-10">Thu 10 Sep 92</date> Wendy Plotkin, who
             was at the time a PhD candidate in History at UIC and who
             served as the TEI’s research assistant (1990–1999), posted
-            e-mail that contained a copy of e-mail from Professor Robert
+            email that contained a copy of email from Professor Robert
             Jones of the University of Illinois Urbana-Champaign to a
             CETH mailing list, including a line of 73 equal signs which
             was used to separate the part she wrote from the part
@@ -334,7 +341,7 @@
           </div>
           <div xml:id="characters_illegal">
             <head>Illegal characters (for XML)</head>
-            <p>Early e-mail systems used ASCII (7-bit) characters
+            <p>Early email systems used ASCII (7-bit) characters
             only. Thus there were 128 available code points (0–2⁷-1, or
             0–127). Of those 128 available code points, only 99 of them
             are legal XML characters. The remaining 29 characters (for
@@ -349,13 +356,13 @@
             data content. But production 14 needs to be read within the
             limits already established by production 2 — which prohibits
             these control characters.</note> While neither of us is an
-            expert on early e-mail systems, we suspect that the
+            expert on early email systems, we suspect that the
             designers never intended these characters to be used in
-            e-mail, but did not feel it necessary to do anything to
+            email, but did not feel it necessary to do anything to
             prevent them from being used, as the average user of a
             computer had no way of typing them, and thus would find it
-            very difficult to get them into an e-mail.<note>In fact,
-            early definitions of e-mail messages assert they are just a
+            very difficult to get them into an email.<note>In fact,
+            early definitions of email messages assert they are just a
             sequence of ASCII characters in the range of 1–127; see <ref
             type="bibl" target="#RFC2822">rfc2822</ref>. Later
             RFCs updated this to say <q><!-- uote source="#RFC5322"-->the use of US-ASCII control
@@ -522,6 +529,46 @@
           our program to do so, we simply increased Java heap space
           when running this transofrm (to 5 GiB).</p>
         </div>
+	<div xml:id="dates">
+	  <head>Date inconsistencies</head>
+	  <p>We think it is a given that having a machine-actionable
+	  date &amp; timestamp for each posting is an important
+	  feature of a preservation format for an archive of email
+	  messages. In TEI such a timestamp is typically stored on a
+	  <att>when</att> attribute in the W3C format (itself a subset
+	  of ISO 8601:2000 2nd edition format).</p>
+	  <p>Early on in the development of our XSLT program we were
+	  quite worried about how to go about parsing the values of
+	  the <code>Date:</code> header fields. While the format of
+	  this field is reasonably strictly defined by <ref
+	  type="bibl" target="#RFC5322">rfc5322</ref>, that standard
+	  was not published until 18 years after mailling list was
+	  started. We expected the dates to be in dozens of different,
+	  potentially incompatable, formats.</p>
+	  <p>After some analysis we were pleasantly surprised to find
+	  that only 21 different formats were represented in this
+	  dataset. (The frequency of each format is listed in <ptr
+	  type="crossref" target="#appendix02"/>.) Interestingly, most
+	  of the variation was in the time zone offset
+	  indication. Discounting that variation, there were only four
+	  different formats. The variation in time zone indication,
+	  however, was at times ambiguous. For example, the time zone
+	  <q>BST</q> appears in the <code>Date:</code> field of over
+	  twenty posts. Given that the TEI was partially based in
+	  Great Britain, it is very likely that <q>BST</q> means
+	  <q>British Summer Time</q> (+01:00). But it is also used for
+	  <q>Brazillian Summer Time</q> (-02:00), <q>Bangladesh
+	  Standard Time</q> (+06:00), and <q>Bougainville Standard
+	  Time</q> (+11:00).</p>
+	  <p>In the end, we were able to parse all 38,787
+	  <code>Date:</code> fields using the regular expression
+	  capability of XSLT 3.0, plus a pair of maps to convert month
+	  names to 2-digit numbers and the various time zone offset
+	  indications we had found in our analsys to the correct
+	  format. Some of those time zone mappings were guesses based
+	  on the top level domain of the email addresses that had sent
+	  mail with ambiguous time zone.</p>
+	</div>
         <div xml:id="conversion_complexities">
           <head>Unsolved conversion complexities: MIME</head>
           <p>MIME stands for <term>Multipurpose Internet Mail
@@ -569,15 +616,15 @@
           multipart).</p>
           <div xml:id="Encoded-word_syntax">
             <head>ASCII work-around: Encoded-word syntax</head>
-            <p>As mentioned above, early e-mail used only 7-bit ASCII
+            <p>As mentioned above, early email used only 7-bit ASCII
             characters for the entire message. Later updates to the
-            specifications allowed for the body of the e-mail message
-            to use a different character set, but the e-mail headers
+            specifications allowed for the body of the email message
+            to use a different character set, but the email headers
             (that is, the lines of metadata at the top) are still to
             this day limited to 7-bit ASCII. Most of the world’s
             printable characters, of course, are not available in that
             set of 96 printable characters. To allow for characters
-            outside the 7-bit ASCII set to be used in e-mail headers
+            outside the 7-bit ASCII set to be used in email headers
             (e.g., in the name of the sender or recipient of an
             email), an escape system called <term>encoded-word
             syntax</term> may be employed. (See <ref
@@ -634,7 +681,7 @@
             anywhere near enough time in this pilot project to attempt
             to write a word-encoded syntax decoder in XSLT.</p>
           </div>
-          <div>
+          <div xml:id="MIMEsep">
             <head>Separating MIME parts</head>
             <p>Email that uses MIME is divided into one or more
             <term>parts</term>, each of which contains a singe type of
@@ -683,15 +730,15 @@
             data other than plain text. Some datatypes easily lend
             themselves to TEI encoding; counter-intuitively, these are
             the datatypes for which there is really no reasonable XML
-            representation. Imagine, e.g., if one of the MIME parts is
-            of type image/jpeg or audio/ogg. (None of them are, as the
-            rules of this particular mailing list disallowed most
-            binary attachments to help prevent spread of malware.) The
-            only real possibilies are <list rend="inline"><item>to
-            ignore it; </item><item>to put the binary data in a
-            separate .jpg or .ogg file and point to it; or
-            </item><item>to encode the data in a <gi>binaryObject</gi>
-            element.</item></list></p>
+            representation. Imagine, for example, that one of the MIME
+            parts is of type image/jpeg or audio/ogg. (None of them
+            are, as the rules of this particular mailing list
+            disallowed most binary attachments to help prevent spread
+            of malware.) The only real possibilies are <list
+            rend="inline"><item>to ignore it, </item><item>to put the
+            binary data in a separate .jpg or .ogg file and point to
+            it, or </item><item>to encode the data in a
+            <gi>binaryObject</gi> element.</item></list></p>
             <p>But what of data typed as some form of text other than
             text/plain? In many cases, the MIME part is another
             representation of the same content as a text/plain MIME
@@ -760,7 +807,7 @@
               sets. When the UTF-8 character set is in use,
               <q>=C5=84</q> can be used to represent <q>ń</q>, because
               the codepoint 324 (hexadecimal 0144) is mapped to
-              <q>ń</q> in Unicode, and is too large to be represented
+              <q>ń</q> in Unicode; 324 is too large to be represented
               in a single octet, so it is broken up into two.<note>The
               octets are 11000101 10000100. In the first octet the
               first 3 bits (110) assert that this number is expressed
@@ -785,7 +832,7 @@
               alphabet in both upper &amp; lower cases. Thus
               <q>Espa=C3=B1ola</q> is normally used for the string
               <q>Española</q> rather than
-              <q>=45=73=70=61=C5=84=6F=6C=61</q>.<note>This means that
+	      <q>=45=73=70=61=C3=B1=6F=6C=61</q>.<note>This means that
               when used on Western texts that have a high percentage
               of characters in the standard US-ASCII set,
               quoted-printable results in relatively easy to read,
@@ -815,11 +862,14 @@
               system because it is the same in US-ASCII, ISO 646, and
               ISO 10646 (i.e., Unicode), etc.<note>The
               <soCalled>alphabet</soCalled> used to represent the 64
-              possible values is A–Z, a–z, 0–9, +, and /.</note>
-              Each of those characters, of course, is represented by
-              an octet in the encoded version of the data. So every 24
-              bits of unencoded data takes 32 bits to represent in the
-              encoded form, hence the 33% increase in size.</p>
+              possible values is <code>A</code>–<code>Z</code>,
+              <code>a</code>–<code>z</code>,
+              <code>0</code>–<code>9</code>, <code>+</code>, and
+              <code>/</code>.</note> Each of those characters, of
+              course, is represented by an octet in the encoded
+              version of the data. So every 24 bits of unencoded data
+              takes 32 bits to represent in the encoded form, hence
+              the 33% increase in size.</p>
               <p>So the string <q>Española</q> is encoded in base64 as
               <q>RXNwYcOxb2xhCg==</q>. The equal signs are used at the
               end for padding, as the input could not be divided into
@@ -866,7 +916,7 @@
             </list>
             </p>
             <figure xml:id="charEnc01">
-              <eg>
+              <eg xml:lang="fr">
       DEUXIÈME APPEL À COMMUNICATIONS
 
    La cinquième conférence sur les grammaires d'arbres adjoints (TAG) et
@@ -878,7 +928,7 @@ Traitement Automatique des Langues).
               <head type="legend">Snippet of plain text — 287 characters in 7 lines</head>
             </figure>
             <figure xml:id="charEnc02">
-              <eg>
+              <eg xml:lang="fr">
       DEUXI=C8ME APPEL =C0 COMMUNICATIONS
 
    La cinqui=E8me conf=E9rence sur les grammaires d'arbres adjoints (TAG)=
@@ -892,7 +942,7 @@ Traitement Automatique des Langues).
               <head type="legend">Snippet in quoted-printable — 307 characters in 9 lines</head>
             </figure>
             <figure xml:id="charEnc03">
-              <eg>
+              <eg xml:lang="fr">
 ICAgICAgREVVWEnITUUgQVBQRUwgwCBDT01NVU5JQ0FUSU9OUwoKICAgTGEgY2lucXVp6G1lIGNv
 bmbpcmVuY2Ugc3VyIGxlcyBncmFtbWFpcmVzIGQnYXJicmVzIGFkam9pbnRzIChUQUcpIGV0Cgph
 dXRyZXMgZm9ybWFsaXNtZXMgcHJvY2hlcyAoZCdv+SBsZSArKSBhdXJhIGxpZXUg4CBsJ1VuaXZl
@@ -914,14 +964,14 @@ KS4K
             respectively.<note>In fact, these are the commands we used
             to generate the examples in the previous
             subsection.</note></p>
-            <p>Furthermore, many modern program languages have
-            libraries that include functions that perform
-            quoted-printable or base64 encoding and decoding. But, as
-            far as we can tell, XSLT is not one of them. Our reading
-            of the XPath 3.1 specification says that it provides the
-            capability to encode a string of text <emph>into</emph>
-            base64, but not to decode base64 data into a string. There
-            is support for base64 using the <ref type="bibl"
+            <p>Furthermore, many modern programming languages have
+            libraries with functions that perform quoted-printable or
+            base64 encoding and decoding. But, as far as we can tell,
+            XSLT is not one of them. Our reading of the XPath 3.1
+            specification says that it provides the capability to
+            encode a string of text <emph>into</emph> base64, but not
+            to decode base64 data into a string. There is support for
+            base64 using the <ref type="bibl"
             target="#EXPath">EXPath</ref> extensions to XPath.</p>
             <p>We did not attempt to decode quoted-printable or base64
             encoded content mostly due to a lack of time in this small
@@ -929,7 +979,7 @@ KS4K
             for a tool intended for digital humanists, as the only
             EXPath-capable processors we are aware of are payware.</p>
           </div>
-            <?syd HERE?>
+            <?sb HERE?>
         </div>
         </div>
       </div> <!-- conversion_complexities -->
@@ -937,7 +987,7 @@ KS4K
     <div xml:id="mapping-to-TEI">
       <head>Mapping to TEI</head>
       <!--ebb: To start here. -->
-      <p>In this section we represent some experimental modelings of e-mail listserv data in TEI encoding. 
+      <p>In this section we represent some experimental modelings of email listserv data in TEI encoding. 
         We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
         Communication (CMC) and from TEI encoding for correspondence. In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
@@ -949,7 +999,7 @@ KS4K
         In the interests of facilitating comparison of our encoding decisions, we have truncated the body of each message
         in the examples to show only the first and last few lines.</p>
       
-      <p>The e-mail headers that were present in the entire dataset
+      <p>The email headers that were present in the entire dataset
       include the following information fields:
       <list>
         <item>Date</item>
@@ -994,7 +1044,7 @@ KS4K
       archive.</p>
       
       <p>It is perhaps a little ironic that we prepared many of our examples for this paper from a 1990 conversation on TEI-L
-        about encoding compound documents, given the compound nature of an e-mail listserv archive. In preparing distinct modelings 
+        about encoding compound documents, given the compound nature of an email listserv archive. In preparing distinct modelings 
         of a TEI archive, we followed the method of the LISTSERV monthly log documents that store the messages as a chronological sequence, 
         and we needed to make decisions about how to associate related messages that reply or respond to one another.</p>
      
@@ -1052,10 +1102,10 @@ KS4K
            <encodingDesc>
              <samplingDecl>
                <p>Sampled by requesting monthly logs from <name type="API">LISTS.PSU.EDU</name> by
-               e-mail with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
+               email with GET commands: <code>GET TEI-L LOG 9001</code> (for January 1990). One log
                command was issued for each month. See <ptr type="APIdoc"
                target="https://www.lsoft.com/manuals/17.0/commands/14File-serverandwebfunctioncomma.html"/>. 
-               Received by e-mail between <date from="2024-09-21" to="2024-09-22">September 21
+               Received by email between <date from="2024-09-21" to="2024-09-22">September 21
                and 22, 2024</date>.</p>
              </samplingDecl>
            </encodingDesc>
@@ -1065,9 +1115,9 @@ KS4K
        <p>In the <gi>text</gi> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
        Since LISTSERV delivers the 
        logs as files representing an entire month of posts, we supplied a unique identifier to each monthly log collection on
-       <code>text/body/div[@type="log"]/@xml:id</code>. Within this <code>&lt;div type="log"&gt;</code>, we encoded each e-mail message
+       <code>text/body/div[@type="log"]/@xml:id</code>. Within this <tag>div type="log"</tag>, we encoded each email message
        inside a <gi>post</gi> element, drawn from the new CMC chapter.</p>
-       <p>To store the metadata for individual e-mail messages, in this method we encoded a <gi>dateline</gi> element, which contained
+       <p>To store the metadata for individual email messages, in this method we encoded a <gi>dateline</gi> element, which contained
        <gi>ref</gi> elements to store information about the transmission of the message within its parent <gi>post</gi>, thus:
        <table xml:id="field_mapping2">
          <row><cell>Date</cell><cell><code>date/@when</code> or <code>date/text()</code></cell></row>
@@ -1081,7 +1131,7 @@ KS4K
        the Subject field in a <gi>title</gi> element, supplying a
        <att>level</att> with a value of <val>a</val>, which seems
        fitting for a portion of an assembled collection. Here is an
-       example encoding of a single e-mail message encoded as a
+       example encoding of a single email message encoded as a
        <gi>post</gi> following this method:
        <egXML xmlns="http://www.tei-c.org/ns/Examples">
          <post xml:id="Web-1990-01-31-0933">
@@ -1120,13 +1170,13 @@ KS4K
        apply the same outer <gi>teiHeader</gi> as shown in previous
        examples, but then supply metadata about each post in the
        <gi>teiHeader</gi> elements of the internal <gi>TEI</gi>
-       elements. This approach treats each e-mail message directed to
+       elements. This approach treats each email message directed to
        the listserv more as we would encode written and mailed
        correspondence.</p>
         
         <div xml:id="TEI-post-titleStmt">
           <head>One TEI document per post with Subject in title statement</head>
-          <p>In this example, we supply the e-mail message header information in a <gi>correspDesc</gi> 
+          <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
             rather than in the <gi>dateline</gi>, and we ventured to
            develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
            as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the same as the writer).      
@@ -1257,7 +1307,7 @@ KS4K
      <div xml:id="tei-post-xeno">
        <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
        <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
-       of a <gi>TEI</gi> element that stores a single e-mail message. Like the previous example, each email message is stored in 
+       of a <gi>TEI</gi> element that stores a single email message. Like the previous example, each email message is stored in 
        a TEI child of a TEI document, but in this approach, the email message metadata has been stored in different locations:
        <list>
          <item>in a <gi>correspDesc</gi> within the <gi>teiHeader</gi>,</item>
@@ -1368,7 +1418,7 @@ KS4K
            and using a prefix of <code>rfc5322:</code>.</note>
            The values of the field names are used as the local names
            of elements within <gi>xenoData</gi>, but are not used
-           verbatim. Since e-mail header fields are case insensitive,
+           verbatim. Since email header fields are case insensitive,
            we have removed case distinctions when translating field
            names to the local names of elements.</p>
            <p>The repetition of metadata in <gi>xenoData</gi> serves
@@ -1376,7 +1426,7 @@ KS4K
            to make debugging our program easier. But we anticipate
            that reporting the raw data will be useful to those
            researchers who are well versed in XPath and interested in
-           details of e-mail communication. For example, determining
+           details of email communication. For example, determining
            exactly how the <code>From:</code> field was punctuated or
            what capitalization was used for the
            <q>quoted-printable</q> transfer encoding is not otherwise
@@ -1620,21 +1670,35 @@ KS4K
      <p>The TEI provides no good way to encode an email Subject line in either <gi>correspDesc</gi> or <gi>dateline</gi>, and our 
        attempts to place the Subject varied a little too widely. we do not find the use of the <gi>head</gi> element in <gi>post</gi> 
        satisfactory to encode an email Subject because it is not really part of the email body, but part of the heading metadata stored with From, To,
-       CC, etc. Setting it in the <gi>titleStmt</gi> certainly presents the Subject line as metadata, but it is then separated from the information
-       of <gi>correspDesc</gi>.
-     </p>
-     <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. What <att>level</att> 
+       CC, etc. Setting it in the <gi>titleStmt</gi> certainly presents the Subject line as metadata, but it is then metadata about the encoded
+       TEI document, not necessarily the source. This could be overcome by consistent use of a system that included the latter in the former.
+       (E.g., if each <gi>TEI</gi> that represented a posting to the list had a <gi>title</gi> of <code>A TEI encoding of TEI-L post #04570
+             of &lt;date when="2002-11-04T11:54:15">Mon, 4 Nov 2002&lt;/date> by &lt;persName>Seal, Jill&lt;/persName>
+             with subject &lt;title level="a" type="subject">Re: multiple page range in master&lt;/title></code>. Verbose, but it works.)</p>
+     <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. <?ebb [2]?> What <att>level</att> 
        values are appropriate for the <gi>title</gi> of the TEI-L Listserv as a whole, for the log files it curates by the month, or 
        for the individual email message if we use a <gi>title</gi> element to store its Subject line? Do we need new values of <att>level</att>
-       for born-digital compound artifacts? 
-     </p>
+       for born-digital compound artifacts?
+       <?ebb [2]
+	 Since the answer to this question (“What @level values are appropriate …”) seems reasonably clear to me (better than
+	 50%, but no where near 100% confidence), I would like to re-word that sentence. Perhaps
+	 Our instinct is to use a <att>level</att> of <val>s</val>
+	 (for <gloss>series</gloss>) for the title of the collected
+	 archives of a LISTSERV mailing list, a <att>level</att> of
+	 <val>m</val> (for <gloss>monographic</gloss>) for the title
+	 of a single monthly log file, and a <att>level</att> of
+	 <val>a</val> (for <gloss>analystic</gloss>) for the title of
+	 a single post to the list. But neither of us is a cataloger
+	 or even a librarian, so we are not at all certain. Are other
+	 levels of title necessary for encoding digital artifacts?
+	 ?>
+       </p>
      <p>Identifying these issues is the first step to introducing new encoding models. We hope that our work in progress provides a basis for further discussion,
      debate over our experimental data modeling of the TEI Listserv, one of our oldest and most important resources in the TEI community.</p>
       </div>
  </body>
  <back> 
    <div type="bibliography">
-     <!-- the bibliography for the article, organized as a series of <bibl> elements inside <listBibl> -->
      <listBibl>
        <bibl xml:id="EXPath">
          Kosek, Jirka and Lumley, John, <title level="m">Binary Module
@@ -1735,17 +1799,75 @@ KS4K
        <item><code>[^[:print:]]</code></item>
      </list>
    </div>
+   <div type="appendix" xml:id="appendix02">
+     <head>Date format frequency chart</head>
+     <p>See below the chart for a glossary of the format components.</p>
+     <table xml:id="dateFormats">
+       <row role="label">
+	 <cell># occurences</cell>
+	 <cell>format</cell>
+       </row>
+       <!-- Note to JTEI editors: this will be much more readable if
+            the 2nd <cell> in each <row> be displayed in a fixed-width
+            typeface.  -->
+       <row> <cell>32632</cell> <cell>Day, #D Mon YYYY HH:MM:SS ±HHMM</cell> </row>
+       <row> <cell>3136</cell> <cell>Day, #D Month YYYY HH:MM:SS ±HHMM</cell> </row>
+       <row> <cell>2347</cell> <cell>Day, #D Mon YYYY HH:MM:SS TZA</cell> </row>
+       <row> <cell>281</cell> <cell>Day, #D Mon YY HH:MM:SS TZA</cell> </row>
+       <row> <cell>245</cell> <cell>Day, #D Month YYYY HH:MM:SS TZA</cell> </row>
+       <row> <cell>73</cell> <cell>Day, #D Mon YY HH:MM:SS ±HHMM</cell> </row>
+       <row> <cell>22</cell> <cell>Day, #D Mon YY HH:MM:SS LCL</cell> </row>
+       <row> <cell>20</cell> <cell>Day, #D Month YY HH:MM:SS LCL</cell> </row>
+       <row> <cell>8</cell> <cell>Day, #D Mon YYYY HH:MM:SS LCL</cell> </row>
+       <row> <cell>7</cell> <cell>Day, #D Month YY HH:MM:SS TZA</cell> </row>
+       <row> <cell>3</cell> <cell>Day, #D Mon YY HH:MM:SS bst</cell> </row>
+       <row> <cell>2</cell> <cell>Day, #D Mon YY HH:MM:SS MSZ</cell> </row>
+       <row> <cell>2</cell> <cell>Day, #D Mon YY HH:MM:SS TZA</cell> </row>
+       <row> <cell>2</cell> <cell>Day, #D Mon YYYY HH:MM:SS MSZ</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Mon YY HH:MM:SS pst</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Mon YYYY HH:MM:SS 0000</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Mon YYYY HH:MM:SS GMT0BST</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Mon YYYY HH:MM:SS METDST</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Mon YYYY HH:MM:SS TZONE</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Month YY HH:MM:SS METDST</cell> </row>
+       <row> <cell>1</cell> <cell>Day, #D Month YY HH:MM:SS ±HHMM</cell> </row>
+     </table>
+     <p>Where:
+     <list type="gloss">
+       <label>Day</label> <item>Weekday name expressed as 3 letters, capitalized. (E.g. <q>Sun</q>.)</item>
+       <label>#D</label> <item>One or two digit day-of-the month. (E.g. <q>4</q> or <q>26</q>.)</item>
+       <label>Month</label> <item>The full month name. (E.g. <q>August</q>.)</item>
+       <label>Mon</label> <item>The month in 3 letters. (E.g., <q>Aug</q>.)</item>
+       <label>YYYY</label> <item>A 4-digit year.</item>
+       <label>YY</label> <item>A 2-digit year.</item>
+       <label>HH</label> <item>A 2-digit hour.</item>
+       <label>MM</label> <item>A 2-digit minute.</item>
+       <label>SS</label> <item>A 2-digit second.</item>
+       <label>±</label> <item>Either <q>+</q> or <q>-</q>.</item>
+       <label>TZA</label> <item>A valid time zone symbol.</item>
+       <label>Anything else as last token</label> <item>An invalid time zone symbol.</item>
+     </list>
+     </p>
+   </div>
  </back>
 </text>
-<!-- note>For example, it took us only minutes to discover that of the
-     38,787 timestamps for each post, 38,716 (99.8%) have an
+<?ebb
+  I kinda like this note that I wrote, as it demonstrates a little bit
+  of the power we might leverage from a TEI-encoded version. But it
+  turned out not to be useful for the spot where I had originally wrote
+  it. (And I do not remember where that spot was.) Is there anyplace you
+  think this would be useful?
+
+  <note>For example, it took us only minutes to discover that of the
+     38,787 timestamps for all posts, 38,716 (99.8%) have an
      on-the-hour time zone indication, 51 (0.1%) have no time zone
      indication, 19 have an on-the-half-hour time zone indication, and
      1 has a clearly erroneous time zone indication of
      <code>-00:08</code>. We do not assert, in any way, that this
-     would not be easy to do using any of a variety of programming
+     would not be easy to ascertain using any of a variety of programming
      languages reading either the original dataset or our TEI encoded
      version. But given that we are experts in XPath and XSLT, having
-     this information in TEI made it very easy <emph>for
-     us</emph>.</note -->
+     this information in TEI made this discovery very easy <emph>for
+     us</emph>.</note>
+     ?>
 </TEI>
