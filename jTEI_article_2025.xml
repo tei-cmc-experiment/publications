@@ -715,23 +715,23 @@
             multipart content, and separate out each of the
             highest-level parts into their own constructs. It does
             not, yet, handle multipart-inside-multipart MIME content,
-            however.</p>
+            however.</p> 
             <p>The second practical challenge, processing the content
             of a MIME part according to its type, is reasonably easy
-            to contemplate handling in XSLT when the content type is
+            to contemplate for XSLT when the content type is
             text/* or application/xml. But in almost all other cases
-            conversion to something manipulable by XSLT is at best
+            conversion to something tractable by XSLT is at best
             difficult.</p>
             <p>The theoretical challenges strike us as very
-            interesting, and boil down very simply to what to do with
-            data other than plain text. Some datatypes easily lend
+            interesting, and they boil down very simply to a question 
+            of what to do with data other than plain text. Some datatypes easily lend
             themselves to TEI encoding; counter-intuitively, these are
             the datatypes for which there is really no reasonable XML
             representation. Imagine, for example, that one of the MIME
             parts is of type image/jpeg or audio/ogg. (None of them
             are, as the rules of this particular mailing list
-            disallowed most binary attachments to help prevent spread
-            of malware.) The only real possibilies are <list
+            disallowed most binary attachments to help prevent the spread
+            of malware.) The only real possibilities are <list
             rend="inline"><item>to ignore it, </item><item>to put the
             binary data in a separate .jpg or .ogg file and point to
             it, or </item><item>to encode the data in a
@@ -758,7 +758,7 @@
             point to it from the TEI. (This also has the advantage of
             avoiding the problem of what to do with ill-formed
             HTML.)</p>
-          </div>
+          </div> <!-- ebb: Read/revised to here 2025-03-04 @ 16:10 JST. -->
           <div xml:id="content_encoding">
             <head>Content encoding</head>
             <div xml:id="CE_intro">
