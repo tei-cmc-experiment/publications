@@ -540,8 +540,17 @@
 	  this field is reasonably strictly defined by <ref
 	  type="bibl" target="#RFC5322">rfc5322</ref>, that standard
 	  was not published until 2008, 18 years after the TEI-L mailing list was
-	  started. We expected the dates to be in dozens of different,
-	  potentially incompatible, formats.</p>
+	  started. We expected the given dates and times to be in dozens of different,
+	  potentially incompatible, formats.<note>For example, it took us only minutes to discover that of the
+	    38,787 timestamps for all posts, 38,716 (99.8%) have an
+	    on-the-hour time zone indication, 51 (0.1%) have no time zone
+	    indication, 19 have an on-the-half-hour time zone indication, and
+	    1 has a clearly erroneous time zone indication of
+	    <code>-00:08</code>. We expect that it would be easy to ascertain 
+	    using any of a variety of programming languages reading either the 
+	    original dataset or our TEI encoded version. But given that we are 
+	    experts in XPath and XSLT, having this information in TEI made this 
+	    discovery very easy <emph>for us</emph>.</note></p>
 	  <p>After some analysis we were pleasantly surprised to find
 	  that only 21 different formats were represented in this
 	  dataset. (The frequency of each format is listed in <ptr
@@ -786,7 +795,7 @@
               <q>ñ</q>. Which character set to use is specified on the
               <name>Content-Type</name> header field. For example,
               <code>Content-Type: text/plain;
-              charset=ISO-8859-1</code> specifies the ISO 8859-1
+              charset=ISO-8859-1</code> specifies the ISO-8859-1
               character set.</p>
             </div>
             <div xml:id="quoted-printable">
@@ -794,14 +803,14 @@
               <p>The quoted-printable method is, at its core, quite
               simple. Any sequence of 8 bits (an octet, the base 2
               version of a number from 0 to 127, and on most systems a
-              byte) — except for the octets reserved for signaling
-              end-of-line — is represented instead by an equal sign
+              byte), except for the octets reserved for signaling
+              end-of-line, is represented instead by an equal sign
               (U+3D, <q>=</q>) followed by two (upper case)
               hexadecimal digits. Thus when US-ASCII, UTF-8, or any of
               the ISO-8859 character sets are in use, the letter
               <q>n</q> may be represented by <q>=6E</q>, because the
-              codepoint for <q>n</q> is 110 in each of those character
-              sets. When the UTF-8 character set is in use,
+              codepoint for <q>n</q> is 110 (equal to hexadecimal 6E)
+              in each of those character sets. When the UTF-8 character set is in use,
               <q>=C5=84</q> can be used to represent <q>ń</q>, because
               the codepoint 324 (hexadecimal 0144) is mapped to
               <q>ń</q> in Unicode; 324 is too large to be represented
@@ -810,8 +819,8 @@
               first 3 bits (110) assert that this number is expressed
               in 2 octets, the last 5 bits (00101) are the first 5
               bits of the codepoint number. In the second octet the
-              first 2 bits (10) are the <q>this is a continuation of
-              previous octet</q> signal, and the last 6 bits are the
+              first 2 bits (10) are a signal that <q>this is a continuation of
+              previous octet</q>, and the last 6 bits are the
               last 6 bits of the codepoint number. Thus we can read
               this UTF-8 character expressed using two bytes as the
               11-bit binary codepoint 00101000100, which is 324 in
@@ -832,14 +841,14 @@
 	      <q>=45=73=70=61=C3=B1=6F=6C=61</q>.<note>This means that
               when used on Western texts that have a high percentage
               of characters in the standard US-ASCII set,
-              quoted-printable results in relatively easy to read,
-              compact encodings. Conversely, when used on Cyrillic,
+              quoted-printable results in relatively easy-to-read,
+              compact encodings. However, when used on Cyrillic,
               Greek, or CJK text, or arbitrary binary data, the
               encoded version is both large and completely
               unreadable.</note></p>
               <p>There are several other details to quoted-printable
-              encoding — whitespace, end of line, and soft line breaks
-              to be precise — but this is the main gist of it.</p>
+              encoding (whitespace, end of line, and soft line breaks
+              to be precise) but this is the main gist of it.</p>
             </div>
             <div xml:id="base64">
               <head>Base64</head>
@@ -894,10 +903,10 @@
             usually, but not always, the 76th character.)</p>
           </div>
           <div xml:id="CE_xmp">
-            <head>Content encoding, examples</head>
-            <p>In order to exmplify these content encoding methods,
+            <head>Content encoding examples</head>
+            <p>In order to exemplify these content encoding methods,
             here we take a short snippet of sample text taken from a
-            posting by Lionel Clement on Sat 18 Dec 1999 in which the
+            posting by Lionel Clement on <date when="1999-12-18">Sat 18 Dec 1999</date> in which the
             second call for papers for the the upcoming
             <name>TAG+5</name> conference is presented. The sample is
             shown here three times:
@@ -951,7 +960,7 @@ KS4K
             </figure>
           </div>
           <div xml:id="CE_NOT">
-            <head>Content encoding — NOT!</head>
+            <head>Content encoding—NOT!</head>
             <p>It is trivially easy to perform encoding or decoding of
             a quoted-printable or base64 encoded file because other
             people have written programs to do the work. In GNU/Linux,
@@ -1016,7 +1025,7 @@ KS4K
       </list>
       
  In our efforts to model these data, we initially found the following fields could neatly map to TEI constructions associated with 
- computer-mediated communication and correspondence encoding. However, they are not the only possible encodings, 
+ computer-mediated communication and correspondence encoding. However, they are not the only possible ways to apply the TEI to email data, 
  and our examples in the following sections will explore some variations, especially in developing the <gi>teiHeader</gi>. 
 
       <table xml:id="field_mapping1">
@@ -1110,10 +1119,9 @@ KS4K
        </egXML>
        </p>
        <p>In the <gi>text</gi> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
-       Since LISTSERV delivers the 
-       logs as files representing an entire month of posts, we supplied a unique identifier to each monthly log collection on
-       <code>text/body/div[@type="log"]/@xml:id</code>. Within this <tag>div type="log"</tag>, we encoded each email message
-       inside a <gi>post</gi> element, drawn from the new CMC chapter.</p>
+       Since LISTSERV delivers the logs as files representing an entire month of posts, we supplied a unique identifier to each 
+       monthly log collection on <code>text/body/div[@type="log"]/@xml:id</code>. Within this <tag>div type="log"</tag>, we
+       encoded each email message inside a <gi>post</gi> element, drawn from the new CMC chapter.</p>
        <p>To store the metadata for individual email messages, in this method we encoded a <gi>dateline</gi> element, which contained
        <gi>ref</gi> elements to store information about the transmission of the message within its parent <gi>post</gi>, thus:
        <table xml:id="field_mapping2">
@@ -1448,11 +1456,11 @@ KS4K
            easy to understand and process. But it leaves us unsettled
            because it implies that the subject information was
            originally part of the email body (as is the rest of the
-           content of <gi>post</gi>), which it was not — it was
+           content of <gi>post</gi>), which it was not—it was
            metadata, albeit directly associated with the body.</p>
            <p>While encoding the <code>Subject:</code> in the <gi>title</gi>
            inside the <gi>titleStmt</gi> correctly puts it in a metadata
-           container, it is not the correct container — this
+           container, it is not the correct container. This
            <gi>title</gi> is supposed to be the title of the TEI
            encoded file, not of that which is encoded. Besides, we are
            uncomfortable equating a subject and a title.</p>
@@ -1460,9 +1468,9 @@ KS4K
            be to store both the title of the TEI document and the
            subject of the encoded email as separate <gi>title</gi>
            elements in the <gi>titleStmt</gi>, differentiated by
-           <att>type</att>. But we have not even attempted to
-           impliment this yet.</p>
-           <p>In our second example, the human authorship of the message and the designation
+           <att>type</att>. But we have not attempted to
+           implement this yet.</p>
+           <p>In this example, the human authorship of the message and the designation
              of its subject is entirely designated within the <gi>post</gi>, in a manner more like the way CMC encoding approaches discussion board or wiki
            posts, and less like the way we would handle the encoding of a letter as part of a collection of correspondence. 
            While letters do not usually have subject lines, the personal actions of 
@@ -1475,7 +1483,7 @@ KS4K
         <head>Emailography?</head>
         <p>An archive of an email list is likely to, and in our cose
         does, contain posts from many members of its community. And
-        information about members of the community, particularly
+        information about members of the community, particularly about
         historic or inaugural figures, is likely to be of interest to
         the community. Thus it seemed prudent for our XSLT process to
         develop a set of structured information about participants in
@@ -1506,7 +1514,7 @@ KS4K
 	complex calculations or heuristics for now, we only have two
 	relevant pieces of information about the sender of any given
 	piece of email: a name and an email address. And even though
-	there is a strict 1:1 relationship between these pieces of
+	there is a strict one-to-one relationship between these pieces of
 	information <emph>for a particular post</emph>, many people
 	post mutliple times to the list.</p>
 	<p>It is often the case that for a given name multiple email
@@ -1552,8 +1560,8 @@ KS4K
 	/, and <code>~</code>. Conversely, in the set of names extracted from the
 	<code>From:</code> fields of this dataset, there are over a
 	dozen characters not allowed in an XML ID including some which
-	make manipulating them in XSLT annoying (<code>'</code>, <code>"</code>, and
-	<code>&amp;</code>). Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
+	make manipulating them in XSLT annoying, such as <code>'</code>, <code>"</code>, and
+	<code>&amp;</code>. Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
 	  <code>(</code>, <code>¡</code>, <code>Ð</code>, and <code>¼</code>.</p>
 	<p>So for each unique email address in the <code>From:</code>
 	fields of our dataset we generated a <gi>person</gi> element
@@ -1569,8 +1577,8 @@ KS4K
 	<p>We find it dissatisfying that the only way to include an
 	<gi>email</gi> inside a <gi>person</gi> is to place it inside
 	a <gi>p</gi>, <gi>ab</gi>, or <gi>note</gi> that is itself
-	inside the <gi>person</gi>. This feels somewhat clumsy to us
-	— after all, an email address is a key piece of information
+	inside the <gi>person</gi>. This feels clumsy to us.
+	After all, an email address is a key piece of information
 	many of us wish to record about people. That said, the
 	correspondence between people and email addresses is not at
 	all a simple one, so a simple child relationship may be
@@ -1593,11 +1601,11 @@ KS4K
 	part one uses to calculate length, and how the calculation is
 	performed.)</p>
 	<p>So while we are not entirely satisfied with our current
-	<soCalled>personography</soCalled> structure, we are not
+	<soCalled>personography</soCalled> structure, we are not entirely
 	<emph>dissatisfied</emph> with it, either. But either way, we
-	are uncomfortable with it in principle, because it is not
-	really a personography. It is not a set of data structures
-	about people — it is a set of data structures about email
+	are uncomfortable with our data structure in principle, because it is <emph>not
+	  really a personography</emph>. It is not a set of data structures
+	about people, but rather it is a set of data structures about email
 	addresses. We could, of course, use generic structures instead
 	of abusing the special purpose elements. An example follows.
 	<egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1632,40 +1640,28 @@ KS4K
    <div xml:id="improving-tei">
      <head>Conclusion: Improving the TEI for the encoding of born-digital resources?</head>
      <p>This paper has explored several challenges and possibilites for the TEI to encounter the born-digital resource of the email list,
-     and presented quite a few potentially interesting statistics
-     along the way. Since the 
-      digital text is so ephemeral and contingent, yet so full of information about the computer age, our methods in archiving such work should 
+     and presented quite a few potentially interesting statistics along the way. Since the digital text is so ephemeral and contingent, 
+     yet so full of information about the computer age, our methods in archiving such work should 
       help to sustain it as a resource for scholarly research, rescuing it from loss from changes in technology providers that take little care for 
       maintaining access to or preserving heritage. In our specific efforts to archive LISTSERV data, we find that 
       the TEI can benefit from some improvements.</p>
      <p>The limited valid positions for <gi>email</gi> in TEI documents are a concern as we begin to develop emailographies, and also as we need to 
        reference email addresses as primary resource of information in born-digital documents. That <gi>email</gi> cannot be a child of <gi>person</gi>
        (or the basis for its own list) raised problems for us. More robust encoding should be developed.</p>
-     <p>The <gi>post</gi> element, as a descendant of <gi>text</gi>,
-     contains <soCalled>normal</soCalled> transcriptional elements for
-     encoding the logical structure of a document. But given that at
-     its core an email message is definitionally a series of
-     characters, and (because indication of line breaks is well
-     defined) they can easily be considered as a sequence of lines, in
-     some situations it makes sense to use an embedded transcription
-     approach. <cit><quote source="#PHZLAB">An <term>embedded
-     transcription</term> is one in which <supplied>the
-     characters</supplied> <gap/> are encoded as subcomponents of
-     elements representing the physical surfaces carrying them rather
-     than independently of them.</quote><ref type="bibl"
-     xml:id="PHZLAB" target="#P5">P5 § 12.2.2</ref></cit> In TEI this
-     approach makes use of <gi>line</gi> elements within a
-     <gi>soruceDoc</gi>. However, in the case of an email message,
-     there are no physical surfaces, so the intermediate elements
-     (<gi>surfaceGrp</gi>, <gi>surface</gi>, and <gi>zone</gi>) do not
-     seem applicable. So while <gi>line</gi> within <gi>sourceDoc</gi>
-     may not be the right mechanism, some method for representing
-     email as a relatively uninterpreted sequence of lines of
-     characters should be available; or at the very least, we need to
+     <p>The <gi>post</gi> element, as a descendant of <gi>text</gi>, contains <soCalled>normal</soCalled> transcriptional elements for
+     encoding the logical structure of a document. But given that at its core an email message is definitionally a series of
+     characters, and (because indication of line breaks is well defined) they can easily be considered as a sequence of lines, in
+     some situations it makes sense to use an embedded transcription approach. <cit><quote source="#PHZLAB">An <term>embedded
+     transcription</term> is one in which <supplied>the characters</supplied> <gap/> are encoded as subcomponents of elements representing the physical surfaces carrying them rather
+     than independently of them.</quote><ref type="bibl" xml:id="PHZLAB" target="#P5">P5 § 12.2.2</ref></cit> In TEI this
+     approach makes use of <gi>line</gi> elements within a <gi>sourceDoc</gi>. However, in the case of an email message,
+     there are no physical surfaces, so the intermediate elements (<gi>surfaceGrp</gi>, <gi>surface</gi>, and <gi>zone</gi>) do not
+     seem applicable. So while <gi>line</gi> within <gi>sourceDoc</gi> may not be the right mechanism, some method for representing
+     email as a relatively uninterpreted sequence of lines of characters should be available; or at the very least, we need to
      be able to preserve the ASCII art of yesteryear.</p>
      <?sb HERE ?>
      <p>The TEI provides no good way to encode an email Subject line in either <gi>correspDesc</gi> or <gi>dateline</gi>, and our 
-       attempts to place the Subject varied a little too widely. we do not find the use of the <gi>head</gi> element in <gi>post</gi> 
+       attempts to place the Subject varied a little too widely. We do not find the use of the <gi>head</gi> element in <gi>post</gi> 
        satisfactory to encode an email Subject because it is not really part of the email body, but part of the heading metadata stored with From, To,
        CC, etc. Setting it in the <gi>titleStmt</gi> certainly presents the Subject line as metadata, but it is then metadata about the encoded
        TEI document, not necessarily the source. This could be overcome by consistent use of a system that included the latter in the former.
@@ -1674,21 +1670,13 @@ KS4K
              with subject &lt;title level="a" type="subject">Re: multiple page range in master&lt;/title></code>. Verbose, but it works.)</p>
      <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. <?ebb [2]?> What <att>level</att> 
        values are appropriate for the <gi>title</gi> of the TEI-L Listserv as a whole, for the log files it curates by the month, or 
-       for the individual email message if we use a <gi>title</gi> element to store its Subject line? Do we need new values of <att>level</att>
-       for born-digital compound artifacts?
-       <?ebb [2]
-	 Since the answer to this question (“What @level values are appropriate …”) seems reasonably clear to me (better than
-	 50%, but no where near 100% confidence), I would like to re-word that sentence. Perhaps
-	 Our instinct is to use a <att>level</att> of <val>s</val>
-	 (for <gloss>series</gloss>) for the title of the collected
-	 archives of a LISTSERV mailing list, a <att>level</att> of
-	 <val>m</val> (for <gloss>monographic</gloss>) for the title
-	 of a single monthly log file, and a <att>level</att> of
-	 <val>a</val> (for <gloss>analystic</gloss>) for the title of
-	 a single post to the list. But neither of us is a cataloger
-	 or even a librarian, so we are not at all certain. Are other
-	 levels of title necessary for encoding digital artifacts?
-	 ?>
+       for the individual email message if we use a <gi>title</gi> element to store its Subject line? Perhaps we could apply a 
+       <att>level</att> of <val>s</val> (for series) for the title of the collected
+       archives of a LISTSERV mailing list, a <att>level</att> of <val>m</val> (for monographic) for the title
+       of a single monthly log file, and a <att>level</att> of <val>a</val> (for analytic) for the title of a single post to the list. But monographic, 
+       usually associated with bound books or works concentrating purposefully on a single topic, does not seem 
+       at all qppropriate for a log file of posts sent conversationally to an email listserv. Perhaps <att>level</att> of <val>j</val> would be marginally more appropriate
+       for the log files, but they do not bear much resemblance to journal or magazine publications with planned contents. Do we need new values of <att>level</att> for born-digital compound artifacts?
        </p>
      <p>Identifying these issues is the first step to introducing new encoding models. We hope that our work in progress provides a basis for further discussion,
      debate over our experimental data modeling of the TEI Listserv, one of our oldest and most important resources in the TEI community.</p>
@@ -1831,10 +1819,10 @@ KS4K
      </table>
      <p>Where:
      <list type="gloss">
-       <label>Day</label> <item>Weekday name expressed as 3 letters, capitalized. (E.g. <q>Sun</q>.)</item>
-       <label>#D</label> <item>One or two digit day-of-the month. (E.g. <q>4</q> or <q>26</q>.)</item>
-       <label>Month</label> <item>The full month name. (E.g. <q>August</q>.)</item>
-       <label>Mon</label> <item>The month in 3 letters. (E.g., <q>Aug</q>.)</item>
+       <label>Day</label> <item>Weekday name expressed as 3 letters, capitalized (e.g., <q>Sun</q>.)</item>
+       <label>#D</label> <item>One or two digit day-of-the month (e.g., <q>4</q> or <q>26</q>.)</item>
+       <label>Month</label> <item>The full month name (e.g., <q>August</q>.)</item>
+       <label>Mon</label> <item>The month in 3 letters (e.g., <q>Aug</q>.)</item>
        <label>YYYY</label> <item>A 4-digit year.</item>
        <label>YY</label> <item>A 2-digit year.</item>
        <label>HH</label> <item>A 2-digit hour.</item>
@@ -1848,23 +1836,4 @@ KS4K
    </div>
  </back>
 </text>
-<?ebb
-  I kinda like this note that I wrote, as it demonstrates a little bit
-  of the power we might leverage from a TEI-encoded version. But it
-  turned out not to be useful for the spot where I had originally wrote
-  it. (And I do not remember where that spot was.) Is there anyplace you
-  think this would be useful?
-
-  <note>For example, it took us only minutes to discover that of the
-     38,787 timestamps for all posts, 38,716 (99.8%) have an
-     on-the-hour time zone indication, 51 (0.1%) have no time zone
-     indication, 19 have an on-the-half-hour time zone indication, and
-     1 has a clearly erroneous time zone indication of
-     <code>-00:08</code>. We do not assert, in any way, that this
-     would not be easy to ascertain using any of a variety of programming
-     languages reading either the original dataset or our TEI encoded
-     version. But given that we are experts in XPath and XSLT, having
-     this information in TEI made this discovery very easy <emph>for
-     us</emph>.</note>
-     ?>
 </TEI>
