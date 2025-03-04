@@ -91,31 +91,22 @@
           with very different approaches in retrieving and mapping Listerv data, and we faced challenges
           that reflect changing technologies in character encoding and email transmission, as well as
           conceptual difficulties in reliably tracing individual contributions over years and decades. 
-          Ultimately we find that yes, it is possible <?ebb [1]?> to store the archives of an email list in TEI,
+          Ultimately we believe that yes, it is possible (although difficult) to store the archives of an email list in TEI,
           and the methods one chooses will likely depend on the scope of a LISTERV archival project.</p>
-	  <?ebb
-	    [1] I would like to qualify this sentence
-	    somehow. Something like one of the following.
-	    * Ultimately we find that yes, it is possible to store at least the plain text portions of the archives of an email list in TEI,
-	    * Ultimately we believe that yes, it is possible (although difficult) to store the archives of an email list in TEI,
-	    * Although the task (is|was) harder than we expected, ultimately we find that yes, it is possible to store the archives of an email list in TEI,
-	    ?>
       </div>
     </front>
     <body>
       <div xml:id="introduction">
         <head>Introduction</head>
-        <p>One of the goals of digital humanists and one of the
-        points of digital humanities is cultural memory. It is a
+        <p>One of the priorities of digital humanities is cultural memory. It is a
         common goal to preserve the results of humanistic endeavors in
-        a manner that may be easy to access many years in
-        the future, and that allows for scholarly examination and inquiry.
-        From the last quarter of the twentieth century to the present,
-        one venue for communication among humans has been email, and
-        in particular the email discussion list. Thus it is to be
-        expected that digital humanists will want to preserve email
+        a format suitable for scholarly examination and inquiry that may be 
+        easy to access many years in the future. From the last quarter of 
+        the twentieth century to the present, one venue for communication 
+        among humans has been email, and in particular the email discussion list. 
+        Digital humanists will likely want to preserve the data of email
         discussion lists in a way that is likely to survive the ups
-        and downs of the word processor market and is ammenable to
+        and downs of the software market and is amenable to
         scholarly processing.</p>
         <p>It may be surprising that the Text Encoding Initiative
         does not yet provide a dedicated mechanism for encoding email.
