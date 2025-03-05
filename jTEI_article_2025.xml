@@ -5,7 +5,7 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="main">Preserving a LISTSERV Archive in TEI: The Case of the TEI-L</title>
+        <title type="main">Preserving a LISTSERV Archive in TEI: The Case of TEI-L</title>
         <author xml:id="sb">
           <name>
             <forename>Syd</forename>
@@ -141,7 +141,7 @@
         obviously of significant interest to the TEI community. For us, its
         contents comprise a heritage <q>dig site</q> of resources and perspectives from the early
         days of text encoding and digital humanities. The first post was on 
-          <date when="1990-01-08">Mon 08 Jan 90<!-- while I was still living in Pasedena, 6 days after I
+          <date when="1990-01-08">Mon 08 Jan 1990<!-- while I was still living in Pasedena, 6 days after I
         got my MICP certification —sb --></date>), so the list was
         started months before the first edition of P1, and years
         before the advent of XML.</p>
@@ -235,7 +235,7 @@
           <head>Mass conversion approach</head>
           <p>Our goal for the mass conversion approach was to
           programatically convert all of TEI-L from its inception up
-          to <date when="2024-04-29">April 29, 2024</date> into some form of simple, basic TEI using
+          to <date when="2024-04-29">Mon 29 April 2024</date> into some form of simple, basic TEI using
           XSLT. That end date was chosen because it was the day the
           mailing list was moved from Brown University’s LISTSERV to
           Penn State University’s LISTSERV. This fact meant we could
@@ -275,10 +275,10 @@
             there is a month that has no postings, for which LISTSERV
             did not generate a .log file at all.</p>
             <p>Thus an early task was to figure out how posts are
-            separated in a log file. Upon looking at the dataset, it was
-            apparent in seconds that LISTSERV uses a string of 73 equal
+            separated in a log file. Upon inspecting the dataset, it was
+            quickly apparent that LISTSERV uses a string of 73 equal
             signs (U+003D, <q>=</q>) in a row as a start-post
-            indicator. There is such a delimiter before the
+            indicator, because there is such a delimiter before the
             first and every subsequent post in a file, but not after the
             last.</p>
             <p>But, of course, there is nothing to stop a mailing list
@@ -313,7 +313,7 @@
             <code>^={73}\n[^D]</code>.</note> There are only three such
             cases, so we just examined each of them.</p>
             <p>The first is simply a case of cut-and-paste: on <date
-            when="1992-09-10">Thu 10 Sep 92</date> Wendy Plotkin, who
+            when="1992-09-10">Thu 10 Sep 1992</date> Wendy Plotkin, who
             was at the time a PhD candidate in History at UIC and who
             served as the TEI’s research assistant (1990–1999), posted
             email that contained a copy of email from Professor Robert
@@ -540,17 +540,8 @@
 	  this field is reasonably strictly defined by <ref
 	  type="bibl" target="#RFC5322">rfc5322</ref>, that standard
 	  was not published until 2008, 18 years after the TEI-L mailing list was
-	  started. We expected the given dates and times to be in dozens of different,
-	  potentially incompatible, formats.<note>For example, it took us only minutes to discover that of the
-	    38,787 timestamps for all posts, 38,716 (99.8%) have an
-	    on-the-hour time zone indication, 51 (0.1%) have no time zone
-	    indication, 19 have an on-the-half-hour time zone indication, and
-	    1 has a clearly erroneous time zone indication of
-	    <code>-00:08</code>. We expect that it would be easy to ascertain 
-	    using any of a variety of programming languages reading either the 
-	    original dataset or our TEI encoded version. But given that we are 
-	    experts in XPath and XSLT, having this information in TEI made this 
-	    discovery very easy <emph>for us</emph>.</note></p>
+	  started. We expected the given dates to be in dozens of different,
+	  potentially incompatible, formats.</p>
 	  <p>After some analysis we were pleasantly surprised to find
 	  that only 21 different formats were represented in this
 	  dataset. (The frequency of each format is listed in <ptr
@@ -573,7 +564,16 @@
 	  indications we had found in our analysis to the correct
 	  format. Some of those time zone mappings were guesses based
 	  on the top level domain of the email addresses that had sent
-	  mail with ambiguous time zone.</p>
+	  mail with ambiguous time zone.<note>For example, it took us only minutes to discover that of the
+	    38,787 timestamps for all posts, 38,716 (99.8%) have an
+	    on-the-hour time zone indication, 51 (0.1%) have no time zone
+	    indication, 19 have an on-the-half-hour time zone indication, and
+	    1 has a clearly erroneous time zone indication of
+	    <code>-00:08</code>. We expect that it would be easy to ascertain 
+	    using any of a variety of programming languages reading either the 
+	    original dataset or our TEI encoded version. But given that we are 
+	    experts in XPath and XSLT, having this information in TEI made this 
+	    discovery very easy <emph>for us</emph>.</note></p>
 	</div>
         <div xml:id="conversion_complexities">
           <head>Unsolved conversion complexities: MIME</head>
@@ -598,7 +598,7 @@
           always. In our dataset ~92.6% of posts use MIME. The first
           1841 posts occured over the first 2531 days (6.93 years) and
           did not use MIME; the first use of MIME was on <date
-          when="1996-12-13">Fri 13 Dec 96</date>. Over the next 2531
+          when="1996-12-13">Fri 13 Dec 1996</date>. Over the next 2531
           days 3327 of 3707 posts (89.75%) used MIME. Over the last
           2531 days in the dataset 4854 of 4861 posts (99.86%) used
           MIME.</note>
@@ -795,7 +795,7 @@
               <q>ñ</q>. Which character set to use is specified on the
               <name>Content-Type</name> header field. For example,
               <code>Content-Type: text/plain;
-              charset=ISO-8859-1</code> specifies the ISO-8859-1
+              charset=ISO-8859-1</code> specifies the ISO 8859-1
               character set.</p>
             </div>
             <div xml:id="quoted-printable">
@@ -819,8 +819,8 @@
               first 3 bits (110) assert that this number is expressed
               in 2 octets, the last 5 bits (00101) are the first 5
               bits of the codepoint number. In the second octet the
-              first 2 bits (10) are a signal that <q>this is a continuation of
-              previous octet</q>, and the last 6 bits are the
+              first 2 bits (10) are the signal that this is a continuation of
+              previous octet, and the last 6 bits are the
               last 6 bits of the codepoint number. Thus we can read
               this UTF-8 character expressed using two bytes as the
               11-bit binary codepoint 00101000100, which is 324 in
@@ -842,7 +842,7 @@
               when used on Western texts that have a high percentage
               of characters in the standard US-ASCII set,
               quoted-printable results in relatively easy-to-read,
-              compact encodings. However, when used on Cyrillic,
+              compact encodings. Sadly, however, when used on Cyrillic,
               Greek, or CJK text, or arbitrary binary data, the
               encoded version is both large and completely
               unreadable.</note></p>
@@ -1560,7 +1560,7 @@ KS4K
 	/, and <code>~</code>. Conversely, in the set of names extracted from the
 	<code>From:</code> fields of this dataset, there are over a
 	dozen characters not allowed in an XML ID including some which
-	make manipulating them in XSLT annoying, such as <code>'</code>, <code>"</code>, and
+	make manipulating them in XSLT annoying: <code>'</code>, <code>"</code>, and
 	<code>&amp;</code>. Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
 	  <code>(</code>, <code>¡</code>, <code>Ð</code>, and <code>¼</code>.</p>
 	<p>So for each unique email address in the <code>From:</code>
