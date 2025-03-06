@@ -546,34 +546,48 @@
 	  that only 21 different formats were represented in this
 	  dataset. (The frequency of each format is listed in <ptr
 	  type="crossref" target="#appendix02"/>.) Interestingly, most
-	  of the variation was in the time zone offset
-	  indication. Discounting that variation, there were only four
-	  different formats. The variation in time zone indication,
-	  however, was at times ambiguous. For example, the time zone
-	  <q>BST</q> appears in the <code>Date:</code> field of over
-	  twenty posts. Given that the TEI was partially based in
-	  Great Britain, it is very likely that <q>BST</q> means
-	  <q>British Summer Time</q> (+01:00). But it is also used for
-	  <q>Brazilian Summer Time</q> (-02:00), <q>Bangladesh
-	  Standard Time</q> (+06:00), and <q>Bougainville Standard
-	  Time</q> (+11:00).</p>
+	  of the variation was in the time zone. Discounting that
+	  variation, there were only four different formats. The
+	  variation in time zone indication, however, was at times
+	  ambiguous. For example, the time zone <q>BST</q> appears in
+	  the <code>Date:</code> field of over twenty posts. Given
+	  that the TEI was partially based in Great Britain, it is
+	  very likely that <q>BST</q> means <q>British Summer Time</q>
+	  (+01:00). But it is also used for <q>Brazilian Summer
+	  Time</q> (-02:00), <q>Bangladesh Standard Time</q> (+06:00),
+	  and <q>Bougainville Standard Time</q> (+11:00).</p>
 	  <p>In the end, we were able to parse all 38,787
 	  <code>Date:</code> fields using the regular expression
 	  capability of XSLT 3.0, plus a pair of maps to convert month
-	  names to 2-digit numbers and the various time zone offset
-	  indications we had found in our analysis to the correct
-	  format. Some of those time zone mappings were guesses based
-	  on the top level domain of the email addresses that had sent
-	  mail with ambiguous time zone.<note>For example, it took us only minutes to discover that of the
-	    38,787 timestamps for all posts, 38,716 (99.8%) have an
-	    on-the-hour time zone indication, 51 (0.1%) have no time zone
-	    indication, 19 have an on-the-half-hour time zone indication, and
-	    1 has a clearly erroneous time zone indication of
-	    <code>-00:08</code>. We expect that it would be easy to ascertain 
-	    using any of a variety of programming languages reading either the 
-	    original dataset or our TEI encoded version. But given that we are 
-	    experts in XPath and XSLT, having this information in TEI made this 
-	    discovery very easy <emph>for us</emph>.</note></p>
+	  names to 2-digit numbers and the various time zones we had
+	  found in our analysis to the correct format. Some of those
+	  time zone mappings were guesses based on the top level
+	  domain of the email addresses that had sent mail with an
+	  ambiguous time zone.<note>Thanks to our transformation to
+	  TEI, it took us only minutes to discover that of the 38,787
+	  timestamps for all posts, 38,716 (99.8%) have an on-the-hour
+	  time zone indication, 51 (0.1%) have no time zone
+	  indication, 19 have an on-the-half-hour time zone
+	  indication, and 1 has a clearly erroneous time zone
+	  indication of <code>-00:08</code>. We expect that it
+	  would be easy to ascertain this using any of a variety of
+	  programming languages reading either the original dataset or
+	  our TEI encoded version. But given that we are experts in
+	  XPath and XSLT, having this information in TEI made this
+	  discovery very easy <emph>for us</emph>.<!-- It is worth
+	  noting that this cannot be done by just scanning the
+	  original dataset for the regular expression
+	  <code>^Date:</code> and parsing the rest of the line. There
+	  are nearly 700 lines that begin with <q>Date:</q> that are
+	  <emph>not</emph> the date of a posting. (Many are the date
+	  of an event being announced.) So the lines in the original
+	  dataset need to be parsed to separate email headers from
+	  email bodies. (Possibly only the lines that start with
+	  <q>Date:</q> could be further parsed, and maybe those that
+	  are dates of posts could be separated from the rest that
+	  way. We did not try, and do not intend to.) Besides, you
+	  would still have to normalize the time zones as they appear
+	  into the standard offset notation. --></note></p>
 	</div>
         <div xml:id="conversion_complexities">
           <head>Unsolved conversion complexities: MIME</head>
@@ -1688,7 +1702,7 @@ KS4K
        <bibl xml:id="EXPath">
          Kosek, Jirka and Lumley, John, <title level="m">Binary Module
          1.0</title> EXPath Module 3, December 2013; <idno
-         type="URL">https://expath.org/spec/binary</idno>
+         type="URL">https://expath.org/spec/binary</idno>.
        </bibl>
        <bibl xml:id="RFC2045">
          Freed, N. and Borenstein N., Eds., <title
