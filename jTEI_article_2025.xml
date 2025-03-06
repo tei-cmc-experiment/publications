@@ -163,9 +163,9 @@
         </p>
       </div>
       <div xml:id="data-retrieval">
-        <head>Conversion from source to XML</head>
+        <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
-          <head>Scrape from the web (attempted) approach</head>
+          <head>Scrape from the Web (attempted) Approach</head>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
             we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
@@ -232,7 +232,7 @@
 
         
         <div xml:id="mass-conversion">
-          <head>Mass conversion approach</head>
+          <head>Mass Conversion Approach</head>
           <p>Our goal for the mass conversion approach was to
           programatically convert all of TEI-L from its inception up
           to <date when="2024-04-29">Mon 29 April 2024</date> into some form of simple, basic TEI using
@@ -336,7 +336,7 @@
             row.</p>
           </div>
           <div xml:id="characters_illegal">
-            <head>Illegal characters (for XML)</head>
+            <head>Illegal Characters (for XML)</head>
             <p>Early email systems used ASCII (7-bit) characters
             only. Thus there were 128 available code points (0–2⁷-1, or
             0–127). Of those 128 available code points, only 99 of them
@@ -483,7 +483,7 @@
           readable XML presented some challenges, though.</p>
         </div>
         <div xml:id="memory">
-          <head>Java, and memory, and streams, oh my!</head>
+          <head>Java, and Memory, and Streams, oh my!</head>
           <p>We quickly discovered that processing the entire ~151 MiB
           of data at once requires a lot of RAM, more than Saxon gets
           from the Java virtual machine by default. There are three
@@ -527,7 +527,7 @@
           when running this transformation.</p>
         </div>
 	<div xml:id="dates">
-	  <head>Date inconsistencies</head>
+	  <head>Date Inconsistencies</head>
 	  <p>We think it is a given that having a machine-actionable
 	  date &amp; timestamp for each posting is an important
 	  feature of a preservation format for an archive of email
@@ -590,7 +590,7 @@
 	  into the standard offset notation. --></note></p>
 	</div>
         <div xml:id="conversion_complexities">
-          <head>Unsolved conversion complexities: MIME</head>
+          <head>Unsolved Conversion Complexities: MIME</head>
           <p>MIME stands for <term>Multipurpose Internet Mail
           Extensions</term>, a set of extensions to email that allows
           for
@@ -635,7 +635,7 @@
             only leaf nodes (i.e., parts that are not themselves
           multipart).</p>
           <div xml:id="Encoded-word_syntax">
-            <head>ASCII work-around: Encoded-word syntax</head>
+            <head>ASCII Work-around: Encoded-word Syntax</head>
             <p>As mentioned above, early email used only 7-bit ASCII
             characters for the entire message. Later updates to the
             specifications allowed for the body of the email message
@@ -702,7 +702,7 @@
             to write a word-encoded syntax decoder in XSLT.</p>
           </div>
           <div xml:id="MIMEsep">
-            <head>Separating MIME parts</head>
+            <head>Separating MIME Parts</head>
             <p>Email that uses MIME is divided into one or more
             <term>parts</term>, each of which contains a singe type of
             data. The most common types in our dataset are text/plain
@@ -783,9 +783,9 @@
             HTML.)</p>
           </div> <!-- ebb: Read/revised to here 2025-03-04 @ 16:10 JST. -->
           <div xml:id="content_encoding">
-            <head>Content encoding</head>
+            <head>Content Encoding</head>
             <div xml:id="CE_intro">
-              <head>Why content encoding is required</head>
+              <head>Why Content Encoding is Required</head>
               <p>Email servers, etc., use at most 8 bits per
               character. (And, as pointed out in <ptr type="crossref"
               target="#Encoded-word_syntax"/>, only 7 bits per
@@ -813,7 +813,7 @@
               character set.</p>
             </div>
             <div xml:id="quoted-printable">
-              <head>quoted-printable</head>
+              <head>Quoted-printable</head>
               <p>The quoted-printable method is, at its core, quite
               simple. Any sequence of 8 bits (an octet, the base 2
               version of a number from 0 to 127, and on most systems a
@@ -899,7 +899,7 @@
               system.</p>
           </div>
           <div xml:id="CE_lin">
-            <head>Content encoding, lineation</head>
+            <head>Content Encoding, Lineation</head>
             <p>Whether quoted-printable or base64 encoding is used,
             each line of the body of the email can be at most 76
             characters long. Because base64 makes use of only 64
@@ -917,7 +917,7 @@
             usually, but not always, the 76th character.)</p>
           </div>
           <div xml:id="CE_xmp">
-            <head>Content encoding examples</head>
+            <head>Content Encoding Examples</head>
             <p>In order to exemplify these content encoding methods,
             here we take a short snippet of sample text taken from a
             posting by Lionel Clement on <date when="1999-12-18">Sat 18 Dec 1999</date> in which the
@@ -974,7 +974,7 @@ KS4K
             </figure>
           </div>
           <div xml:id="CE_NOT">
-            <head>Content encoding—NOT!</head>
+            <head>Content Encoding—NOT!</head>
             <p>It is trivially easy to perform encoding or decoding of
             a quoted-printable or base64 encoded file because other
             people have written programs to do the work. In GNU/Linux,
@@ -1069,7 +1069,7 @@ KS4K
         and we needed to make decisions about how to associate related messages that reply or respond to one another.</p>
      
      <div xml:id="TEI-collection">
-       <head>One TEI document for a collection of posts</head>
+       <head>One TEI Document for a Collection of Posts</head>
        <p>In one approach to mapping the metadata for a collection, we envisioned a single <gi>TEI</gi> element 
        holding a collection of <gi>post</gi> elements, each of which contains an email message. For this approach, we applied the <gi>teiHeader</gi>
        to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
@@ -1182,7 +1182,7 @@ KS4K
        as evidence for establishing paragraph boundaries.</p>
      </div>
      <div xml:id="TEI-post">
-       <head>One TEI document for a single post</head>
+       <head>One TEI Document for a Single Post</head>
        <p>A collection of posts could conceivably be encoded as a
        collection of TEI documents, sharing the same root of
        <gi>TEI</gi> or <gi>teiCorpus</gi>. For this method, we would
@@ -1194,7 +1194,7 @@ KS4K
        correspondence.</p>
         
         <div xml:id="TEI-post-titleStmt">
-          <head>One TEI document per post with Subject in title statement</head>
+          <head>One TEI Document per Post with Subject in Title Statement</head>
           <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
             rather than in the <gi>dateline</gi>, and we ventured to
            develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
@@ -1324,7 +1324,7 @@ KS4K
        </p>
      </div>
      <div xml:id="tei-post-xeno">
-       <head>One TEI document per post with Subject in post/head and original fields in xenoData</head>
+       <head>One TEI document per Post with Subject in its <gi>head</gi></head>
        <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
        of a <gi>TEI</gi> element that stores a single email message. Like the previous example, each email message is stored in 
        a TEI child of a TEI document, but in this approach, the email message metadata has been stored in different locations:
@@ -1652,7 +1652,7 @@ KS4K
       </div>
    </div>
    <div xml:id="improving-tei">
-     <head>Conclusion: Improving the TEI for the encoding of born-digital resources?</head>
+     <head>Conclusion: Improving the TEI for the Encoding of Born-digital Resources?</head>
      <p>This paper has explored several challenges and possibilites for the TEI to encounter the born-digital resource of the email list,
      and presented quite a few potentially interesting statistics along the way. Since the digital text is so ephemeral and contingent, 
      yet so full of information about the computer age, our methods in archiving such work should 
@@ -1747,7 +1747,7 @@ KS4K
           like see
           https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
           -->
-     <head>The 29 7-bit ASCII characters that are not legal in XML</head>
+     <head>The 29 7-bit ASCII Characters that are not Legal in XML</head>
      <table xml:id="illegal_ascii_chars">
        <row role="label">
          <cell>base 10</cell>
@@ -1787,7 +1787,7 @@ KS4K
        <row> <cell>31</cell> <cell>1F</cell> <cell>0 011 111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
      </table>
      <list type="gloss">
-       <head>Regular expressions to match these characters</head>
+       <head>Regular Expressions to Match these Characters</head>
        <label>PCRE, Java, or oXygen:</label>
        <item><code>[\u0000-\u0008\u000C\u000E-\u0019]</code></item>
        <label>W3C:</label>
@@ -1799,7 +1799,7 @@ KS4K
      </list>
    </div>
    <div type="appendix" xml:id="appendix02">
-     <head>Date format frequency chart</head>
+     <head>Date Format Frequency Chart</head>
      <p>See below the chart for a glossary of the format components.</p>
      <table xml:id="dateFormats">
        <row role="label">
