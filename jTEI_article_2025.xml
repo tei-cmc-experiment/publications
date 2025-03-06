@@ -1688,7 +1688,7 @@ KS4K
        (E.g., if each <gi>TEI</gi> that represented a posting to the list had a <gi>title</gi> of <code>A TEI encoding of TEI-L post #04570
              of &lt;date when="2002-11-04T11:54:15">Mon, 4 Nov 2002&lt;/date> by &lt;persName>Seal, Jill&lt;/persName>
              with subject &lt;title level="a" type="subject">Re: multiple page range in master&lt;/title></code>. Verbose, but it works.)</p>
-     <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. <?ebb [2]?> What <att>level</att> 
+     <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. What <att>level</att> 
        values are appropriate for the <gi>title</gi> of the TEI-L Listserv as a whole, for the log files it curates by the month, or 
        for the individual email message if we use a <gi>title</gi> element to store its Subject line? Perhaps we could apply a 
        <att>level</att> of <val>s</val> (for series) for the title of the collected
