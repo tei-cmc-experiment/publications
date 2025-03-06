@@ -526,69 +526,69 @@
           our program to do so, we simply increased Java heap space to 5 GiB
           when running this transformation.</p>
         </div>
-	<div xml:id="dates">
-	  <head>Date Inconsistencies</head>
-	  <p>We think it is a given that having a machine-actionable
-	  date &amp; timestamp for each posting is an important
-	  feature of a preservation format for an archive of email
-	  messages. In TEI such a timestamp is typically stored on a
-	  <att>when</att> attribute in the W3C format (itself a subset
-	  of ISO 8601:2000 2nd edition format).</p>
-	  <p>Early on in the development of our XSLT program we were
-	  quite worried about how to go about parsing the values of
-	  the <code>Date:</code> header fields. While the format of
-	  this field is reasonably strictly defined by <ref
-	  type="bibl" target="#RFC5322">rfc5322</ref>, that standard
-	  was not published until 2008, 18 years after the TEI-L mailing list was
-	  started. We expected the given dates to be in dozens of different,
-	  potentially incompatible, formats.</p>
-	  <p>After some analysis we were pleasantly surprised to find
-	  that only 21 different formats were represented in this
-	  dataset. (The frequency of each format is listed in <ptr
-	  type="crossref" target="#appendix02"/>.) Interestingly, most
-	  of the variation was in the time zone. Discounting that
-	  variation, there were only four different formats. The
-	  variation in time zone indication, however, was at times
-	  ambiguous. For example, the time zone <q>BST</q> appears in
-	  the <code>Date:</code> field of over twenty posts. Given
-	  that the TEI was partially based in Great Britain, it is
-	  very likely that <q>BST</q> means <q>British Summer Time</q>
-	  (+01:00). But it is also used for <q>Brazilian Summer
-	  Time</q> (-02:00), <q>Bangladesh Standard Time</q> (+06:00),
-	  and <q>Bougainville Standard Time</q> (+11:00).</p>
-	  <p>In the end, we were able to parse all 38,787
-	  <code>Date:</code> fields using the regular expression
-	  capability of XSLT 3.0, plus a pair of maps to convert month
-	  names to 2-digit numbers and the various time zones we had
-	  found in our analysis to the correct format. Some of those
-	  time zone mappings were guesses based on the top level
-	  domain of the email addresses that had sent mail with an
-	  ambiguous time zone.<note>Thanks to our transformation to
-	  TEI, it took us only minutes to discover that of the 38,787
-	  timestamps for all posts, 38,716 (99.8%) have an on-the-hour
-	  time zone indication, 51 (0.1%) have no time zone
-	  indication, 19 have an on-the-half-hour time zone
-	  indication, and 1 has a clearly erroneous time zone
-	  indication of <code>-00:08</code>. We expect that it
-	  would be easy to ascertain this using any of a variety of
-	  programming languages reading either the original dataset or
-	  our TEI encoded version. But given that we are experts in
-	  XPath and XSLT, having this information in TEI made this
-	  discovery very easy <emph>for us</emph>.<!-- It is worth
-	  noting that this cannot be done by just scanning the
-	  original dataset for the regular expression
-	  <code>^Date:</code> and parsing the rest of the line. There
-	  are nearly 700 lines that begin with <q>Date:</q> that are
-	  <emph>not</emph> the date of a posting. (Many are the date
-	  of an event being announced.) So the lines in the original
-	  dataset need to be parsed to separate email headers from
-	  email bodies. (Possibly only the lines that start with
-	  <q>Date:</q> could be further parsed, and maybe those that
-	  are dates of posts could be separated from the rest that
-	  way. We did not try, and do not intend to.) Besides, you
-	  would still have to normalize the time zones as they appear
-	  into the standard offset notation. --></note></p>
-	</div>
+        <div xml:id="dates">
+          <head>Date Inconsistencies</head>
+          <p>We think it is a given that having a machine-actionable
+          date &amp; timestamp for each posting is an important
+          feature of a preservation format for an archive of email
+          messages. In TEI such a timestamp is typically stored on a
+          <att>when</att> attribute in the W3C format (itself a subset
+          of ISO 8601:2000 2nd edition format).</p>
+          <p>Early on in the development of our XSLT program we were
+          quite worried about how to go about parsing the values of
+          the <code>Date:</code> header fields. While the format of
+          this field is reasonably strictly defined by <ref
+          type="bibl" target="#RFC5322">rfc5322</ref>, that standard
+          was not published until 2008, 18 years after the TEI-L mailing list was
+          started. We expected the given dates to be in dozens of different,
+          potentially incompatible, formats.</p>
+          <p>After some analysis we were pleasantly surprised to find
+          that only 21 different formats were represented in this
+          dataset. (The frequency of each format is listed in <ptr
+          type="crossref" target="#appendix02"/>.) Interestingly, most
+          of the variation was in the time zone. Discounting that
+          variation, there were only four different formats. The
+          variation in time zone indication, however, was at times
+          ambiguous. For example, the time zone <q>BST</q> appears in
+          the <code>Date:</code> field of over twenty posts. Given
+          that the TEI was partially based in Great Britain, it is
+          very likely that <q>BST</q> means <q>British Summer Time</q>
+          (+01:00). But it is also used for <q>Brazilian Summer
+          Time</q> (-02:00), <q>Bangladesh Standard Time</q> (+06:00),
+          and <q>Bougainville Standard Time</q> (+11:00).</p>
+          <p>In the end, we were able to parse all 38,787
+          <code>Date:</code> fields using the regular expression
+          capability of XSLT 3.0, plus a pair of maps to convert month
+          names to 2-digit numbers and the various time zones we had
+          found in our analysis to the correct format. Some of those
+          time zone mappings were guesses based on the top level
+          domain of the email addresses that had sent mail with an
+          ambiguous time zone.<note>Thanks to our transformation to
+          TEI, it took us only minutes to discover that of the 38,787
+          timestamps for all posts, 38,716 (99.8%) have an on-the-hour
+          time zone indication, 51 (0.1%) have no time zone
+          indication, 19 have an on-the-half-hour time zone
+          indication, and 1 has a clearly erroneous time zone
+          indication of <code>-00:08</code>. We expect that it
+          would be easy to ascertain this using any of a variety of
+          programming languages reading either the original dataset or
+          our TEI encoded version. But given that we are experts in
+          XPath and XSLT, having this information in TEI made this
+          discovery very easy <emph>for us</emph>.<!-- It is worth
+          noting that this cannot be done by just scanning the
+          original dataset for the regular expression
+          <code>^Date:</code> and parsing the rest of the line. There
+          are nearly 700 lines that begin with <q>Date:</q> that are
+          <emph>not</emph> the date of a posting. (Many are the date
+          of an event being announced.) So the lines in the original
+          dataset need to be parsed to separate email headers from
+          email bodies. (Possibly only the lines that start with
+          <q>Date:</q> could be further parsed, and maybe those that
+          are dates of posts could be separated from the rest that
+          way. We did not try, and do not intend to.) Besides, you
+          would still have to normalize the time zones as they appear
+          into the standard offset notation. --></note></p>
+        </div>
         <div xml:id="conversion_complexities">
           <head>Unsolved Conversion Complexities: MIME</head>
           <p>MIME stands for <term>Multipurpose Internet Mail
@@ -852,7 +852,7 @@
               alphabet in both upper &amp; lower cases. Thus
               <q>Espa=C3=B1ola</q> is normally used for the string
               <q>Española</q> rather than
-	      <q>=45=73=70=61=C3=B1=6F=6C=61</q>.<note>This means that
+              <q>=45=73=70=61=C3=B1=6F=6C=61</q>.<note>This means that
               when used on Western texts that have a high percentage
               of characters in the standard US-ASCII set,
               quoted-printable results in relatively easy-to-read,
@@ -1454,8 +1454,8 @@ KS4K
            the <gi>correspDesc</gi> also stores the distinct
            identifier of the message to which this is a reply.
            Perhaps the most significant difference is moving the information about the sender of the message to the <gi>post</gi> element, where the 
-             sender is designated in the <att>who</att> with a distinct identifier, mapped from their email address, and the date and time of initial sending
-           supplied in <att>when</att>.</p>
+             sender is designated on the <att>who</att> with a distinct identifier, mapped from their email address, and the date and time of initial sending
+           supplied on <att>when</att>.</p>
            <p>One field that gave us significant pause is the
            <code>Subject:</code> field. Although such fields are
            ubiquitous in office memos and in email headers, they
@@ -1482,15 +1482,21 @@ KS4K
            be to store both the title of the TEI document and the
            subject of the encoded email as separate <gi>title</gi>
            elements in the <gi>titleStmt</gi>, differentiated by
-           <att>type</att>. But we have not attempted to
+           <att>type</att> or nesting. But we have not attempted to
            implement this yet.</p>
-           <p>In this example, the human authorship of the message and the designation
-             of its subject is entirely designated within the <gi>post</gi>, in a manner more like the way CMC encoding approaches discussion board or wiki
-           posts, and less like the way we would handle the encoding of a letter as part of a collection of correspondence. 
-           While letters do not usually have subject lines, the personal actions of 
-           transmission and receipt are typically addressed in the <gi>teiHeader</gi>, where the <gi>titleStmt</gi> often provides information about the exchange,
-           while <gi>correspDesc</gi> is designed to provide detailed information about how messages literally change hands, from the writer to the postal agent 
-           to the recipient.</p>
+           <p>In this example, the human authorship of the message and
+           the designation of its subject is entirely designated
+           within the <gi>post</gi>, in a manner more like the way CMC
+           encoding approaches discussion board or wiki posts, and
+           less like the way we would handle the encoding of a letter
+           as part of a collection of correspondence. While letters do
+           not usually have subject lines, the personal actions of
+           transmission and receipt are typically addressed in the
+           <gi>teiHeader</gi>, wherein the <gi>titleStmt</gi> often
+           provides information about the exchange, and the
+           <gi>correspDesc</gi> is used to provide detailed
+           information about how messages literally change hands, from
+           the writer to the postal agent to the recipient.</p>
        </div>
      </div>
       <div xml:id="emailography">
@@ -1506,123 +1512,123 @@ KS4K
         structure to indicate who is the author of the posting (using
         <att>who</att>, a pointer to the structured information about
         the author of the posting).</p>
-	<p>However, the only information about individual participants in the
-	LISTSERV archives that is available in highly structured form
-	are their email addresses and names, and even the names are
-	sometimes absent. To make matters worse, a name, when
-	present, is that which the author’s email client uses, which
-	may not be entirely under the author’s control.<note>For
-	example, the Northeastern University mail system puts a user’s
-	name in the <code>From:</code> field in <q>Surname,
-	Forename</q> order.</note></p>
-	<p>Other information about posters to the list may be
-	available (e.g., from their signatures, or by looking at the
-	dates on which they posted), but only names and email
-	addresses are readily available in dedicated metadata fields.
-	Nonetheless, an automatically generated structured
-	<soCalled>’ography</soCalled> of those who post seems like a
-	good idea, both as a starting point for those wishing to add
-	further information about parties involved, and as a place for
-	the <att>who</att> attribute of <gi>post</gi> to point. But
-	how should we structure this set information? Eschewing
-	complex calculations or heuristics for now, we only have two
-	relevant pieces of information about the sender of any given
-	piece of email: a name and an email address. And even though
-	there is a strict one-to-one relationship between these pieces of
-	information <emph>for a particular post</emph>, many people
-	post mutliple times to the list.</p>
-	<p>It is often the case that for a given name multiple email
-	addresses were used. For example, the email address
-	<email>emcaulay@library.ucla.edu</email> is associated with
-	three different names: <q>McAulay, Elizabeth</q>, <q>Elizabeth
-	McAulay</q>, and <q>McAulay, Lisa</q>. (It is easy for a human
-	to see these are probably the same person. It would be far
-	more difficult, although not impossible, for a computer to
-	make that inference.) In another case the email address
-	<email>gusfer@gmail.com</email> is associated with two
-	distinctly different names (for the same person): <q>Gus
-	Riva</q> and <q>Gustavo Fern=?UTF-8?Q?=C3=A1ndez_Riva?=</q>
-	(which, according to the rules sketched out in <ptr
-	type="crossref" target="#quoted-printable"/>, could be
-	expressed as <q>Gustavo Fernández Riva</q>).</p>
-	<p>Conversely, for any given name, several email addresses may
-	have been used in different postings. For example, the name
-	<q>C. M. Sperberg-McQueen</q> is associated with
-	<email>U35395@UICVM.BITNET</email>,
-	<email>U59467@UICVM.BITNET</email>, and
-	<email>cmsmcq@acm.org</email>.</p>
-	<p>Something like a TEI <soCalled>personography</soCalled>
-	data structure (a <gi>listPerson</gi> with a series of
-	<gi>person</gi> elements) is called for. Our first attempted program
-	actually generates exactly this personography structure, but 
-	we are unsatisfied with this encoding. Before discussing why 
-	we are unsatisfied with our own encoding, it is worth pointing out 
-	the two approaches that can be taken when generating the bare bones personography. 
-	Given that the only types of information we have are names and email
-	addresses, we could create either a structure of entries
-	identified by email address, each of which lists the various
-	names associated with that address; or a structure of entries
-	identified by name, each of which lists the various email
-	addresses associated with that name.</p>
-	<p>We chose the former (a structure based on email addresses,
-	each of which lists one or more names that are associated with
-	it), primarily because it is a lot easier to convert the email
-	addresses to XML IDs than it is to convert the names to XML
-	IDs. There are only seven characters that occur in our set of
-	email addresses that cannot occur in an XML ID: <code>@</code>, 
-	  <code>:</code>, <code>!</code>, <code>+</code>, <code>%</code>,
-	/, and <code>~</code>. Conversely, in the set of names extracted from the
-	<code>From:</code> fields of this dataset, there are over a
-	dozen characters not allowed in an XML ID including some which
-	make manipulating them in XSLT annoying: <code>'</code>, <code>"</code>, and
-	<code>&amp;</code>. Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
-	  <code>(</code>, <code>¡</code>, <code>Ð</code>, and <code>¼</code>.</p>
-	<p>So for each unique email address in the <code>From:</code>
-	fields of our dataset we generated a <gi>person</gi> element
-	that had an <att>xml:id</att> that was generated from the
-	given email address, and from which the email address could be
-	reproduced.<note>That is, the conversion process from email
-	address to XML ID is deliberately round-tripable. We have not,
-	however, yet written code to convert an ID back into an email
-	address, and likely never will, given that the email address
-	is stored elsewhere in the <gi>person</gi> entry.</note>
-	Inside that <gi>person</gi> element we list each unique name
-	associated with it, and then reproduce the email address.</p>
-	<p>We find it dissatisfying that the only way to include an
-	<gi>email</gi> inside a <gi>person</gi> is to place it inside
-	a <gi>p</gi>, <gi>ab</gi>, or <gi>note</gi> that is itself
-	inside the <gi>person</gi>. This feels clumsy to us.
-	After all, an email address is a key piece of information
-	many of us wish to record about people. That said, the
-	correspondence between people and email addresses is not at
-	all a simple one, so a simple child relationship may be
-	insufficient. Furthermore, email addresses come and go, so at
-	the very least <gi>email</gi> would have to be added to the
-	<name>att.datable</name> class in order to make it usable as a
-	child of <gi>person</gi>. It might be reasonable instead to
-	make <gi>email</gi> a child of <gi>state</gi> (which, in turn,
-	is available as a child of <gi>person</gi> and a member of
-	att.datable and att.typed).</p>
-	<p>We can imagine further processing that might enhance this
-	data. For example, a routine could check to see the
-	chronologically earliest and latest use of each name and
-	record that information. It might be reasonable to look for
-	each name in <emph>other</emph> entries and generate links
-	between entries that contain the same name. One might group
-	entries by the email address domain name. For each entry,
-	minimum, average, and maximum lenghts of posts might be
-	included. (Although it is an interesting question which MIME
-	part one uses to calculate length, and how the calculation is
-	performed.)</p>
-	<p>So while we are not entirely satisfied with our current
-	<soCalled>personography</soCalled> structure, we are not entirely
-	<emph>dissatisfied</emph> with it, either. But either way, we
-	are uncomfortable with our data structure in principle, because it is <emph>not
-	  really a personography</emph>. It is not a set of data structures
-	about people, but rather it is a set of data structures about email
-	addresses. We could, of course, use generic structures instead
-	of abusing the special purpose elements. An example follows.
-	<egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <p>However, the only information about individual participants in the
+        LISTSERV archives that is available in highly structured form
+        are their email addresses and names, and even the names are
+        sometimes absent. To make matters worse, a name, when
+        present, is that which the author’s email client uses, which
+        may not be entirely under the author’s control.<note>For
+        example, the Northeastern University mail system puts a user’s
+        name in the <code>From:</code> field in <q>Surname,
+        Forename</q> order.</note></p>
+        <p>Other information about posters to the list may be
+        available (e.g., from their signatures, or by looking at the
+        dates on which they posted), but only names and email
+        addresses are readily available in dedicated metadata fields.
+        Nonetheless, an automatically generated structured
+        <soCalled>’ography</soCalled> of those who post seems like a
+        good idea, both as a starting point for those wishing to add
+        further information about parties involved, and as a place for
+        the <att>who</att> attribute of <gi>post</gi> to point. But
+        how should we structure this set information? Eschewing
+        complex calculations or heuristics for now, we only have two
+        relevant pieces of information about the sender of any given
+        piece of email: a name and an email address. And even though
+        there is a strict one-to-one relationship between these pieces of
+        information <emph>for a particular post</emph>, many people
+        post mutliple times to the list.</p>
+        <p>It is often the case that for a given name multiple email
+        addresses were used. For example, the email address
+        <email>emcaulay@library.ucla.edu</email> is associated with
+        three different names: <q>McAulay, Elizabeth</q>, <q>Elizabeth
+        McAulay</q>, and <q>McAulay, Lisa</q>. (It is easy for a human
+        to see these are probably the same person. It would be far
+        more difficult, although not impossible, for a computer to
+        make that inference.) In another case the email address
+        <email>gusfer@gmail.com</email> is associated with two
+        distinctly different names (for the same person): <q>Gus
+        Riva</q> and <q>Gustavo Fern=?UTF-8?Q?=C3=A1ndez_Riva?=</q>
+        (which, according to the rules sketched out in <ptr
+        type="crossref" target="#quoted-printable"/>, could be
+        expressed as <q>Gustavo Fernández Riva</q>).</p>
+        <p>Conversely, for any given name, several email addresses may
+        have been used in different postings. For example, the name
+        <q>C. M. Sperberg-McQueen</q> is associated with
+        <email>U35395@UICVM.BITNET</email>,
+        <email>U59467@UICVM.BITNET</email>, and
+        <email>cmsmcq@acm.org</email>.</p>
+        <p>Something like a TEI <soCalled>personography</soCalled>
+        data structure (a <gi>listPerson</gi> with a series of
+        <gi>person</gi> elements) is called for. Our first attempted program
+        actually generates exactly this personography structure, but 
+        we are unsatisfied with this encoding. Before discussing why 
+        we are unsatisfied with our own encoding, it is worth pointing out 
+        the two approaches that can be taken when generating the bare bones personography. 
+        Given that the only types of information we have are names and email
+        addresses, we could create either a structure of entries
+        identified by email address, each of which lists the various
+        names associated with that address; or a structure of entries
+        identified by name, each of which lists the various email
+        addresses associated with that name.</p>
+        <p>We chose the former (a structure based on email addresses,
+        each of which lists one or more names that are associated with
+        it), primarily because it is a lot easier to convert the email
+        addresses to XML IDs than it is to convert the names to XML
+        IDs. There are only seven characters that occur in our set of
+        email addresses that cannot occur in an XML ID: <code>@</code>, 
+          <code>:</code>, <code>!</code>, <code>+</code>, <code>%</code>,
+        /, and <code>~</code>. Conversely, in the set of names extracted from the
+        <code>From:</code> fields of this dataset, there are over a
+        dozen characters not allowed in an XML ID including some which
+        make manipulating them in XSLT annoying: <code>'</code>, <code>"</code>, and
+        <code>&amp;</code>. Others include <code>©</code>, <code>¶</code>, <code>)</code>, 
+          <code>(</code>, <code>¡</code>, <code>Ð</code>, and <code>¼</code>.</p>
+        <p>So for each unique email address in the <code>From:</code>
+        fields of our dataset we generated a <gi>person</gi> element
+        that had an <att>xml:id</att> that was generated from the
+        given email address, and from which the email address could be
+        reproduced.<note>That is, the conversion process from email
+        address to XML ID is deliberately round-tripable. We have not,
+        however, yet written code to convert an ID back into an email
+        address, and likely never will, given that the email address
+        is stored elsewhere in the <gi>person</gi> entry.</note>
+        Inside that <gi>person</gi> element we list each unique name
+        associated with it, and then reproduce the email address.</p>
+        <p>We find it dissatisfying that the only way to include an
+        <gi>email</gi> inside a <gi>person</gi> is to place it inside
+        a <gi>p</gi>, <gi>ab</gi>, or <gi>note</gi> that is itself
+        inside the <gi>person</gi>. This feels clumsy to us.
+        After all, an email address is a key piece of information
+        many of us wish to record about people. That said, the
+        correspondence between people and email addresses is not at
+        all a simple one, so a simple child relationship may be
+        insufficient. Furthermore, email addresses come and go, so at
+        the very least <gi>email</gi> would have to be added to the
+        <name>att.datable</name> class in order to make it usable as a
+        child of <gi>person</gi>. It might be reasonable instead to
+        make <gi>email</gi> a child of <gi>state</gi> (which, in turn,
+        is available as a child of <gi>person</gi> and a member of
+        att.datable and att.typed).</p>
+        <p>We can imagine further processing that might enhance this
+        data. For example, a routine could check to see the
+        chronologically earliest and latest use of each name and
+        record that information. It might be reasonable to look for
+        each name in <emph>other</emph> entries and generate links
+        between entries that contain the same name. One might group
+        entries by the email address domain name. For each entry,
+        minimum, average, and maximum lenghts of posts might be
+        included. (Although it is an interesting question which MIME
+        part one uses to calculate length, and how the calculation is
+        performed.)</p>
+        <p>So while we are not entirely satisfied with our current
+        <soCalled>personography</soCalled> structure, we are not entirely
+        <emph>dissatisfied</emph> with it, either. But either way, we
+        are uncomfortable with our data structure in principle, because it is <emph>not
+          really a personography</emph>. It is not a set of data structures
+        about people, but rather it is a set of data structures about email
+        addresses. We could, of course, use generic structures instead
+        of abusing the special purpose elements. An example follows.
+        <egXML xmlns="http://www.tei-c.org/ns/Examples">
           <list type="emailography">
             <item xml:id="nsmith·＠·email.unc.edu">
               <name>Natalia Smith</name>
@@ -1803,8 +1809,8 @@ KS4K
      <p>See below the chart for a glossary of the format components.</p>
      <table xml:id="dateFormats">
        <row role="label">
-	 <cell># occurences</cell>
-	 <cell>format</cell>
+         <cell># occurences</cell>
+         <cell>format</cell>
        </row>
        <!-- Note to JTEI editors: this will be much more readable if
             the 2nd <cell> in each <row> be displayed in a fixed-width
