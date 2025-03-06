@@ -40,7 +40,7 @@
       </titleStmt>
       <publicationStmt>
         <publisher>TEI Consortium</publisher>
-        <date>due 2025-03-03</date>
+        <date>due 2025-03-07</date>
         <availability>
           <licence target="https://creativecommons.org/licenses/by/4.0/">
             <p>For this publication a Creative Commons Attribution 4.0 International
@@ -94,7 +94,6 @@
           conceptual difficulties in reliably tracing individual contributions over years and decades. 
           Ultimately we believe that yes, it is possible (although difficult) to store the archives of an email list in TEI,
           that there are some problems with establishing a satisfactory encoding, 
-          <?sydb does that seem more accurate? ?>
           and the methods one chooses will likely depend on the scope of a Listserv archival project.</p>
       </div>
     </front>
@@ -142,8 +141,8 @@
         obviously of significant interest to the TEI community. For us, its
         contents comprise a heritage <q>dig site</q> of resources and perspectives from the early
         days of text encoding and digital humanities. The first post was on 
-          <date when="1990-01-08">Mon 08 Jan 1990<!-- while I was still living in Pasedena, 6 days after I
-        got my MICP certification —sb --></date>), so the list was
+          <date when="1990-01-08">Monday, 08 January 1990<!-- while I was still living in Pasedena, 6 days after I
+        got my MICP certification —sb --></date>, so the list was
         started months before the first edition of P1, and years
         before the advent of XML.</p>
         <!-- gold mine; heritage dig site; digital archaeology -->
@@ -155,11 +154,11 @@
         really satisfactory.</p>
         <p>We took two approaches to encoding the TEI-L Listserv data in TEI:
         <list>
+          <item>a craft encoding of a <q>core sample</q> of the list, 
+            holding a short range of months or years worth of posts.</item>
           <item>an automated conversion of mass data to a basic
           TEI representation for archiving and potential later
           enhancement</item>
-          <item>a craft encoding of a <q>core sample</q> of the list, 
-            holding a short range of months or years worth of posts.</item>
         </list>
         </p>
       </div>
@@ -189,15 +188,26 @@
             We expect it is possible to overcome these difficulties, but due to time constraints in launching this project for the 2024 TEI Conference, 
             we limited ourselves to small samples that would be retrievable on one screen to simplify our processing requirements. We tinkered with the Scrapy Python library and lxml e-tree for parsing XPath, after a 
             false start in attempting to adapt <ref target="https://github.com/gaalcaras/mailingListScraper">an excellent scraper designed by GitHub user gaalcaras for retrieving messages from Hypermail</ref>, which produces a much simpler web archive than Listserv.</p>
-          <p>Our limited scraping exercise helped us to learn about the Listserv web archive retrieval system. 
-            What was most interesting to us about this method was the discovery that Listserv provides each message a distinct identifier for retrieving it for web view.
-            If we could retrieve the distinct identifiers from URLs and and CGI paths, those could be a reliable way to pull message metadata and content.
-            On the archive results page for a search parameter, we found regular structures like this (retrieved from a search for all of the 1990 messages from January to December).
-            All message data is provided in an HTML table, with each row sharing information about each message, including 
-            a bit of the message text content to be shown on mouseover, sender name and email, a date and time stamp (though it is unclear whether this is for circulation by Listserv or from the original email heading), 
-            and finally an HTML anchor pointing to a CGI path to retrieve the message with a distinct identifying string, as shown here:
-     
-            
+          <p>Our limited scraping exercise helped us to learn about
+          the Listserv web archive retrieval system.  What was most
+          interesting to us about this method was the discovery that
+          Listserv provides each message a distinct identifier for
+          retrieving it for web view.  If we could retrieve the
+          distinct identifiers from URLs and CGI paths, they could be
+          a reliable way to pull message metadata and content.  On the
+          archive results page for a search parameter, we found
+          regular structures as seen in <ptr type="crossref"
+          target="#scraped"/> (retrieved from a search for all of the
+          1990 messages from January to December). All message data
+          is provided in an HTML table, with each row sharing
+          information about each message, including a bit of the
+          message text content to be shown on mouseover, sender name
+          and email, a date and time stamp (though it is unclear
+          whether this is for circulation by Listserv or from the
+          original email heading), and finally an HTML anchor pointing
+          to a CGI path to retrieve the message with a distinct
+          identifying string, as shown here:
+            <figure xml:id="scraped">
            <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
             <tr>
               <td class="emphasizedgroup row-l" scope="row"><div class="archive forcewrap"><span onmouseover="showDesc('Dear Colleague:&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;From 27 May to 29 June 1990 I am out of the country and so gone from&amp;lt;br&amp;gt;this address, chiefly to attend the ALLC/ICCH conference in Siegen,&amp;lt;br&amp;gt;Germany. Mail will be kept faithfully for me here, but if I do not&amp;lt;br&amp;gt;reply to your message in early July, please resend your message then. [...]','Re: where is SGML being used','Fri, 29 Jun 90 13:19:30 EDT')" onmouseout="hideDesc()"><a href="/cgi-bin/wa?A2=TEI-L;5bb4caca.9006&amp;S=">Re: where is SGML being used</a></span></div></td>
@@ -207,67 +217,92 @@
                   <img src="/archives/images/default_archive_delete_22x22.png" alt="Delete Message" title="Delete Message" /></a></td>
             </tr>
             </egXML>
+            <head type="legend">Scraped Message Metadata</head>
+            </figure>
             
             The cgi-bin locational information is certainly complicated, but appears to be parsable. The distinct identifier for a message can be found in the
             fourth and last <gi>td</gi> element by retrieving its child <gi>a</gi> and selecting the portion of its <att>href</att> attribute value that
             begins with <code>&amp;X=</code>, its X parameter. In this example Willard McCarty’s message happens to be the last on the first page of results, and 
             it is used again by Listserv within the value for its <q>Next</q> button to retrieve the results for the second screen.
             One can find it as the <q>X</q> parameter once again:
-            
+            <figure xml:id="nextButton">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <input type="button" value="Next Page &amp;#62;" 
                 onclick="clearSessionStorage(); 
                 goTo('/cgi-bin/wa?A1=199001-199012&amp;L=TEI-L&amp;s=250&amp;X=O96EB1622E3EEE9B193&amp;Y=eeb4%40psu.edu')" />
             </egXML>
-            
-            Our Python scraping experiment could follow these paths to extract URLs for messages, but we decided not to continue
-            the experiment to try to extract Listserv’s web representation of the message data, because that data posed their own challenges for parsing <q>spaghetti code</q> and we could proceed more efficiently 
-            with a simpler resource for the email message data.
-            Because Listserv provides much cleaner and simpler monthly log text files on request that are far more tractable, we decided to work exclusively with the
-            log files for experiments with converting to Listserv email data to TEI. You can explore <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment/tree/main/logs">the log files for the year 1990</ref> in our GitHub repository and 
-            see how much simpler they are to work with as a basis for conversion. What is missing in those logs, however, is a distinct identifier for each message.
-            So for a future experiment, we may pull the message identifiers from Listserv’s web archive files in order to key the logs to the web retrieval system.
-          </p>
-          
+            <head type="legend"><code>Next</code> Button Reproducing Message ID</head>
+            </figure>            
+            Our Python scraping experiment could follow these paths to
+            extract URLs for messages, but we decided not to continue
+            the experiment to try to extract Listserv’s web
+            representation of the message data, because that data
+            posed their own challenges for parsing <q>spaghetti
+            code</q> and we could proceed more efficiently with a
+            simpler resource for the email message data.  Because
+            Listserv provides much cleaner and simpler monthly log
+            text files on request that are far more tractable, we
+            decided to work exclusively with the log files for
+            experiments with converting to Listserv email data to
+            TEI. You can explore <ref
+            target="https://github.com/tei-cmc-experiment/tei-cmc-experiment/tree/main/logs">the
+            log files for the year 1990</ref> in our GitHub repository
+            and see how much simpler they are to work with as a basis
+            for conversion. What is missing in those logs, however, is
+            Listserv’s distinct identifier for each
+            message.<note>~41.2% of email messages in the entire
+            dataset have a <code>Message-ID</code> header field which
+            provides a unique identifier for the message. But this is
+            not the same identifier Listserv uses for its display, and
+            over half of them are missing, making this field not
+            useful for some purposes.</note> So for a future
+            experiment, we may pull the message identifiers from
+            Listserv’s web archive files in order to key the logs to
+            the web retrieval system.</p>
         </div>
-
-        
         <div xml:id="mass-conversion">
           <head>Mass Conversion Approach</head>
           <p>Our goal for the mass conversion approach was to
           programmatically convert all of TEI-L from its inception up
-          to <date when="2024-04-29">Mon 29 April 2024</date> into some form of simple, basic TEI using
-          XSLT. That end date was chosen because it was the day the
-          mailing list was moved from Brown University’s Listserv to
-          Penn State University’s Listserv. This fact meant we could
-          obtain the entire dataset as log text files directly from the Brown listmaster
-          without needing to worry about merging in data from PSU or
-          about posts made just after we obtained the data. Peter
-          DiCamillo, the Brown listmaster, sent us 412 separate files,
-          one for each month, i.e., <name>tei-l.log9001</name> through
-            <name>tei-l.log2404</name>. These data are also available by GET requests
-          from the API service of LISTS.PSU.EDU. For details see the <gi>samplingDecl</gi> 
-            in our example in <ptr type="crossref" target="#TEI-collection"/>.</p>
-          <p>The first step was to rename the log files to use
-          4-digit (as opposed to 2-digit) years so that they sorted
-          into the correct order.<note>This was done quite easily in
-          Emacs using dired-mode. But in fact, it is not very hard to
-          do directly in the shell (the single command <code>for f in
-          tei-l.log* ; do echo "---------${f}:" ; if [[ ${f} =~
-          tei-l.log(9[0-9])([0-9][0-9]) ]] ; then mv ${f}
-          tei-l.log_19${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; elif [[
-          ${f} =~ tei-l.log([012][0-9])([0-9][0-9]) ]] ; then mv ${f}
-          tei-l.log_20${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ; fi ;
-          done</code> does a nice job), and there are utilities
-          available for Mac OS that could do this.</note> This renaming allowed
-          the logs to be easily examined in a reasonable order and, more
-          importantly, allowed them to be combined into a single file
-          in the correct order using one simple command: <code>cat
-          tei-l.log* > TEI-L.txt</code>.<note>In fact, in a vain
-          effort to avoid the character encoding problems described
-          below, we actually used <code>iconv -f ISO-8859-1 -t UTF-8
-          -c tei-l.log* > TEI-L.txt</code>, but we do not think it made
-          any significant difference.</note></p>
+          to <date when="2024-04-29">Monday, 29 April 2024</date> into
+          some form of simple, basic TEI using XSLT. That end date was
+          chosen because it was the day the mailing list was moved
+          from Brown University’s Listserv to Penn State University’s
+          Listserv. This fact meant we could obtain the entire dataset
+          as text files directly from the Brown listmaster without
+          needing to worry about merging in data from PSU or about
+          posts made just after we obtained the data. Peter DiCamillo,
+          the Brown listmaster, sent us 412 separate files, one for
+          each month, i.e., <name>tei-l.log9001</name> through
+          <name>tei-l.log2404</name>. These data are also available by
+          GET requests from the API service of LISTS.PSU.EDU. For
+          details see the <gi>samplingDecl</gi> in our example in <ptr
+          type="crossref" target="#TEI-collection"/>.</p>
+          <p>The first step was to rename the log files to use 4-digit
+          (as opposed to 2-digit) years so that they sorted into the
+          correct order.<note>This was done quite easily in Emacs
+          using dired-mode. But in fact, it is not very hard to do
+          directly in the shell (the single command
+          <eg>
+            for f in tei-l.log* ; do
+               echo "---------${f}:" ;
+               if [[ ${f} =~ tei-l.log(9[0-9])([0-9][0-9]) ]] ; then
+                  mv ${f} tei-l.log_19${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ;
+               elif [[${f} =~ tei-l.log([012][0-9])([0-9][0-9]) ]] ; then
+                  mv ${f} tei-l.log_20${BASH_REMATCH[1]}-${BASH_REMATCH[2]} ;
+               fi ;
+            done</eg>
+          does a nice job), and there are utilities
+          available for Mac OS that could do this.</note> This
+          renaming allowed the logs to be easily examined in a
+          reasonable order and, more importantly, allowed them to be
+          combined into a single file in the correct order using one
+          simple command: <code>cat tei-l.log* >
+          TEI-L.txt</code>.<note>In fact, in a vain effort to avoid
+          the character encoding problems described below, we actually
+          used <code>iconv -f ISO-8859-1 -t UTF-8 -c tei-l.log* >
+          TEI-L.txt</code>, but we do not think it made any
+          significant difference.</note></p>
           <div xml:id="post_delimiters">
             <head>Delimiters</head>
             <p>Each log file provided by Listserv contains one or more
@@ -298,7 +333,7 @@
             other posts.)</p>
             <p>But are there any cases of 73 equal signs in a row that
             do occupy the entire line, but are <emph>not</emph> intended
-            to be a post-begin delimiter? We know that every email
+            to be a start-post delimiter? We know that every email
             message (and thus every post to an email list) starts with
             a sequence of metadata records. Email metadata records are
             in a very specific format: the field name, which must be
@@ -314,7 +349,7 @@
             <code>^={73}\n[^D]</code>.</note> There are only three such
             cases, so we just examined each of them.</p>
             <p>The first is simply a case of cut-and-paste: on <date
-            when="1992-09-10">Thu 10 Sep 1992</date> Wendy Plotkin, who
+            when="1992-09-10">Thursday, 10 September 1992</date> Wendy Plotkin, who
             was at the time a PhD candidate in History at UIC and who
             served as the TEI’s research assistant (1990–1999), posted
             email that contained a copy of email from Professor Robert
@@ -325,7 +360,7 @@
             <p>The other two cases are both of two lines of 73 equal signs
             in a row, with nothing between. Whether these indicate that the
             preceding post ended with the same set of characters that is
-            used as the begin-post delimiter, or that there is a missing
+            used as the start-post delimiter, or that there is a missing
             post, we do not know.</p>
             <p>So the result of this analysis was that a line of 73
             equal signs in a row could be used reliably to indicate the
@@ -371,7 +406,6 @@
             XML, 17 of them occur in the TEI-L archives:
             <list>
               <item>64 occurrences in 34 posts before 2000 (which, on reflection, was not too surprising)</item>
-              <?sydb were there no illegal characters used between 2000 and 2008? ?>
               <item>38 occurrences in 11 posts after 2008 (which we did not expect at all)</item>
             </list>
             These characters were generally used not to represent the
@@ -436,11 +470,18 @@
               <soCalled>warning</soCalled> <emph>strings</emph>. After
               all, XML does have a replacement mechanism. So if we were
               to replace each of the six occurrences of, say, U+001A with
-              <q>&#x26D1;SUB&#x26D1;</q> in the input document, we could either leave
+              <q>&#x2A00;SUB&#x2A00;</q> in the input document, we could either leave
               them that way for the user, or convert them to
               <q>&amp;SUB;</q> and provide an appropriate declaration,
+              <?jtei Note to JTEI editors: This is weird. The
+                characters I wanted to use (U+26D1 & U+E503) do not
+                survive FOP processing. So I switched to using U+2A00
+                for both. The two occurrences aboves survive, but the
+                one below gets converted to # (U+0023)! Is that
+                because it is within a <code>, and thus using a
+                different font? ?>
               for example to a PUA character: <code>&lt;!ENTITY SUB
-              "&#xE503;"></code>. This would likely be easier for
+              "&#x2A00;"></code>. This would likely be easier for
               readers than using a single character for each of the 17
               problematic characters, but as with that solution readers
               would be confused when there was not a 1:1 mapping from
@@ -613,7 +654,7 @@
           always. In our dataset ~92.6% of posts use MIME. The first
           1841 posts occurred over the first 2531 days (6.93 years) and
           did not use MIME; the first use of MIME was on <date
-          when="1996-12-13">Fri 13 Dec 1996</date>. Over the next 2531
+          when="1996-12-13">Friday, 13 December 1996</date>. Over the next 2531
           days 3327 of 3707 posts (89.75%) used MIME. Over the last
           2531 days in the dataset 4854 of 4861 posts (99.86%) used
           MIME.</note>
@@ -628,9 +669,9 @@
             parameter, whose value can be used by mail clients (or
             intrepid digital humanists) to parse out the different
             parts.</item> </list> Furthermore, each part may itself be
-            multipart, in which case it has a
+            multipart, in which case it also has a
             <code>Content-Type:</code> field that starts with
-            <val>multipart/</val> and has a <code>boundary=</code>
+            <val>multipart/</val> and a <code>boundary=</code>
             parameter. Thus the parts are arranged as a standard
             hierarchical tree, although in practice the tree often has
             only leaf nodes (i.e., parts that are not themselves
@@ -693,7 +734,7 @@
             converted <q>=?UTF-8?Q?Piotr_Ba=C5=84ski?=</q> to <q>Piotr
             Bański</q>),<note>This name also appears as
             <q>=?ISO-8859-2?Q?Piotr_Ba=F1ski?=</q> and
-            <q>=?UTF-8?B?UGlvdHIgQmHFhHNraQ==?=</q>.</note>and that
+            <q>=?UTF-8?B?UGlvdHIgQmHFhHNraQ==?=</q>.</note> and that
             those performing digital archaeology about how various
             characters were represented by various historical email
             systems would just as soon use the source data rather than
@@ -723,7 +764,9 @@
             <emph>Text</emph> Encoding Initiative version of the data
             we are creating. (In fact, this is what we did for the
             <soCalled>scrape + craft encoding</soCalled> approach
-            described in <ptr type="crossref" target="#scraping"/>.) But it would also
+            described in <ptr type="crossref" target="#scraping"/>, except
+            there all parts were ignored except the one the Listserv
+            web interface chose to display.) But it would also
             be quite reasonable, and quite possibly helpful to future
             scholars and interested parties, to retain the information
             in other parts of postings to the mailing list. But doing
@@ -737,9 +780,8 @@
             partially solve the first challenge within the scope of
             this small pilot project. Our XSLT will recognize MIME
             multipart content, and separate out each of the
-            highest-level parts into their own constructs. It does
-            not, yet, handle multipart-inside-multipart MIME content,
-            however.</p> 
+            highest-level parts into their own constructs. However, it does
+            not yet handle multipart-inside-multipart MIME content.</p> 
             <p>The second practical challenge, processing the content
             of a MIME part according to its type, is reasonably easy
             to contemplate for XSLT when the content type is
@@ -803,8 +845,8 @@
               <p>Note that using the specified down-translation method
               to recover the correct character codepoints is not
               sufficient to decode the message body. The client must
-              also know which character set to use to map the
-              codepoint to a character. For example, in the ISO-8859-2
+              also know which character set to use to map each
+              codepoint to a character. For example, in the ISO 8859-2
               character set the codepoint 241 (hexadecimal F1)
               represents <q>ń</q>; in UTF-8 it represents
               <q>ñ</q>. Which character set to use is specified on the
@@ -835,7 +877,7 @@
               in 2 octets, the last 5 bits (00101) are the first 5
               bits of the codepoint number. In the second octet the
               first 2 bits (10) are the signal that this is a continuation of
-              previous octet, and the last 6 bits are the
+              the previous octet, and the last 6 bits are the
               last 6 bits of the codepoint number. Thus we can read
               this UTF-8 character expressed using two bytes as the
               11-bit binary codepoint 00101000100, which is 324 in
@@ -921,8 +963,9 @@
             <head>Content Encoding Examples</head>
             <p>In order to exemplify these content encoding methods,
             here we take a short snippet of sample text taken from a
-            posting by Lionel Clement on <date when="1999-12-18">Sat 18 Dec 1999</date> in which the
-            second call for papers for the the upcoming
+            posting by Lionel Clement on <date
+            when="1999-12-18">Saturday, 18 December 1999</date> in
+            which the second call for papers for the the upcoming
             <name>TAG+5</name> conference is presented. The sample is
             shown here three times:
             <list rend="ordered">
@@ -1000,7 +1043,6 @@ KS4K
             for a tool intended for digital humanists, as the only
             EXPath-capable processors we are aware of are payware.</p>
           </div>
-            <?sb HERE?>
         </div>
         </div>
       </div> <!-- conversion_complexities -->
@@ -1085,7 +1127,7 @@ KS4K
              <editionStmt>
                <edition>Second experimental (“alpha”) edition</edition>
              </editionStmt>
-             <publicationStmt xml:id="possible_corrected_pS" exclude="#pS_used_in_Buenos_Aires #elided_pS">
+             <publicationStmt>
                <authority>
                  <persName>Elisa Beshero-Bondar</persName>
                  <persName>Syd Bauman</persName>
@@ -1097,10 +1139,6 @@ KS4K
                  <addrLine>San Francisco, CA 94107</addrLine>
                  <addrLine>United States</addrLine>
                </address>
-             </publicationStmt>
-             <publicationStmt xml:id="elided_publ_stmt" exclude="#pS_used_in_Buenos_Aires #possible_corrected_pS">
-               <ab>This experimental document is not intended to be
-               published independently.</ab>
              </publicationStmt>
              <sourceDesc>
                <bibl>
@@ -1629,6 +1667,10 @@ KS4K
         about people, but rather it is a set of data structures about email
         addresses. We could, of course, use generic structures instead
         of abusing the special purpose elements. An example follows.
+        <?jtei Note to JTEI editors: the FULLWIDTH COMMERCIAL AT
+          (U+FF20) used in the @xml:id below is not surviving FOP
+          processing. Unless you have any magic up your sleeve, we
+          will have to search for another character to use, here. ?>
         <egXML xmlns="http://www.tei-c.org/ns/Examples">
           <list type="emailography">
             <item xml:id="nsmith·＠·email.unc.edu">
@@ -1680,7 +1722,6 @@ KS4K
      seem applicable. So while <gi>line</gi> within <gi>sourceDoc</gi> may not be the right mechanism, some method for representing
      email as a relatively uninterpreted sequence of lines of characters should be available; or at the very least, we need to
      be able to preserve the ASCII art of yesteryear.</p>
-     <?sb HERE ?>
      <p>The TEI provides no good way to encode an email Subject line in either <gi>correspDesc</gi> or <gi>dateline</gi>, and our 
        attempts to place the Subject varied a little too widely. We do not find the use of the <gi>head</gi> element in <gi>post</gi> 
        satisfactory to encode an email Subject because it is not really part of the email body, but part of the heading metadata stored with From, To,
@@ -1750,10 +1791,8 @@ KS4K
      </listBibl>
    </div>
    <div type="appendix" xml:id="appendix01">
-     <!-- Note to JTEI editors: for an idea of what this might look
-          like see
-          https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html
-          -->
+     <?jtei Note to JTEI editors: for an idea of what this might look like see
+       https://tei-cmc-experiment.github.io/tei-cmc-experiment/ASCII_not_in_XML.html ?>
      <head>The 29 7-bit ASCII Characters that are not Legal in XML</head>
      <table xml:id="illegal_ascii_chars">
        <row role="label">
@@ -1800,7 +1839,9 @@ KS4K
        <label>W3C:</label>
        <item><code>[#x00-#x08#x0C#x0E-#x19]</code></item>
        <label>Emacs:</label>
-       <item><code>[^␤[:print:]]</code> &#xA0; &#xA0; ; where <q>␤</q> is typed CTL-J</item>
+       <?jtei Note to JTEI editors: another character that does not
+         survive FOP translation is used in next line. ?>
+       <item><code>[^␤[:print:]]</code> &#xA0; &#xA0; &lt;!-- where <q>␤</q> is typed CTL-J --></item>
        <label>grep or egrep:</label>
        <item><code>[^[:print:]]</code></item>
      </list>
@@ -1813,9 +1854,9 @@ KS4K
          <cell># occurrences</cell>
          <cell>format</cell>
        </row>
-       <!-- Note to JTEI editors: this will be much more readable if
-            the 2nd <cell> in each <row> be displayed in a fixed-width
-            typeface.  -->
+       <?jtei Note to JTEI editors: this will be much more readable if
+              the 2nd <cell> in each <row> be displayed in a fixed-width
+              typeface. ?>
        <row> <cell>32632</cell> <cell>Day, #D Mon YYYY HH:MM:SS ±HHMM</cell> </row>
        <row> <cell>3136</cell> <cell>Day, #D Month YYYY HH:MM:SS ±HHMM</cell> </row>
        <row> <cell>2347</cell> <cell>Day, #D Mon YYYY HH:MM:SS TZA</cell> </row>
@@ -1851,10 +1892,6 @@ KS4K
        <label>SS</label> <item>A 2-digit second.</item>
        <label>±</label> <item>Either <q>+</q> or <q>-</q>.</item>
        <label>TZA</label> <item>A valid time zone symbol.</item>
-       <label>Anything else as last token</label> <item>An invalid time zone symbol.</item>
-     </list>
-     </p>
-   </div>
- </back>
-</text>
-</TEI>
+       <label>Anything else as last token</label> <item>An invalid
+       time zone symbol.</item> </list> </p> </div> </back> </text>
+       </TEI>
