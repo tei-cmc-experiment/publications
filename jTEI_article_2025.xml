@@ -183,6 +183,11 @@
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
           <head>Scrape from the Web (attempted) Approach</head>
+          <p>This approach proves interesting for specialized archive retrieval, and though it proved 
+            too difficult to apply at scale in our first effort for this paper, we do recommend continued
+            experimentation for the kinds of information accessible from the web archive vs. the listserv log.
+            For that reason we are sharing our effort in this section.
+          </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
             we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
@@ -209,7 +214,7 @@
           the Listserv web archive retrieval system.  What was most
           interesting to us about this method was the discovery that
           Listserv provides each message a distinct identifier for
-          retrieving it for web view.  If we could retrieve the
+          retrieving it for web view. If we could retrieve the
           distinct identifiers from URLs and CGI paths, they could be
           a reliable way to pull message metadata and content.  On the
           archive results page for a search parameter, we found
