@@ -105,7 +105,11 @@
         a format suitable for scholarly examination and inquiry that may be 
         easy to access many years in the future. From the last quarter of 
         the twentieth century to the present, one venue for communication 
-        among humans has been email, and in particular the email discussion list. 
+        among humans has been email, and the email discussion list has helped to facilitate
+        communication among groups that share interests and organizations 
+        since the late 1970s.<note>According to the 
+          <ref target="https://www.lsoft.com/news/internet-and-email-timeline.asp">Internet and Email History Timeline</ref>, 
+          the first email list was MsgGrp on ARPANET established in 1975.</note> 
         Digital humanists will likely want to preserve the data of email
         discussion lists in a way that is likely to survive the ups
         and downs of the software market and is amenable to
@@ -114,7 +118,9 @@
         does not yet provide a dedicated mechanism for encoding email.
         TEI does provide mechanisms for encoding
         <emph>physical</emph> letters and chains of
-        correspondence. Certainly there are quite a few similarities between letters
+        correspondence, and as we will discuss later, TEI encoding of email has been 
+        modeled in the Correspondence SIG but we have yet to introduce examples to the Guidelines. 
+        Certainly there are quite a few similarities between letters
         and email. Like a letter, a piece of email is written by an author and sent to a
         recipient at a particular point in time. But physical letters
         do not have such a sharp demarcation between data &amp;
@@ -144,7 +150,13 @@
           <date when="1990-01-08">Monday, 08 January 1990<!-- while I was still living in Pasedena, 6 days after I
         got my MICP certification —sb --></date>, so the list was
         started months before the first edition of P1, and years
-        before the advent of XML.</p>
+        before the advent of XML. TEI-L dicussions have continued regularly since 1990 as a resource
+        for encoders raising and addressing questions, proposing experimental ways to model data, sharing
+        news of releases and conferences, and seeking connections when local TEI experts are few, 
+        as this well-established email list is widely understood 
+        to be the best way to access the expertise of our small and supportive community 
+        around the world.<note>At the time of this writing the TEI-L mailing list has 1242 subscribers. Information about joining the list is currently available 
+          from the <ref target="https://tei-c.org/support/#tei-l">Support page of the TEI website</ref>.</note></p>
         <!-- gold mine; heritage dig site; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
         and that most of our attention would be directed towards the more interesting
