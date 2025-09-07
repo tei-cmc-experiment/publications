@@ -119,7 +119,7 @@
         TEI does provide mechanisms for encoding
         <emph>physical</emph> letters and chains of
         correspondence, and as we will discuss later, TEI encoding of email has been 
-        modeled in the Correspondence SIG but we have yet to introduce examples to the Guidelines. 
+        modeled in the Correspondence SIG but the TEI has yet to introduce examples to the Guidelines. 
         Certainly there are quite a few similarities between letters
         and email. Like a letter, a piece of email is written by an author and sent to a
         recipient at a particular point in time. But physical letters
@@ -150,17 +150,17 @@
           <date when="1990-01-08">Monday, 08 January 1990<!-- while I was still living in Pasedena, 6 days after I
         got my MICP certification —sb --></date>, so the list was
         started months before the first edition of P1, and years
-        before the advent of XML. TEI-L dicussions have continued regularly since 1990 as a resource
+        before the advent of XML. The TEI-L discussion list has continued regularly since 1990 as a resource
         for encoders raising and addressing questions, proposing experimental ways to model data, sharing
         news of releases and conferences, and seeking connections when local TEI experts are few, 
         as this well-established public email list is widely understood 
-        to be the best way to access the expertise of our small and supportive community 
+        to be the best way to access the expertise of our small and supportive community
         around the world. While one must request to join the list in order to post, email postings to TEI-L 
-        are available to anyone for searching going back to 1990 
-        from <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">its public-facing archive</ref>, and the TEI-L archive
+        are available to anyone for searching from 
+          <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">its public-facing archive</ref>, which
         is itself a resource for those seeking discussions on specific topics over the years.<note>At the moment 
-          of this writing the TEI-L mailing list stores an archive of 31,575 messages 
-          and currently supports 1242 subscribers. Information about joining the list is currently available 
+          of this writing the TEI-L mailing list supports 1242 subscribers and stores an archive of 31,575 messages. 
+          Subscription is free and information about joining the list is currently available 
           from the <ref target="https://tei-c.org/support/#tei-l">Support page of the TEI website</ref>.</note></p>
         <!-- gold mine; heritage dig site; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
@@ -183,10 +183,11 @@
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
-          <p>The <q>scraping</q> approach helped us to explore the properties of the listserv URLs as a web publication, 
-            and though it proved too difficult to apply at scale in our first effort, we recommend continued
-            experimentation for the kinds of information accessible from the web archive vs. the listserv log.
-            For that reason we are sharing our effort in this section.
+          <p>The <q>scraping</q> approach helped us to explore the properties of the listserv URLs as a web publication. 
+            Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
+            research into the kinds of information accessible from the web archive vs. the listserv log.
+            For example tracking threads may be significantly easier through this method compared to working with
+            the log records. For this reason we are sharing our effort in this section.
           </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
