@@ -182,9 +182,9 @@
       <div xml:id="data-retrieval">
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
-          <head>Scrape from the Web (attempted) Approach</head>
-          <p>This approach proves interesting for specialized archive retrieval, and though it proved 
-            too difficult to apply at scale in our first effort for this paper, we do recommend continued
+          <head><q>Scrape</q> from the Web (attempted) Approach</head>
+          <p>The <q>scraping</q> approach helped us to explore the properties of the listserv URLs as a web publication, 
+            and though it proved too difficult to apply at scale in our first effort, we recommend continued
             experimentation for the kinds of information accessible from the web archive vs. the listserv log.
             For that reason we are sharing our effort in this section.
           </p>
