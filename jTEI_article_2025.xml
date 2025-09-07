@@ -137,7 +137,7 @@
         can TEI, with its new CMC chapter, be used to encode an email
         discussion list?</p>
         <p>We decided the TEI-L discussion list would make an
-        excellent test case. It is a large resource that spans decades
+        excellent test case. It is a large, public resource that spans decades
         from mailing list
         software (Listserv) with which we are somewhat
         familiar. Furthermore, because we had recently moved the list
@@ -153,9 +153,14 @@
         before the advent of XML. TEI-L dicussions have continued regularly since 1990 as a resource
         for encoders raising and addressing questions, proposing experimental ways to model data, sharing
         news of releases and conferences, and seeking connections when local TEI experts are few, 
-        as this well-established email list is widely understood 
+        as this well-established public email list is widely understood 
         to be the best way to access the expertise of our small and supportive community 
-        around the world.<note>At the time of this writing the TEI-L mailing list has 1242 subscribers. Information about joining the list is currently available 
+        around the world. While one must request to join the list in order to post, email postings to TEI-L 
+        are available to anyone for searching going back to 1990 
+        from <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">its public-facing archive</ref>, and the TEI-L archive
+        is itself a resource for those seeking discussions on specific topics over the years.<note>At the moment 
+          of this writing the TEI-L mailing list stores an archive of 31,575 messages 
+          and currently supports 1242 subscribers. Information about joining the list is currently available 
           from the <ref target="https://tei-c.org/support/#tei-l">Support page of the TEI website</ref>.</note></p>
         <!-- gold mine; heritage dig site; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
