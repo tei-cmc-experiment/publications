@@ -106,7 +106,7 @@
         easy to access many years in the future. From the last quarter of 
         the twentieth century to the present, one venue for communication 
         among humans has been email, and the email discussion list has helped to facilitate
-        communication among groups that share interests and organizations 
+        communication among organizations and groups that share interests 
         since the late 1970s.<note>According to the 
           <ref target="https://www.lsoft.com/news/internet-and-email-timeline.asp">Internet and Email History Timeline</ref>, 
           the first email list was MsgGrp on ARPANET established in 1975.</note> 
@@ -118,8 +118,8 @@
         does not yet provide a dedicated mechanism for encoding email.
         TEI does provide mechanisms for encoding
         <emph>physical</emph> letters and chains of
-        correspondence, and as we will discuss later, TEI encoding of email has been 
-        modeled in the Correspondence SIG but the TEI has yet to introduce examples to the Guidelines. 
+        correspondence, and (as we will discuss later) TEI encoding of email has been 
+        modeled in the Correspondence SIG, but the TEI has yet to introduce examples to the Guidelines. 
         Certainly there are quite a few similarities between letters
         and email. Like a letter, a piece of email is written by an author and sent to a
         recipient at a particular point in time. But physical letters
