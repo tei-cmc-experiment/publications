@@ -155,9 +155,9 @@
         around the world. The TEI-L is a resource for encoders to raise and address questions, 
         propose experimental ways to model data, share news releases and conference announcements, 
         and seek connections when local TEI experts are few. While one must request to join the list 
-        in order to post, email postings to TEI-L  are available to anyone for searching from 
+        in order to post, anyone can search and read email postings to TEI-L from 
           <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">its public-facing archive</ref>, which
-        is itself a resource for those seeking discussions on specific topics over the years.<note>At the moment 
+        is itself a resource for those seeking discussions on specific topics over the years.<note>At the time 
           of this writing the TEI-L mailing list supports 1242 subscribers and stores an archive of 31,575 messages. 
           Subscription is free and information about joining the list is currently available 
           from the <ref target="https://tei-c.org/support/#tei-l">Support page of the TEI website</ref>.</note></p>
@@ -182,7 +182,9 @@
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
-          <p>The <q>scraping</q> approach helped us to explore the properties of the listserv URLs as a web publication. 
+          <p>Listserv provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
+          retrieve data over periods of time, or based on other parameters.</p>
+          <p>Our attempts to <q>scrape</q> this web interface helped us to explore the properties of the listserv URLs as a web publication. 
             Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
             research into the kinds of information accessible from the web archive vs. the listserv log.
             For example tracking threads may be significantly easier through this method compared to working with
