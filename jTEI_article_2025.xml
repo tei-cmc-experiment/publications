@@ -105,7 +105,11 @@
         a format suitable for scholarly examination and inquiry that may be 
         easy to access many years in the future. From the last quarter of 
         the twentieth century to the present, one venue for communication 
-        among humans has been email, and in particular the email discussion list. 
+        among humans has been email, and the email discussion list has helped to facilitate
+        communication among organizations and groups that share interests 
+        since the late 1970s.<note>According to the 
+          <ref target="https://www.lsoft.com/news/internet-and-email-timeline.asp">Internet and Email History Timeline</ref>, 
+          the first email list was MsgGrp on ARPANET established in 1975.</note> 
         Digital humanists will likely want to preserve the data of email
         discussion lists in a way that is likely to survive the ups
         and downs of the software market and is amenable to
@@ -114,7 +118,9 @@
         does not yet provide a dedicated mechanism for encoding email.
         TEI does provide mechanisms for encoding
         <emph>physical</emph> letters and chains of
-        correspondence. Certainly there are quite a few similarities between letters
+        correspondence, and (as we will discuss later) TEI encoding of email has been 
+        modeled in the Correspondence SIG, but the TEI has yet to introduce examples in the Guidelines. 
+        Certainly there are quite a few similarities between letters
         and email. Like a letter, a piece of email is written by an author and sent to a
         recipient at a particular point in time. But physical letters
         do not have such a sharp demarcation between data &amp;
@@ -131,7 +137,7 @@
         can TEI, with its new CMC chapter, be used to encode an email
         discussion list?</p>
         <p>We decided the TEI-L discussion list would make an
-        excellent test case. It is a large resource that spans decades
+        excellent test case. It is a large, public resource that spans decades
         from mailing list
         software (Listserv) with which we are somewhat
         familiar. Furthermore, because we had recently moved the list
@@ -144,7 +150,17 @@
           <date when="1990-01-08">Monday, 08 January 1990<!-- while I was still living in Pasedena, 6 days after I
         got my MICP certification —sb --></date>, so the list was
         started months before the first edition of P1, and years
-        before the advent of XML.</p>
+        before the advent of XML. The TEI-L discussion list has continued regularly since 1990 and is widely understood 
+        to be the best way to access the expertise of our small and supportive community
+        around the world. The TEI-L is a resource for encoders to raise and address questions, 
+        propose experimental ways to model data, share news releases and conference announcements, 
+        and seek connections when local TEI experts are few. While one must request to join the list 
+        in order to post, anyone can search and read email postings to TEI-L from 
+          <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">its public-facing archive</ref>, which
+        is itself a resource for those seeking discussions on specific topics over the years.<note>At the time 
+          of this writing the TEI-L mailing list supports 1242 subscribers and stores an archive of 31,575 messages. 
+          Subscription is free and information about joining the list is currently available 
+          from the <ref target="https://tei-c.org/support/#tei-l">Support page of the TEI website</ref>.</note></p>
         <!-- gold mine; heritage dig site; digital archaeology -->
         <p>Our initial thought was that converting the data to XML would be easy,
         and that most of our attention would be directed towards the more interesting
@@ -165,7 +181,15 @@
       <div xml:id="data-retrieval">
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
-          <head>Scrape from the Web (attempted) Approach</head>
+          <head><q>Scrape</q> from the Web (attempted) Approach</head>
+          <p>Listserv provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
+          retrieve data over periods of time, or based on other parameters.</p>
+          <p>Our attempts to <q>scrape</q> this web interface helped us to explore the properties of the listserv URLs as a web publication. 
+            Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
+            research into the kinds of information accessible from the web archive vs. the listserv log.
+            For example tracking threads may be significantly easier through this method compared to working with
+            the log records. For this reason we are sharing our effort in this section.
+          </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
             we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
@@ -192,7 +216,7 @@
           the Listserv web archive retrieval system.  What was most
           interesting to us about this method was the discovery that
           Listserv provides each message a distinct identifier for
-          retrieving it for web view.  If we could retrieve the
+          retrieving it for web view. If we could retrieve the
           distinct identifiers from URLs and CGI paths, they could be
           a reliable way to pull message metadata and content.  On the
           archive results page for a search parameter, we found
