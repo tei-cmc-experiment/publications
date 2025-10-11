@@ -186,15 +186,15 @@
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
           <p>Listserv provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
           retrieve data over periods of time, or based on other parameters.</p>
-          <p>Our attempts to <q>scrape</q> this web interface helped us to explore the properties of the listserv URLs as a web publication. 
-            Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
+          <p>Our attempts to scrape this web interface helped us to explore the properties of the listserv URLs as a web publication. 
+            Though scraping proved too difficult to apply at scale in our first effort, we recommend continued
             research into the kinds of information accessible from the web archive vs. the listserv log.
             For example tracking threads may be significantly easier through this method compared to working with
             the log records. For this reason we are sharing our effort in this section.
           </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
-            we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
+            we attempted to scrape these from the web archive of the TEI-L, which can be  
             accessed on the web in its current home at Penn State University at 
             <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">https://lists.psu.edu/cgi-bin/wa?A0=TEI-L</ref>.
             By adjusting this public web URL, one could retrieve a <q>core sample</q> from the TEI-L by entering a date range, such that
