@@ -1075,16 +1075,23 @@ KS4K
     </div> 
     <div xml:id="mapping-to-TEI">
       <head>Mapping to TEI</head>
-      <!--ebb: To start here. -->
-      <p>In this section we represent some experimental modelings of email Listserv data in TEI encoding. 
-        We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
-        Communication (CMC) and from TEI encoding of Correspondence Description (<gi>correspDesc</gi>), introduced to the
-        TEI Guidelines in April 2015 in version 2.8, and now a basis for the <ref target="https://correspsearch.net/en/home.html">correspSearch web service</ref> and the Correspondence Metadata
-        Interchange Format (CMIF) for publishing archives of correspondence. Notably, 
-        <ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml"></ref>the Correspondence SIG has posted 
-        an example for encoding an email message with <gi>correspDesc</gi>, and the example, while helpful for modeling the use of 
-        <gi>correspAction</gi> to indicate who sends and who receives, does not attempt to address the larger context of Listserv handling which
-        we attempt to model in this section.</p> 
+      <p>In this section we present some TEI models of Listserv email
+      data. Our experiments included a combination of encoding from
+      the chapter on Computer Mediated Communication (CMC, introduced
+      in version 4.8 of July 2024) and from the correspondence
+      description (<gi>correspDesc</gi>, introduced in version 2.8 of
+      April 2015), and now a basis for the <ref
+      target="https://correspsearch.net/en/home.html">correspSearch
+      web service</ref> and the Correspondence Metadata Interchange
+      Format (CMIF) for publishing archives of
+      correspondence. Notably, the Correspondence SIG has posted an
+      <ref
+      target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml">example
+      for encoding an email</ref> message with <gi>correspDesc</gi>,
+      and the example, while helpful for modeling the use of
+      <gi>correspAction</gi> to indicate who sends and who receives,
+      does not attempt to address the larger context of Listserv
+      handling which we attempt to model in this section.</p>
       <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
@@ -1094,7 +1101,6 @@ KS4K
         are arranged by chronological sequence and without topical nesting. 
         In the interests of facilitating comparison of our encoding decisions, we have truncated the body of each message
         in the examples to show only the first and last few lines.</p>
-      
       <p>The email headers that were present in the entire dataset
       include the following information fields:
       <list>
