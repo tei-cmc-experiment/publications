@@ -1118,7 +1118,11 @@ KS4K
         <row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
         <row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
         <row><cell>Subject</cell><cell><code>post/head</code></cell></row>
-        <row><cell>In-Reply-To</cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
+        <row><cell>In-Reply-To<note>Not to be confused with the
+        <code>Reply-To</code> field, which contains the address to
+        which a reply should be sent. Since usually the sender’s
+        e-mail client sets this field, we do not think is particularly
+        interesting.</note></cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
         <row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
         <row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
         <row><cell>Organization</cell><cell>[not yet represented]</cell></row>
