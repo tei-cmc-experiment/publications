@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://tei-c.org/release/xml/tei/Exemplars/tei_jtei.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
@@ -176,7 +176,9 @@
           TEI representation for archiving and potential later
           enhancement</item>
         </list>
-        </p>
+	At the time of this writing, references to, or copies of, most of
+	the utilities we used and programs we wrote can be found on
+	<ref target="https://github.com/tei-cmc-experiment/">GitHub</ref>.</p>
       </div>
       <div xml:id="data-retrieval">
         <head>Conversion from Source to XML</head>
@@ -232,7 +234,7 @@
           to a CGI path to retrieve the message with a distinct
           identifying string, as shown here:
             <figure xml:id="scraped">
-           <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
+           <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-na">
             <tr>
               <td class="emphasizedgroup row-l" scope="row"><div class="archive forcewrap"><span onmouseover="showDesc('Dear Colleague:&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;From 27 May to 29 June 1990 I am out of the country and so gone from&amp;lt;br&amp;gt;this address, chiefly to attend the ALLC/ICCH conference in Siegen,&amp;lt;br&amp;gt;Germany. Mail will be kept faithfully for me here, but if I do not&amp;lt;br&amp;gt;reply to your message in early July, please resend your message then. [...]','Re: where is SGML being used','Fri, 29 Jun 90 13:19:30 EDT')" onmouseout="hideDesc()"><a href="/cgi-bin/wa?A2=TEI-L;5bb4caca.9006&amp;S=">Re: where is SGML being used</a></span></div></td>
               <td class="emphasizedgroup row-l"><div class="archive forcewrap">Willard McCarty &amp;lt;MCCARTY@VM.EPAS.UTORONTO.CA&amp;gt;</div></td>
@@ -250,7 +252,7 @@
             it is used again by Listserv within the value for its <q>Next</q> button to retrieve the results for the second screen.
             One can find it as the <q>X</q> parameter once again:
             <figure xml:id="nextButton">
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ke">
               <input type="button" value="Next Page &amp;#62;" 
                 onclick="clearSessionStorage(); 
                 goTo('/cgi-bin/wa?A1=199001-199012&amp;L=TEI-L&amp;s=250&amp;X=O96EB1622E3EEE9B193&amp;Y=eeb4%40psu.edu')" />
@@ -500,7 +502,7 @@
               <?jtei Note to JTEI editors: This is weird. The
                 characters I wanted to use (U+26D1 & U+E503) do not
                 survive FOP processing. So I switched to using U+2A00
-                for both. The two occurrences aboves survive, but the
+                for both. The two occurrences above survive, but the
                 one below gets converted to # (U+0023)! Is that
                 because it is within a <code>, and thus using a
                 different font? ?>
@@ -1142,7 +1144,7 @@ KS4K
        to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
        We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
        
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-dl">
          <teiHeader>
            <fileDesc>
              <titleStmt>
@@ -1215,7 +1217,7 @@ KS4K
        fitting for a portion of an assembled collection. Here is an
        example encoding of a single email message encoded as a
        <gi>post</gi> following this method:
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ig">
          <post xml:id="Web-1990-01-31-0933">
            <dateline>
              <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
@@ -1254,15 +1256,14 @@ KS4K
        <gi>teiHeader</gi> elements of the internal <gi>TEI</gi>
        elements. This approach treats each email message directed to
        the Listserv more as we would encode written and mailed
-       correspondence.</p>
-        
-        <div xml:id="TEI-post-titleStmt">
-          <head>One TEI Document per Post with Subject in Title Statement</head>
-          <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
-            rather than in the <gi>dateline</gi>, and we ventured to
+       correspondence.</p>        
+       <div xml:id="TEI-post-titleStmt">
+         <head>One TEI Document per Post with Subject in Title Statement</head>
+         <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
+           rather than in the <gi>dateline</gi>, and we ventured to
            develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
            as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the same as the writer).      
-         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+         <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ht">
            <TEI>
              <teiHeader>
                <fileDesc>
@@ -1399,12 +1400,12 @@ KS4K
          <item>a copy of the original field values in a <gi>xenoData</gi> within the <gi>teiHeader</gi></item>
        </list>
        
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-is">
          <TEI>
            <teiHeader>
              <fileDesc>
                <titleStmt>
-                 <title><!-- basename of input document --></title>
+                 <title><!-- basename of input document, hereafter called INPUT.txt --></title>
                  <title type="sub">a corpus of 38787 postings</title>
                </titleStmt>
                <publicationStmt>
@@ -1513,12 +1514,18 @@ KS4K
            what capitalization was used for the
            <q>quoted-printable</q> transfer encoding is not otherwise
            possible using the output of our program.</p>
-           <p>Similar to our previous encoding,
-           the <gi>correspDesc</gi> also stores the distinct
-           identifier of the message to which this is a reply.
-           Perhaps the most significant difference is moving the information about the sender of the message to the <gi>post</gi> element, where the 
-             sender is designated on the <att>who</att> with a distinct identifier, mapped from their email address, and the date and time of initial sending
-           supplied on <att>when</att>.</p>
+           <p>Similar to our previous encoding (the example in <ptr
+           type="crossref" target="#TEI-post-titleStmt"/>), the
+           <gi>correspDesc</gi> also stores the distinct identifier of the
+           message to which this is a reply.
+	   <?ebb The previous sentence is not true; "sbebb2024-eg-is" does _not_ point
+	     to the message to which it is a reply. —Syd, 2025-10-10 ?>
+	   Perhaps the most significant difference is moving the
+	   information about the sender of the message to the
+	   <gi>post</gi> element — the sender is designated on the
+	   <att>who</att> with a distinct identifier, mapped from their
+	   email address; and the date and time the message was initially
+	   sent is supplied on <att>when</att>.</p>
            <p>One field that gave us significant pause is the
            <code>Subject:</code> field. Although such fields are
            ubiquitous in office memos and in email headers, they
@@ -1695,7 +1702,7 @@ KS4K
           (U+FF20) used in the @xml:id below is not surviving FOP
           processing. Unless you have any magic up your sleeve, we
           will have to search for another character to use, here. ?>
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-aw">
           <list type="emailography">
             <item xml:id="nsmith·＠·email.unc.edu">
               <name>Natalia Smith</name>
