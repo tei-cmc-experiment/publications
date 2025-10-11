@@ -1089,7 +1089,11 @@ KS4K
       and the example, while helpful for modeling the use of
       <gi>correspAction</gi> to indicate who sends and who receives,
       does not attempt to address the larger context of Listserv
-      handling which we attempt to model in this section.</p>
+      handling which we attempt to model in this section.<note>Stadler et. al. (2016–2017)
+        include discussion of the possibilities for encoding email in their article about applications for <gi>correspDesc</gi>. However, Beißwenger et. al. (2012) did not
+      include email in their proposed schema for representing computer-mediated communication, though they suggest that it
+      could potentially be encoded as such. At the time of this writing, CMC chapter the TEI Guidelines
+      does not model email listserv correspondence.</note></p>
       <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
@@ -1825,6 +1829,18 @@ KS4K
          level="m">Extensible Markup Language (XML) 1.0 (Fifth
          Edition)</title>, November 2008;
          <ptr target="https://www.w3.org/TR/REC-xml/"/>.
+       </bibl>
+       <bibl xml:id="correspDescModel">
+         Stadler, Peter; Illetschko, Marcel; Seifert, Sabine, <title level="a">Towards a Model for 
+           Encoding Correspondence in the TEI: Developing and Implementing &lt;correspDesc&gt;</title>,
+         <title level="j">Journal of the Text Encoding Initiative</title>, Issue 9 (September 2016–December 2017)
+         <ptr target="https://doi.org/10.4000/jtei.1433"/>.
+       </bibl>
+       <bibl xml:id="cmcSchemaProp">
+         Beißwenger, Michael; Ermakova, Maria; Geyken, Alexander; Lemnitzer, Lothar; Storrer, Angelika, 
+         <title level="a">A TEI Schema for the Representation of Computer-mediated Communication</title>,
+         <title level="j">Journal of the Text Encoding Initiative</title>, Issue 3 (November 2012)
+         <ptr target="https://doi.org/10.4000/jtei.476"/>.
        </bibl>
      </listBibl>
    </div>
