@@ -1078,7 +1078,12 @@ KS4K
       <!--ebb: To start here. -->
       <p>In this section we represent some experimental modelings of email Listserv data in TEI encoding. 
         We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
-        Communication (CMC) and from TEI encoding for correspondence. In each of the methods shared in this section, 
+        Communication (CMC) and from TEI encoding for correspondence. Notably, 
+        <ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml"></ref>the Correspondence SIG has posted 
+        an example for encoding an email message with <gi>correspDesc</gi>, and the example, while helpful for modeling the use of 
+        <gi>correspAction</gi> to indicate who sends and who receives, does not attempt to address the larger context of Listserv handling which
+        we attempt to model in this section.</p> 
+      <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
         This approach represents the email archive simply according to chronological sequencing of posts, without 
