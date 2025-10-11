@@ -1514,13 +1514,9 @@ KS4K
            what capitalization was used for the
            <q>quoted-printable</q> transfer encoding is not otherwise
            possible using the output of our program.</p>
-           <p>Similar to our previous encoding (the example in <ptr
-           type="crossref" target="#TEI-post-titleStmt"/>), the
-           <gi>correspDesc</gi> also stores the distinct identifier of the
-           message to which this is a reply.
-	   <?ebb The previous sentence is not true; "sbebb2024-eg-is" does _not_ point
-	     to the message to which it is a reply. —Syd, 2025-10-10 ?>
-	   Perhaps the most significant difference is moving the
+           <p>Perhaps the most significant difference from our
+           previous encoding (the example in <ptr
+             type="crossref" target="#TEI-post-titleStmt"/>) in moving the
 	   information about the sender of the message to the
 	   <gi>post</gi> element — the sender is designated on the
 	   <att>who</att> with a distinct identifier, mapped from their
