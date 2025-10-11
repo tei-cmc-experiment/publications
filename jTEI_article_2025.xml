@@ -186,15 +186,15 @@
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
           <p>Listserv provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
           retrieve data over periods of time, or based on other parameters.</p>
-          <p>Our attempts to <q>scrape</q> this web interface helped us to explore the properties of the listserv URLs as a web publication. 
-            Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
+          <p>Our attempts to scrape this web interface helped us to explore the properties of the listserv URLs as a web publication. 
+            Though scraping proved too difficult to apply at scale in our first effort, we recommend continued
             research into the kinds of information accessible from the web archive vs. the listserv log.
             For example tracking threads may be significantly easier through this method compared to working with
             the log records. For this reason we are sharing our effort in this section.
           </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
-            we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
+            we attempted to scrape these from the web archive of the TEI-L, which can be  
             accessed on the web in its current home at Penn State University at 
             <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">https://lists.psu.edu/cgi-bin/wa?A0=TEI-L</ref>.
             By adjusting this public web URL, one could retrieve a <q>core sample</q> from the TEI-L by entering a date range, such that
@@ -1078,7 +1078,14 @@ KS4K
       <!--ebb: To start here. -->
       <p>In this section we represent some experimental modelings of email Listserv data in TEI encoding. 
         We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
-        Communication (CMC) and from TEI encoding for correspondence. In each of the methods shared in this section, 
+        Communication (CMC) and from TEI encoding of Correspondence Description (<gi>correspDesc</gi>), introduced to the
+        TEI Guidelines in April 2015 in version 2.8, and now a basis for the <ref target="https://correspsearch.net/en/home.html">correspSearch web service</ref> and the Correspondence Metadata
+        Interchange Format (CMIF) for publishing archives of correspondence. Notably, 
+        <ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml"></ref>the Correspondence SIG has posted 
+        an example for encoding an email message with <gi>correspDesc</gi>, and the example, while helpful for modeling the use of 
+        <gi>correspAction</gi> to indicate who sends and who receives, does not attempt to address the larger context of Listserv handling which
+        we attempt to model in this section.</p> 
+      <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
         This approach represents the email archive simply according to chronological sequencing of posts, without 
@@ -1115,7 +1122,6 @@ KS4K
         <row role="label"><cell>email header field</cell><cell>TEI location (in XPath)</cell></row>
         <row><cell>Date</cell><cell><code>post/@when</code></cell></row>
         <row><cell>From</cell><cell><code>post/@who</code></cell></row>
-        <row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
         <row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
         <row><cell>Subject</cell><cell><code>post/head</code></cell></row>
         <row><cell>In-Reply-To<note>Not to be confused with the
@@ -1354,7 +1360,7 @@ KS4K
                            Initative public discussion list</ref></orgName>
                      </correspAction>  
                      <correspContext>
-                       <ref type="in-response-to" target="#Web-1990-01-31-0933">previous message of 
+                       <ref type="in-reply-to" target="#Web-1990-01-31-0933">previous message of 
                          <persName>Robert Philip Weber</persName> to the TEI-L Listserv.
                          <date when="1990-01-31"/>
                        </ref>
@@ -1448,9 +1454,6 @@ KS4K
                <!-- <encodingDesc> from corpus header essentially repeated here … -->
                <profileDesc>
                  <correspDesc>
-                   <correspContext>
-                     <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-                   </correspContext>
                    <correspAction type="relayed">
                      <email>TEI-L@UICVM</email>
                      <date>Tue, 6 Feb 90 10:54:04 CST</date>
@@ -1518,13 +1521,9 @@ KS4K
            what capitalization was used for the
            <q>quoted-printable</q> transfer encoding is not otherwise
            possible using the output of our program.</p>
-           <p>Similar to our previous encoding (the example in <ptr
-           type="crossref" target="#TEI-post-titleStmt"/>), the
-           <gi>correspDesc</gi> also stores the distinct identifier of the
-           message to which this is a reply.
-	   <?ebb The previous sentence is not true; "sbebb2024-eg-is" does _not_ point
-	     to the message to which it is a reply. —Syd, 2025-10-10 ?>
-	   Perhaps the most significant difference is moving the
+           <p>Perhaps the most significant difference from our
+           previous encoding (the example in <ptr
+             type="crossref" target="#TEI-post-titleStmt"/>) in moving the
 	   information about the sender of the message to the
 	   <gi>post</gi> element — the sender is designated on the
 	   <att>who</att> with a distinct identifier, mapped from their
