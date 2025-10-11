@@ -499,13 +499,12 @@
               <q>&#x2A00;SUB&#x2A00;</q> in the input document, we could either leave
               them that way for the user, or convert them to
               <q>&amp;SUB;</q> and provide an appropriate declaration,
-              <?jtei Note to JTEI editors: This is weird. The
-                characters I wanted to use (U+26D1 & U+E503) do not
-                survive FOP processing. So I switched to using U+2A00
-                for both. The two occurrences above survive, but the
-                one below gets converted to # (U+0023)! Is that
-                because it is within a <code>, and thus using a
-                different font? ?>
+              <?jtei Note to JTEI editors: Heads up! These may not process correctly.
+		The characters I wanted to use (U+26D1 & U+E503) do not survive FOP
+		processing. So I switched to using U+2A00 for both. The two
+		occurrences above survive, but the one below gets converted
+		to # (U+0023)! Is that because it is within a <code>, and thus
+		using a different font? ?>
               for example to a PUA character: <code>&lt;!ENTITY SUB
               "&#x2A00;"></code>. This would likely be easier for
               readers than using a single character for each of the 17
@@ -786,13 +785,13 @@
             yield data that was not at all amenable to scholarly
             processing.</p>
             <p>It would also be reasonable to ignore all MIME parts
-            other than text/plain — after all, this is the
+            other than text/plain<!-- — after all, this is the
             <emph>Text</emph> Encoding Initiative version of the data
-            we are creating. (In fact, this is what we did for the
+            we are creating-->. In fact, this is what we did for the
             <soCalled>scrape + craft encoding</soCalled> approach
-            described in <ptr type="crossref" target="#scraping"/>, except
-            there all parts were ignored except the one the Listserv
-            web interface chose to display.) But it would also
+            described in <ptr type="crossref" target="#scraping"/>,
+            except there all parts were ignored except the one the
+            Listserv web interface chose to display. But it would also
             be quite reasonable, and quite possibly helpful to future
             scholars and interested parties, to retain the information
             in other parts of postings to the mailing list. But doing
@@ -1933,5 +1932,10 @@ KS4K
        <label>±</label> <item>Either <q>+</q> or <q>-</q>.</item>
        <label>TZA</label> <item>A valid time zone symbol.</item>
        <label>Anything else as last token</label> <item>An invalid
-       time zone symbol.</item> </list> </p> </div> </back> </text>
-       </TEI>
+       time zone symbol.</item>
+     </list>
+   </p>
+ </div>
+</back>
+</text>
+</TEI>
