@@ -1078,7 +1078,9 @@ KS4K
       <!--ebb: To start here. -->
       <p>In this section we represent some experimental modelings of email Listserv data in TEI encoding. 
         We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
-        Communication (CMC) and from TEI encoding for correspondence. Notably, 
+        Communication (CMC) and from TEI encoding of Correspondence Description (<gi>correspDesc</gi>), introduced to the
+        TEI Guidelines in April 2015 in version 2.8, and now a basis for the <ref target="https://correspsearch.net/en/home.html">correspSearch web service</ref> and the Correspondence Metadata
+        Interchange Format (CMIF) for publishing archives of correspondence. Notably, 
         <ref target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml"></ref>the Correspondence SIG has posted 
         an example for encoding an email message with <gi>correspDesc</gi>, and the example, while helpful for modeling the use of 
         <gi>correspAction</gi> to indicate who sends and who receives, does not attempt to address the larger context of Listserv handling which
@@ -1120,7 +1122,6 @@ KS4K
         <row role="label"><cell>email header field</cell><cell>TEI location (in XPath)</cell></row>
         <row><cell>Date</cell><cell><code>post/@when</code></cell></row>
         <row><cell>From</cell><cell><code>post/@who</code></cell></row>
-        <row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
         <row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
         <row><cell>Subject</cell><cell><code>post/head</code></cell></row>
         <row><cell>In-Reply-To</cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
@@ -1355,7 +1356,7 @@ KS4K
                            Initative public discussion list</ref></orgName>
                      </correspAction>  
                      <correspContext>
-                       <ref type="in-response-to" target="#Web-1990-01-31-0933">previous message of 
+                       <ref type="in-reply-to" target="#Web-1990-01-31-0933">previous message of 
                          <persName>Robert Philip Weber</persName> to the TEI-L Listserv.
                          <date when="1990-01-31"/>
                        </ref>
@@ -1449,9 +1450,6 @@ KS4K
                <!-- <encodingDesc> from corpus header essentially repeated here … -->
                <profileDesc>
                  <correspDesc>
-                   <correspContext>
-                     <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-                   </correspContext>
                    <correspAction type="relayed">
                      <email>TEI-L@UICVM</email>
                      <date>Tue, 6 Feb 90 10:54:04 CST</date>
