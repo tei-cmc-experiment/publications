@@ -176,9 +176,8 @@
           TEI representation for archiving and potential later
           enhancement</item>
         </list>
-	At the time of this writing, references to, or copies of, most of
-	the utilities we used and programs we wrote can be found on
-	<ref target="https://github.com/tei-cmc-experiment/">GitHub</ref>.</p>
+          At the time of this writing, references to, or copies of, most of the encoding we attempted and the programs we wrote can be found on
+          <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment">GitHub</ref>.</p>
       </div>
       <div xml:id="data-retrieval">
         <head>Conversion from Source to XML</head>
