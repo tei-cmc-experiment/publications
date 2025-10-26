@@ -1092,8 +1092,8 @@ KS4K
       handling which we attempt to model in this section.<note>Stadler et. al. (2016–2017)
         include discussion of the possibilities for encoding email in their article about applications for <gi>correspDesc</gi>. However, Beißwenger et. al. (2012) did not
       include email in their proposed schema for representing computer-mediated communication, though they suggest that it
-      could potentially be encoded as such. At the time of this writing, CMC chapter the TEI Guidelines
-      does not model email LISTSERV correspondence.</note></p>
+      could potentially be encoded as such. At the time of this writing, the CMC chapter of the TEI Guidelines
+      does not model email correspondence.</note></p>
       <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
@@ -1135,7 +1135,7 @@ KS4K
         <row><cell>In-Reply-To<note>Not to be confused with the
         <code>Reply-To</code> field, which contains the address to
         which a reply should be sent. Since usually the sender’s
-        email client sets this field, we do not think is particularly
+        email client sets this field, we do not think it is particularly
         interesting.</note></cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
         <row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
         <row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
@@ -1531,11 +1531,11 @@ KS4K
            possible using the output of our program.</p>
            <p>Perhaps the most significant difference from our
            previous encoding (the example in <ptr
-             type="crossref" target="#TEI-post-titleStmt"/>) in moving the
+             type="crossref" target="#TEI-post-titleStmt"/>) is that we moved the
 	   information about the sender of the message to the
-	   <gi>post</gi> element — the sender is designated on the
+	   <gi>post</gi> element where the sender is designated on the
 	   <att>who</att> with a distinct identifier, mapped from their
-	   email address; and the date and time the message was initially
+	   email address, and the date and time the message was initially
 	   sent is supplied on <att>when</att>.</p>
            <p>One field that gave us significant pause is the
            <code>Subject:</code> field. Although such fields are
