@@ -1530,13 +1530,14 @@ KS4K
            <q>quoted-printable</q> transfer encoding is not otherwise
            possible using the output of our program.</p>
            <p>Perhaps the most significant difference from our
-           previous encoding (the example in <ptr
-             type="crossref" target="#TEI-post-titleStmt"/>) is that we moved the
-	   information about the sender of the message to the
-	   <gi>post</gi> element where the sender is designated on the
-	   <att>who</att> with a distinct identifier, mapped from their
-	   email address, and the date and time the message was initially
-	   sent is supplied on <att>when</att>.</p>
+           previous encoding (the example in <ptr type="crossref"
+           target="#TEI-post-titleStmt"/>) is that we moved the
+           information about the sender of the message to attributes
+           of the <gi>post</gi> element. The sender is designated on
+           the <att>who</att> with a pointer to a <gi>person</gi>
+           element whose distinct identifier is an altered form of
+           their email address. The date and time the message was
+           initially sent is supplied on <att>when</att>.</p>
            <p>One field that gave us significant pause is the
            <code>Subject:</code> field. Although such fields are
            ubiquitous in office memos and in email headers, they
