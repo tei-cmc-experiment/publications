@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://tei-c.org/release/xml/tei/Exemplars/tei_jtei.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title type="main">Preserving a Listserv Archive in TEI: The Case of TEI-L</title>
+        <title type="main">Preserving a LISTSERV Archive in TEI: The Case of TEI-L</title>
         <author xml:id="sb">
           <name>
             <forename>Syd</forename>
@@ -68,7 +68,7 @@
       <textClass>
         <keywords xml:lang="en">
           <term>TEI</term>
-          <term>Listserv</term>
+          <term>LISTSERV</term>
           <term>character</term>
           <term>email</term>
           <term>computer-mediated communication</term>
@@ -85,16 +85,16 @@
       <div type="abstract" xml:id="abstract">
         <p><q>Can the archives of an email list be stored in TEI?</q> This paper 
           addresses this question with special attention to the challenges of data retrieval from
-          the TEI-L Listserv, and the mapping of email contents and metadata to XML and TEI. 
+          the TEI-L LISTSERV, and the mapping of email contents and metadata to XML and TEI. 
           Our experiments with TEI data modeling involve adapting encoding models from the new
           <title level="a">Computer Mediated Communication</title> chapter, as well as 
           correspondence and personography in the <title>TEI Guidelines</title>. We experimented
-          with very different approaches in retrieving and mapping Listserv data, and we faced challenges
+          with very different approaches in retrieving and mapping LISTSERV data, and we faced challenges
           that reflect changing technologies in character encoding and email transmission, as well as
           conceptual difficulties in reliably tracing individual contributions over years and decades. 
           Ultimately we believe that yes, it is possible (although difficult) to store the archives of an email list in TEI,
           that there are some problems with establishing a satisfactory encoding, 
-          and the methods one chooses will likely depend on the scope of a Listserv archival project.</p>
+          and the methods one chooses will likely depend on the scope of a LISTSERV archival project.</p>
       </div>
     </front>
     <body>
@@ -139,7 +139,7 @@
         <p>We decided the TEI-L discussion list would make an
         excellent test case. It is a large, public resource that spans decades
         from mailing list
-        software (Listserv) with which we are somewhat
+        software (LISTSERV) with which we are somewhat
         familiar. Furthermore, because we had recently moved the list
         from Brown University to Penn State University, accessing
         the raw archives from its beginning to the day the list was
@@ -168,7 +168,7 @@
         out that both parts were problematic. It was very difficult to convert
         the data into XML, and in several cases there is no TEI encoding that is
         really satisfactory.</p>
-        <p>We took two approaches to encoding the TEI-L Listserv data in TEI:
+        <p>We took two approaches to encoding the TEI-L LISTSERV data in TEI:
         <list>
           <item>a craft encoding of a <q>core sample</q> of the list, 
             holding a short range of months or years worth of posts.</item>
@@ -176,29 +176,30 @@
           TEI representation for archiving and potential later
           enhancement</item>
         </list>
-        </p>
+          At the time of this writing, references to, or copies of, most of the encoding we attempted and the programs we wrote can be found on
+          <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment">GitHub</ref>.</p>
       </div>
       <div xml:id="data-retrieval">
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
-          <p>Listserv provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
+          <p>LISTSERV provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
           retrieve data over periods of time, or based on other parameters.</p>
-          <p>Our attempts to <q>scrape</q> this web interface helped us to explore the properties of the listserv URLs as a web publication. 
-            Though <q>scraping</q> proved too difficult to apply at scale in our first effort, we recommend continued
-            research into the kinds of information accessible from the web archive vs. the listserv log.
+          <p>Our attempts to scrape this web interface helped us to explore the properties of the LISTSERV URLs as a web publication. 
+            Though scraping proved too difficult to apply at scale in our first effort, we recommend continued
+            research into the kinds of information accessible from the web archive vs. the LISTSERV log.
             For example tracking threads may be significantly easier through this method compared to working with
             the log records. For this reason we are sharing our effort in this section.
           </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
             retrieve all the  messages in a selected range of months or years, 
-            we attempted to <q>scrape</q> these from the web archive of the TEI-L, which can be  
+            we attempted to scrape these from the web archive of the TEI-L, which can be  
             accessed on the web in its current home at Penn State University at 
             <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">https://lists.psu.edu/cgi-bin/wa?A0=TEI-L</ref>.
             By adjusting this public web URL, one could retrieve a <q>core sample</q> from the TEI-L by entering a date range, such that
             if one were seeking to retrieve all of the messages between January and March of 1990, the URL that serves these is:
             <ref target="https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L">https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L</ref>.
-            A significant limitation of this approach, at least in Listserv 17.0 currently used by Penn State, 
+            A significant limitation of this approach, at least in LISTSERV 17.0 currently used by Penn State, 
             is that the website access to the archives limits the number of results on a screen so that when large quantities of messages 
             (say over 100) are retrieved, some results can only be retrieved on click of a <q>next</q> button.
             In a programmatic scraping context, this posed some obstacles:
@@ -211,11 +212,11 @@
             
             We expect it is possible to overcome these difficulties, but due to time constraints in launching this project for the 2024 TEI Conference, 
             we limited ourselves to small samples that would be retrievable on one screen to simplify our processing requirements. We tinkered with the Scrapy Python library and lxml e-tree for parsing XPath, after a 
-            false start in attempting to adapt <ref target="https://github.com/gaalcaras/mailingListScraper">an excellent scraper designed by GitHub user gaalcaras for retrieving messages from Hypermail</ref>, which produces a much simpler web archive than Listserv.</p>
+            false start in attempting to adapt <ref target="https://github.com/gaalcaras/mailingListScraper">an excellent scraper designed by GitHub user gaalcaras for retrieving messages from Hypermail</ref>, which produces a much simpler web archive than LISTSERV.</p>
           <p>Our limited scraping exercise helped us to learn about
-          the Listserv web archive retrieval system.  What was most
+          the LISTSERV web archive retrieval system.  What was most
           interesting to us about this method was the discovery that
-          Listserv provides each message a distinct identifier for
+          LISTSERV provides each message a distinct identifier for
           retrieving it for web view. If we could retrieve the
           distinct identifiers from URLs and CGI paths, they could be
           a reliable way to pull message metadata and content.  On the
@@ -227,12 +228,12 @@
           information about each message, including a bit of the
           message text content to be shown on mouseover, sender name
           and email, a date and time stamp (though it is unclear
-          whether this is for circulation by Listserv or from the
+          whether this is for circulation by LISTSERV or from the
           original email heading), and finally an HTML anchor pointing
           to a CGI path to retrieve the message with a distinct
           identifying string, as shown here:
             <figure xml:id="scraped">
-           <egXML xmlns="http://www.tei-c.org/ns/Examples"> 
+           <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-na">
             <tr>
               <td class="emphasizedgroup row-l" scope="row"><div class="archive forcewrap"><span onmouseover="showDesc('Dear Colleague:&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;From 27 May to 29 June 1990 I am out of the country and so gone from&amp;lt;br&amp;gt;this address, chiefly to attend the ALLC/ICCH conference in Siegen,&amp;lt;br&amp;gt;Germany. Mail will be kept faithfully for me here, but if I do not&amp;lt;br&amp;gt;reply to your message in early July, please resend your message then. [...]','Re: where is SGML being used','Fri, 29 Jun 90 13:19:30 EDT')" onmouseout="hideDesc()"><a href="/cgi-bin/wa?A2=TEI-L;5bb4caca.9006&amp;S=">Re: where is SGML being used</a></span></div></td>
               <td class="emphasizedgroup row-l"><div class="archive forcewrap">Willard McCarty &amp;lt;MCCARTY@VM.EPAS.UTORONTO.CA&amp;gt;</div></td>
@@ -247,10 +248,10 @@
             The cgi-bin locational information is certainly complicated, but appears to be parsable. The distinct identifier for a message can be found in the
             fourth and last <gi>td</gi> element by retrieving its child <gi>a</gi> and selecting the portion of its <att>href</att> attribute value that
             begins with <code>&amp;X=</code>, its X parameter. In this example Willard McCarty’s message happens to be the last on the first page of results, and 
-            it is used again by Listserv within the value for its <q>Next</q> button to retrieve the results for the second screen.
+            it is used again by LISTSERV within the value for its <q>Next</q> button to retrieve the results for the second screen.
             One can find it as the <q>X</q> parameter once again:
             <figure xml:id="nextButton">
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ke">
               <input type="button" value="Next Page &amp;#62;" 
                 onclick="clearSessionStorage(); 
                 goTo('/cgi-bin/wa?A1=199001-199012&amp;L=TEI-L&amp;s=250&amp;X=O96EB1622E3EEE9B193&amp;Y=eeb4%40psu.edu')" />
@@ -259,29 +260,29 @@
             </figure>            
             Our Python scraping experiment could follow these paths to
             extract URLs for messages, but we decided not to continue
-            the experiment to try to extract Listserv’s web
+            the experiment to try to extract LISTSERV’s web
             representation of the message data, because that data
             posed their own challenges for parsing <q>spaghetti
             code</q> and we could proceed more efficiently with a
             simpler resource for the email message data.  Because
-            Listserv provides much cleaner and simpler monthly log
+            LISTSERV provides much cleaner and simpler monthly log
             text files on request that are far more tractable, we
             decided to work exclusively with the log files for
-            experiments with converting to Listserv email data to
+            experiments with converting to LISTSERV email data to
             TEI. You can explore <ref
             target="https://github.com/tei-cmc-experiment/tei-cmc-experiment/tree/main/logs">the
             log files for the year 1990</ref> in our GitHub repository
             and see how much simpler they are to work with as a basis
             for conversion. What is missing in those logs, however, is
-            Listserv’s distinct identifier for each
+            LISTSERV’s distinct identifier for each
             message.<note>~41.2% of email messages in the entire
             dataset have a <code>Message-ID</code> header field which
             provides a unique identifier for the message. But this is
-            not the same identifier Listserv uses for its display, and
+            not the same identifier LISTSERV uses for its display, and
             over half of them are missing, making this field not
             useful for some purposes.</note> So for a future
             experiment, we may pull the message identifiers from
-            Listserv’s web archive files in order to key the logs to
+            LISTSERV’s web archive files in order to key the logs to
             the web retrieval system.</p>
         </div>
         <div xml:id="mass-conversion">
@@ -291,8 +292,8 @@
           to <date when="2024-04-29">Monday, 29 April 2024</date> into
           some form of simple, basic TEI using XSLT. That end date was
           chosen because it was the day the mailing list was moved
-          from Brown University’s Listserv to Penn State University’s
-          Listserv. This fact meant we could obtain the entire dataset
+          from Brown University’s LISTSERV to Penn State University’s
+          LISTSERV. This fact meant we could obtain the entire dataset
           as text files directly from the Brown listmaster without
           needing to worry about merging in data from PSU or about
           posts made just after we obtained the data. Peter DiCamillo,
@@ -329,14 +330,14 @@
           significant difference.</note></p>
           <div xml:id="post_delimiters">
             <head>Delimiters</head>
-            <p>Each log file provided by Listserv contains one or more
+            <p>Each log file provided by LISTSERV contains one or more
             posts to the mailing list. For our dataset, the range was
             1–420 posts per monthly log file, although in several cases
-            there is a month that has no postings, for which Listserv
+            there is a month that has no postings, for which LISTSERV
             did not generate a .log file at all.</p>
             <p>Thus an early task was to figure out how posts are
             separated in a log file. Upon inspecting the dataset, it was
-            quickly apparent that Listserv uses a string of 73 equal
+            quickly apparent that LISTSERV uses a string of 73 equal
             signs (U+003D, <q>=</q>) in a row as a start-post
             indicator, because there is such a delimiter before the
             first and every subsequent post in a file, but not after the
@@ -497,13 +498,12 @@
               <q>&#x2A00;SUB&#x2A00;</q> in the input document, we could either leave
               them that way for the user, or convert them to
               <q>&amp;SUB;</q> and provide an appropriate declaration,
-              <?jtei Note to JTEI editors: This is weird. The
-                characters I wanted to use (U+26D1 & U+E503) do not
-                survive FOP processing. So I switched to using U+2A00
-                for both. The two occurrences aboves survive, but the
-                one below gets converted to # (U+0023)! Is that
-                because it is within a <code>, and thus using a
-                different font? ?>
+              <?jtei Note to JTEI editors: Heads up! These may not process correctly.
+		The characters I wanted to use (U+26D1 & U+E503) do not survive FOP
+		processing. So I switched to using U+2A00 for both. The two
+		occurrences above survive, but the one below gets converted
+		to # (U+0023)! Is that because it is within a <code>, and thus
+		using a different font? ?>
               for example to a PUA character: <code>&lt;!ENTITY SUB
               "&#x2A00;"></code>. This would likely be easier for
               readers than using a single character for each of the 17
@@ -559,7 +559,7 @@
             file of ~151 MiB of data, use perhaps 10 files of ~15
             MiB each (or vice-versa); or even use the original 412
             files (the largest of which is ~4 MiB) generated by
-            Listserv.</item>
+            LISTSERV.</item>
             <item>Use streaming XSLT: The whole point of the
             <soCalled>streamability</soCalled> feature of XSLT 3.0
             is to be able to process large, perhaps infinitely
@@ -775,7 +775,7 @@
             and text/html; much less frequent are text/enriched,
             text/x-vcard, text/xml, and application/*.</p>
             <p>It would not be unreasonable to put all the different
-            MIME parts of a post to the Listserv as raw data into a
+            MIME parts of a post to the LISTSERV as raw data into a
             single TEI <gi>div</gi> or <gi>post</gi> element. It would
             certainly be easier than trying to parse the parts into
             separate TEI elements. But this <foreign
@@ -784,13 +784,13 @@
             yield data that was not at all amenable to scholarly
             processing.</p>
             <p>It would also be reasonable to ignore all MIME parts
-            other than text/plain — after all, this is the
+            other than text/plain<!-- — after all, this is the
             <emph>Text</emph> Encoding Initiative version of the data
-            we are creating. (In fact, this is what we did for the
+            we are creating-->. In fact, this is what we did for the
             <soCalled>scrape + craft encoding</soCalled> approach
-            described in <ptr type="crossref" target="#scraping"/>, except
-            there all parts were ignored except the one the Listserv
-            web interface chose to display.) But it would also
+            described in <ptr type="crossref" target="#scraping"/>,
+            except there all parts were ignored except the one the
+            LISTSERV web interface chose to display. But it would also
             be quite reasonable, and quite possibly helpful to future
             scholars and interested parties, to retain the information
             in other parts of postings to the mailing list. But doing
@@ -1073,10 +1073,28 @@ KS4K
     </div> 
     <div xml:id="mapping-to-TEI">
       <head>Mapping to TEI</head>
-      <!--ebb: To start here. -->
-      <p>In this section we represent some experimental modelings of email Listserv data in TEI encoding. 
-        We experimented with a combination of encoding from the newly introduced chapter on Computer Mediated
-        Communication (CMC) and from TEI encoding for correspondence. In each of the methods shared in this section, 
+      <p>In this section we present some TEI models of LISTSERV email
+      data. Our experiments included a combination of encoding from
+      the chapter on Computer Mediated Communication (CMC, introduced
+      in version 4.8 of July 2024) and from the correspondence
+      description (<gi>correspDesc</gi>, introduced in version 2.8 of
+      April 2015), and now a basis for the <ref
+      target="https://correspsearch.net/en/home.html">correspSearch
+      web service</ref> and the Correspondence Metadata Interchange
+      Format (CMIF) for publishing archives of
+      correspondence. Notably, the Correspondence SIG has posted an
+      <ref
+      target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml">example
+      for encoding an email</ref> message with <gi>correspDesc</gi>,
+      and the example, while helpful for modeling the use of
+      <gi>correspAction</gi> to indicate who sends and who receives,
+      does not attempt to address the larger context of LISTSERV
+      handling which we attempt to model in this section.<note>Stadler et. al. (2016–2017)
+        include discussion of the possibilities for encoding email in their article about applications for <gi>correspDesc</gi>. However, Beißwenger et. al. (2012) did not
+      include email in their proposed schema for representing computer-mediated communication, though they suggest that it
+      could potentially be encoded as such. At the time of this writing, the CMC chapter of the TEI Guidelines
+      does not model email correspondence.</note></p>
+      <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
         This approach represents the email archive simply according to chronological sequencing of posts, without 
@@ -1085,7 +1103,6 @@ KS4K
         are arranged by chronological sequence and without topical nesting. 
         In the interests of facilitating comparison of our encoding decisions, we have truncated the body of each message
         in the examples to show only the first and last few lines.</p>
-      
       <p>The email headers that were present in the entire dataset
       include the following information fields:
       <list>
@@ -1113,10 +1130,13 @@ KS4K
         <row role="label"><cell>email header field</cell><cell>TEI location (in XPath)</cell></row>
         <row><cell>Date</cell><cell><code>post/@when</code></cell></row>
         <row><cell>From</cell><cell><code>post/@who</code></cell></row>
-        <row><cell>Reply-To</cell><cell><code>correspDesc/correspContext/ptr[@type="reply-to"]</code></cell></row>
         <row><cell>Sender</cell><cell><code>correspDesc/correspAction[@type="relayed"]/email</code></cell></row>
         <row><cell>Subject</cell><cell><code>post/head</code></cell></row>
-        <row><cell>In-Reply-To</cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
+        <row><cell>In-Reply-To<note>Not to be confused with the
+        <code>Reply-To</code> field, which contains the address to
+        which a reply should be sent. Since usually the sender’s
+        email client sets this field, we do not think it is particularly
+        interesting.</note></cell><cell><code>correspDesc/correspContext/ref[@type="in-reply-to"]</code></cell></row>
         <row><cell>Comments</cell><cell><code>correspDesc/correspAction[@type="orig-(to|cc)"]/email</code></cell></row>
         <row><cell>Message-ID</cell><cell><code>idno[@type="message-id"]</code></cell></row>
         <row><cell>Organization</cell><cell>[not yet represented]</cell></row>
@@ -1131,18 +1151,18 @@ KS4K
       archive.</p>
       
       <p>It is perhaps a little ironic that we prepared many of our examples for this paper from a 1990 conversation on TEI-L
-        about encoding compound documents, given the compound nature of an email Listserv archive. In preparing distinct modelings 
-        of a TEI archive, we followed the method of the Listserv monthly log documents that store the messages as a chronological sequence, 
+        about encoding compound documents, given the compound nature of an email LISTSERV archive. In preparing distinct modelings 
+        of a TEI archive, we followed the method of the LISTSERV monthly log documents that store the messages as a chronological sequence, 
         and we needed to make decisions about how to associate related messages that reply or respond to one another.</p>
      
      <div xml:id="TEI-collection">
        <head>One TEI Document for a Collection of Posts</head>
        <p>In one approach to mapping the metadata for a collection, we envisioned a single <gi>TEI</gi> element 
        holding a collection of <gi>post</gi> elements, each of which contains an email message. For this approach, we applied the <gi>teiHeader</gi>
-       to store metadata about the original server location of the TEI Listserv and its log files in the <code>fileDesc/sourceDesc</code>.
+       to store metadata about the original server location of the TEI LISTSERV and its log files in the <code>fileDesc/sourceDesc</code>.
        We encoded the method of our extraction of data from the TEI-L archive in the <code>encodingDesc/samplingDecl</code>, as shown in this example:
        
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-dl">
          <teiHeader>
            <fileDesc>
              <titleStmt>
@@ -1166,7 +1186,7 @@ KS4K
              </publicationStmt>
              <sourceDesc>
                <bibl>
-                 <title level="j">TEI-L Listserv</title>
+                 <title level="j">TEI-L LISTSERV</title>
                  <title level="s">LOG9001</title>
                  <title level="s">LOG9002</title>
                  <publisher>University of Illinois Chicago</publisher>
@@ -1175,7 +1195,7 @@ KS4K
                  <relatedItem type="archive">
                    <bibl>
                      <publisher>The Pennsylvania State University</publisher>
-                     <distributor>LISTS.PSU.EDU Listserv Server (17.0)</distributor>
+                     <distributor>LISTS.PSU.EDU LISTSERV Server (17.0)</distributor>
                      <date>2024</date>
                    </bibl>
                  </relatedItem>
@@ -1196,7 +1216,7 @@ KS4K
        </egXML>
        </p>
        <p>In the <gi>text</gi> of the TEI document, we encoded information about the collection of posts and the posts themselves. 
-       Since Listserv delivers the logs as files representing an entire month of posts, we supplied a unique identifier to each 
+       Since LISTSERV delivers the logs as files representing an entire month of posts, we supplied a unique identifier to each 
        monthly log collection on <code>text/body/div[@type="log"]/@xml:id</code>. Within this <tag>div type="log"</tag>, we
        encoded each email message inside a <gi>post</gi> element, drawn from the new CMC chapter.</p>
        <p>To store the metadata for individual email messages, in this method we encoded a <gi>dateline</gi> element, which contained
@@ -1215,7 +1235,7 @@ KS4K
        fitting for a portion of an assembled collection. Here is an
        example encoding of a single email message encoded as a
        <gi>post</gi> following this method:
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ig">
          <post xml:id="Web-1990-01-31-0933">
            <dateline>
              <date when="1990-01-31">Wed, 31 Jan 90 09:33:26 CST</date>
@@ -1253,16 +1273,15 @@ KS4K
        examples, but then supply metadata about each post in the
        <gi>teiHeader</gi> elements of the internal <gi>TEI</gi>
        elements. This approach treats each email message directed to
-       the Listserv more as we would encode written and mailed
-       correspondence.</p>
-        
-        <div xml:id="TEI-post-titleStmt">
-          <head>One TEI Document per Post with Subject in Title Statement</head>
-          <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
-            rather than in the <gi>dateline</gi>, and we ventured to
+       the LISTSERV more as we would encode written and mailed
+       correspondence.</p>        
+       <div xml:id="TEI-post-titleStmt">
+         <head>One TEI Document per Post with Subject in Title Statement</head>
+         <p>In this example, we supply the email message header information in a <gi>correspDesc</gi> 
+           rather than in the <gi>dateline</gi>, and we ventured to
            develop the <code>teiHeader/titleStmt</code> to deliver the subject line of a list message as its <gi>title</gi>, with the writer’s name given
            as the author, and also the person responsible for the <code>correspAction/@type="sent"</code> (usually the same as the writer).      
-         <egXML xmlns="http://www.tei-c.org/ns/Examples">
+         <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-ht">
            <TEI>
              <teiHeader>
                <fileDesc>
@@ -1349,8 +1368,8 @@ KS4K
                            Initative public discussion list</ref></orgName>
                      </correspAction>  
                      <correspContext>
-                       <ref type="in-response-to" target="#Web-1990-01-31-0933">previous message of 
-                         <persName>Robert Philip Weber</persName> to the TEI-L Listserv.
+                       <ref type="in-reply-to" target="#Web-1990-01-31-0933">previous message of 
+                         <persName>Robert Philip Weber</persName> to the TEI-L LISTSERV.
                          <date when="1990-01-31"/>
                        </ref>
                      </correspContext>
@@ -1388,7 +1407,7 @@ KS4K
      </div>
      <div xml:id="tei-post-xeno">
        <head>One TEI document per Post with Subject in its <gi>head</gi></head>
-       <p>In the process of automating the conversion of Listserv data to XML, we prepared a rather different version
+       <p>In the process of automating the conversion of LISTSERV data to XML, we prepared a rather different version
        of a <gi>TEI</gi> element that stores a single email message. Like the previous example, each email message is stored in 
        a TEI child of a TEI document, but in this approach, the email message metadata has been stored in different locations:
        <list>
@@ -1399,12 +1418,12 @@ KS4K
          <item>a copy of the original field values in a <gi>xenoData</gi> within the <gi>teiHeader</gi></item>
        </list>
        
-       <egXML xmlns="http://www.tei-c.org/ns/Examples">
+       <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-is">
          <TEI>
            <teiHeader>
              <fileDesc>
                <titleStmt>
-                 <title><!-- basename of input document --></title>
+                 <title><!-- basename of input document, hereafter called INPUT.txt --></title>
                  <title type="sub">a corpus of 38787 postings</title>
                </titleStmt>
                <publicationStmt>
@@ -1414,7 +1433,7 @@ KS4K
                </publicationStmt>
                <sourceDesc>
                  <ab>Derived from source file /path/to/INPUT.txt, which
-                 should be a log file from a Listserv mailing list.</ab>
+                 should be a log file from a LISTSERV mailing list.</ab>
                </sourceDesc>
              </fileDesc>
              <encodingDesc>
@@ -1443,9 +1462,6 @@ KS4K
                <!-- <encodingDesc> from corpus header essentially repeated here … -->
                <profileDesc>
                  <correspDesc>
-                   <correspContext>
-                     <ptr type="reply-to" target="mailto:TEI-L@UICVM"/>
-                   </correspContext>
                    <correspAction type="relayed">
                      <email>TEI-L@UICVM</email>
                      <date>Tue, 6 Feb 90 10:54:04 CST</date>
@@ -1513,12 +1529,15 @@ KS4K
            what capitalization was used for the
            <q>quoted-printable</q> transfer encoding is not otherwise
            possible using the output of our program.</p>
-           <p>Similar to our previous encoding,
-           the <gi>correspDesc</gi> also stores the distinct
-           identifier of the message to which this is a reply.
-           Perhaps the most significant difference is moving the information about the sender of the message to the <gi>post</gi> element, where the 
-             sender is designated on the <att>who</att> with a distinct identifier, mapped from their email address, and the date and time of initial sending
-           supplied on <att>when</att>.</p>
+           <p>Perhaps the most significant difference from our
+           previous encoding (the example in <ptr type="crossref"
+           target="#TEI-post-titleStmt"/>) is that we moved the
+           information about the sender of the message to attributes
+           of the <gi>post</gi> element. The sender is designated on
+           the <att>who</att> with a pointer to a <gi>person</gi>
+           element whose distinct identifier is an altered form of
+           their email address. The date and time the message was
+           initially sent is supplied on <att>when</att>.</p>
            <p>One field that gave us significant pause is the
            <code>Subject:</code> field. Although such fields are
            ubiquitous in office memos and in email headers, they
@@ -1576,7 +1595,7 @@ KS4K
         <att>who</att>, a pointer to the structured information about
         the author of the posting).</p>
         <p>However, the only information about individual participants in the
-        Listserv archives that is available in highly structured form
+        LISTSERV archives that is available in highly structured form
         are their email addresses and names, and even the names are
         sometimes absent. To make matters worse, a name, when
         present, is that which the author’s email client uses, which
@@ -1695,7 +1714,7 @@ KS4K
           (U+FF20) used in the @xml:id below is not surviving FOP
           processing. Unless you have any magic up your sleeve, we
           will have to search for another character to use, here. ?>
-        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-aw">
           <list type="emailography">
             <item xml:id="nsmith·＠·email.unc.edu">
               <name>Natalia Smith</name>
@@ -1730,7 +1749,7 @@ KS4K
      and presented quite a few potentially interesting statistics along the way. Since the digital text is so ephemeral and contingent, 
      yet so full of information about the computer age, our methods in archiving such work should 
       help to sustain it as a resource for scholarly research, rescuing it from loss from changes in technology providers that take little care for 
-      maintaining access to or preserving heritage. In our specific efforts to archive Listserv data, we find that 
+      maintaining access to or preserving heritage. In our specific efforts to archive LISTSERV data, we find that 
       the TEI can benefit from some improvements.</p>
      <p>The limited valid positions for <gi>email</gi> in TEI documents are a concern as we begin to develop emailographies, and also as we need to 
        reference email addresses as primary resource of information in born-digital documents. That <gi>email</gi> cannot be a child of <gi>person</gi>
@@ -1755,17 +1774,17 @@ KS4K
              of &lt;date when="2002-11-04T11:54:15">Mon, 4 Nov 2002&lt;/date> by &lt;persName>Seal, Jill&lt;/persName>
              with subject &lt;title level="a" type="subject">Re: multiple page range in master&lt;/title></code>. Verbose, but it works.)</p>
      <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. What <att>level</att> 
-       values are appropriate for the <gi>title</gi> of the TEI-L Listserv as a whole, for the log files it curates by the month, or 
+       values are appropriate for the <gi>title</gi> of the TEI-L LISTSERV as a whole, for the log files it curates by the month, or 
        for the individual email message if we use a <gi>title</gi> element to store its Subject line? Perhaps we could apply a 
        <att>level</att> of <val>s</val> (for series) for the title of the collected
-       archives of a Listserv mailing list, a <att>level</att> of <val>m</val> (for monographic) for the title
+       archives of a LISTSERV mailing list, a <att>level</att> of <val>m</val> (for monographic) for the title
        of a single monthly log file, and a <att>level</att> of <val>a</val> (for analytic) for the title of a single post to the list. But monographic, 
        usually associated with bound books or works concentrating purposefully on a single topic, does not seem 
-       at all appropriate for a log file of posts sent conversationally to an email Listserv. Perhaps <att>level</att> of <val>j</val> would be marginally more appropriate
+       at all appropriate for a log file of posts sent conversationally to an email subscription list. Perhaps <att>level</att> of <val>j</val> would be marginally more appropriate
        for the log files, but they do not bear much resemblance to journal or magazine publications with planned contents. Do we need new values of <att>level</att> for born-digital compound artifacts?
        </p>
      <p>Identifying these issues is the first step to introducing new encoding models. We hope that our work in progress provides a basis for further discussion,
-     debate over our experimental data modeling of the TEI Listserv, one of our oldest and most important resources in the TEI community.</p>
+     debate over our experimental data modeling of the TEI LISTSERV, one of our oldest and most important resources in the TEI community.</p>
       </div>
  </body>
  <back> 
@@ -1811,6 +1830,18 @@ KS4K
          level="m">Extensible Markup Language (XML) 1.0 (Fifth
          Edition)</title>, November 2008;
          <ptr target="https://www.w3.org/TR/REC-xml/"/>.
+       </bibl>
+       <bibl xml:id="correspDescModel">
+         Stadler, Peter; Illetschko, Marcel; Seifert, Sabine, <title level="a">Towards a Model for 
+           Encoding Correspondence in the TEI: Developing and Implementing &lt;correspDesc&gt;</title>,
+         <title level="j">Journal of the Text Encoding Initiative</title>, Issue 9 (September 2016–December 2017)
+         <ptr target="https://doi.org/10.4000/jtei.1433"/>.
+       </bibl>
+       <bibl xml:id="cmcSchemaProp">
+         Beißwenger, Michael; Ermakova, Maria; Geyken, Alexander; Lemnitzer, Lothar; Storrer, Angelika, 
+         <title level="a">A TEI Schema for the Representation of Computer-mediated Communication</title>,
+         <title level="j">Journal of the Text Encoding Initiative</title>, Issue 3 (November 2012)
+         <ptr target="https://doi.org/10.4000/jtei.476"/>.
        </bibl>
      </listBibl>
    </div>
@@ -1917,5 +1948,10 @@ KS4K
        <label>±</label> <item>Either <q>+</q> or <q>-</q>.</item>
        <label>TZA</label> <item>A valid time zone symbol.</item>
        <label>Anything else as last token</label> <item>An invalid
-       time zone symbol.</item> </list> </p> </div> </back> </text>
-       </TEI>
+       time zone symbol.</item>
+     </list>
+   </p>
+ </div>
+</back>
+</text>
+</TEI>
