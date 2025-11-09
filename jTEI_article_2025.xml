@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_jtei.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://tei-c.org/release/xml/tei/Exemplars/tei_jtei.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" rend="jTEI" xml:lang="en">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -62,11 +62,8 @@
       </projectDesc>
     </encodingDesc>
     <profileDesc>
-      <langUsage>
-        <language ident="en">en</language>
-      </langUsage>
       <textClass>
-        <keywords xml:lang="en">
+        <keywords>
           <term>TEI</term>
           <term>LISTSERV</term>
           <term>character</term>
@@ -171,10 +168,10 @@
         <p>We took two approaches to encoding the TEI-L LISTSERV data in TEI:
         <list>
           <item>a craft encoding of a <q>core sample</q> of the list, 
-            holding a short range of months or years worth of posts.</item>
+            holding a short range of months or years worth of posts; and</item>
           <item>an automated conversion of mass data to a basic
           TEI representation for archiving and potential later
-          enhancement</item>
+          enhancement.</item>
         </list>
           At the time of this writing, references to, or copies of, most of the encoding we attempted and the programs we wrote can be found on
           <ref target="https://github.com/tei-cmc-experiment/tei-cmc-experiment">GitHub</ref>.</p>
@@ -183,12 +180,12 @@
         <head>Conversion from Source to XML</head>
         <div xml:id="scraping">
           <head><q>Scrape</q> from the Web (attempted) Approach</head>
-          <p>LISTSERV provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is, to
-          retrieve data over periods of time, or based on other parameters.</p>
+          <p>LISTSERV provides a web interface for searching that can be accessed programmatically to <q>scrape</q>, that is to
+          retrieve data, from various periods of time, or based on other parameters.</p>
           <p>Our attempts to scrape this web interface helped us to explore the properties of the LISTSERV URLs as a web publication. 
             Though scraping proved too difficult to apply at scale in our first effort, we recommend continued
             research into the kinds of information accessible from the web archive vs. the LISTSERV log.
-            For example tracking threads may be significantly easier through this method compared to working with
+            For example, tracking threads may be significantly easier through this method compared to working with
             the log records. For this reason we are sharing our effort in this section.
           </p>
           <p>In an effort to retrieve some <q>core samples</q> to support the craft encoding approach and 
@@ -196,12 +193,12 @@
             we attempted to scrape these from the web archive of the TEI-L, which can be  
             accessed on the web in its current home at Penn State University at 
             <ref target="https://lists.psu.edu/cgi-bin/wa?A0=TEI-L">https://lists.psu.edu/cgi-bin/wa?A0=TEI-L</ref>.
-            By adjusting this public web URL, one could retrieve a <q>core sample</q> from the TEI-L by entering a date range, such that
-            if one were seeking to retrieve all of the messages between January and March of 1990, the URL that serves these is:
+            By using different parameters with this public web URL, one can retrieve a <q>core sample</q> from the TEI-L by specifying a date range.
+            If one were seeking to retrieve all of the messages between January and March of 1990, the URL that serves these is:
             <ref target="https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L">https://lists.psu.edu/cgi-bin/wa?A1=199001-199003&amp;L=TEI-L</ref>.
             A significant limitation of this approach, at least in LISTSERV 17.0 currently used by Penn State, 
-            is that the website access to the archives limits the number of results on a screen so that when large quantities of messages 
-            (say over 100) are retrieved, some results can only be retrieved on click of a <q>next</q> button.
+            is that the website access to the archives limits the number of results on a screen. Thus when large quantities of messages 
+            (say over 100) are retrieved, some results can only be scraped after clicking a <q>next</q> button.
             In a programmatic scraping context, this posed some obstacles:
             <list>
               <item>With no clear way to request all the results in a single output, we would have to programmatically anticipate how to 
@@ -209,7 +206,6 @@
               <item>Outputs are alphabetically sorted by the first portion of the sender’s name (often a first name, but sometimes a surname), when one would expect them to be chronologically sequenced. 
                 (This is not a serious problem because we could control sorting the output in the scraping process). </item>
             </list>
-            
             We expect it is possible to overcome these difficulties, but due to time constraints in launching this project for the 2024 TEI Conference, 
             we limited ourselves to small samples that would be retrievable on one screen to simplify our processing requirements. We tinkered with the Scrapy Python library and lxml e-tree for parsing XPath, after a 
             false start in attempting to adapt <ref target="https://github.com/gaalcaras/mailingListScraper">an excellent scraper designed by GitHub user gaalcaras for retrieving messages from Hypermail</ref>, which produces a much simpler web archive than LISTSERV.</p>
@@ -225,7 +221,7 @@
           target="#scraped"/> (retrieved from a search for all of the
           1990 messages from January to December). All message data
           is provided in an HTML table, with each row sharing
-          information about each message, including a bit of the
+          information about a particular email message, including a bit of the
           message text content to be shown on mouseover, sender name
           and email, a date and time stamp (though it is unclear
           whether this is for circulation by LISTSERV or from the
@@ -279,7 +275,7 @@
             dataset have a <code>Message-ID</code> header field which
             provides a unique identifier for the message. But this is
             not the same identifier LISTSERV uses for its display, and
-            over half of them are missing, making this field not
+            for ~58.8% of messages is not present, making this field not
             useful for some purposes.</note> So for a future
             experiment, we may pull the message identifiers from
             LISTSERV’s web archive files in order to key the logs to
@@ -407,7 +403,7 @@
             controlling the behavior of a peripheral device such as a
             card punch or printer, or (in a few cases)
             whitespace.<note>It is quite reasonable, in our opinion, for
-            an astute reader of the XML specification to think that
+            an astute reader of the <ref type="bibl" target="#XML">XML specification</ref> to think that
             production 14 implies that <emph>any</emph> character (other
             than <code>&lt;</code> and <code>&amp;</code>) is allowed as
             data content. But production 14 needs to be read within the
@@ -540,7 +536,7 @@
               be (often by multiple visits to the <ref
               target="https://webcf.waybackmachine.org/">Internet
               Archive’s Wayback Machine</ref>), and replacing them took
-              multiple hours.</note></item>
+              an estimated 6 person-hours.</note></item>
             </list>
           </p>
           <p>After replacement of those characters that are illegal in
@@ -638,7 +634,7 @@
           indication of <code>-00:08</code>. We expect that it
           would be easy to ascertain this using any of a variety of
           programming languages reading either the original dataset or
-          our TEI encoded version. But given that we are experts in
+          our TEI encoded version. But given that we are well versed in
           XPath and XSLT, having this information in TEI made this
           discovery very easy <emph>for us</emph>.<!-- It is worth
           noting that this cannot be done by just scanning the
@@ -717,13 +713,13 @@
             type="bibl" target="#RFC2047">rfc2047</ref>.)</p>
             <p>Using this system, a word that contains a character
             outside of 7-bit ASCII is encoded as
-            <code>=?charset?encoding?encoded text?=</code>, where
+            <code>=?charset?encoding?encoded_text?=</code>, where
             <term>charset</term> is the character encoding in which
             the encoded text should be looked up,
             <term>encoding</term> is either <q>Q</q> (for a
             quoted-printable style escape mechanism) or <q>B</q> (for
-            a base64 style escape mechanism), and <term>encoded
-            text</term> is the string encoded using the escape
+            a base64 style escape mechanism), and <term>encoded_text</term>
+	    is the string encoded using the escape
             mechanism indicated. The character sets employed in this
             dataset were as follows, ignoring case distinctions. (For
             example, UTF-8 was often spelled <q>utf-8</q>.)
@@ -895,8 +891,8 @@
               <q>=C5=84</q> can be used to represent <q>ń</q>, because
               the codepoint 324 (hexadecimal 0144) is mapped to
               <q>ń</q> in Unicode; 324 is too large to be represented
-              in a single octet, so it is broken up into two.<note>The
-              octets are 11000101 10000100. In the first octet the
+              in a single octet, so it is broken up into two octets.<note>The
+              octets are 11000101 and 10000100. In the first octet the
               first 3 bits (110) assert that this number is expressed
               in 2 octets, the last 5 bits (00101) are the first 5
               bits of the codepoint number. In the second octet the
@@ -904,7 +900,7 @@
               the previous octet, and the last 6 bits are the
               last 6 bits of the codepoint number. Thus we can read
               this UTF-8 character expressed using two bytes as the
-              11-bit binary codepoint 00101000100, which is 324 in
+              11-bit binary codepoint 001 0100 0100, which is 324 in
               decimal or 144 in hexadecimal.</note></p>
               <p>This system, if used as described above, would result
               in an encoding that is three times larger than the
@@ -1085,15 +1081,15 @@ KS4K
       correspondence. Notably, the Correspondence SIG has posted an
       <ref
       target="https://github.com/TEI-Correspondence-SIG/correspDesc/blob/master/examples/example02_email.xml">example
-      for encoding an email</ref> message with <gi>correspDesc</gi>,
-      and the example, while helpful for modeling the use of
+      for encoding an email</ref> message with <gi>correspDesc</gi>.
+      But the example, while helpful for modeling the use of
       <gi>correspAction</gi> to indicate who sends and who receives,
       does not attempt to address the larger context of LISTSERV
       handling which we attempt to model in this section.<note>Stadler et. al. (2016–2017)
         include discussion of the possibilities for encoding email in their article about applications for <gi>correspDesc</gi>. However, Beißwenger et. al. (2012) did not
       include email in their proposed schema for representing computer-mediated communication, though they suggest that it
       could potentially be encoded as such. At the time of this writing, the CMC chapter of the TEI Guidelines
-      does not model email correspondence.</note></p>
+      does not explicitly model email correspondence.</note></p>
       <p>In each of the methods shared in this section, 
         we followed the guidance of the new Computer Mediated Communication chapter to store email postings at the 
         same hierarchical level, rather than permitting them to nest when posts reply to original posts. 
@@ -1306,9 +1302,6 @@ KS4K
                    </sourceDesc>
                  </fileDesc>
                  <profileDesc>
-                   <langUsage>
-                     <language ident="en">English</language>
-                   </langUsage>
                    <correspDesc>
                      <correspAction type="sent">
                        <persName>Robert Philip Weber</persName>
@@ -1354,9 +1347,6 @@ KS4K
                    </sourceDesc>
                  </fileDesc>
                  <profileDesc>
-                   <langUsage>
-                     <language ident="en">English</language>
-                   </langUsage>
                    <correspDesc>
                      <correspAction type="sent">
                        <persName>Michael Sperberg-McQueen</persName>
@@ -1619,8 +1609,8 @@ KS4K
         there is a strict one-to-one relationship between these pieces of
         information <emph>for a particular post</emph>, many people
         post multiple times to the list.</p>
-        <p>It is often the case that for a given name multiple email
-        addresses were used. For example, the email address
+        <p>It is often the case that for a given email address
+        multiple names were used. For example, the email address
         <email>emcaulay@library.ucla.edu</email> is associated with
         three different names: <q>McAulay, Elizabeth</q>, <q>Elizabeth
         McAulay</q>, and <q>McAulay, Lisa</q>. (It is easy for a human
@@ -1770,9 +1760,22 @@ KS4K
        satisfactory to encode an email Subject because it is not really part of the email body, but part of the heading metadata stored with From, To,
        CC, etc. Setting it in the <gi>titleStmt</gi> certainly presents the Subject line as metadata, but it is then metadata about the encoded
        TEI document, not necessarily the source. This could be overcome by consistent use of a system that included the latter in the former.
-       (E.g., if each <gi>TEI</gi> that represented a posting to the list had a <gi>title</gi> of <code>A TEI encoding of TEI-L post #04570
-             of &lt;date when="2002-11-04T11:54:15">Mon, 4 Nov 2002&lt;/date> by &lt;persName>Seal, Jill&lt;/persName>
-             with subject &lt;title level="a" type="subject">Re: multiple page range in master&lt;/title></code>. Verbose, but it works.)</p>
+       (E.g., if each <gi>TEI</gi> that represented a posting to the
+       list had something like
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="sbebb2024-eg-te">
+	  <title>
+	    A TEI encoding of TEI-L post #04570 of
+	    <date when="2002-11-04T11:54:15">Mon, 4 Nov 2002</date>
+	    by <persName>Seal, Jill</persName> with subject
+	    <title level="a" type="subject">Re: multiple page
+	    range in master</title>
+	  </title>
+	</egXML> Verbose, but it works.)</p>
+	<!-- a <gi>title</gi> of <code>A TEI encoding of TEI-L post
+	     #04570 of &lt;date when="2002-11-04T11:54:15">Mon, 4 Nov
+	     2002&lt;/date> by &lt;persName>Seal, Jill&lt;/persName>
+	     with subject &lt;title level="a" type="subject">Re:
+	     multiple page range in master&lt;/title></code>. -->
      <p>Contemplating the use of the <gi>title</gi> element raises questions about the available values for <att>level</att>. What <att>level</att> 
        values are appropriate for the <gi>title</gi> of the TEI-L LISTSERV as a whole, for the log files it curates by the month, or 
        for the individual email message if we use a <gi>title</gi> element to store its Subject line? Perhaps we could apply a 
@@ -1783,9 +1786,13 @@ KS4K
        at all appropriate for a log file of posts sent conversationally to an email subscription list. Perhaps <att>level</att> of <val>j</val> would be marginally more appropriate
        for the log files, but they do not bear much resemblance to journal or magazine publications with planned contents. Do we need new values of <att>level</att> for born-digital compound artifacts?
        </p>
-     <p>Identifying these issues is the first step to introducing new encoding models. We hope that our work in progress provides a basis for further discussion,
-     debate over our experimental data modeling of the TEI LISTSERV, one of our oldest and most important resources in the TEI community.</p>
-      </div>
+     <p>Identifying these issues is the first step to introducing new
+     encoding models. We hope that our experimental data modeling for
+     this work in progress provides a basis for further discussion and
+     debate over the representation of mailing lists in general, and
+     the TEI LISTSERV, one of the oldest and most important resources
+     for the TEI community, in particular.</p>
+   </div>
  </body>
  <back> 
    <div type="bibliography">
@@ -1857,35 +1864,35 @@ KS4K
          <cell>symbol</cell>
          <cell>description</cell>
        </row>
-       <row> <cell>0</cell> <cell>00</cell> <cell>0 000 000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
-       <row> <cell>1</cell> <cell>01</cell> <cell>0 000 001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
-       <row> <cell>2</cell> <cell>02</cell> <cell>0 000 010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
-       <row> <cell>3</cell> <cell>03</cell> <cell>0 000 011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
-       <row> <cell>4</cell> <cell>04</cell> <cell>0 000 100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
-       <row> <cell>5</cell> <cell>05</cell> <cell>0 000 101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
-       <row> <cell>6</cell> <cell>06</cell> <cell>0 000 110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
-       <row> <cell>7</cell> <cell>07</cell> <cell>0 000 111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
-       <row> <cell>8</cell> <cell>08</cell> <cell>0 001 000</cell> <cell>BS</cell> <cell>Backspace</cell> </row>
-       <row> <cell>11</cell> <cell>0B</cell> <cell>0 001 011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
-       <row> <cell>12</cell> <cell>0C</cell> <cell>0 001 100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
-       <row> <cell>14</cell> <cell>0E</cell> <cell>0 001 110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
-       <row> <cell>15</cell> <cell>0F</cell> <cell>0 001 111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
-       <row> <cell>16</cell> <cell>10</cell> <cell>0 010 000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
-       <row> <cell>17</cell> <cell>11</cell> <cell>0 010 001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
-       <row> <cell>18</cell> <cell>12</cell> <cell>0 010 010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
-       <row> <cell>19</cell> <cell>13</cell> <cell>0 010 011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
-       <row> <cell>20</cell> <cell>14</cell> <cell>0 010 100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
-       <row> <cell>21</cell> <cell>15</cell> <cell>0 010 101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
-       <row> <cell>22</cell> <cell>16</cell> <cell>0 010 110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
-       <row> <cell>23</cell> <cell>17</cell> <cell>0 010 111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
-       <row> <cell>24</cell> <cell>18</cell> <cell>0 011 000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
-       <row> <cell>25</cell> <cell>19</cell> <cell>0 011 001</cell> <cell>EM</cell> <cell>End of medium</cell> </row>
-       <row> <cell>26</cell> <cell>1A</cell> <cell>0 011 010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
-       <row> <cell>27</cell> <cell>1B</cell> <cell>0 011 011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
-       <row> <cell>28</cell> <cell>1C</cell> <cell>0 011 100</cell> <cell>FS</cell> <cell>File Separator</cell> </row>
-       <row> <cell>29</cell> <cell>1D</cell> <cell>0 011 101</cell> <cell>GS</cell> <cell>Group Separator</cell> </row>
-       <row> <cell>30</cell> <cell>1E</cell> <cell>0 011 110</cell> <cell>RS</cell> <cell>Record Separator</cell> </row>
-       <row> <cell>31</cell> <cell>1F</cell> <cell>0 011 111</cell> <cell>US</cell> <cell>Unit Separator</cell> </row>
+       <row> <cell>0</cell>  <cell>00</cell> <cell> 0000 0000</cell> <cell>NUL</cell> <cell>Null character</cell> </row>
+       <row> <cell>1</cell>  <cell>01</cell> <cell> 0000 0001</cell> <cell>SOH</cell> <cell>Start of Heading</cell> </row>
+       <row> <cell>2</cell>  <cell>02</cell> <cell> 0000 0010</cell> <cell>STX</cell> <cell>Start of Text</cell> </row>
+       <row> <cell>3</cell>  <cell>03</cell> <cell> 0000 0011</cell> <cell>ETX</cell> <cell>End of Text</cell> </row>
+       <row> <cell>4</cell>  <cell>04</cell> <cell> 0000 0100</cell> <cell>EOT</cell> <cell>End of Transmission</cell> </row>
+       <row> <cell>5</cell>  <cell>05</cell> <cell> 0000 0101</cell> <cell>ENQ</cell> <cell>Enquiry</cell> </row>
+       <row> <cell>6</cell>  <cell>06</cell> <cell> 0000 0110</cell> <cell>ACK</cell> <cell>Acknowledge</cell> </row>
+       <row> <cell>7</cell>  <cell>07</cell> <cell> 0000 0111</cell> <cell>BEL</cell> <cell>Bell, Alert</cell> </row>
+       <row> <cell>8</cell>  <cell>08</cell> <cell> 0000 1000</cell> <cell>BS</cell>  <cell>Backspace</cell> </row>
+       <row> <cell>11</cell> <cell>0B</cell> <cell> 0000 1011</cell> <cell>VT</cell> <cell>Vertical Tabulation</cell> </row>
+       <row> <cell>12</cell> <cell>0C</cell> <cell> 0000 1100</cell> <cell>FF</cell> <cell>Form Feed</cell> </row>
+       <row> <cell>14</cell> <cell>0E</cell> <cell> 0000 1110</cell> <cell>SO</cell> <cell>Shift Out</cell> </row>
+       <row> <cell>15</cell> <cell>0F</cell> <cell> 0000 1111</cell> <cell>SI</cell> <cell>Shift In</cell> </row>
+       <row> <cell>16</cell> <cell>10</cell> <cell> 0001 0000</cell> <cell>DLE</cell> <cell>Data Link Escape</cell> </row>
+       <row> <cell>17</cell> <cell>11</cell> <cell> 0001 0001</cell> <cell>DC1</cell> <cell>Device Control One (XON)</cell> </row>
+       <row> <cell>18</cell> <cell>12</cell> <cell> 0001 0010</cell> <cell>DC2</cell> <cell>Device Control Two</cell> </row>
+       <row> <cell>19</cell> <cell>13</cell> <cell> 0001 0011</cell> <cell>DC3</cell> <cell>Device Control Three (XOFF)</cell> </row>
+       <row> <cell>20</cell> <cell>14</cell> <cell> 0001 0100</cell> <cell>DC4</cell> <cell>Device Control Four</cell> </row>
+       <row> <cell>21</cell> <cell>15</cell> <cell> 0001 0101</cell> <cell>NAK</cell> <cell>Negative Acknowledge</cell> </row>
+       <row> <cell>22</cell> <cell>16</cell> <cell> 0001 0110</cell> <cell>SYN</cell> <cell>Synchronous Idle</cell> </row>
+       <row> <cell>23</cell> <cell>17</cell> <cell> 0001 0111</cell> <cell>ETB</cell> <cell>End of Transmission Block</cell> </row>
+       <row> <cell>24</cell> <cell>18</cell> <cell> 0001 1000</cell> <cell>CAN</cell> <cell>Cancel</cell> </row>
+       <row> <cell>25</cell> <cell>19</cell> <cell> 0001 1001</cell> <cell>EM</cell>  <cell>End of medium</cell> </row>
+       <row> <cell>26</cell> <cell>1A</cell> <cell> 0001 1010</cell> <cell>SUB</cell> <cell>Substitute</cell> </row>
+       <row> <cell>27</cell> <cell>1B</cell> <cell> 0001 1011</cell> <cell>ESC</cell> <cell>Escape</cell> </row>
+       <row> <cell>28</cell> <cell>1C</cell> <cell> 0001 1100</cell> <cell>FS</cell>  <cell>File Separator</cell> </row>
+       <row> <cell>29</cell> <cell>1D</cell> <cell> 0001 1101</cell> <cell>GS</cell>  <cell>Group Separator</cell> </row>
+       <row> <cell>30</cell> <cell>1E</cell> <cell> 0001 1110</cell> <cell>RS</cell>  <cell>Record Separator</cell> </row>
+       <row> <cell>31</cell> <cell>1F</cell> <cell> 0001 1111</cell> <cell>US</cell>  <cell>Unit Separator</cell> </row>
      </table>
      <list type="gloss">
        <head>Regular Expressions to Match these Characters</head>
@@ -1936,10 +1943,10 @@ KS4K
      </table>
      <p>Where:
      <list type="gloss">
-       <label>Day</label> <item>Weekday name expressed as 3 letters, capitalized (e.g., <q>Sun</q>.)</item>
-       <label>#D</label> <item>One or two digit day-of-the month (e.g., <q>4</q> or <q>26</q>.)</item>
-       <label>Month</label> <item>The full month name (e.g., <q>August</q>.)</item>
-       <label>Mon</label> <item>The month in 3 letters (e.g., <q>Aug</q>.)</item>
+       <label>Day</label> <item>Weekday name expressed as 3 letters, capitalized (e.g., <q>Sun</q>).</item>
+       <label>#D</label> <item>One or two digit day-of-the month (e.g., <q>4</q> or <q>26</q>).</item>
+       <label>Month</label> <item>The full month name (e.g., <q>August</q>).</item>
+       <label>Mon</label> <item>The month in 3 letters (e.g., <q>Aug</q>).</item>
        <label>YYYY</label> <item>A 4-digit year.</item>
        <label>YY</label> <item>A 2-digit year.</item>
        <label>HH</label> <item>A 2-digit hour.</item>
