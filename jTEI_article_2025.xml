@@ -1811,7 +1811,7 @@ KS4K
        <bibl xml:id="RFC2047">
          Moore, K., Ed., <title level="m"> MIME (Multipurpose Internet
          Mail Extensions) Part Three: Message Header Extensions for
-         Non-ASCII Text</title>, RFC 2822, April 2001; <idno
+         Non-ASCII Text</title>, RFC 2047, November 1996; <idno
          type="DOI">10.17487/RFC2047</idno>.
        </bibl>
        <bibl xml:id="RFC2822">
